@@ -1,18 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas Gestão</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Atlas Gestão - Sistema de Gestão da Qualidade"
+    >
+
+    <title>
+        Atlas Gestão | Gestão da Qualidade
+    </title>
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="./frontend/css/style.css"
+    >
+
 </head>
 
-<body>
 
-    <h1>ATLAS GESTÃO</h1>
+<body class="login-body">
 
-    <h2>Sistema de Gestão da Qualidade</h2>
 
-    <p>Se você está vendo esta mensagem, o GitHub Pages está funcionando.</p>
+    <!--
+    ==========================================================
+    ATLAS GESTÃO
+    ==========================================================
+    -->
+
+    <main class="login-container">
+
+
+        <!-- LOGO -->
+
+        <div class="login-logo">
+
+            <div class="logo-symbol">
+                ▲
+            </div>
+
+            <h1>
+                Atlas Gestão
+            </h1>
+
+            <p>
+                Gestão Inteligente da Qualidade
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <section class="login-card">
+
+            <h2>
+                Bem-vindo
+            </h2>
+
+            <p>
+                Entre para acessar o Sistema de Gestão da Qualidade.
+            </p>
+
+
+            <form
+                id="loginForm"
+                class="login-form"
+            >
+
+
+                <!-- E-MAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SENHA -->
+
+                <div class="form-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- OPÇÕES -->
+
+                <div class="login-opcoes">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="manterConectado"
+                        >
+
+                        Manter conectado
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        id="esqueciSenha"
+                    >
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="btnLogin"
+                >
+                    Entrar
+                </button>
+
+
+                <!-- MENSAGEM -->
+
+                <div
+                    id="mensagemLogin"
+                    class="mensagem"
+                ></div>
+
+
+            </form>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+
+        <footer>
+
+            Atlas Gestão © 2026
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="./frontend/js/app.js"></script>
+
+    <script src="./frontend/js/login.js"></script>
+
 
 </body>
+
 </html>
