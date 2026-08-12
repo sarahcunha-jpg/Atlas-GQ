@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - Atlas Gestão</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+<body class="login-body">
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+
+                <div class="logo-symbol">
+                    ▲
+                </div>
+
+                <h1>
+                    Atlas Gestão
+                </h1>
+
+                <p>
+                    Gestão Inteligente da Qualidade
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label>
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-options">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="lembrar"
+                        >
+
+                        Manter conectado
+
+                    </label>
+
+                    <a href="#" id="esqueciSenha">
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-login"
+                >
+                    Entrar
+                </button>
+
+
+                <div
+                    id="mensagem"
+                    class="mensagem"
+                ></div>
+
+            </form>
+
+
+            <div class="login-footer">
+
+                <p>
+                    Sistema de Gestão da Qualidade
+                </p>
+
+                <span>
+                    Atlas Gestão © 2026
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="/js/login.js"></script>
+
+</body>
+
+</html>
