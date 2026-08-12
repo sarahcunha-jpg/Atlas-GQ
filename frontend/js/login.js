@@ -1,16 +1,47 @@
+/* =========================================================
+   ATLAS GESTÃO
+   LOGIN
+========================================================= */
+
+
+/* =========================================================
+   ELEMENTOS DA PÁGINA
+========================================================= */
+
 const loginForm =
     document.getElementById("loginForm");
 
-
 const mensagem =
-    document.getElementById("mensagem");
+    document.getElementById("mensagemLogin");
+
+const campoEmail =
+    document.getElementById("email");
+
+const campoSenha =
+    document.getElementById("senha");
+
+const campoLembrar =
+    document.getElementById("manterConectado");
+
+const botaoLogin =
+    document.getElementById("btnLogin");
+
+const linkEsqueciSenha =
+    document.getElementById("esqueciSenha");
 
 
+/* =========================================================
+   MENSAGEM
+========================================================= */
 
 function mostrarMensagem(
     texto,
     tipo = "erro"
 ) {
+
+    if (!mensagem) {
+        return;
+    }
 
     mensagem.textContent =
         texto;
@@ -21,152 +52,229 @@ function mostrarMensagem(
 }
 
 
+/* =========================================================
+   LOGIN
+========================================================= */
 
-loginForm.addEventListener(
-    "submit",
-    async function(event) {
+if (loginForm) {
 
-        event.preventDefault();
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
 
-
-        const email =
-            document.getElementById(
-                "email"
-            ).value.trim();
-
-
-        const senha =
-            document.getElementById(
-                "senha"
-            ).value;
+            event.preventDefault();
 
 
-        if (!email || !senha) {
+            /* =============================================
+               DADOS
+            ============================================= */
 
-            mostrarMensagem(
-                "Preencha e-mail e senha."
-            );
+            const email =
+                campoEmail
+                    ? campoEmail.value.trim()
+                    : "";
 
-            return;
-
-        }
-
-
-        try {
-
-            mostrarMensagem(
-                "Entrando...",
-                "info"
-            );
+            const senha =
+                campoSenha
+                    ? campoSenha.value
+                    : "";
 
 
-            const resposta =
-                await fetch(
-                    "/api/auth/login",
-                    {
-                        method: "POST",
+            /* =============================================
+               VALIDAÇÃO
+            ============================================= */
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+            if (!email || !senha) {
 
-                        body:
-                            JSON.stringify({
-                                email,
-                                senha
-                            })
+                mostrarMensagem(
+                    "Preencha e-mail e senha.",
+                    "erro"
+                );
+
+                return;
+
+            }
+
+
+            /* =============================================
+               BOTÃO
+            ============================================= */
+
+            if (botaoLogin) {
+
+                botaoLogin.disabled =
+                    true;
+
+                botaoLogin.textContent =
+                    "Entrando...";
+
+            }
+
+
+            /* =============================================
+               LOGIN LOCAL TEMPORÁRIO
+               
+               Nesta primeira etapa o sistema funciona
+               sem backend para conseguirmos construir
+               todas as páginas.
+            ============================================= */
+
+            try {
+
+                await new Promise(
+                    function(resolve) {
+
+                        setTimeout(
+                            resolve,
+                            500
+                        );
+
                     }
                 );
 
 
-            const dados =
-                await resposta.json();
+                /*
+                 * Usuário de demonstração.
+                 *
+                 * Depois vamos substituir esta parte
+                 * pela API + banco de dados.
+                 */
+
+                const usuarioDemo = {
+
+                    id: 1,
+
+                    nome:
+                        "Administrador",
+
+                    email:
+                        email,
+
+                    perfil:
+                        "Administrador",
+
+                    status:
+                        "Ativo"
+
+                };
 
 
-            if (!resposta.ok) {
+                /* =========================================
+                   TOKEN TEMPORÁRIO
+                ========================================= */
 
-                throw new Error(
-                    dados.erro ||
-                    "Não foi possível realizar o login."
-                );
+                const tokenDemo =
+                    "atlas-demo-token";
 
-            }
-
-
-            localStorage.setItem(
-                "atlas_token",
-                dados.token
-            );
-
-
-            localStorage.setItem(
-                "atlas_usuario",
-                JSON.stringify(
-                    dados.usuario
-                )
-            );
-
-
-            const lembrar =
-                document.getElementById(
-                    "lembrar"
-                ).checked;
-
-
-            if (lembrar) {
 
                 localStorage.setItem(
-                    "atlas_lembrar",
-                    "true"
+                    "atlas_token",
+                    tokenDemo
                 );
 
-            } else {
 
-                localStorage.removeItem(
-                    "atlas_lembrar"
+                localStorage.setItem(
+                    "atlas_usuario",
+                    JSON.stringify(
+                        usuarioDemo
+                    )
                 );
+
+
+                /* =========================================
+                   LEMBRAR LOGIN
+                ========================================= */
+
+                if (
+                    campoLembrar &&
+                    campoLembrar.checked
+                ) {
+
+                    localStorage.setItem(
+                        "atlas_lembrar",
+                        "true"
+                    );
+
+                } else {
+
+                    localStorage.removeItem(
+                        "atlas_lembrar"
+                    );
+
+                }
+
+
+                /* =========================================
+                   MENSAGEM DE SUCESSO
+                ========================================= */
+
+                mostrarMensagem(
+                    "Login realizado com sucesso.",
+                    "sucesso"
+                );
+
+
+                /* =========================================
+                   IR PARA DASHBOARD
+                ========================================= */
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "./dashboard.html";
+
+                    },
+                    700
+                );
+
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro no login:",
+                    erro
+                );
+
+
+                mostrarMensagem(
+                    "Não foi possível realizar o login.",
+                    "erro"
+                );
+
+
+            } finally {
+
+                if (botaoLogin) {
+
+                    botaoLogin.disabled =
+                        false;
+
+                    botaoLogin.textContent =
+                        "Entrar";
+
+                }
 
             }
 
-
-            mostrarMensagem(
-                "Login realizado com sucesso.",
-                "sucesso"
-            );
-
-
-            setTimeout(
-                () => {
-
-                    window.location.href =
-                        "/dashboard.html";
-
-                },
-                500
-            );
-
-
-        } catch (erro) {
-
-            mostrarMensagem(
-                erro.message
-            );
-
         }
+    );
 
-    }
-);
+}
 
 
+/* =========================================================
+   ESQUECI A SENHA
+========================================================= */
 
-document
-    .getElementById("esqueciSenha")
-    .addEventListener(
+if (linkEsqueciSenha) {
+
+    linkEsqueciSenha.addEventListener(
         "click",
         function(event) {
 
             event.preventDefault();
+
 
             alert(
                 "A recuperação de senha será disponibilizada na próxima etapa."
@@ -174,3 +282,57 @@ document
 
         }
     );
+
+}
+
+
+/* =========================================================
+   VERIFICAR LOGIN EXISTENTE
+========================================================= */
+
+function verificarLoginExistente() {
+
+    const token =
+        localStorage.getItem(
+            "atlas_token"
+        );
+
+
+    const paginaAtual =
+        window.location.pathname;
+
+
+    const estaNoLogin =
+        paginaAtual.endsWith(
+            "/index.html"
+        ) ||
+        paginaAtual.endsWith(
+            "/Atlas-GQ/"
+        ) ||
+        paginaAtual === "/";
+
+
+    if (
+        token &&
+        !estaNoLogin
+    ) {
+
+        return;
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        verificarLoginExistente();
+
+    }
+);
