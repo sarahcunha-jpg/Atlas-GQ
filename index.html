@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,17 +10,37 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Atlas Gestão - Login</title>
+    <meta
+        name="description"
+        content="Atlas Gestão - Sistema de Gestão da Qualidade"
+    >
+
+    <title>
+        Atlas Gestão | Gestão da Qualidade
+    </title>
+
+
+    <!-- CSS -->
 
     <link
         rel="stylesheet"
         href="frontend/css/style.css"
     >
+
 </head>
+
 
 <body class="login-body">
 
+
+    <!-- ==============================
+         LOGIN
+    =============================== -->
+
     <main class="login-container">
+
+
+        <!-- LOGO -->
 
         <div class="login-logo">
 
@@ -27,7 +48,9 @@
                 ▲
             </div>
 
-            <h1>Atlas Gestão</h1>
+            <h1>
+                Atlas Gestão
+            </h1>
 
             <p>
                 Gestão Inteligente da Qualidade
@@ -36,19 +59,28 @@
         </div>
 
 
-        <div class="login-card">
+        <!-- CARD DE LOGIN -->
 
-            <h2>Entrar</h2>
+        <section class="login-card">
+
+            <h2>
+                Bem-vindo
+            </h2>
 
             <p>
-                Acesse o sistema de gestão.
+                Entre para acessar o Sistema de Gestão da Qualidade.
             </p>
 
+
+            <!-- FORMULÁRIO -->
 
             <form
                 id="loginForm"
                 class="login-form"
             >
+
+
+                <!-- E-MAIL -->
 
                 <div class="form-group">
 
@@ -57,14 +89,18 @@
                     </label>
 
                     <input
-                        id="email"
                         type="email"
-                        placeholder="seu@email.com"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
                         required
                     >
 
                 </div>
 
+
+                <!-- SENHA -->
 
                 <div class="form-group">
 
@@ -73,14 +109,18 @@
                     </label>
 
                     <input
-                        id="senha"
                         type="password"
+                        id="senha"
+                        name="senha"
                         placeholder="Digite sua senha"
+                        autocomplete="current-password"
                         required
                     >
 
                 </div>
 
+
+                <!-- OPÇÕES -->
 
                 <div class="login-opcoes">
 
@@ -91,7 +131,7 @@
                             id="lembrar"
                         >
 
-                        Lembrar-me
+                        Manter conectado
 
                     </label>
 
@@ -106,27 +146,213 @@
                 </div>
 
 
+                <!-- BOTÃO -->
+
                 <button
                     type="submit"
                     class="btn btn-primary"
+                    id="btnLogin"
                 >
                     Entrar
                 </button>
 
+
+                <!-- MENSAGEM -->
 
                 <div
                     id="mensagem"
                     class="mensagem"
                 ></div>
 
+
             </form>
 
+        </section>
+
+
+        <!-- RODAPÉ -->
+
+        <div
+            style="
+                text-align:center;
+                margin-top:18px;
+                color:#64748B;
+                font-size:11px;
+            "
+        >
+
+            Atlas Gestão © 2026
+
         </div>
+
 
     </main>
 
 
-    <script src="frontend/js/login.js"></script>
+    <!-- JAVASCRIPT -->
+
+    <script src="frontend/js/app.js"></script>
+
+
+    <!-- LOGIN -->
+
+    <script>
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+
+        function mostrarMensagem(
+            texto,
+            tipo = "erro"
+        ) {
+
+            mensagem.textContent = texto;
+
+            mensagem.className =
+                "mensagem " + tipo;
+
+        }
+
+
+        loginForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const senha =
+                    document
+                        .getElementById("senha")
+                        .value;
+
+
+                if (!email || !senha) {
+
+                    mostrarMensagem(
+                        "Preencha e-mail e senha."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                ==========================================
+                LOGIN TEMPORÁRIO
+                ==========================================
+
+                Nesta primeira etapa estamos usando
+                um login local para testar o sistema
+                no GitHub Pages.
+
+                Depois vamos conectar ao banco
+                de dados e à API.
+                ==========================================
+                */
+
+
+                const usuario = {
+
+                    nome: email.split("@")[0],
+
+                    email: email,
+
+                    perfil: "Administrador"
+
+                };
+
+
+                localStorage.setItem(
+                    "atlas_token",
+                    "atlas_demo_token"
+                );
+
+
+                localStorage.setItem(
+                    "atlas_usuario",
+                    JSON.stringify(usuario)
+                );
+
+
+                localStorage.setItem(
+                    "atlas_lembrar",
+                    document
+                        .getElementById("lembrar")
+                        .checked
+                );
+
+
+                mostrarMensagem(
+                    "Login realizado com sucesso!",
+                    "sucesso"
+                );
+
+
+                /*
+                ==========================================
+                IR PARA O PAINEL
+                ==========================================
+                */
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "painel.html";
+
+                    },
+                    500
+                );
+
+            }
+        );
+
+
+        /*
+        ==========================================
+        ESQUECI MINHA SENHA
+        ==========================================
+        */
+
+        const esqueciSenha =
+            document.getElementById(
+                "esqueciSenha"
+            );
+
+
+        if (esqueciSenha) {
+
+            esqueciSenha.addEventListener(
+                "click",
+                function(event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "A recuperação de senha será disponibilizada na próxima etapa."
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
 
 </body>
 
