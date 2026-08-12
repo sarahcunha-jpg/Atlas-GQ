@@ -4,11 +4,24 @@ const path = require("path");
 
 const db = require("./database");
 
-const authRoutes = require("./routes/auth");
-const inspecoesRoutes = require("./routes/inspecoes");
-const naoConformidadesRoutes = require("./routes/naoConformidades");
-const acoesCorretivasRoutes = require("./routes/acoesCorretivas");
-const auditoriasRoutes = require("./routes/auditorias");
+const authRoutes =
+    require("./routes/auth");
+
+const inspecoesRoutes =
+    require("./routes/inspecoes");
+
+const naoConformidadesRoutes =
+    require("./routes/naoConformidades");
+
+const acoesCorretivasRoutes =
+    require("./routes/acoesCorretivas");
+
+const auditoriasRoutes =
+    require("./routes/auditorias");
+
+const documentosRoutes =
+    require("./routes/documentos");
+
 
 const app = express();
 
@@ -67,7 +80,7 @@ app.use(
 
 /*
 |--------------------------------------------------------------------------
-| API
+| ROTAS
 |--------------------------------------------------------------------------
 */
 
@@ -96,10 +109,15 @@ app.use(
     auditoriasRoutes
 );
 
+app.use(
+    "/api/documentos",
+    documentosRoutes
+);
+
 
 /*
 |--------------------------------------------------------------------------
-| PÁGINA INICIAL
+| INÍCIO
 |--------------------------------------------------------------------------
 */
 
@@ -146,9 +164,9 @@ app.get("/api", (req, res) => {
 */
 
 app.use(
-    (err, req, res, next) => {
+    (erro, req, res, next) => {
 
-        console.error(err);
+        console.error(erro);
 
         res.status(500).json({
 
