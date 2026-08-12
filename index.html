@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,39 +9,17 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="Atlas Gestão - Sistema de Gestão da Qualidade"
-    >
-
-    <title>
-        Atlas Gestão | Gestão da Qualidade
-    </title>
-
-
-    <!-- CSS PRINCIPAL -->
+    <title>Atlas Gestão - Login</title>
 
     <link
         rel="stylesheet"
-        href="./frontend/css/style.css"
+        href="frontend/css/style.css"
     >
-
 </head>
-
 
 <body class="login-body">
 
-
-    <!-- =====================================================
-         LOGIN
-    ====================================================== -->
-
     <main class="login-container">
-
-
-        <!-- =================================================
-             LOGO
-        ================================================== -->
 
         <div class="login-logo">
 
@@ -50,9 +27,7 @@
                 ▲
             </div>
 
-            <h1>
-                Atlas Gestão
-            </h1>
+            <h1>Atlas Gestão</h1>
 
             <p>
                 Gestão Inteligente da Qualidade
@@ -61,32 +36,19 @@
         </div>
 
 
-        <!-- =================================================
-             CARD DE LOGIN
-        ================================================== -->
+        <div class="login-card">
 
-        <section class="login-card">
-
-            <h2>
-                Bem-vindo
-            </h2>
+            <h2>Entrar</h2>
 
             <p>
-                Entre para acessar o Sistema de Gestão da Qualidade.
+                Acesse o sistema de gestão.
             </p>
 
-
-            <!-- =================================================
-                 FORMULÁRIO
-            ================================================== -->
 
             <form
                 id="loginForm"
                 class="login-form"
             >
-
-
-                <!-- E-MAIL -->
 
                 <div class="form-group">
 
@@ -95,18 +57,14 @@
                     </label>
 
                     <input
-                        type="email"
                         id="email"
-                        name="email"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="email"
+                        type="email"
+                        placeholder="seu@email.com"
                         required
                     >
 
                 </div>
 
-
-                <!-- SENHA -->
 
                 <div class="form-group">
 
@@ -115,18 +73,14 @@
                     </label>
 
                     <input
-                        type="password"
                         id="senha"
-                        name="senha"
+                        type="password"
                         placeholder="Digite sua senha"
-                        autocomplete="current-password"
                         required
                     >
 
                 </div>
 
-
-                <!-- OPÇÕES -->
 
                 <div class="login-opcoes">
 
@@ -134,10 +88,10 @@
 
                         <input
                             type="checkbox"
-                            id="manterConectado"
+                            id="lembrar"
                         >
 
-                        Manter conectado
+                        Lembrar-me
 
                     </label>
 
@@ -152,63 +106,27 @@
                 </div>
 
 
-                <!-- BOTÃO -->
-
                 <button
                     type="submit"
                     class="btn btn-primary"
-                    id="btnLogin"
                 >
                     Entrar
                 </button>
 
 
-                <!-- MENSAGEM -->
-
                 <div
-                    id="mensagemLogin"
+                    id="mensagem"
                     class="mensagem"
                 ></div>
 
-
             </form>
 
-        </section>
-
-
-        <!-- =================================================
-             RODAPÉ
-        ================================================== -->
-
-        <div
-            style="
-                text-align: center;
-                margin-top: 18px;
-                color: #64748B;
-                font-size: 11px;
-            "
-        >
-
-            Atlas Gestão © 2026
-
         </div>
-
 
     </main>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script
-        src="./frontend/js/app.js"
-    ></script>
-
-    <script
-        src="./frontend/js/login.js"
-    ></script>
-
+    <script src="frontend/js/login.js"></script>
 
 </body>
 
