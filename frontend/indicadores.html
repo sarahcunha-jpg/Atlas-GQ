@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Indicadores - Atlas Gestão
+</title>
+
+<link
+rel="stylesheet"
+href="/css/style.css"
+>
+
+</head>
+
+<body>
+
+<div id="sistema">
+
+<aside id="menu">
+
+<div class="logo">
+
+<span class="logo-symbol">
+▲
+</span>
+
+<span>
+Atlas Gestão
+</span>
+
+</div>
+
+<div class="menu-titulo">
+GESTÃO DA QUALIDADE
+</div>
+
+<nav>
+
+<a href="/dashboard.html">
+Dashboard
+</a>
+
+<a href="/inspecoes.html">
+Inspeções
+</a>
+
+<a href="/nao-conformidades.html">
+Não Conformidades
+</a>
+
+<a href="/acoes-corretivas.html">
+Ações Corretivas
+</a>
+
+<a href="/auditorias.html">
+Auditorias
+</a>
+
+<a href="/documentos.html">
+Documentos
+</a>
+
+<a
+href="/indicadores.html"
+class="ativo"
+>
+Indicadores
+</a>
+
+<a href="/relatorios.html">
+Relatórios
+</a>
+
+<a href="/usuarios.html">
+Usuários
+</a>
+
+<a href="/configuracoes.html">
+Configurações
+</a>
+
+</nav>
+
+<button
+id="logout"
+class="btn-menu-sair"
+>
+Sair
+</button>
+
+</aside>
+
+
+<main>
+
+<header class="topbar">
+
+<button
+id="menuMobile"
+class="menu-mobile"
+>
+☰
+</button>
+
+<div>
+
+<h2>
+Indicadores
+</h2>
+
+<p>
+Indicadores de desempenho da qualidade
+</p>
+
+</div>
+
+<div class="usuario-area">
+
+<div
+id="usuarioNome"
+class="usuario-nome"
+>
+Usuário
+</div>
+
+<div
+id="usuarioPerfil"
+class="usuario-perfil"
+>
+Perfil
+</div>
+
+</div>
+
+</header>
+
+
+<section id="conteudo">
+
+
+<div class="dashboard-grid">
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Inspeções
+</div>
+
+<div
+id="totalInspecoes"
+class="kpi-valor"
+>
+0
+</div>
+
+<div class="kpi-descricao">
+Total realizadas
+</div>
+
+</div>
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Taxa de conformidade
+</div>
+
+<div
+id="taxaConformidade"
+class="kpi-valor"
+>
+0%
+</div>
+
+<div class="kpi-descricao">
+Inspeções conformes
+</div>
+
+</div>
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Não conformidades
+</div>
+
+<div
+id="ncAbertas"
+class="kpi-valor"
+>
+0
+</div>
+
+<div class="kpi-descricao">
+Em aberto
+</div>
+
+</div>
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Ações corretivas
+</div>
+
+<div
+id="acoesAbertas"
+class="kpi-valor"
+>
+0
+</div>
+
+<div class="kpi-descricao">
+Em aberto
+</div>
+
+</div>
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Eficiência das ações
+</div>
+
+<div
+id="eficienciaAcoes"
+class="kpi-valor"
+>
+0%
+</div>
+
+<div class="kpi-descricao">
+Ações concluídas
+</div>
+
+</div>
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Auditorias
+</div>
+
+<div
+id="totalAuditorias"
+class="kpi-valor"
+>
+0
+</div>
+
+<div class="kpi-descricao">
+Realizadas
+</div>
+
+</div>
+
+
+<div class="kpi-card">
+
+<div class="kpi-titulo">
+Documentos
+</div>
+
+<div
+id="totalDocumentos"
+class="kpi-valor"
+>
+0
+</div>
+
+<div class="kpi-descricao">
+Cadastrados
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="graficos-grid">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Inspeções por resultado
+</h2>
+
+</div>
+
+</div>
+
+<canvas
+id="graficoInspecoes"
+></canvas>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Não conformidades
+</h2>
+
+</div>
+
+</div>
+
+<canvas
+id="graficoNC"
+></canvas>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Ações corretivas
+</h2>
+
+</div>
+
+</div>
+
+<canvas
+id="graficoAcoes"
+></canvas>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Auditorias
+</h2>
+
+</div>
+
+</div>
+
+<canvas
+id="graficoAuditorias"
+></canvas>
+
+</div>
+
+</div>
+
+
+</section>
+
+</main>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="/js/app.js"></script>
+
+<script src="/js/indicadores.js"></script>
+
+</body>
+
+</html>
