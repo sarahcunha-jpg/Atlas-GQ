@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const inspecoesRoutes = require("./routes/inspecoes");
 const naoConformidadesRoutes = require("./routes/naoConformidades");
 const acoesCorretivasRoutes = require("./routes/acoesCorretivas");
+const auditoriasRoutes = require("./routes/auditorias");
 
 const app = express();
 
@@ -24,14 +25,16 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+);
 
 
 /*
 |--------------------------------------------------------------------------
-| ARQUIVOS DO FRONTEND
+| FRONTEND
 |--------------------------------------------------------------------------
 */
 
@@ -64,7 +67,7 @@ app.use(
 
 /*
 |--------------------------------------------------------------------------
-| ROTAS DA API
+| API
 |--------------------------------------------------------------------------
 */
 
@@ -88,10 +91,15 @@ app.use(
     acoesCorretivasRoutes
 );
 
+app.use(
+    "/api/auditorias",
+    auditoriasRoutes
+);
+
 
 /*
 |--------------------------------------------------------------------------
-| ROTA PRINCIPAL
+| PÁGINA INICIAL
 |--------------------------------------------------------------------------
 */
 
@@ -116,10 +124,16 @@ app.get("/", (req, res) => {
 app.get("/api", (req, res) => {
 
     res.json({
-        sistema: "Atlas Gestão",
+
+        sistema:
+            "Atlas Gestão",
+
         descricao:
             "Sistema de Gestão da Qualidade",
-        status: "online"
+
+        status:
+            "online"
+
     });
 
 });
@@ -127,7 +141,7 @@ app.get("/api", (req, res) => {
 
 /*
 |--------------------------------------------------------------------------
-| TRATAMENTO DE ERROS
+| ERROS
 |--------------------------------------------------------------------------
 */
 
@@ -137,8 +151,10 @@ app.use(
         console.error(err);
 
         res.status(500).json({
+
             erro:
                 "Erro interno do servidor."
+
         });
 
     }
@@ -147,7 +163,7 @@ app.use(
 
 /*
 |--------------------------------------------------------------------------
-| INICIALIZAÇÃO
+| SERVIDOR
 |--------------------------------------------------------------------------
 */
 
@@ -157,19 +173,19 @@ app.listen(
 
         console.log("");
         console.log(
-            "================================="
+            "========================================"
         );
 
         console.log(
-            "       ATLAS GESTÃO"
+            "             ATLAS GESTÃO"
         );
 
         console.log(
-            " Sistema de Gestão da Qualidade"
+            "   Sistema de Gestão da Qualidade"
         );
 
         console.log(
-            "================================="
+            "========================================"
         );
 
         console.log("");
