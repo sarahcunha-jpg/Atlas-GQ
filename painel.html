@@ -1,20 +1,486 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Atlas Gestão - Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="frontend/css/style.css"
+    >
+
 </head>
 
 <body>
 
-    <h1>Atlas Gestão</h1>
+<div id="sistema">
 
-    <h2>Dashboard</h2>
+    <aside id="menu">
 
-    <p>O Dashboard está funcionando!</p>
+        <div class="logo">
+
+            <span class="logo-symbol">
+                ▲
+            </span>
+
+            <span>
+                Atlas Gestão
+            </span>
+
+        </div>
+
+        <div class="menu-titulo">
+            GESTÃO DA QUALIDADE
+        </div>
+
+        <nav>
+
+            <a href="painel.html" class="ativo">
+                Dashboard
+            </a>
+
+            <a href="inspecoes.html">
+                Inspeções
+            </a>
+
+            <a href="nao.conformidades.html">
+                Não Conformidades
+            </a>
+
+            <a href="acoes-corretivas.html">
+                Ações Corretivas
+            </a>
+
+            <a href="auditorias.html">
+                Auditorias
+            </a>
+
+            <a href="documentos.html">
+                Documentos
+            </a>
+
+            <a href="indicadores.html">
+                Indicadores
+            </a>
+
+        </nav>
+
+        <button
+            id="logout"
+            class="btn-menu-sair"
+        >
+            Sair
+        </button>
+
+    </aside>
+
+
+    <main>
+
+        <header class="topbar">
+
+            <button
+                id="menuMobile"
+                class="menu-mobile"
+            >
+                ☰
+            </button>
+
+            <div>
+
+                <h2>
+                    Dashboard
+                </h2>
+
+                <p>
+                    Visão geral da qualidade
+                </p>
+
+            </div>
+
+            <div class="usuario-area">
+
+                <div
+                    id="usuarioNome"
+                    class="usuario-nome"
+                >
+                    Usuário
+                </div>
+
+                <div
+                    id="usuarioPerfil"
+                    class="usuario-perfil"
+                >
+                    Perfil
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section id="conteudo">
+
+            <div class="cards-dashboard">
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon azul">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Inspeções realizadas
+                        </span>
+
+                        <strong id="inspecoes">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon vermelho">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Não conformidades
+                        </span>
+
+                        <strong id="naoConformidades">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon amarelo">
+                        ↻
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Ações abertas
+                        </span>
+
+                        <strong id="acoesAbertas">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon verde">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Ações concluídas
+                        </span>
+
+                        <strong id="acoesConcluidas">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon azul">
+                        %
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Taxa de conformidade
+                        </span>
+
+                        <strong id="taxaConformidade">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon azul">
+                        A
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Auditorias realizadas
+                        </span>
+
+                        <strong id="auditorias">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card indicador-card">
+
+                    <div class="indicador-icon verde">
+                        D
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Documentos ativos
+                        </span>
+
+                        <strong id="documentos">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Ações rápidas
+                        </h2>
+
+                        <p>
+                            Acesse rapidamente os principais recursos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="atalhos">
+
+                    <a
+                        href="inspecoes.html"
+                        class="atalho"
+                    >
+                        <span>+</span>
+                        Nova inspeção
+                    </a>
+
+                    <a
+                        href="auditorias.html"
+                        class="atalho"
+                    >
+                        <span>+</span>
+                        Nova auditoria
+                    </a>
+
+                    <a
+                        href="nao.conformidades.html"
+                        class="atalho"
+                    >
+                        <span>!</span>
+                        Nova não conformidade
+                    </a>
+
+                    <a
+                        href="acoes-corretivas.html"
+                        class="atalho"
+                    >
+                        <span>+</span>
+                        Nova ação corretiva
+                    </a>
+
+                    <a
+                        href="documentos.html"
+                        class="atalho"
+                    >
+                        <span>+</span>
+                        Novo documento
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Status da Qualidade
+                            </h2>
+
+                            <p>
+                                Resumo dos principais indicadores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progresso-area">
+
+                        <div class="progresso-header">
+
+                            <span>
+                                Taxa de conformidade
+                            </span>
+
+                            <strong id="taxaTexto">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="barra">
+
+                            <div
+                                id="barraConformidade"
+                                class="barra-preenchida"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-linhas">
+
+                        <div>
+
+                            <span>
+                                Inspeções
+                            </span>
+
+                            <strong id="statusInspecoes">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Não conformidades
+                            </span>
+
+                            <strong id="statusNC">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Ações pendentes
+                            </span>
+
+                            <strong id="statusAcoes">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Atividade recente
+                            </h2>
+
+                            <p>
+                                Acompanhe os registros do sistema.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="atividadeRecente">
+
+                        <div class="atividade-vazia">
+                            Nenhuma atividade registrada.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="frontend/js/app.js"></script>
+
+<script src="frontend/js/dashboard.js"></script>
 
 </body>
 
