@@ -7,9 +7,7 @@ const API_BASE = "/api";
 
 function obterToken() {
 
-    return localStorage.getItem(
-        "atlas_token"
-    );
+    return localStorage.getItem("atlas_token");
 
 }
 
@@ -21,9 +19,7 @@ function obterToken() {
 function obterUsuario() {
 
     const usuario =
-        localStorage.getItem(
-            "atlas_usuario"
-        );
+        localStorage.getItem("atlas_usuario");
 
     if (!usuario) {
         return null;
@@ -31,9 +27,7 @@ function obterUsuario() {
 
     try {
 
-        return JSON.parse(
-            usuario
-        );
+        return JSON.parse(usuario);
 
     } catch {
 
@@ -58,14 +52,9 @@ function verificarLogin() {
 
     const paginaLogin =
         pagina === "/" ||
-        pagina.endsWith(
-            "/index.html"
-        );
+        pagina.endsWith("/index.html");
 
-    if (
-        !token &&
-        !paginaLogin
-    ) {
+    if (!token && !paginaLogin) {
 
         window.location.href =
             "/index.html";
@@ -119,9 +108,7 @@ async function api(
             configuracao
         );
 
-    if (
-        resposta.status === 401
-    ) {
+    if (resposta.status === 401) {
 
         localStorage.removeItem(
             "atlas_token"
@@ -140,7 +127,7 @@ async function api(
 
     }
 
-    let dados = null;
+    let dados = {};
 
     try {
 
@@ -193,26 +180,14 @@ function preencherUsuario() {
     if (nome) {
 
         nome.textContent =
-            usuario.nome;
+            usuario.nome || "Usuário";
 
     }
 
     if (perfil) {
 
         perfil.textContent =
-            usuario.perfil;
-
-    }
-
-    const usuarioLogado =
-        document.getElementById(
-            "usuarioLogado"
-        );
-
-    if (usuarioLogado) {
-
-        usuarioLogado.textContent =
-            usuario.nome;
+            usuario.perfil || "Usuário";
 
     }
 
@@ -226,9 +201,7 @@ function preencherUsuario() {
 function configurarLogout() {
 
     const botao =
-        document.getElementById(
-            "logout"
-        );
+        document.getElementById("logout");
 
     if (!botao) {
         return;
@@ -261,174 +234,71 @@ function configurarLogout() {
 
 function configurarMenuMobile() {
 
-    const botao =
-        document.getElementById(
-            "menuMobile"
-        );
-
     const menu =
-        document.getElementById(
-            "menu"
-        );
+        document.getElementById("menu");
 
-    if (!botao || !menu) {
+    const botaoAbrir =
+        document.getElementById("menuMobile");
+
+    const botaoFechar =
+        document.getElementById("fecharMenu");
+
+
+    if (!menu) {
         return;
     }
 
 
     /* ======================================================
-       CRIA BOTÃO FECHAR
+       ABRIR MENU
     ====================================================== */
 
-    let botaoFechar =
-        document.getElementById(
-            "fecharMenu"
-        );
+    if (botaoAbrir) {
 
+        botaoAbrir.addEventListener(
+            "click",
+            function(event) {
 
-    if (!botaoFechar) {
+                event.preventDefault();
 
-        botaoFechar =
-            document.createElement(
-                "button"
-            );
+                event.stopPropagation();
 
-        botaoFechar.id =
-            "fecharMenu";
-
-        botaoFechar.type =
-            "button";
-
-        botaoFechar.innerHTML =
-            "✕";
-
-        botaoFechar.setAttribute(
-            "aria-label",
-            "Fechar menu"
-        );
-
-        botaoFechar.style.position =
-            "absolute";
-
-        botaoFechar.style.top =
-            "18px";
-
-        botaoFechar.style.right =
-            "15px";
-
-        botaoFechar.style.width =
-            "36px";
-
-        botaoFechar.style.height =
-            "36px";
-
-        botaoFechar.style.border =
-            "none";
-
-        botaoFechar.style.borderRadius =
-            "8px";
-
-        botaoFechar.style.background =
-            "#EFF6FF";
-
-        botaoFechar.style.color =
-            "#2563EB";
-
-        botaoFechar.style.fontSize =
-            "18px";
-
-        botaoFechar.style.cursor =
-            "pointer";
-
-        menu.appendChild(
-            botaoFechar
-        );
-
-    }
-
-
-    /* ======================================================
-       FUNÇÃO ABRIR
-    ====================================================== */
-
-    function abrirMenu() {
-
-        menu.classList.add(
-            "aberto"
-        );
-
-        botao.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-    }
-
-
-    /* ======================================================
-       FUNÇÃO FECHAR
-    ====================================================== */
-
-    function fecharMenu() {
-
-        menu.classList.remove(
-            "aberto"
-        );
-
-        botao.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    }
-
-
-    /* ======================================================
-       BOTÃO ☰
-    ====================================================== */
-
-    botao.addEventListener(
-        "click",
-        function(event) {
-
-            event.stopPropagation();
-
-            if (
-                menu.classList.contains(
+                menu.classList.add(
                     "aberto"
-                )
-            ) {
-
-                fecharMenu();
-
-            } else {
-
-                abrirMenu();
+                );
 
             }
+        );
 
-        }
-    );
+    }
 
 
     /* ======================================================
-       BOTÃO ✕
+       FECHAR MENU
     ====================================================== */
 
-    botaoFechar.addEventListener(
-        "click",
-        function(event) {
+    if (botaoFechar) {
 
-            event.stopPropagation();
+        botaoFechar.addEventListener(
+            "click",
+            function(event) {
 
-            fecharMenu();
+                event.preventDefault();
 
-        }
-    );
+                event.stopPropagation();
+
+                menu.classList.remove(
+                    "aberto"
+                );
+
+            }
+        );
+
+    }
 
 
     /* ======================================================
-       CLICAR FORA DO MENU
+       CLICAR FORA
     ====================================================== */
 
     document.addEventListener(
@@ -436,18 +306,17 @@ function configurarMenuMobile() {
         function(event) {
 
             if (
-                menu.classList.contains(
-                    "aberto"
-                ) &&
-                !menu.contains(
-                    event.target
-                ) &&
-                !botao.contains(
-                    event.target
+                menu.classList.contains("aberto") &&
+                !menu.contains(event.target) &&
+                !(
+                    botaoAbrir &&
+                    botaoAbrir.contains(event.target)
                 )
             ) {
 
-                fecharMenu();
+                menu.classList.remove(
+                    "aberto"
+                );
 
             }
 
@@ -456,13 +325,11 @@ function configurarMenuMobile() {
 
 
     /* ======================================================
-       CLICAR EM ITEM DO MENU
+       CLICAR EM LINK DO MENU
     ====================================================== */
 
     const links =
-        menu.querySelectorAll(
-            "nav a"
-        );
+        menu.querySelectorAll("nav a");
 
     links.forEach(
         function(link) {
@@ -471,7 +338,9 @@ function configurarMenuMobile() {
                 "click",
                 function() {
 
-                    fecharMenu();
+                    menu.classList.remove(
+                        "aberto"
+                    );
 
                 }
             );
@@ -497,18 +366,20 @@ function destacarMenu() {
         );
 
     links.forEach(
-        link => {
+        function(link) {
 
             const href =
-                link.getAttribute(
-                    "href"
-                );
+                link.getAttribute("href");
+
+            if (!href) {
+                return;
+            }
+
+            const caminho =
+                href.split("/").pop();
 
             if (
-                href &&
-                pagina.endsWith(
-                    href
-                )
+                pagina.endsWith(caminho)
             ) {
 
                 link.classList.add(
