@@ -10,37 +10,205 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Atlas Gestão</title>
+    <meta
+        name="description"
+        content="Atlas Gestão - Sistema de Gestão da Qualidade"
+    >
+
+    <title>
+        Atlas Gestão | Gestão da Qualidade
+    </title>
+
+
+    <!-- CSS PRINCIPAL -->
+
+    <link
+        rel="stylesheet"
+        href="./frontend/css/style.css"
+    >
 
 </head>
 
-<body>
 
-    <h1>Atlas Gestão</h1>
+<body class="login-body">
 
-    <h2>Gestão Inteligente da Qualidade</h2>
 
-    <p>Teste da página de login.</p>
+    <!-- =====================================================
+         LOGIN
+    ====================================================== -->
 
-    <form>
+    <main class="login-container">
 
-        <label>E-mail</label>
 
-        <input type="email">
+        <!-- =================================================
+             LOGO
+        ================================================== -->
 
-        <br><br>
+        <div class="login-logo">
 
-        <label>Senha</label>
+            <div class="logo-symbol">
+                ▲
+            </div>
 
-        <input type="password">
+            <h1>
+                Atlas Gestão
+            </h1>
 
-        <br><br>
+            <p>
+                Gestão Inteligente da Qualidade
+            </p>
 
-        <button type="submit">
-            Entrar
-        </button>
+        </div>
 
-    </form>
+
+        <!-- =================================================
+             CARD DE LOGIN
+        ================================================== -->
+
+        <section class="login-card">
+
+            <h2>
+                Bem-vindo
+            </h2>
+
+            <p>
+                Entre para acessar o Sistema de Gestão da Qualidade.
+            </p>
+
+
+            <!-- =================================================
+                 FORMULÁRIO
+            ================================================== -->
+
+            <form
+                id="loginForm"
+                class="login-form"
+            >
+
+
+                <!-- E-MAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SENHA -->
+
+                <div class="form-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- OPÇÕES -->
+
+                <div class="login-opcoes">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="manterConectado"
+                        >
+
+                        Manter conectado
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        id="esqueciSenha"
+                    >
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="btnLogin"
+                >
+                    Entrar
+                </button>
+
+
+                <!-- MENSAGEM -->
+
+                <div
+                    id="mensagemLogin"
+                    class="mensagem"
+                ></div>
+
+
+            </form>
+
+        </section>
+
+
+        <!-- =================================================
+             RODAPÉ
+        ================================================== -->
+
+        <div
+            style="
+                text-align: center;
+                margin-top: 18px;
+                color: #64748B;
+                font-size: 11px;
+            "
+        >
+
+            Atlas Gestão © 2026
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="./frontend/js/app.js"
+    ></script>
+
+    <script
+        src="./frontend/js/login.js"
+    ></script>
+
 
 </body>
 
