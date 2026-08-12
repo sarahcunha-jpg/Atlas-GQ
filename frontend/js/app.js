@@ -1,4 +1,14 @@
-const API_BASE = "/api";
+const API_BASE = "/Atlas-GQ/api";
+
+
+/*
+|--------------------------------------------------------------------------
+| CAMINHO BASE DO SISTEMA
+|--------------------------------------------------------------------------
+*/
+
+const ATLAS_BASE =
+    "/Atlas-GQ";
 
 
 /*
@@ -31,7 +41,9 @@ function obterUsuario() {
 
 
     if (!usuario) {
+
         return null;
+
     }
 
 
@@ -67,7 +79,8 @@ function verificarLogin() {
 
 
     const paginaLogin =
-        pagina === "/" ||
+        pagina === ATLAS_BASE + "/" ||
+        pagina === ATLAS_BASE ||
         pagina.endsWith(
             "/index.html"
         );
@@ -79,7 +92,7 @@ function verificarLogin() {
     ) {
 
         window.location.href =
-            "/index.html";
+            ATLAS_BASE + "/index.html";
 
         return false;
 
@@ -121,8 +134,7 @@ async function api(
 
     /*
     ----------------------------------------------------------
-    Se estiver enviando FormData,
-    não colocar Content-Type manualmente.
+    FORM DATA
     ----------------------------------------------------------
     */
 
@@ -179,7 +191,7 @@ async function api(
 
 
         window.location.href =
-            "/index.html";
+            ATLAS_BASE + "/index.html";
 
 
         throw new Error(
@@ -212,7 +224,7 @@ async function api(
 
     /*
     ----------------------------------------------------------
-    ERROS
+    ERRO
     ----------------------------------------------------------
     */
 
@@ -245,7 +257,9 @@ function preencherUsuario() {
 
 
     if (!usuario) {
+
         return;
+
     }
 
 
@@ -311,20 +325,18 @@ function configurarLogout() {
 
 
     if (!botao) {
+
         return;
+
     }
 
-
-    /*
-    ----------------------------------------------------------
-    Evita adicionar o evento duas vezes
-    ----------------------------------------------------------
-    */
 
     if (
         botao.dataset.logoutConfigurado
     ) {
+
         return;
+
     }
 
 
@@ -346,7 +358,7 @@ function configurarLogout() {
 
 
             window.location.href =
-                "/index.html";
+                ATLAS_BASE + "/index.html";
 
         }
     );
@@ -375,14 +387,18 @@ function configurarMenuMobile() {
 
 
     if (!botao || !menu) {
+
         return;
+
     }
 
 
     if (
         botao.dataset.menuConfigurado
     ) {
+
         return;
+
     }
 
 
@@ -407,7 +423,7 @@ function configurarMenuMobile() {
 
     /*
     ----------------------------------------------------------
-    Fechar menu ao clicar fora
+    FECHAR AO CLICAR FORA
     ----------------------------------------------------------
     */
 
@@ -418,7 +434,9 @@ function configurarMenuMobile() {
             if (
                 window.innerWidth > 900
             ) {
+
                 return;
+
             }
 
 
@@ -443,7 +461,7 @@ function configurarMenuMobile() {
 
     /*
     ----------------------------------------------------------
-    Fechar menu ao clicar em um link
+    FECHAR AO CLICAR EM LINK
     ----------------------------------------------------------
     */
 
@@ -507,15 +525,11 @@ function destacarMenu() {
 
 
             if (!href) {
+
                 return;
+
             }
 
-
-            /*
-            --------------------------------------------------
-            Remove ativo antes de verificar
-            --------------------------------------------------
-            */
 
             link.classList.remove(
                 "ativo"
@@ -524,13 +538,19 @@ function destacarMenu() {
 
             /*
             --------------------------------------------------
-            Página atual
+            COMPARA O ENDEREÇO
             --------------------------------------------------
             */
 
+            const caminhoLink =
+                href.startsWith("/")
+                    ? href
+                    : ATLAS_BASE + "/" + href;
+
+
             if (
                 pagina.endsWith(
-                    href
+                    caminhoLink
                 )
             ) {
 
@@ -548,7 +568,7 @@ function destacarMenu() {
 
 /*
 |--------------------------------------------------------------------------
-| FUNÇÃO PARA MOSTRAR MENSAGEM
+| MENSAGEM
 |--------------------------------------------------------------------------
 */
 
@@ -571,7 +591,9 @@ function mostrarMensagem(
 
 
     if (!elemento) {
+
         return;
+
     }
 
 
@@ -598,7 +620,7 @@ function mostrarMensagem(
 
 /*
 |--------------------------------------------------------------------------
-| CONFIRMAÇÃO DE EXCLUSÃO
+| CONFIRMAÇÃO
 |--------------------------------------------------------------------------
 */
 
@@ -625,7 +647,9 @@ function formatarData(
 ) {
 
     if (!data) {
+
         return "-";
+
     }
 
 
