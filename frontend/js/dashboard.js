@@ -1,216 +1,145 @@
-async function carregarDashboard() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    try {
 
-        const dados =
-            await api(
-                "/dashboard"
+    /*
+     * DADOS INICIAIS
+     *
+     * Nesta primeira versão os dados ficam
+     * armazenados no navegador.
+     */
+
+
+    const dados = {
+
+        inspecoes: 12,
+
+        naoConformidades: 3,
+
+        acoesAbertas: 4,
+
+        acoesConcluidas: 8,
+
+        auditorias: 5,
+
+        documentos: 17
+
+    };
+
+
+    /*
+     * PREENCHER INDICADORES
+     */
+
+    document.getElementById(
+        "inspecoes"
+    ).textContent =
+        dados.inspecoes;
+
+
+    document.getElementById(
+        "naoConformidades"
+    ).textContent =
+        dados.naoConformidades;
+
+
+    document.getElementById(
+        "acoesAbertas"
+    ).textContent =
+        dados.acoesAbertas;
+
+
+    document.getElementById(
+        "acoesConcluidas"
+    ).textContent =
+        dados.acoesConcluidas;
+
+
+    document.getElementById(
+        "auditorias"
+    ).textContent =
+        dados.auditorias;
+
+
+    document.getElementById(
+        "documentos"
+    ).textContent =
+        dados.documentos;
+
+
+    /*
+     * TAXA DE CONFORMIDADE
+     */
+
+    const total =
+        dados.inspecoes;
+
+
+    let taxa = 0;
+
+
+    if (total > 0) {
+
+        taxa =
+            Math.round(
+                (
+                    (total - dados.naoConformidades)
+                    / total
+                ) * 100
             );
 
+    }
 
+
+    document.getElementById(
+        "taxaConformidade"
+    ).textContent =
+        taxa + "%";
+
+
+    document.getElementById(
+        "taxaTexto"
+    ).textContent =
+        taxa + "%";
+
+
+    /*
+     * BARRA
+     */
+
+    const barra =
         document.getElementById(
-            "inspecoes"
-        ).textContent =
-            dados.inspecoes;
+            "barraConformidade"
+        );
 
 
-        document.getElementById(
-            "naoConformidades"
-        ).textContent =
-            dados.naoConformidades;
-
-
-        document.getElementById(
-            "acoesAbertas"
-        ).textContent =
-            dados.acoesAbertas;
-
-
-        document.getElementById(
-            "acoesConcluidas"
-        ).textContent =
-            dados.acoesConcluidas;
-
-
-        document.getElementById(
-            "taxaConformidade"
-        ).textContent =
-            dados.taxaConformidade + "%";
-
-
-        document.getElementById(
-            "auditorias"
-        ).textContent =
-            dados.auditorias;
-
-
-        document.getElementById(
-            "documentos"
-        ).textContent =
-            dados.documentos;
-
-
-        document.getElementById(
-            "taxaTexto"
-        ).textContent =
-            dados.taxaConformidade + "%";
-
-
-        document.getElementById(
-            "statusInspecoes"
-        ).textContent =
-            dados.inspecoes;
-
-
-        document.getElementById(
-            "statusNC"
-        ).textContent =
-            dados.naoConformidades;
-
-
-        document.getElementById(
-            "statusAcoes"
-        ).textContent =
-            dados.acoesAbertas;
-
-
-        const barra =
-            document.getElementById(
-                "barraConformidade"
-            );
-
+    if (barra) {
 
         barra.style.width =
-            Math.min(
-                100,
-                Math.max(
-                    0,
-                    dados.taxaConformidade
-                )
-            ) + "%";
-
-
-        carregarAtividades();
-
-
-    } catch (erro) {
-
-        console.error(
-            "Erro no dashboard:",
-            erro
-        );
+            taxa + "%";
 
     }
 
-}
+
+    /*
+     * STATUS
+     */
+
+    document.getElementById(
+        "statusInspecoes"
+    ).textContent =
+        dados.inspecoes;
 
 
-
-async function carregarAtividades() {
-
-    const area =
-        document.getElementById(
-            "atividadeRecente"
-        );
+    document.getElementById(
+        "statusNC"
+    ).textContent =
+        dados.naoConformidades;
 
 
-    try {
-
-        const inspecoes =
-            await api(
-                "/inspecoes"
-            );
+    document.getElementById(
+        "statusAcoes"
+    ).textContent =
+        dados.acoesAbertas;
 
 
-        if (
-            !inspecoes ||
-            inspecoes.length === 0
-        ) {
-
-            area.innerHTML = `
-                <div class="atividade-vazia">
-                    Nenhuma inspeção registrada.
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        const recentes =
-            inspecoes.slice(
-                0,
-                5
-            );
-
-
-        area.innerHTML = "";
-
-
-        recentes.forEach(
-            item => {
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                div.className =
-                    "atividade-item";
-
-
-                const classe =
-                    item.resultado ===
-                    "Conforme"
-                        ? "atividade-ok"
-                        : "atividade-alerta";
-
-
-                div.innerHTML = `
-
-                    <div
-                        class="atividade-indicador ${classe}"
-                    >
-                        ${item.resultado === "Conforme" ? "✓" : "!"}
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            ${item.codigo}
-                        </strong>
-
-                        <span>
-                            ${item.produto}
-                        </span>
-
-                    </div>
-
-                `;
-
-
-                area.appendChild(
-                    div
-                );
-
-            }
-        );
-
-
-    } catch (erro) {
-
-        area.innerHTML = `
-            <div class="atividade-vazia">
-                Não foi possível carregar as atividades.
-            </div>
-        `;
-
-    }
-
-}
-
-
-
-carregarDashboard();
+});
