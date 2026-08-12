@@ -1,857 +1,1202 @@
-/* =========================================================
-   ATLAS GESTÃO
-   DASHBOARD.CSS
-   ESTILOS EXCLUSIVOS DO DASHBOARD
-   NÃO AFETA O LOGIN
-   ========================================================= */
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-* {
-    box-sizing: border-box;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
-}
+    <title>Atlas Gestão - Dashboard</title>
 
+    <style>
 
-/* =========================================================
-   SISTEMA
-   ========================================================= */
+        /* ==============================
+           RESET
+        ============================== */
 
-#sistema {
-    min-height: 100vh;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #263238;
+        }
 
-/* =========================================================
-   MENU LATERAL
-   ========================================================= */
+        /* ==============================
+           MENU LATERAL
+        ============================== */
 
-#menu {
-    position: fixed;
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
 
-    left: 0;
-    top: 0;
+            width: 260px;
+            height: 100vh;
 
-    width: 258px;
-    height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e5e7eb;
 
-    background: #ffffff;
+            z-index: 1000;
 
-    border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
 
-    padding: 20px 13px;
+            transition: transform 0.3s ease;
+        }
 
-    z-index: 1000;
+        .logo {
+            height: 76px;
 
-    display: flex;
-    flex-direction: column;
+            display: flex;
+            align-items: center;
 
-    transition: transform 0.25s ease;
-}
+            gap: 12px;
 
+            padding: 0 20px;
 
-.logo {
-    display: flex;
+            border-bottom: 1px solid #eef0f3;
+        }
 
-    align-items: center;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
 
-    gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    padding: 0 8px;
+            border-radius: 10px;
 
-    margin-bottom: 30px;
+            background: #2864d7;
+            color: white;
 
-    color: #2563eb;
+            font-size: 19px;
+            font-weight: bold;
+        }
 
-    font-size: 20px;
+        .logo-text {
+            color: #2864d7;
 
-    font-weight: 800;
-}
+            font-size: 20px;
+            font-weight: bold;
+        }
 
+        .menu-title {
+            padding: 28px 20px 12px;
 
-.logo-symbol {
-    width: 40px;
-    height: 40px;
+            color: #7b8794;
 
-    display: flex;
+            font-size: 11px;
+            font-weight: bold;
 
-    align-items: center;
-    justify-content: center;
+            letter-spacing: 1px;
+        }
 
-    border-radius: 10px;
+        .menu a {
+            display: block;
 
-    background: #2563eb;
+            margin: 3px 12px;
+            padding: 13px 14px;
 
-    color: white;
+            border-radius: 9px;
 
-    font-size: 18px;
-}
+            color: #59636e;
 
+            text-decoration: none;
 
-.menu-titulo {
-    padding: 0 8px;
+            font-size: 15px;
+        }
 
-    margin-bottom: 12px;
+        .menu a:hover {
+            background: #eef4ff;
+            color: #2864d7;
+        }
 
-    color: #7b8794;
+        .menu a.active {
+            background: #2864d7;
+            color: white;
+            font-weight: bold;
+        }
 
-    font-size: 10px;
+        /* ==============================
+           SEPARADOR DO MENU
+        ============================== */
 
-    font-weight: 800;
+        .menu-separator {
+            height: 1px;
 
-    letter-spacing: 1px;
-}
+            background: #e5e7eb;
 
+            margin: 20px;
+        }
 
-#menu nav {
-    display: flex;
+        /* ==============================
+           BOTÃO SAIR
+        ============================== */
 
-    flex-direction: column;
+        .menu a.logout {
+            color: #dc3545;
+            font-weight: bold;
+        }
 
-    gap: 3px;
-}
+        .menu a.logout:hover {
+            background: #fff1f1;
+            color: #c82333;
+        }
 
+        /* ==============================
+           BOTÃO FECHAR
+        ============================== */
 
-#menu nav a {
-    display: flex;
+        .close-button {
+            display: none;
 
-    align-items: center;
+            position: absolute;
 
-    min-height: 42px;
+            top: 18px;
+            right: 12px;
 
-    padding: 0 14px;
+            width: 35px;
+            height: 35px;
 
-    border-radius: 9px;
+            border: none;
+            background: transparent;
 
-    color: #4b5563;
+            font-size: 25px;
 
-    font-size: 14px;
+            color: #59636e;
 
-    text-decoration: none;
-}
+            cursor: pointer;
+        }
 
+        /* ==============================
+           BOTÃO MENU MOBILE
+        ============================== */
 
-#menu nav a:hover {
-    background: #eff6ff;
+        .menu-button {
+            display: none;
 
-    color: #2563eb;
-}
+            position: fixed;
 
+            top: 12px;
+            left: 12px;
 
-#menu nav a.ativo {
-    background: #2563eb;
+            width: 42px;
+            height: 42px;
 
-    color: #ffffff;
+            border: 1px solid #dfe3e8;
 
-    font-weight: 700;
-}
+            background: white;
 
+            border-radius: 9px;
 
-/* BOTÃO SAIR */
+            font-size: 22px;
 
-.btn-menu-sair {
-    width: 100%;
+            cursor: pointer;
 
-    min-height: 42px;
+            z-index: 1100;
+        }
 
-    margin-top: auto;
+        /* ==============================
+           FUNDO ESCURO MOBILE
+        ============================== */
 
-    border: 1px solid #e5e7eb;
+        .overlay {
+            display: none;
 
-    border-radius: 9px;
+            position: fixed;
 
-    background: #ffffff;
+            inset: 0;
 
-    color: #64748b;
+            background: rgba(0, 0, 0, 0.35);
 
-    font-weight: 600;
-}
+            z-index: 900;
+        }
 
+        .overlay.open {
+            display: block;
+        }
 
-.btn-menu-sair:hover {
-    background: #fef2f2;
+        /* ==============================
+           ÁREA PRINCIPAL
+        ============================== */
 
-    color: #dc2626;
-}
+        .main {
+            margin-left: 260px;
 
+            min-height: 100vh;
+        }
 
-/* =========================================================
-   BOTÃO FECHAR MENU
-   ========================================================= */
+        /* ==============================
+           CABEÇALHO
+        ============================== */
 
-.menu-fechar {
-    display: none;
+        .header {
+            height: 76px;
 
-    position: absolute;
+            background: white;
 
-    right: 10px;
-    top: 10px;
+            border-bottom: 1px solid #e5e7eb;
 
-    width: 34px;
-    height: 34px;
+            display: flex;
 
-    border: 1px solid #e5e7eb;
+            align-items: center;
 
-    border-radius: 8px;
+            justify-content: space-between;
 
-    background: #ffffff;
+            padding: 0 30px;
+        }
 
-    color: #374151;
+        .header-left h1 {
+            font-size: 27px;
 
-    font-size: 20px;
+            margin-bottom: 4px;
+        }
 
-    align-items: center;
-    justify-content: center;
-}
+        .header-left p {
+            color: #7c8792;
 
+            font-size: 14px;
+        }
 
-/* =========================================================
-   CONTEÚDO
-   ========================================================= */
+        .user {
+            text-align: right;
+        }
 
-#sistema main {
-    width: calc(100% - 258px);
+        .user strong {
+            display: block;
 
-    min-height: 100vh;
+            font-size: 14px;
+        }
 
-    margin-left: 258px;
-}
+        .user span {
+            color: #7c8792;
 
+            font-size: 13px;
+        }
 
-/* =========================================================
-   TOPBAR
-   ========================================================= */
+        /* ==============================
+           CONTEÚDO
+        ============================== */
 
-.topbar {
-    min-height: 76px;
+        .content {
+            padding: 28px;
+        }
 
-    display: flex;
+        /* ==============================
+           CARDS
+        ============================== */
 
-    align-items: center;
+        .cards {
+            display: grid;
 
-    justify-content: space-between;
+            grid-template-columns: repeat(4, 1fr);
 
-    padding: 15px 28px;
+            gap: 18px;
+        }
 
-    background: #ffffff;
+        .card {
+            background: white;
 
-    border-bottom: 1px solid #e5e7eb;
-}
+            border: 1px solid #e5e9ee;
 
+            border-radius: 14px;
 
-.topbar h2 {
-    margin: 0;
+            padding: 20px;
 
-    color: #1f2937;
+            min-height: 125px;
 
-    font-size: 23px;
-}
+            box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
+        }
 
+        .card-icon {
+            width: 42px;
+            height: 42px;
 
-.topbar p {
-    margin: 4px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    color: #7b8794;
+            margin-bottom: 12px;
 
-    font-size: 13px;
-}
+            border-radius: 10px;
 
+            background: #eef4ff;
+            color: #2864d7;
 
-.usuario-area {
-    text-align: right;
-}
+            font-size: 20px;
+            font-weight: bold;
+        }
 
+        .card-title {
+            color: #7b8794;
 
-.usuario-nome {
-    color: #1f2937;
+            font-size: 13px;
+        }
 
-    font-size: 14px;
+        .card-value {
+            margin-top: 4px;
 
-    font-weight: 700;
-}
+            font-size: 27px;
+            font-weight: bold;
+        }
 
+        /* ==============================
+           SEÇÕES
+        ============================== */
 
-.usuario-perfil {
-    margin-top: 3px;
+        .section {
+            background: white;
 
-    color: #7b8794;
+            border: 1px solid #e5e9ee;
 
-    font-size: 12px;
-}
+            border-radius: 14px;
 
+            margin-top: 22px;
 
-/* =========================================================
-   BOTÃO MOBILE
-   ========================================================= */
+            padding: 24px;
 
-.menu-mobile {
-    display: none;
+            box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
+        }
 
-    width: 42px;
-    height: 42px;
+        .section h2 {
+            font-size: 20px;
 
-    border: 1px solid #e5e7eb;
+            margin-bottom: 7px;
+        }
 
-    border-radius: 9px;
+        .section > p {
+            color: #7b8794;
 
-    background: #ffffff;
+            margin-bottom: 18px;
+        }
 
-    color: #374151;
+        /* ==============================
+           AÇÕES RÁPIDAS
+        ============================== */
 
-    font-size: 20px;
+        .quick-actions {
+            display: grid;
 
-    align-items: center;
-    justify-content: center;
-}
+            grid-template-columns: repeat(3, 1fr);
 
+            gap: 12px;
+        }
 
-/* =========================================================
-   CONTEÚDO DASHBOARD
-   ========================================================= */
+        .quick-action {
+            display: flex;
 
-.dashboard {
-    padding: 28px;
-}
+            align-items: center;
 
+            gap: 12px;
 
-/* =========================================================
-   CARDS
-   ========================================================= */
+            padding: 16px;
 
-.cards-dashboard {
-    display: grid;
+            border: 1px solid #e1e6ec;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+            border-radius: 10px;
 
-    gap: 18px;
+            background: white;
 
-    margin-bottom: 22px;
-}
+            color: #263238;
 
+            text-decoration: none;
 
-.card {
-    background: #ffffff;
+            font-weight: bold;
+        }
 
-    border: 1px solid #e5e7eb;
+        .quick-action:hover {
+            border-color: #2864d7;
 
-    border-radius: 14px;
+            color: #2864d7;
 
-    box-shadow:
-        0 5px 20px rgba(15, 23, 42, 0.05);
-}
+            background: #f8faff;
+        }
 
+        .quick-icon {
+            width: 34px;
+            height: 34px;
 
-.indicador-card {
-    min-height: 122px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    display: flex;
+            border-radius: 8px;
 
-    align-items: center;
+            background: #eef4ff;
 
-    gap: 16px;
+            color: #2864d7;
 
-    padding: 20px;
-}
+            font-size: 20px;
+        }
 
+        /* ==============================
+           STATUS
+        ============================== */
 
-.indicador-icon {
-    width: 48px;
-    height: 48px;
+        .status-grid {
+            display: grid;
 
-    flex-shrink: 0;
+            grid-template-columns: 1fr 1fr;
 
-    display: flex;
+            gap: 25px;
+        }
 
-    align-items: center;
-    justify-content: center;
+        .progress-area {
+            margin-top: 10px;
+        }
 
-    border-radius: 12px;
+        .progress-label {
+            display: flex;
 
-    font-size: 21px;
+            justify-content: space-between;
 
-    font-weight: 800;
-}
+            margin-bottom: 8px;
 
+            font-size: 14px;
+        }
 
-.indicador-icon.azul {
-    background: #eff6ff;
+        .progress {
+            width: 100%;
+            height: 10px;
 
-    color: #2563eb;
-}
+            background: #e7ebf0;
 
+            border-radius: 10px;
 
-.indicador-icon.vermelho {
-    background: #fef2f2;
+            overflow: hidden;
+        }
 
-    color: #ef4444;
-}
+        .progress-bar {
+            width: 75%;
+            height: 100%;
 
+            background: #2864d7;
 
-.indicador-icon.amarelo {
-    background: #fffbeb;
+            border-radius: 10px;
+        }
 
-    color: #d97706;
-}
+        .stats-list {
+            list-style: none;
+        }
 
+        .stats-list li {
+            display: flex;
 
-.indicador-icon.verde {
-    background: #f0fdf4;
+            justify-content: space-between;
 
-    color: #22c55e;
-}
+            padding: 10px 0;
 
+            border-bottom: 1px solid #edf0f3;
+        }
 
-.indicador-card span {
-    display: block;
+        /* ==============================
+           ATIVIDADE
+        ============================== */
 
-    margin-bottom: 7px;
+        .activity {
+            min-height: 180px;
 
-    color: #7b8794;
+            display: flex;
 
-    font-size: 13px;
-}
+            align-items: center;
 
+            justify-content: center;
 
-.indicador-card strong {
-    display: block;
+            text-align: center;
 
-    color: #1f2937;
+            color: #9aa5b1;
+        }
 
-    font-size: 28px;
-}
+        /* ==============================
+           TABLET
+        ============================== */
 
+        @media (max-width: 1100px) {
 
-/* =========================================================
-   CABEÇALHO DOS CARDS
-   ========================================================= */
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-.card-header {
-    padding: 22px 22px 16px;
-}
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
+        /* ==============================
+           CELULAR
+        ============================== */
 
-.card-header h2 {
-    margin: 0;
+        @media (max-width: 700px) {
 
-    color: #1f2937;
+            .sidebar {
+                transform: translateX(-100%);
 
-    font-size: 18px;
-}
+                width: 270px;
 
+                box-shadow: 5px 0 20px rgba(0, 0, 0, 0.12);
+            }
 
-.card-header p {
-    margin: 5px 0 0;
+            .sidebar.open {
+                transform: translateX(0);
+            }
 
-    color: #7b8794;
+            .close-button {
+                display: block;
+            }
 
-    font-size: 13px;
-}
+            .menu-button {
+                display: block;
+            }
 
+            .main {
+                margin-left: 0;
+            }
 
-/* =========================================================
-   AÇÕES RÁPIDAS
-   ========================================================= */
+            .header {
+                padding: 12px 18px 12px 68px;
 
-#conteudo > .card {
-    margin-bottom: 22px;
-}
+                height: 76px;
+            }
 
+            .header-left h1 {
+                font-size: 23px;
+            }
 
-.atalhos {
-    display: grid;
+            .header-left p {
+                font-size: 12px;
+            }
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+            .user {
+                display: none;
+            }
 
-    gap: 12px;
+            .content {
+                padding: 16px;
+            }
 
-    padding: 0 22px 22px;
-}
+            .cards {
+                grid-template-columns: 1fr;
 
+                gap: 12px;
+            }
 
-.atalho {
-    min-height: 58px;
+            .card {
+                min-height: 110px;
+            }
 
-    display: flex;
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
 
-    align-items: center;
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
 
-    gap: 10px;
+            .section {
+                padding: 18px;
+            }
+        }
 
-    padding: 12px;
+    </style>
+</head>
 
-    border: 1px solid #e5e7eb;
+<body>
 
-    border-radius: 10px;
+    <!-- ==================================
+         MENU LATERAL
+    =================================== -->
 
-    background: #ffffff;
+    <aside class="sidebar" id="sidebar">
 
-    color: #374151;
+        <!-- BOTÃO FECHAR NO CELULAR -->
+        <button
+            class="close-button"
+            id="closeMenu"
+            aria-label="Fechar menu">
+            ×
+        </button>
 
-    font-size: 13px;
+        <!-- LOGO -->
+        <div class="logo">
 
-    font-weight: 600;
-}
+            <div class="logo-icon">
+                ▲
+            </div>
 
+            <div class="logo-text">
+                Atlas Gestão
+            </div>
 
-.atalho:hover {
-    background: #eff6ff;
+        </div>
 
-    border-color: #bfdbfe;
+        <!-- TÍTULO -->
+        <div class="menu-title">
+            GESTÃO DA QUALIDADE
+        </div>
 
-    color: #2563eb;
-}
+        <!-- MENU -->
+        <nav class="menu">
 
+            <a
+                href="dashboard.html"
+                class="active">
+                Dashboard
+            </a>
 
-.atalho span {
-    width: 32px;
-    height: 32px;
+            <a href="inspecoes.html">
+                Inspeções
+            </a>
 
-    display: flex;
+            <a href="nao.conformidades.html">
+                Não Conformidades
+            </a>
 
-    align-items: center;
-    justify-content: center;
+            <a href="acoes-corretivas.html">
+                Ações Corretivas
+            </a>
 
-    border-radius: 8px;
+            <a href="auditorias.html">
+                Auditorias
+            </a>
 
-    background: #eff6ff;
+            <a href="documentos.html">
+                Documentos
+            </a>
 
-    color: #2563eb;
+            <a href="indicadores.html">
+                Indicadores
+            </a>
 
-    font-size: 18px;
+            <!-- SEPARADOR -->
+            <div class="menu-separator"></div>
 
-    font-weight: 800;
-}
+            <!-- SAIR -->
+            <a
+                href="index.html"
+                class="logout">
 
+                ↪&nbsp;&nbsp; Sair
 
-/* =========================================================
-   GRID INFERIOR
-   ========================================================= */
+            </a>
 
-.dashboard-grid {
-    display: grid;
+        </nav>
 
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
+    </aside>
 
-    gap: 20px;
-}
 
+    <!-- ==================================
+         FUNDO ESCURO MOBILE
+    =================================== -->
 
-.dashboard-grid > .card {
-    overflow: hidden;
-}
+    <div
+        class="overlay"
+        id="overlay">
+    </div>
 
 
-/* =========================================================
-   PROGRESSO
-   ========================================================= */
+    <!-- ==================================
+         BOTÃO MENU MOBILE
+    =================================== -->
 
-.progresso-area {
-    padding: 0 22px 20px;
-}
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Abrir menu">
 
+        ☰
 
-.progresso-header {
-    display: flex;
+    </button>
 
-    align-items: center;
 
-    justify-content: space-between;
+    <!-- ==================================
+         CONTEÚDO PRINCIPAL
+    =================================== -->
 
-    margin-bottom: 10px;
+    <main class="main">
 
-    color: #64748b;
+        <!-- CABEÇALHO -->
 
-    font-size: 13px;
-}
+        <header class="header">
 
+            <div class="header-left">
 
-.progresso-header strong {
-    color: #2563eb;
+                <h1>
+                    Dashboard
+                </h1>
 
-    font-size: 14px;
-}
+                <p>
+                    Visão geral da qualidade
+                </p>
 
+            </div>
 
-.barra {
-    width: 100%;
 
-    height: 9px;
+            <div class="user">
 
-    overflow: hidden;
+                <strong>
+                    sarahhellen2216
+                </strong>
 
-    border-radius: 10px;
+                <span>
+                    Administrador
+                </span>
 
-    background: #e5e7eb;
-}
+            </div>
 
+        </header>
 
-.barra-preenchida {
-    height: 100%;
 
-    width: 0%;
+        <!-- CONTEÚDO -->
 
-    border-radius: 10px;
+        <div class="content">
 
-    background: #2563eb;
-}
 
+            <!-- ==================================
+                 CARDS
+            =================================== -->
 
-/* =========================================================
-   STATUS
-   ========================================================= */
+            <div class="cards">
 
-.status-linhas {
-    padding: 0 22px 22px;
-}
 
+                <div class="card">
 
-.status-linhas > div {
-    display: flex;
+                    <div class="card-icon">
+                        ✓
+                    </div>
 
-    align-items: center;
+                    <div class="card-title">
+                        Inspeções realizadas
+                    </div>
 
-    justify-content: space-between;
+                    <div class="card-value">
+                        12
+                    </div>
 
-    padding: 12px 0;
+                </div>
 
-    border-top: 1px solid #f1f5f9;
 
-    color: #64748b;
+                <div class="card">
 
-    font-size: 13px;
-}
+                    <div class="card-icon">
+                        !
+                    </div>
 
+                    <div class="card-title">
+                        Não conformidades
+                    </div>
 
-.status-linhas strong {
-    color: #1f2937;
+                    <div class="card-value">
+                        3
+                    </div>
 
-    font-size: 15px;
-}
+                </div>
 
 
-/* =========================================================
-   ATIVIDADE
-   ========================================================= */
+                <div class="card">
 
-#atividadeRecente {
-    min-height: 210px;
+                    <div class="card-icon">
+                        ↻
+                    </div>
 
-    display: flex;
+                    <div class="card-title">
+                        Ações abertas
+                    </div>
 
-    align-items: center;
+                    <div class="card-value">
+                        4
+                    </div>
 
-    justify-content: center;
+                </div>
 
-    padding: 22px;
-}
 
+                <div class="card">
 
-.atividade-vazia {
-    color: #94a3b8;
+                    <div class="card-icon">
+                        ✓
+                    </div>
 
-    font-size: 13px;
+                    <div class="card-title">
+                        Ações concluídas
+                    </div>
 
-    text-align: center;
-}
+                    <div class="card-value">
+                        8
+                    </div>
 
+                </div>
 
-/* =========================================================
-   OVERLAY
-   ========================================================= */
 
-.menu-overlay {
-    display: none;
+                <div class="card">
 
-    position: fixed;
+                    <div class="card-icon">
+                        %
+                    </div>
 
-    inset: 0;
+                    <div class="card-title">
+                        Taxa de conformidade
+                    </div>
 
-    z-index: 999;
+                    <div class="card-value">
+                        75%
+                    </div>
 
-    background: rgba(15, 23, 42, 0.45);
-}
+                </div>
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+                <div class="card">
 
-@media (max-width: 900px) {
+                    <div class="card-icon">
+                        A
+                    </div>
 
-    #menu {
-        transform: translateX(-100%);
-    }
+                    <div class="card-title">
+                        Auditorias realizadas
+                    </div>
 
+                    <div class="card-value">
+                        5
+                    </div>
 
-    #menu.aberto {
-        transform: translateX(0);
-    }
+                </div>
 
 
-    #menu.aberto .menu-fechar {
-        display: flex;
-    }
+                <div class="card">
 
+                    <div class="card-icon">
+                        D
+                    </div>
 
-    #sistema main {
-        width: 100%;
+                    <div class="card-title">
+                        Documentos ativos
+                    </div>
 
-        margin-left: 0;
-    }
+                    <div class="card-value">
+                        8
+                    </div>
 
+                </div>
 
-    .menu-mobile {
-        display: flex;
 
-        flex-shrink: 0;
-    }
+            </div>
 
 
-    .topbar {
-        justify-content: flex-start;
+            <!-- ==================================
+                 AÇÕES RÁPIDAS
+            =================================== -->
 
-        gap: 12px;
+            <section class="section">
 
-        padding: 12px 16px;
-    }
+                <h2>
+                    Ações rápidas
+                </h2>
 
+                <p>
+                    Acesse rapidamente os principais recursos.
+                </p>
 
-    .usuario-area {
-        margin-left: auto;
-    }
 
+                <div class="quick-actions">
 
-    .menu-overlay.aberto {
-        display: block;
-    }
 
+                    <a
+                        class="quick-action"
+                        href="inspecoes.html">
 
-    .dashboard {
-        padding: 16px;
-    }
+                        <span class="quick-icon">
+                            +
+                        </span>
 
+                        Nova inspeção
 
-    .cards-dashboard {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+                    </a>
 
-        gap: 12px;
-    }
 
+                    <a
+                        class="quick-action"
+                        href="auditorias.html">
 
-    .indicador-card {
-        min-height: 105px;
+                        <span class="quick-icon">
+                            +
+                        </span>
 
-        padding: 14px;
+                        Nova auditoria
 
-        gap: 10px;
-    }
+                    </a>
 
 
-    .indicador-icon {
-        width: 40px;
-        height: 40px;
+                    <a
+                        class="quick-action"
+                        href="nao.conformidades.html">
 
-        font-size: 17px;
-    }
+                        <span class="quick-icon">
+                            !
+                        </span>
 
+                        Nova não conformidade
 
-    .indicador-card span {
-        font-size: 11px;
-    }
+                    </a>
 
 
-    .indicador-card strong {
-        font-size: 22px;
-    }
+                    <a
+                        class="quick-action"
+                        href="acoes-corretivas.html">
 
+                        <span class="quick-icon">
+                            +
+                        </span>
 
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
+                        Nova ação corretiva
 
+                    </a>
 
-    .atalhos {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
 
-}
+                    <a
+                        class="quick-action"
+                        href="documentos.html">
 
+                        <span class="quick-icon">
+                            +
+                        </span>
 
-/* =========================================================
-   CELULAR PEQUENO
-   ========================================================= */
+                        Novo documento
 
-@media (max-width: 480px) {
+                    </a>
 
-    .topbar h2 {
-        font-size: 20px;
-    }
 
+                </div>
 
-    .topbar p {
-        font-size: 11px;
-    }
+            </section>
 
 
-    .usuario-nome {
-        font-size: 11px;
-    }
+            <!-- ==================================
+                 STATUS
+            =================================== -->
 
+            <section class="section">
 
-    .usuario-perfil {
-        font-size: 10px;
-    }
+                <h2>
+                    Status da Qualidade
+                </h2>
 
+                <p>
+                    Resumo dos principais indicadores.
+                </p>
 
-    .cards-dashboard {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
 
-        gap: 8px;
-    }
+                <div class="status-grid">
 
 
-    .indicador-card {
-        min-height: 92px;
+                    <div class="progress-area">
 
-        padding: 10px;
+                        <div class="progress-label">
 
-        gap: 8px;
-    }
+                            <span>
+                                Taxa de conformidade
+                            </span>
 
+                            <strong>
+                                75%
+                            </strong>
 
-    .indicador-icon {
-        width: 34px;
-        height: 34px;
+                        </div>
 
-        font-size: 14px;
-    }
 
+                        <div class="progress">
 
-    .indicador-card span {
-        font-size: 10px;
+                            <div class="progress-bar"></div>
 
-        line-height: 1.2;
-    }
+                        </div>
 
+                    </div>
 
-    .indicador-card strong {
-        font-size: 20px;
-    }
 
+                    <ul class="stats-list">
 
-    .atalhos {
-        grid-template-columns: 1fr;
-    }
+                        <li>
 
-      }
+                            <span>
+                                Inspeções
+                            </span>
+
+                            <strong>
+                                12
+                            </strong>
+
+                        </li>
+
+
+                        <li>
+
+                            <span>
+                                Não conformidades
+                            </span>
+
+                            <strong>
+                                3
+                            </strong>
+
+                        </li>
+
+
+                        <li>
+
+                            <span>
+                                Ações pendentes
+                            </span>
+
+                            <strong>
+                                4
+                            </strong>
+
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 ATIVIDADE RECENTE
+            =================================== -->
+
+            <section class="section">
+
+                <h2>
+                    Atividade recente
+                </h2>
+
+                <p>
+                    Acompanhe os registros do sistema.
+                </p>
+
+
+                <div class="activity">
+
+                    Nenhuma atividade registrada.
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ==================================
+         JAVASCRIPT DO MENU
+    =================================== -->
+
+    <script>
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const closeMenu =
+            document.getElementById("closeMenu");
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const overlay =
+            document.getElementById("overlay");
+
+
+        /* ABRIR MENU */
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.add("open");
+
+                overlay.classList.add("open");
+
+            }
+        );
+
+
+        /* FECHAR PELO X */
+
+        closeMenu.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.remove("open");
+
+                overlay.classList.remove("open");
+
+            }
+        );
+
+
+        /* FECHAR CLICANDO FORA */
+
+        overlay.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.remove("open");
+
+                overlay.classList.remove("open");
+
+            }
+        );
+
+
+        /* FECHAR MENU AO ESCOLHER UMA PÁGINA */
+
+        document
+            .querySelectorAll(".menu a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        if (
+                            window.innerWidth <= 700
+                        ) {
+
+                            sidebar.classList.remove("open");
+
+                            overlay.classList.remove("open");
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* TECLA ESC FECHA O MENU */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+
+                    sidebar.classList.remove("open");
+
+                    overlay.classList.remove("open");
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
