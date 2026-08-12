@@ -2,566 +2,1087 @@
 <html lang="pt-BR">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Dashboard - Atlas Gestão</title>
+<title>Atlas Gestão - Dashboard</title>
 
 <style>
 
-/* ================================
-   RESET
-================================ */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#263238;
+}
 
-    background: #f4f7fb;
-    color: #263238;
+/* MENU */
+
+#menu{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:260px;
+
+    background:#fff;
+
+    border-right:1px solid #e5e9ef;
+
+    z-index:1000;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.logo{
+    height:76px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 20px;
+
+    color:#2864d7;
+
+    font-size:20px;
+    font-weight:bold;
+
+    border-bottom:1px solid #eee;
+}
+
+.logo-symbol{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#2864d7;
+    color:white;
+
+    border-radius:9px;
+
+    margin-right:10px;
+}
+
+.menu-titulo{
+    padding:25px 20px 12px;
+
+    font-size:11px;
+    font-weight:bold;
+
+    color:#8a949f;
+
+    letter-spacing:1px;
+}
+
+nav{
+    padding:0 12px;
+}
+
+nav a{
+    display:block;
+
+    padding:13px 15px;
+
+    margin-bottom:3px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    color:#4e5965;
+
+    font-size:14px;
+}
+
+nav a:hover{
+    background:#eef4ff;
+    color:#2864d7;
+}
+
+nav a.ativo{
+    background:#2864d7;
+    color:white;
+    font-weight:bold;
+}
+
+#logout{
+    margin:auto 12px 20px;
+
+    padding:12px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#f2f3f5;
+
+    cursor:pointer;
+}
+
+/* FECHAR */
+
+#fecharMenu{
+    display:none;
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    width:35px;
+    height:35px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#f1f3f5;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+/* CONTEÚDO */
+
+main{
+    margin-left:260px;
+
+    min-height:100vh;
+}
+
+/* TOPO */
+
+.topbar{
+    height:76px;
+
+    background:#fff;
+
+    border-bottom:1px solid #e5e9ef;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:15px 30px;
+}
+
+.topbar h1{
+    font-size:25px;
+}
+
+.topbar p{
+    color:#89929d;
+
+    margin-top:5px;
+
+    font-size:13px;
+}
+
+.usuario{
+    text-align:right;
+}
+
+.usuario strong{
+    display:block;
+}
+
+.usuario span{
+    color:#89929d;
+
+    font-size:12px;
+}
+
+/* BOTÃO MOBILE */
+
+#abrirMenu{
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid #dfe4ea;
+
+    background:white;
+
+    border-radius:8px;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+/* CONTEÚDO */
+
+.conteudo{
+    padding:28px;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+}
+
+.card{
+    background:white;
+
+    border:1px solid #e5e9ef;
+
+    border-radius:14px;
+
+    padding:22px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.indicador{
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    min-height:105px;
+}
+
+.icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+    font-weight:bold;
+}
+
+.azul{
+    background:#edf4ff;
+    color:#2864d7;
+}
+
+.vermelho{
+    background:#fff0f0;
+    color:#e24a4a;
+}
+
+.amarelo{
+    background:#fff8df;
+    color:#d79a00;
+}
+
+.verde{
+    background:#edf9f1;
+    color:#29ad65;
+}
+
+.indicador small{
+    display:block;
+
+    color:#7d8792;
+
+    margin-bottom:6px;
+}
+
+.indicador strong{
+    font-size:27px;
+}
+
+/* AÇÕES */
+
+.acoes{
+    margin-top:22px;
+}
+
+.titulo{
+    margin-bottom:18px;
+}
+
+.titulo h2{
+    font-size:19px;
+
+    margin-bottom:6px;
+}
+
+.titulo p{
+    color:#89929d;
+
+    font-size:13px;
+}
+
+.atalhos{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+}
+
+.atalho{
+    padding:15px;
+
+    border:1px solid #e2e7ed;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    color:#34404c;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    background:#fff;
+}
+
+.atalho:hover{
+    border-color:#2864d7;
+
+    color:#2864d7;
+}
+
+/* PARTE INFERIOR */
+
+.inferior{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+    margin-top:20px;
+}
+
+.barra{
+    height:10px;
+
+    background:#e5e8ed;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:12px 0 20px;
+}
+
+.progresso{
+    width:75%;
+
+    height:100%;
+
+    background:#2864d7;
+}
+
+.linha{
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:13px 0;
+
+    border-bottom:1px solid #edf0f3;
+}
+
+.linha:last-child{
+    border-bottom:0;
+}
+
+.vazio{
+    height:180px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#a0a9b3;
+}
+
+/* OVERLAY */
+
+#overlay{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    z-index:900;
 }
 
 
-/* ================================
-   SISTEMA
-================================ */
+/* =================================
+   CELULAR
+================================= */
 
-#sistema {
-    display: flex;
-    min-height: 100vh;
+@media(max-width:700px){
+
+    #menu{
+        width:270px;
+
+        transform:translateX(-100%);
+
+        transition:transform .25s ease;
+
+        box-shadow:10px 0 30px rgba(0,0,0,.15);
+    }
+
+    #menu.aberto{
+        transform:translateX(0);
+    }
+
+    #fecharMenu{
+        display:block;
+    }
+
+    main{
+        margin-left:0;
+
+        width:100%;
+    }
+
+    .topbar{
+        height:auto;
+
+        min-height:76px;
+
+        padding:12px 15px;
+
+        justify-content:flex-start;
+
+        gap:12px;
+    }
+
+    #abrirMenu{
+        display:block;
+    }
+
+    .topbar h1{
+        font-size:23px;
+    }
+
+    .usuario{
+        margin-left:auto;
+    }
+
+    .usuario strong{
+        font-size:12px;
+    }
+
+    .usuario span{
+        font-size:10px;
+    }
+
+    .conteudo{
+        padding:15px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+
+        gap:12px;
+    }
+
+    .atalhos{
+        grid-template-columns:1fr;
+    }
+
+    .inferior{
+        grid-template-columns:1fr;
+    }
 }
 
 
-/* ================================
-   MENU LATERAL
-================================ */
+/* CELULAR PEQUENO */
 
-#menu {
-    width: 260px;
-    min-height: 100vh;
+@media(max-width:430px){
 
-    background: #ffffff;
+    .usuario{
+        display:none;
+    }
 
-    border-right: 1px solid #e5e9ef;
-
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    z-index: 1000;
-
-    display: flex;
-    flex-direction: column;
-
-    transition: transform .25s ease;
+    .topbar h1{
+        font-size:21px;
+    }
 }
 
+</style>
 
-/* LOGO */
+</head>
 
-.logo {
-    height: 76px;
+<body>
 
-    display: flex;
-    align-items: center;
 
-    padding: 0 22px;
+<div id="overlay"></div>
 
-    font-size: 20px;
-    font-weight: 700;
 
-    color: #2864d7;
+<aside id="menu">
 
-    border-bottom: 1px solid #edf0f4;
-}
+    <button id="fecharMenu">
+        ×
+    </button>
 
-.logo-symbol {
-    width: 40px;
-    height: 40px;
+    <div class="logo">
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        <span class="logo-symbol">
+            ▲
+        </span>
 
-    background: #2864d7;
-    color: white;
+        Atlas Gestão
 
-    border-radius: 9px;
+    </div>
 
-    margin-right: 10px;
 
-    font-size: 18px;
-}
+    <div class="menu-titulo">
+        GESTÃO DA QUALIDADE
+    </div>
 
 
-/* TÍTULO MENU */
+    <nav>
 
-.menu-titulo {
-    padding: 25px 20px 12px;
+        <a href="dashboard.html" class="ativo">
+            Dashboard
+        </a>
 
-    font-size: 11px;
-    font-weight: 700;
+        <a href="inspecoes.html">
+            Inspeções
+        </a>
 
-    color: #8a949f;
+        <a href="nao.conformidades.html">
+            Não Conformidades
+        </a>
 
-    letter-spacing: 1px;
-}
+        <a href="acoes-corretivas.html">
+            Ações Corretivas
+        </a>
 
+        <a href="auditorias.html">
+            Auditorias
+        </a>
 
-/* LINKS */
+        <a href="documentos.html">
+            Documentos
+        </a>
 
-#menu nav {
-    padding: 0 12px;
-}
+        <a href="indicadores.html">
+            Indicadores
+        </a>
 
-#menu nav a {
-    display: block;
+        <a href="relatorios.html">
+            Relatórios
+        </a>
 
-    padding: 13px 15px;
+        <a href="usuarios.html">
+            Usuários
+        </a>
 
-    margin-bottom: 3px;
+        <a href="configuracoes.html">
+            Configurações
+        </a>
 
-    border-radius: 8px;
+    </nav>
 
-    color: #4e5965;
 
-    text-decoration: none;
+    <button id="logout">
+        Sair
+    </button>
 
-    font-size: 14px;
+</aside>
 
-    transition: .2s;
-}
 
-#menu nav a:hover {
-    background: #f0f4fb;
-    color: #2864d7;
-}
+<main>
 
-#menu nav a.ativo {
-    background: #2864d7;
-    color: white;
-    font-weight: 600;
-}
 
+<header class="topbar">
 
-/* BOTÃO SAIR */
 
-.btn-menu-sair {
-    margin: auto 12px 20px;
+    <button id="abrirMenu">
+        ☰
+    </button>
 
-    padding: 12px;
 
-    border: 0;
+    <div>
 
-    border-radius: 8px;
+        <h1>
+            Dashboard
+        </h1>
 
-    background: #f5f6f8;
+        <p>
+            Visão geral da qualidade
+        </p>
 
-    color: #555;
+    </div>
 
-    cursor: pointer;
 
-    font-size: 14px;
-}
+    <div class="usuario">
 
-.btn-menu-sair:hover {
-    background: #ffecec;
-    color: #d33;
-}
+        <strong id="usuarioNome">
+            Usuário
+        </strong>
 
+        <span id="usuarioPerfil">
+            Administrador
+        </span>
 
-/* BOTÃO FECHAR */
+    </div>
 
-#fecharMenu {
-    display: none;
 
-    position: absolute;
+</header>
 
-    top: 15px;
-    right: 15px;
 
-    width: 34px;
-    height: 34px;
+<section class="conteudo">
 
-    border: 0;
-    border-radius: 8px;
 
-    background: #f0f2f5;
+<div class="cards">
 
-    color: #444;
 
-    font-size: 22px;
+    <div class="card indicador">
 
-    cursor: pointer;
-}
+        <div class="icon azul">
+            ✓
+        </div>
 
+        <div>
 
-/* ================================
-   CONTEÚDO PRINCIPAL
-================================ */
+            <small>
+                Inspeções realizadas
+            </small>
 
-main {
-    margin-left: 260px;
+            <strong>
+                12
+            </strong>
 
-    width: calc(100% - 260px);
+        </div>
 
-    min-height: 100vh;
-}
+    </div>
 
 
-/* ================================
-   TOPBAR
-================================ */
+    <div class="card indicador">
 
-.topbar {
-    min-height: 76px;
+        <div class="icon vermelho">
+            !
+        </div>
 
-    background: white;
+        <div>
 
-    border-bottom: 1px solid #e6eaf0;
+            <small>
+                Não conformidades
+            </small>
 
-    display: flex;
-    align-items: center;
+            <strong>
+                3
+            </strong>
 
-    justify-content: space-between;
+        </div>
 
-    padding: 15px 30px;
-}
+    </div>
 
-.topbar h1,
-.topbar h2 {
-    font-size: 25px;
 
-    color: #202832;
+    <div class="card indicador">
 
-    margin-bottom: 5px;
-}
+        <div class="icon amarelo">
+            ↻
+        </div>
 
-.topbar p {
-    font-size: 13px;
-    color: #89929d;
-}
+        <div>
+
+            <small>
+                Ações abertas
+            </small>
+
+            <strong>
+                4
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="card indicador">
+
+        <div class="icon verde">
+            ✓
+        </div>
+
+        <div>
+
+            <small>
+                Ações concluídas
+            </small>
+
+            <strong>
+                8
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="card indicador">
+
+        <div class="icon azul">
+            %
+        </div>
+
+        <div>
+
+            <small>
+                Taxa de conformidade
+            </small>
+
+            <strong>
+                75%
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="card indicador">
+
+        <div class="icon azul">
+            A
+        </div>
+
+        <div>
+
+            <small>
+                Auditorias realizadas
+            </small>
+
+            <strong>
+                5
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="card indicador">
+
+        <div class="icon verde">
+            D
+        </div>
+
+        <div>
+
+            <small>
+                Documentos ativos
+            </small>
+
+            <strong>
+                8
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="card acoes">
+
+    <div class="titulo">
+
+        <h2>
+            Ações rápidas
+        </h2>
+
+        <p>
+            Acesse rapidamente os principais recursos.
+        </p>
+
+    </div>
+
+
+    <div class="atalhos">
+
+        <a class="atalho" href="inspecoes.html">
+            + Nova inspeção
+        </a>
+
+        <a class="atalho" href="auditorias.html">
+            + Nova auditoria
+        </a>
+
+        <a class="atalho" href="nao.conformidades.html">
+            ! Nova não conformidade
+        </a>
+
+        <a class="atalho" href="acoes-corretivas.html">
+            + Nova ação corretiva
+        </a>
+
+        <a class="atalho" href="documentos.html">
+            + Novo documento
+        </a>
+
+        <a class="atalho" href="relatorios.html">
+            = Gerar relatório
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="inferior">
+
+
+<div class="card">
+
+    <div class="titulo">
+
+        <h2>
+            Status da Qualidade
+        </h2>
+
+        <p>
+            Resumo dos principais indicadores.
+        </p>
+
+    </div>
+
+
+    <div>
+
+        Taxa de conformidade
+        <strong>75%</strong>
+
+    </div>
+
+
+    <div class="barra">
+
+        <div class="progresso"></div>
+
+    </div>
+
+
+    <div class="linha">
+
+        <span>
+            Inspeções
+        </span>
+
+        <strong>
+            12
+        </strong>
+
+    </div>
+
+
+    <div class="linha">
+
+        <span>
+            Não conformidades
+        </span>
+
+        <strong>
+            3
+        </strong>
+
+    </div>
+
+
+    <div class="linha">
+
+        <span>
+            Ações pendentes
+        </span>
+
+        <strong>
+            4
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <div class="titulo">
+
+        <h2>
+            Atividade recente
+        </h2>
+
+        <p>
+            Acompanhe os registros do sistema.
+        </p>
+
+    </div>
+
+
+    <div class="vazio">
+
+        Nenhuma atividade registrada.
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* MENU */
+
+const menu =
+document.getElementById("menu");
+
+const abrir =
+document.getElementById("abrirMenu");
+
+const fechar =
+document.getElementById("fecharMenu");
+
+const overlay =
+document.getElementById("overlay");
+
+
+abrir.onclick = function(){
+
+    menu.classList.add("aberto");
+
+    overlay.style.display = "block";
+
+};
+
+
+fechar.onclick = function(){
+
+    menu.classList.remove("aberto");
+
+    overlay.style.display = "none";
+
+};
+
+
+overlay.onclick = function(){
+
+    menu.classList.remove("aberto");
+
+    overlay.style.display = "none";
+
+};
+
+
+/* LINKS MOBILE */
+
+document
+.querySelectorAll("#menu nav a")
+.forEach(function(link){
+
+    link.onclick = function(){
+
+        if(window.innerWidth <= 700){
+
+            menu.classList.remove("aberto");
+
+            overlay.style.display = "none";
+
+        }
+
+    };
+
+});
 
 
 /* USUÁRIO */
 
-.usuario-area {
-    text-align: right;
-}
+try{
 
-.usuario-nome {
-    font-size: 14px;
-    font-weight: 700;
-    color: #28323d;
-}
+    const salvo =
+    localStorage.getItem("atlas_usuario");
 
-.usuario-perfil {
-    font-size: 12px;
-    color: #8b949e;
+    if(salvo){
 
-    margin-top: 3px;
-}
+        const usuario =
+        JSON.parse(salvo);
 
+        document.getElementById("usuarioNome")
+        .textContent =
+        usuario.nome ||
+        usuario.email ||
+        "Usuário";
 
-/* BOTÃO MOBILE */
+        document.getElementById("usuarioPerfil")
+        .textContent =
+        usuario.perfil ||
+        usuario.tipo ||
+        "Administrador";
 
-.menu-mobile {
-    display: none;
+    }
 
-    width: 42px;
-    height: 42px;
+}catch(e){
 
-    border: 1px solid #dce1e7;
+    console.log(e);
 
-    background: white;
-
-    border-radius: 8px;
-
-    font-size: 22px;
-
-    cursor: pointer;
 }
 
 
-/* ================================
-   CONTEÚDO
-================================ */
+/* LOGOUT */
 
-#conteudo {
-    padding: 28px;
-}
+document
+.getElementById("logout")
+.onclick = function(){
 
+    localStorage.removeItem("atlas_token");
 
-/* ================================
-   CARDS
-================================ */
+    localStorage.removeItem("atlas_usuario");
 
-.cards-dashboard {
-    display: grid;
+    window.location.href =
+    "index.html";
 
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+};
 
-    gap: 18px;
+</script>
 
-    margin-bottom: 22px;
-}
 
-.card {
-    background: white;
+</body>
 
-    border: 1px solid #e8ecf1;
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 5px 20px rgba(30, 55, 90, .05);
-
-    padding: 22px;
-}
-
-
-/* INDICADOR */
-
-.indicador-card {
-    display: flex;
-    align-items: center;
-
-    gap: 15px;
-
-    min-height: 105px;
-}
-
-.indicador-icon {
-    width: 48px;
-    height: 48px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.indicador-icon.azul {
-    background: #edf4ff;
-    color: #2864d7;
-}
-
-.indicador-icon.vermelho {
-    background: #fff0f0;
-    color: #e24a4a;
-}
-
-.indicador-icon.amarelo {
-    background: #fff8df;
-    color: #d79a00;
-}
-
-.indicador-icon.verde {
-    background: #edf9f1;
-    color: #29ad65;
-}
-
-.indicador-card span {
-    display: block;
-
-    color: #7d8792;
-
-    font-size: 13px;
-
-    margin-bottom: 6px;
-}
-
-.indicador-card strong {
-    display: block;
-
-    font-size: 27px;
-
-    color: #27313c;
-}
-
-
-/* ================================
-   CABEÇALHO CARD
-================================ */
-
-.card-header {
-    margin-bottom: 20px;
-}
-
-.card-header h2 {
-    font-size: 18px;
-
-    margin-bottom: 6px;
-
-    color: #29333e;
-}
-
-.card-header p {
-    color: #89929d;
-
-    font-size: 13px;
-}
-
-
-/* ================================
-   AÇÕES RÁPIDAS
-================================ */
-
-.atalhos {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 12px;
-}
-
-.atalho {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    min-height: 55px;
-
-    padding: 12px 15px;
-
-    border: 1px solid #e2e7ed;
-
-    border-radius: 9px;
-
-    text-decoration: none;
-
-    color: #34404c;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    background: #fff;
-
-    transition: .2s;
-}
-
-.atalho:hover {
-    border-color: #2864d7;
-
-    color: #2864d7;
-
-    transform: translateY(-1px);
-}
-
-.atalho span {
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #edf4ff;
-
-    color: #2864d7;
-
-    border-radius: 8px;
-
-    font-size: 18px;
-}
-
-
-/* ================================
-   GRID INFERIOR
-================================ */
-
-.dashboard-grid {
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 20px;
-
-    margin-top: 20px;
-}
-
-
-/* ================================
-   PROGRESSO
-================================ */
-
-.progresso-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-bottom: 10px;
-
-    font-size: 13px;
-
-    color: #68737f;
-}
-
-.progresso-header strong {
-    color: #2864d7;
-}
-
-.barra {
-    height: 10px;
-
-    width: 100%;
-
-    background: #e8ebef;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin-bottom: 22px;
-}
-
-.barra-preenchida {
-    width: 75%;
-
-    height: 100%;
-
-    background: #2864d7;
-
-    border-radius: 20px;
-}
-
-
-/* ================================
-   STATUS
-================================ */
-
-.status-linhas > div {
-    display: flex;
-
-    justify-content: space-between;
-
-    padding: 13px 0;
-
-    border-bottom: 1px solid #edf0f3;
-
-    font-size: 14
+</html>
