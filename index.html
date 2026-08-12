@@ -11,348 +11,181 @@
     >
 
     <meta
-        name="description"
-        content="Atlas Gestão - Sistema de Gestão da Qualidade"
+        name="theme-color"
+        content="#2563eb"
     >
 
     <title>
-        Atlas Gestão | Gestão da Qualidade
+        Atlas Gestão - Login
     </title>
 
-
-    <!-- CSS -->
-
+    <!-- CSS CORRETO -->
     <link
         rel="stylesheet"
-        href="frontend/css/style.css"
+        href="./frontend/css/style.css"
     >
 
 </head>
 
 
-<body class="login-body">
+<body>
 
 
-    <!-- ==============================
-         LOGIN
-    =============================== -->
+<div class="login-page">
 
-    <main class="login-container">
+
+    <div class="login-card">
 
 
         <!-- LOGO -->
 
         <div class="login-logo">
 
-            <div class="logo-symbol">
+            <div class="logo-icon">
                 ▲
             </div>
 
-            <h1>
-                Atlas Gestão
-            </h1>
+            <div>
 
-            <p>
-                Gestão Inteligente da Qualidade
-            </p>
+                <div class="logo-title">
+                    Atlas Gestão
+                </div>
+
+                <div class="logo-subtitle">
+                    Gestão Inteligente da Qualidade
+                </div>
+
+            </div>
 
         </div>
 
 
-        <!-- CARD DE LOGIN -->
 
-        <section class="login-card">
+        <!-- CABEÇALHO -->
 
-            <h2>
+        <div class="login-header">
+
+            <h1>
                 Bem-vindo
-            </h2>
+            </h1>
 
             <p>
                 Entre para acessar o Sistema de Gestão da Qualidade.
             </p>
 
-
-            <!-- FORMULÁRIO -->
-
-            <form
-                id="loginForm"
-                class="login-form"
-            >
-
-
-                <!-- E-MAIL -->
-
-                <div class="form-group">
-
-                    <label for="email">
-                        E-mail
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="email"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- SENHA -->
-
-                <div class="form-group">
-
-                    <label for="senha">
-                        Senha
-                    </label>
-
-                    <input
-                        type="password"
-                        id="senha"
-                        name="senha"
-                        placeholder="Digite sua senha"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- OPÇÕES -->
-
-                <div class="login-opcoes">
-
-                    <label>
-
-                        <input
-                            type="checkbox"
-                            id="lembrar"
-                        >
-
-                        Manter conectado
-
-                    </label>
-
-
-                    <a
-                        href="#"
-                        id="esqueciSenha"
-                    >
-                        Esqueci minha senha
-                    </a>
-
-                </div>
-
-
-                <!-- BOTÃO -->
-
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                    id="btnLogin"
-                >
-                    Entrar
-                </button>
-
-
-                <!-- MENSAGEM -->
-
-                <div
-                    id="mensagem"
-                    class="mensagem"
-                ></div>
-
-
-            </form>
-
-        </section>
-
-
-        <!-- RODAPÉ -->
-
-        <div
-            style="
-                text-align:center;
-                margin-top:18px;
-                color:#64748B;
-                font-size:11px;
-            "
-        >
-
-            Atlas Gestão © 2026
-
         </div>
 
 
-    </main>
+
+        <!-- LOGIN -->
+
+        <form
+            id="loginForm"
+            class="login-form"
+        >
 
 
-    <!-- JAVASCRIPT -->
+            <div class="campo">
 
-    <script src="frontend/js/app.js"></script>
+                <label for="email">
+                    E-mail
+                </label>
 
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="seu@email.com"
+                    autocomplete="email"
+                    required
+                >
 
-    <!-- LOGIN -->
-
-    <script>
-
-        const loginForm =
-            document.getElementById("loginForm");
-
-
-        const mensagem =
-            document.getElementById("mensagem");
-
-
-        function mostrarMensagem(
-            texto,
-            tipo = "erro"
-        ) {
-
-            mensagem.textContent = texto;
-
-            mensagem.className =
-                "mensagem " + tipo;
-
-        }
+            </div>
 
 
-        loginForm.addEventListener(
-            "submit",
-            function(event) {
 
-                event.preventDefault();
+            <div class="campo">
 
+                <label for="senha">
+                    Senha
+                </label>
 
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
+                >
 
-
-                const senha =
-                    document
-                        .getElementById("senha")
-                        .value;
-
-
-                if (!email || !senha) {
-
-                    mostrarMensagem(
-                        "Preencha e-mail e senha."
-                    );
-
-                    return;
-
-                }
+            </div>
 
 
-                /*
-                ==========================================
-                LOGIN TEMPORÁRIO
-                ==========================================
 
-                Nesta primeira etapa estamos usando
-                um login local para testar o sistema
-                no GitHub Pages.
+            <div class="login-opcoes">
 
-                Depois vamos conectar ao banco
-                de dados e à API.
-                ==========================================
-                */
+                <label class="lembrar">
 
+                    <input
+                        type="checkbox"
+                        id="lembrar"
+                    >
 
-                const usuario = {
+                    <span>
+                        Lembrar-me
+                    </span>
 
-                    nome: email.split("@")[0],
-
-                    email: email,
-
-                    perfil: "Administrador"
-
-                };
+                </label>
 
 
-                localStorage.setItem(
-                    "atlas_token",
-                    "atlas_demo_token"
-                );
+                <a
+                    href="#"
+                    id="esqueciSenha"
+                >
+                    Esqueci minha senha
+                </a>
+
+            </div>
 
 
-                localStorage.setItem(
-                    "atlas_usuario",
-                    JSON.stringify(usuario)
-                );
+
+            <button
+                type="submit"
+                class="btn-login"
+            >
+                Entrar
+            </button>
 
 
-                localStorage.setItem(
-                    "atlas_lembrar",
-                    document
-                        .getElementById("lembrar")
-                        .checked
-                );
+
+            <div
+                id="mensagem"
+                class="mensagem"
+            ></div>
 
 
-                mostrarMensagem(
-                    "Login realizado com sucesso!",
-                    "sucesso"
-                );
+        </form>
 
 
-                /*
-                ==========================================
-                IR PARA O PAINEL
-                ==========================================
-                */
-
-                setTimeout(
-                    function() {
-
-                        window.location.href =
-                            "painel.html";
-
-                    },
-                    500
-                );
-
-            }
-        );
+    </div>
 
 
-        /*
-        ==========================================
-        ESQUECI MINHA SENHA
-        ==========================================
-        */
 
-        const esqueciSenha =
-            document.getElementById(
-                "esqueciSenha"
-            );
+    <footer>
+
+        Atlas Gestão © 2026
+
+    </footer>
 
 
-        if (esqueciSenha) {
+</div>
 
-            esqueciSenha.addEventListener(
-                "click",
-                function(event) {
 
-                    event.preventDefault();
 
-                    alert(
-                        "A recuperação de senha será disponibilizada na próxima etapa."
-                    );
+<!-- JAVASCRIPT CORRETO -->
 
-                }
-            );
-
-        }
-
-    </script>
-
+<script src="./frontend/js/login.js"></script>
 
 </body>
 
