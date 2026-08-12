@@ -1,87 +1,39 @@
-require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
+
+const db = require("./database");
+
+const authRoutes = require("./routes/auth");
+const inspecoesRoutes = require("./routes/inspecoes");
+const naoConformidadesRoutes = require("./routes/naoConformidades");
+const acoesCorretivasRoutes = require("./routes/acoesCorretivas");
 
 const app = express();
 
-const PORT =
-    process.env.PORT || 3000;
+const PORT = 3000;
 
 
+/*
+|--------------------------------------------------------------------------
+| MIDDLEWARES
+|--------------------------------------------------------------------------
+*/
 
-/* =========================
-   BANCO
-========================= */
+app.use(cors());
 
-require("./database");
+app.use(express.json());
 
-
-
-/* =========================
-   MIDDLEWARE
-========================= */
-
-app.use(
-    cors()
-);
-
-app.use(
-    express.json({
-        limit: "10mb"
-    })
-);
-
-app.use(
-    express.urlencoded({
-        extended: true,
-        limit: "10mb"
-    })
-);
+app.use(express.urlencoded({
+    extended: true
+}));
 
 
-
-/* =========================
-   UPLOADS
-========================= */
-
-const pastaUploads =
-    path.join(
-        __dirname,
-        "uploads"
-    );
-
-
-if (
-    !fs.existsSync(
-        pastaUploads
-    )
-) {
-
-    fs.mkdirSync(
-        pastaUploads,
-        {
-            recursive: true
-        }
-    );
-
-}
-
-
-app.use(
-    "/uploads",
-    express.static(
-        pastaUploads
-    )
-);
-
-
-
-/* =========================
-   FRONTEND
-========================= */
+/*
+|--------------------------------------------------------------------------
+| ARQUIVOS DO FRONTEND
+|--------------------------------------------------------------------------
+*/
 
 app.use(
     express.static(
@@ -93,68 +45,96 @@ app.use(
 );
 
 
+/*
+|--------------------------------------------------------------------------
+| UPLOADS
+|--------------------------------------------------------------------------
+*/
 
-/* =========================
-   ROTAS
-========================= */
+app.use(
+    "/uploads",
+    express.static(
+        path.join(
+            __dirname,
+            "uploads"
+        )
+    )
+);
 
-const authRoutes =
-    require("./routes/auth");
 
-const dashboardRoutes =
-    require("./routes/dashboard");
-
-const inspecoesRoutes =
-    require("./routes/inspecoes");
-
+/*
+|--------------------------------------------------------------------------
+| ROTAS DA API
+|--------------------------------------------------------------------------
+*/
 
 app.use(
     "/api/auth",
     authRoutes
 );
 
-
-app.use(
-    "/api/dashboard",
-    dashboardRoutes
-);
-
-
 app.use(
     "/api/inspecoes",
     inspecoesRoutes
 );
 
+app.use(
+    "/api/nao-conformidades",
+    naoConformidadesRoutes
+);
 
-
-/* =========================
-   ROTA PRINCIPAL
-========================= */
-
-app.get(
-    "/",
-    (req, res) => {
-
-        res.sendFile(
-            path.join(
-                __dirname,
-                "../frontend/index.html"
-            )
-        );
-
-    }
+app.use(
+    "/api/acoes-corretivas",
+    acoesCorretivasRoutes
 );
 
 
+/*
+|--------------------------------------------------------------------------
+| ROTA PRINCIPAL
+|--------------------------------------------------------------------------
+*/
 
-/* =========================
-   ERROS
-========================= */
+app.get("/", (req, res) => {
+
+    res.sendFile(
+        path.join(
+            __dirname,
+            "../frontend/login.html"
+        )
+    );
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| TESTE DA API
+|--------------------------------------------------------------------------
+*/
+
+app.get("/api", (req, res) => {
+
+    res.json({
+        sistema: "Atlas Gestão",
+        descricao:
+            "Sistema de Gestão da Qualidade",
+        status: "online"
+    });
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| TRATAMENTO DE ERROS
+|--------------------------------------------------------------------------
+*/
 
 app.use(
-    (erro, req, res, next) => {
+    (err, req, res, next) => {
 
-        console.error(erro);
+        console.error(err);
 
         res.status(500).json({
             erro:
@@ -165,18 +145,40 @@ app.use(
 );
 
 
-
-/* =========================
-   SERVIDOR
-========================= */
+/*
+|--------------------------------------------------------------------------
+| INICIALIZAÇÃO
+|--------------------------------------------------------------------------
+*/
 
 app.listen(
     PORT,
     () => {
 
+        console.log("");
         console.log(
-            `Atlas Gestão rodando em http://localhost:${PORT}`
+            "================================="
         );
+
+        console.log(
+            "       ATLAS GESTÃO"
+        );
+
+        console.log(
+            " Sistema de Gestão da Qualidade"
+        );
+
+        console.log(
+            "================================="
+        );
+
+        console.log("");
+
+        console.log(
+            `Servidor: http://localhost:${PORT}`
+        );
+
+        console.log("");
 
     }
 );
