@@ -1,0 +1,857 @@
+/* =========================================================
+   ATLAS GESTÃO
+   DASHBOARD.CSS
+   ESTILOS EXCLUSIVOS DO DASHBOARD
+   NÃO AFETA O LOGIN
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   SISTEMA
+   ========================================================= */
+
+#sistema {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
+#menu {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 258px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e5e7eb;
+
+    padding: 20px 13px;
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.25s ease;
+}
+
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 8px;
+
+    margin-bottom: 30px;
+
+    color: #2563eb;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.logo-symbol {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+
+.menu-titulo {
+    padding: 0 8px;
+
+    margin-bottom: 12px;
+
+    color: #7b8794;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+#menu nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+#menu nav a {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 42px;
+
+    padding: 0 14px;
+
+    border-radius: 9px;
+
+    color: #4b5563;
+
+    font-size: 14px;
+
+    text-decoration: none;
+}
+
+
+#menu nav a:hover {
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+#menu nav a.ativo {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+
+/* BOTÃO SAIR */
+
+.btn-menu-sair {
+    width: 100%;
+
+    min-height: 42px;
+
+    margin-top: auto;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #64748b;
+
+    font-weight: 600;
+}
+
+
+.btn-menu-sair:hover {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   BOTÃO FECHAR MENU
+   ========================================================= */
+
+.menu-fechar {
+    display: none;
+
+    position: absolute;
+
+    right: 10px;
+    top: 10px;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-size: 20px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+#sistema main {
+    width: calc(100% - 258px);
+
+    min-height: 100vh;
+
+    margin-left: 258px;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 28px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.topbar h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 23px;
+}
+
+
+.topbar p {
+    margin: 4px 0 0;
+
+    color: #7b8794;
+
+    font-size: 13px;
+}
+
+
+.usuario-area {
+    text-align: right;
+}
+
+
+.usuario-nome {
+    color: #1f2937;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.usuario-perfil {
+    margin-top: 3px;
+
+    color: #7b8794;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BOTÃO MOBILE
+   ========================================================= */
+
+.menu-mobile {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-size: 20px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   CONTEÚDO DASHBOARD
+   ========================================================= */
+
+.dashboard {
+    padding: 28px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.cards-dashboard {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 22px;
+}
+
+
+.card {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.05);
+}
+
+
+.indicador-card {
+    min-height: 122px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 20px;
+}
+
+
+.indicador-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+
+    font-weight: 800;
+}
+
+
+.indicador-icon.azul {
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+.indicador-icon.vermelho {
+    background: #fef2f2;
+
+    color: #ef4444;
+}
+
+
+.indicador-icon.amarelo {
+    background: #fffbeb;
+
+    color: #d97706;
+}
+
+
+.indicador-icon.verde {
+    background: #f0fdf4;
+
+    color: #22c55e;
+}
+
+
+.indicador-card span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #7b8794;
+
+    font-size: 13px;
+}
+
+
+.indicador-card strong {
+    display: block;
+
+    color: #1f2937;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   CABEÇALHO DOS CARDS
+   ========================================================= */
+
+.card-header {
+    padding: 22px 22px 16px;
+}
+
+
+.card-header h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 18px;
+}
+
+
+.card-header p {
+    margin: 5px 0 0;
+
+    color: #7b8794;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   AÇÕES RÁPIDAS
+   ========================================================= */
+
+#conteudo > .card {
+    margin-bottom: 22px;
+}
+
+
+.atalhos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+
+    padding: 0 22px 22px;
+}
+
+
+.atalho {
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.atalho:hover {
+    background: #eff6ff;
+
+    border-color: #bfdbfe;
+
+    color: #2563eb;
+}
+
+
+.atalho span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 18px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   GRID INFERIOR
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 20px;
+}
+
+
+.dashboard-grid > .card {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PROGRESSO
+   ========================================================= */
+
+.progresso-area {
+    padding: 0 22px 20px;
+}
+
+
+.progresso-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.progresso-header strong {
+    color: #2563eb;
+
+    font-size: 14px;
+}
+
+
+.barra {
+    width: 100%;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #e5e7eb;
+}
+
+
+.barra-preenchida {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-linhas {
+    padding: 0 22px 22px;
+}
+
+
+.status-linhas > div {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-top: 1px solid #f1f5f9;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.status-linhas strong {
+    color: #1f2937;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ATIVIDADE
+   ========================================================= */
+
+#atividadeRecente {
+    min-height: 210px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 22px;
+}
+
+
+.atividade-vazia {
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.menu-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    background: rgba(15, 23, 42, 0.45);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #menu {
+        transform: translateX(-100%);
+    }
+
+
+    #menu.aberto {
+        transform: translateX(0);
+    }
+
+
+    #menu.aberto .menu-fechar {
+        display: flex;
+    }
+
+
+    #sistema main {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+
+    .menu-mobile {
+        display: flex;
+
+        flex-shrink: 0;
+    }
+
+
+    .topbar {
+        justify-content: flex-start;
+
+        gap: 12px;
+
+        padding: 12px 16px;
+    }
+
+
+    .usuario-area {
+        margin-left: auto;
+    }
+
+
+    .menu-overlay.aberto {
+        display: block;
+    }
+
+
+    .dashboard {
+        padding: 16px;
+    }
+
+
+    .cards-dashboard {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    .indicador-card {
+        min-height: 105px;
+
+        padding: 14px;
+
+        gap: 10px;
+    }
+
+
+    .indicador-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+
+    .indicador-card span {
+        font-size: 11px;
+    }
+
+
+    .indicador-card strong {
+        font-size: 22px;
+    }
+
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .atalhos {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .topbar h2 {
+        font-size: 20px;
+    }
+
+
+    .topbar p {
+        font-size: 11px;
+    }
+
+
+    .usuario-nome {
+        font-size: 11px;
+    }
+
+
+    .usuario-perfil {
+        font-size: 10px;
+    }
+
+
+    .cards-dashboard {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .indicador-card {
+        min-height: 92px;
+
+        padding: 10px;
+
+        gap: 8px;
+    }
+
+
+    .indicador-icon {
+        width: 34px;
+        height: 34px;
+
+        font-size: 14px;
+    }
+
+
+    .indicador-card span {
+        font-size: 10px;
+
+        line-height: 1.2;
+    }
+
+
+    .indicador-card strong {
+        font-size: 20px;
+    }
+
+
+    .atalhos {
+        grid-template-columns: 1fr;
+    }
+
+      }
