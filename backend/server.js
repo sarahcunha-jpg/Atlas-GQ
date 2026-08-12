@@ -2,8 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
-const db = require("./database");
-
 const authRoutes =
     require("./routes/auth");
 
@@ -21,6 +19,9 @@ const auditoriasRoutes =
 
 const documentosRoutes =
     require("./routes/documentos");
+
+const indicadoresRoutes =
+    require("./routes/indicadores");
 
 
 const app = express();
@@ -112,6 +113,11 @@ app.use(
 app.use(
     "/api/documentos",
     documentosRoutes
+);
+
+app.use(
+    "/api/indicadores",
+    indicadoresRoutes
 );
 
 
