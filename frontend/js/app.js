@@ -1,6 +1,11 @@
 const API_BASE = "/api";
 
 
+/*
+|--------------------------------------------------------------------------
+| TOKEN
+|--------------------------------------------------------------------------
+*/
 
 function obterToken() {
 
@@ -11,6 +16,11 @@ function obterToken() {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| USUÁRIO
+|--------------------------------------------------------------------------
+*/
 
 function obterUsuario() {
 
@@ -40,6 +50,11 @@ function obterUsuario() {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| VERIFICAR LOGIN
+|--------------------------------------------------------------------------
+*/
 
 function verificarLogin() {
 
@@ -76,6 +91,11 @@ function verificarLogin() {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+*/
 
 async function api(
     rota,
@@ -92,15 +112,37 @@ async function api(
 
         headers: {
 
-            "Content-Type":
-                "application/json",
-
             ...(opcoes.headers || {})
 
         }
 
     };
 
+
+    /*
+    ----------------------------------------------------------
+    Se estiver enviando FormData,
+    não colocar Content-Type manualmente.
+    ----------------------------------------------------------
+    */
+
+    if (
+        !(opcoes.body instanceof FormData)
+    ) {
+
+        configuracao.headers[
+            "Content-Type"
+        ] =
+            "application/json";
+
+    }
+
+
+    /*
+    ----------------------------------------------------------
+    TOKEN
+    ----------------------------------------------------------
+    */
 
     if (token) {
 
@@ -116,6 +158,12 @@ async function api(
             configuracao
         );
 
+
+    /*
+    ----------------------------------------------------------
+    SESSÃO EXPIRADA
+    ----------------------------------------------------------
+    */
 
     if (
         resposta.status === 401
@@ -141,6 +189,12 @@ async function api(
     }
 
 
+    /*
+    ----------------------------------------------------------
+    RESPOSTA
+    ----------------------------------------------------------
+    */
+
     let dados = null;
 
 
@@ -156,10 +210,17 @@ async function api(
     }
 
 
+    /*
+    ----------------------------------------------------------
+    ERROS
+    ----------------------------------------------------------
+    */
+
     if (!resposta.ok) {
 
         throw new Error(
             dados.erro ||
+            dados.mensagem ||
             "Erro na comunicação com o servidor."
         );
 
@@ -171,6 +232,11 @@ async function api(
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| PREENCHER USUÁRIO
+|--------------------------------------------------------------------------
+*/
 
 function preencherUsuario() {
 
@@ -198,7 +264,8 @@ function preencherUsuario() {
     if (nome) {
 
         nome.textContent =
-            usuario.nome;
+            usuario.nome ||
+            "Usuário";
 
     }
 
@@ -206,7 +273,8 @@ function preencherUsuario() {
     if (perfil) {
 
         perfil.textContent =
-            usuario.perfil;
+            usuario.perfil ||
+            "Usuário";
 
     }
 
@@ -220,13 +288,19 @@ function preencherUsuario() {
     if (usuarioLogado) {
 
         usuarioLogado.textContent =
-            usuario.nome;
+            usuario.nome ||
+            "Usuário";
 
     }
 
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| LOGOUT
+|--------------------------------------------------------------------------
+*/
 
 function configurarLogout() {
 
@@ -239,6 +313,23 @@ function configurarLogout() {
     if (!botao) {
         return;
     }
+
+
+    /*
+    ----------------------------------------------------------
+    Evita adicionar o evento duas vezes
+    ----------------------------------------------------------
+    */
+
+    if (
+        botao.dataset.logoutConfigurado
+    ) {
+        return;
+    }
+
+
+    botao.dataset.logoutConfigurado =
+        "true";
 
 
     botao.addEventListener(
@@ -263,6 +354,11 @@ function configurarLogout() {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| MENU MOBILE
+|--------------------------------------------------------------------------
+*/
 
 function configurarMenuMobile() {
 
@@ -283,9 +379,23 @@ function configurarMenuMobile() {
     }
 
 
+    if (
+        botao.dataset.menuConfigurado
+    ) {
+        return;
+    }
+
+
+    botao.dataset.menuConfigurado =
+        "true";
+
+
     botao.addEventListener(
         "click",
-        function() {
+        function(event) {
+
+            event.stopPropagation();
+
 
             menu.classList.toggle(
                 "menu-aberto"
@@ -294,9 +404,86 @@ function configurarMenuMobile() {
         }
     );
 
+
+    /*
+    ----------------------------------------------------------
+    Fechar menu ao clicar fora
+    ----------------------------------------------------------
+    */
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                window.innerWidth > 900
+            ) {
+                return;
+            }
+
+
+            if (
+                !menu.contains(
+                    event.target
+                ) &&
+                !botao.contains(
+                    event.target
+                )
+            ) {
+
+                menu.classList.remove(
+                    "menu-aberto"
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+    ----------------------------------------------------------
+    Fechar menu ao clicar em um link
+    ----------------------------------------------------------
+    */
+
+    const links =
+        menu.querySelectorAll(
+            "nav a"
+        );
+
+
+    links.forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                function() {
+
+                    if (
+                        window.innerWidth <= 900
+                    ) {
+
+                        menu.classList.remove(
+                            "menu-aberto"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| DESTACAR MENU
+|--------------------------------------------------------------------------
+*/
 
 function destacarMenu() {
 
@@ -319,9 +506,32 @@ function destacarMenu() {
                 );
 
 
+            if (!href) {
+                return;
+            }
+
+
+            /*
+            --------------------------------------------------
+            Remove ativo antes de verificar
+            --------------------------------------------------
+            */
+
+            link.classList.remove(
+                "ativo"
+            );
+
+
+            /*
+            --------------------------------------------------
+            Página atual
+            --------------------------------------------------
+            */
+
             if (
-                href &&
-                pagina.endsWith(href)
+                pagina.endsWith(
+                    href
+                )
             ) {
 
                 link.classList.add(
@@ -336,6 +546,146 @@ function destacarMenu() {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| FUNÇÃO PARA MOSTRAR MENSAGEM
+|--------------------------------------------------------------------------
+*/
+
+function mostrarMensagem(
+    elemento,
+    mensagem,
+    tipo = "sucesso"
+) {
+
+    if (
+        typeof elemento === "string"
+    ) {
+
+        elemento =
+            document.getElementById(
+                elemento
+            );
+
+    }
+
+
+    if (!elemento) {
+        return;
+    }
+
+
+    elemento.textContent =
+        mensagem;
+
+
+    elemento.className =
+        `mensagem ${tipo}`;
+
+
+    setTimeout(
+        function() {
+
+            elemento.className =
+                "mensagem";
+
+        },
+        5000
+    );
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| CONFIRMAÇÃO DE EXCLUSÃO
+|--------------------------------------------------------------------------
+*/
+
+function confirmarExclusao(
+    mensagem =
+        "Deseja realmente excluir este registro?"
+) {
+
+    return window.confirm(
+        mensagem
+    );
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| FORMATAÇÃO DE DATA
+|--------------------------------------------------------------------------
+*/
+
+function formatarData(
+    data
+) {
+
+    if (!data) {
+        return "-";
+    }
+
+
+    const dataObjeto =
+        new Date(data);
+
+
+    if (
+        Number.isNaN(
+            dataObjeto.getTime()
+        )
+    ) {
+
+        return data;
+
+    }
+
+
+    return dataObjeto.toLocaleDateString(
+        "pt-BR"
+    );
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| FORMATAÇÃO DE NÚMERO
+|--------------------------------------------------------------------------
+*/
+
+function formatarNumero(
+    valor
+) {
+
+    const numero =
+        Number(valor);
+
+
+    if (
+        Number.isNaN(numero)
+    ) {
+
+        return "0";
+
+    }
+
+
+    return numero.toLocaleString(
+        "pt-BR"
+    );
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| INICIALIZAÇÃO
+|--------------------------------------------------------------------------
+*/
 
 document.addEventListener(
     "DOMContentLoaded",
