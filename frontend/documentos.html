@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Documentos - Atlas Gestão
+</title>
+
+<link
+rel="stylesheet"
+href="/css/style.css"
+>
+
+</head>
+
+<body>
+
+<div id="sistema">
+
+
+<aside id="menu">
+
+<div class="logo">
+
+<span class="logo-symbol">
+▲
+</span>
+
+<span>
+Atlas Gestão
+</span>
+
+</div>
+
+
+<div class="menu-titulo">
+GESTÃO DA QUALIDADE
+</div>
+
+
+<nav>
+
+<a href="/dashboard.html">
+Dashboard
+</a>
+
+<a href="/inspecoes.html">
+Inspeções
+</a>
+
+<a href="/nao-conformidades.html">
+Não Conformidades
+</a>
+
+<a href="/acoes-corretivas.html">
+Ações Corretivas
+</a>
+
+<a href="/auditorias.html">
+Auditorias
+</a>
+
+<a
+href="/documentos.html"
+class="ativo"
+>
+Documentos
+</a>
+
+<a href="/indicadores.html">
+Indicadores
+</a>
+
+<a href="/relatorios.html">
+Relatórios
+</a>
+
+<a href="/usuarios.html">
+Usuários
+</a>
+
+<a href="/configuracoes.html">
+Configurações
+</a>
+
+</nav>
+
+
+<button
+id="logout"
+class="btn-menu-sair"
+>
+Sair
+</button>
+
+</aside>
+
+
+<main>
+
+
+<header class="topbar">
+
+<button
+id="menuMobile"
+class="menu-mobile"
+>
+☰
+</button>
+
+
+<div>
+
+<h2>
+Documentos
+</h2>
+
+<p>
+Controle documental do Sistema de Gestão da Qualidade
+</p>
+
+</div>
+
+
+<div class="usuario-area">
+
+<div
+id="usuarioNome"
+class="usuario-nome"
+>
+Usuário
+</div>
+
+<div
+id="usuarioPerfil"
+class="usuario-perfil"
+>
+Perfil
+</div>
+
+</div>
+
+</header>
+
+
+<section id="conteudo">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Novo documento
+</h2>
+
+<p>
+Cadastre procedimentos, POPs, manuais e outros documentos.
+</p>
+
+</div>
+
+</div>
+
+
+<form
+id="documentoForm"
+enctype="multipart/form-data"
+>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Código *
+</label>
+
+<input
+name="codigo"
+placeholder="DOC-001"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Nome *
+</label>
+
+<input
+name="nome"
+placeholder="Nome do documento"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Tipo
+</label>
+
+<select name="tipo">
+
+<option>
+POP
+</option>
+
+<option>
+Instrução de Trabalho
+</option>
+
+<option>
+Procedimento
+</option>
+
+<option>
+Formulário
+</option>
+
+<option>
+Manual
+</option>
+
+<option>
+Política
+</option>
+
+<option>
+Outro
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Revisão
+</label>
+
+<input
+name="revisao"
+value="00"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Data
+</label>
+
+<input
+type="date"
+name="data"
+id="dataDocumento"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Responsável
+</label>
+
+<input
+name="responsavel"
+placeholder="Responsável pelo documento"
+>
+
+</div>
+
+
+<div class="form-group campo-grande">
+
+<label>
+Arquivo
+</label>
+
+<input
+type="file"
+name="arquivo"
+accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg"
+>
+
+<small>
+PDF, Word, Excel ou imagem
+</small>
+
+</div>
+
+
+<div class="form-group campo-grande">
+
+<label>
+Descrição
+</label>
+
+<textarea
+name="descricao"
+rows="5"
+placeholder="Descrição do documento..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<button
+type="submit"
+class="btn btn-primary"
+>
+Cadastrar documento
+</button>
+
+
+<button
+type="reset"
+class="btn btn-secondary"
+>
+Limpar
+</button>
+
+
+<div
+id="mensagemDocumento"
+class="mensagem"
+></div>
+
+
+</form>
+
+</div>
+
+
+
+<div class="card">
+
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Documentos cadastrados
+</h2>
+
+<p>
+Controle e consulta da documentação da qualidade.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="filtros">
+
+<input
+type="text"
+id="pesquisaDocumento"
+placeholder="Pesquisar documento..."
+>
+
+
+<select id="filtroTipo">
+
+<option value="">
+Todos os tipos
+</option>
+
+<option>
+POP
+</option>
+
+<option>
+Instrução de Trabalho
+</option>
+
+<option>
+Procedimento
+</option>
+
+<option>
+Formulário
+</option>
+
+<option>
+Manual
+</option>
+
+<option>
+Política
+</option>
+
+<option>
+Outro
+</option>
+
+</select>
+
+</div>
+
+
+<div class="tabela-container">
+
+
+<table class="tabela">
+
+
+<thead>
+
+<tr>
+
+<th>
+Código
+</th>
+
+<th>
+Nome
+</th>
+
+<th>
+Tipo
+</th>
+
+<th>
+Revisão
+</th>
+
+<th>
+Data
+</th>
+
+<th>
+Responsável
+</th>
+
+<th>
+Arquivo
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="listaDocumentos"
+>
+</tbody>
+
+
+</table>
+
+</div>
+
+</div>
+
+
+</section>
+
+</main>
+
+</div>
+
+
+<script src="/js/app.js"></script>
+
+<script src="/js/documentos.js"></script>
+
+</body>
+
+  </html>
