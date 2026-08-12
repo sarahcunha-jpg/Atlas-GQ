@@ -1319,7 +1319,54 @@ a:focus-visible {
     }
 
 }
+/* ==========================================================
+   BOTÃO FECHAR MENU MOBILE
+========================================================== */
 
+.fechar-menu {
+    display: none;
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 15px;
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #EFF6FF;
+
+    color: #2563EB;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 1100;
+}
+
+
+/* ==========================================================
+   MENU MOBILE
+========================================================== */
+
+@media (max-width: 900px) {
+
+    #menu.aberto .fechar-menu {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+}
 /* =========================================================
    FINAL
 ========================================================= */
