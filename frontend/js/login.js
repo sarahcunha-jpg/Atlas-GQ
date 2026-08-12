@@ -1,90 +1,48 @@
-/* =========================================================
-   ATLAS GESTÃO
-   LOGIN
-========================================================= */
+const loginForm = document.getElementById("loginForm");
+
+const mensagem = document.getElementById("mensagemLogin");
 
 
-/* =========================================================
-   ELEMENTOS
-========================================================= */
 
-const loginForm =
-    document.getElementById("loginForm");
-
-const mensagem =
-    document.getElementById("mensagemLogin");
-
-const campoEmail =
-    document.getElementById("email");
-
-const campoSenha =
-    document.getElementById("senha");
-
-const campoLembrar =
-    document.getElementById("manterConectado");
-
-const botaoLogin =
-    document.getElementById("btnLogin");
-
-const linkEsqueciSenha =
-    document.getElementById("esqueciSenha");
-
-
-/* =========================================================
-   MENSAGEM
-========================================================= */
-
-function mostrarMensagem(
-    texto,
-    tipo = "erro"
-) {
+function mostrarMensagem(texto, tipo = "erro") {
 
     if (!mensagem) {
         return;
     }
 
-    mensagem.textContent =
-        texto;
+    mensagem.textContent = texto;
 
-    mensagem.className =
-        "mensagem " + tipo;
+    mensagem.className = "mensagem " + tipo;
 
 }
 
 
-/* =========================================================
-   LOGIN
-========================================================= */
 
 if (loginForm) {
 
     loginForm.addEventListener(
         "submit",
-        async function(event) {
+        function(event) {
 
             event.preventDefault();
 
 
             const email =
-                campoEmail
-                    ? campoEmail.value.trim()
-                    : "";
+                document.getElementById("email").value.trim();
+
 
             const senha =
-                campoSenha
-                    ? campoSenha.value
-                    : "";
+                document.getElementById("senha").value;
 
 
-            /* =============================================
-               VALIDAÇÃO
-            ============================================= */
+            const manterConectado =
+                document.getElementById("manterConectado");
+
 
             if (!email || !senha) {
 
                 mostrarMensagem(
-                    "Preencha e-mail e senha.",
-                    "erro"
+                    "Preencha e-mail e senha."
                 );
 
                 return;
@@ -92,165 +50,81 @@ if (loginForm) {
             }
 
 
-            /* =============================================
-               BOTÃO
-            ============================================= */
+            /*
+            =====================================================
+            LOGIN TEMPORÁRIO PARA GITHUB PAGES
+            =====================================================
 
-            if (botaoLogin) {
+            O GitHub Pages não executa o backend Node.js.
+            Por isso, nesta etapa vamos apenas testar
+            a navegação do sistema.
+            */
 
-                botaoLogin.disabled =
-                    true;
 
-                botaoLogin.textContent =
-                    "Entrando...";
+            const usuario = {
+
+                nome: email.split("@")[0],
+
+                perfil: "Administrador"
+
+            };
+
+
+            localStorage.setItem(
+                "atlas_token",
+                "demo-token"
+            );
+
+
+            localStorage.setItem(
+                "atlas_usuario",
+                JSON.stringify(usuario)
+            );
+
+
+            if (
+                manterConectado &&
+                manterConectado.checked
+            ) {
+
+                localStorage.setItem(
+                    "atlas_lembrar",
+                    "true"
+                );
+
+            } else {
+
+                localStorage.removeItem(
+                    "atlas_lembrar"
+                );
 
             }
 
 
-            try {
-
-                /*
-                 * LOGIN TEMPORÁRIO
-                 *
-                 * Estamos utilizando o GitHub Pages
-                 * para construir a interface.
-                 *
-                 * O backend será conectado depois.
-                 */
+            mostrarMensagem(
+                "Login realizado com sucesso.",
+                "sucesso"
+            );
 
 
-                await new Promise(
-                    function(resolve) {
+            /*
+            =====================================================
+            REDIRECIONAMENTO
+            =====================================================
 
-                        setTimeout(
-                            resolve,
-                            500
-                        );
-
-                    }
-                );
+            O dashboard está dentro de front-end.
+            */
 
 
-                /* =========================================
-                   USUÁRIO
-                ========================================= */
+            setTimeout(
+                function() {
 
-                const usuario = {
+                    window.location.href =
+                        "./front-end/dashboard.html";
 
-                    id: 1,
-
-                    nome:
-                        "Administrador",
-
-                    email:
-                        email,
-
-                    perfil:
-                        "Administrador",
-
-                    status:
-                        "Ativo"
-
-                };
-
-
-                /* =========================================
-                   TOKEN
-                ========================================= */
-
-                const token =
-                    "atlas-demo-token";
-
-
-                localStorage.setItem(
-                    "atlas_token",
-                    token
-                );
-
-
-                localStorage.setItem(
-                    "atlas_usuario",
-                    JSON.stringify(
-                        usuario
-                    )
-                );
-
-
-                /* =========================================
-                   LEMBRAR
-                ========================================= */
-
-                if (
-                    campoLembrar &&
-                    campoLembrar.checked
-                ) {
-
-                    localStorage.setItem(
-                        "atlas_lembrar",
-                        "true"
-                    );
-
-                } else {
-
-                    localStorage.removeItem(
-                        "atlas_lembrar"
-                    );
-
-                }
-
-
-                /* =========================================
-                   MENSAGEM
-                ========================================= */
-
-                mostrarMensagem(
-                    "Login realizado com sucesso.",
-                    "sucesso"
-                );
-
-
-                /* =========================================
-                   DASHBOARD
-                ========================================= */
-
-                setTimeout(
-                    function() {
-
-                        window.location.href =
-                            "./front-end/dashboard.html";
-
-                    },
-                    700
-                );
-
-
-            } catch (erro) {
-
-                console.error(
-                    "Erro no login:",
-                    erro
-                );
-
-
-                mostrarMensagem(
-                    "Não foi possível realizar o login.",
-                    "erro"
-                );
-
-
-            } finally {
-
-                if (botaoLogin) {
-
-                    botaoLogin.disabled =
-                        false;
-
-                    botaoLogin.textContent =
-                        "Entrar";
-
-                }
-
-            }
+                },
+                500
+            );
 
         }
     );
@@ -258,13 +132,14 @@ if (loginForm) {
 }
 
 
-/* =========================================================
-   ESQUECI A SENHA
-========================================================= */
 
-if (linkEsqueciSenha) {
+const esqueciSenha =
+    document.getElementById("esqueciSenha");
 
-    linkEsqueciSenha.addEventListener(
+
+if (esqueciSenha) {
+
+    esqueciSenha.addEventListener(
         "click",
         function(event) {
 
