@@ -3,47 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Atlas Gestão - Painel</title>
 
-    <title>Atlas Gestão - Dashboard</title>
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+    <link rel="stylesheet" href="frontend/css/style.css">
 </head>
 
 <body>
 
-<div id="sistema">
+    <!-- BOTÃO DO MENU MOBILE -->
+    <button id="menuMobile" class="menu-mobile" aria-label="Abrir menu">
+        ☰
+    </button>
+
+    <!-- FUNDO PARA FECHAR O MENU -->
+    <div id="overlay" class="overlay"></div>
 
     <!-- MENU LATERAL -->
-    <aside id="menu">
+    <aside id="menu" class="menu">
 
         <div class="logo">
+            <span class="logo-symbol">▲</span>
+            <span>Atlas Gestão</span>
 
-            <span class="logo-symbol">
-                ▲
-            </span>
-
-            <span>
-                Atlas Gestão
-            </span>
-
-            <!-- BOTÃO FECHAR NO CELULAR -->
-            <button
-                id="fecharMenu"
-                class="btn-fechar-menu"
-                type="button"
-                aria-label="Fechar menu"
-            >
-                ✕
+            <button id="fecharMenu" class="fechar-menu" aria-label="Fechar menu">
+                ×
             </button>
-
         </div>
 
         <div class="menu-titulo">
@@ -56,307 +42,172 @@
                 Dashboard
             </a>
 
-            <a href="inspecoes.html">
+            <a href="frontend/inspecoes.html">
                 Inspeções
             </a>
 
-            <a href="nao.conformidades.html">
+            <a href="frontend/não-conformidades.html">
                 Não Conformidades
             </a>
 
-            <a href="acoes-corretivas.html">
+            <a href="frontend/acoes-corretivas.html">
                 Ações Corretivas
             </a>
 
-            <a href="auditorias.html">
+            <a href="frontend/auditorias.html">
                 Auditorias
             </a>
 
-            <a href="documentos.html">
+            <a href="frontend/documentos.html">
                 Documentos
             </a>
 
-            <a href="indicadores.html">
+            <a href="frontend/indicadores.html">
                 Indicadores
             </a>
 
         </nav>
 
-        <button
-            id="logout"
-            class="btn-menu-sair"
-            type="button"
-        >
+        <button id="logout" class="btn-sair">
             Sair
         </button>
 
     </aside>
 
 
-    <!-- FUNDO ESCURO NO CELULAR -->
-    <div
-        id="overlayMenu"
-        class="overlay-menu"
-    ></div>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="conteudoPrincipal">
 
-
-    <!-- ÁREA PRINCIPAL -->
-    <main>
-
+        <!-- TOPO -->
         <header class="topbar">
 
-            <!-- BOTÃO ABRIR -->
-            <button
-                id="menuMobile"
-                class="menu-mobile"
-                type="button"
-                aria-label="Abrir menu"
-            >
-                ☰
-            </button>
-
             <div>
-
-                <h2>
-                    Dashboard
-                </h2>
-
-                <p>
-                    Visão geral da qualidade
-                </p>
-
+                <h1>Dashboard</h1>
+                <p>Visão geral da qualidade</p>
             </div>
 
-            <div class="usuario-area">
-
-                <div
-                    id="usuarioNome"
-                    class="usuario-nome"
-                >
+            <div class="usuario">
+                <strong id="usuarioNome">
                     sarahhellen2216
-                </div>
+                </strong>
 
-                <div
-                    id="usuarioPerfil"
-                    class="usuario-perfil"
-                >
+                <span id="usuarioPerfil">
                     Administrador
-                </div>
-
+                </span>
             </div>
 
         </header>
 
 
         <!-- CONTEÚDO -->
-        <section id="conteudo">
+        <section class="conteudo">
 
-            <!-- INDICADORES -->
 
-            <div class="dashboard-grid">
+            <!-- CARDS -->
+            <div class="cards">
 
-                <div class="kpi-card">
 
-                    <div class="kpi-titulo">
-                        Inspeções realizadas
+                <div class="card">
+                    <div class="icone azul">✓</div>
+
+                    <div>
+                        <span>Inspeções realizadas</span>
+                        <strong id="inspecoes">12</strong>
                     </div>
-
-                    <div
-                        id="inspecoes"
-                        class="kpi-valor"
-                    >
-                        12
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Total de inspeções
-                    </div>
-
                 </div>
 
 
-                <div class="kpi-card">
+                <div class="card">
+                    <div class="icone vermelho">!</div>
 
-                    <div class="kpi-titulo">
-                        Não conformidades
+                    <div>
+                        <span>Não conformidades</span>
+                        <strong id="naoConformidades">3</strong>
                     </div>
-
-                    <div
-                        id="naoConformidades"
-                        class="kpi-valor"
-                    >
-                        3
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Registros identificados
-                    </div>
-
                 </div>
 
 
-                <div class="kpi-card">
+                <div class="card">
+                    <div class="icone amarelo">↻</div>
 
-                    <div class="kpi-titulo">
-                        Ações abertas
+                    <div>
+                        <span>Ações abertas</span>
+                        <strong id="acoesAbertas">4</strong>
                     </div>
-
-                    <div
-                        id="acoesAbertas"
-                        class="kpi-valor"
-                    >
-                        4
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Ações pendentes
-                    </div>
-
                 </div>
 
 
-                <div class="kpi-card">
+                <div class="card">
+                    <div class="icone verde">✓</div>
 
-                    <div class="kpi-titulo">
-                        Ações concluídas
+                    <div>
+                        <span>Ações concluídas</span>
+                        <strong id="acoesConcluidas">8</strong>
                     </div>
-
-                    <div
-                        id="acoesConcluidas"
-                        class="kpi-valor"
-                    >
-                        8
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Ações finalizadas
-                    </div>
-
                 </div>
 
 
-                <div class="kpi-card">
+                <div class="card">
+                    <div class="icone azul">%</div>
 
-                    <div class="kpi-titulo">
-                        Taxa de conformidade
+                    <div>
+                        <span>Taxa de conformidade</span>
+                        <strong id="taxaConformidade">75%</strong>
                     </div>
-
-                    <div
-                        id="taxaConformidade"
-                        class="kpi-valor"
-                    >
-                        75%
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Índice atual
-                    </div>
-
                 </div>
 
 
-                <div class="kpi-card">
+                <div class="card">
+                    <div class="icone azul">A</div>
 
-                    <div class="kpi-titulo">
-                        Auditorias realizadas
+                    <div>
+                        <span>Auditorias realizadas</span>
+                        <strong id="auditorias">5</strong>
                     </div>
-
-                    <div
-                        id="auditorias"
-                        class="kpi-valor"
-                    >
-                        5
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Auditorias registradas
-                    </div>
-
                 </div>
 
 
-                <div class="kpi-card">
+                <div class="card">
+                    <div class="icone verde">D</div>
 
-                    <div class="kpi-titulo">
-                        Documentos ativos
+                    <div>
+                        <span>Documentos ativos</span>
+                        <strong id="documentos">8</strong>
                     </div>
-
-                    <div
-                        id="documentos"
-                        class="kpi-valor"
-                    >
-                        8
-                    </div>
-
-                    <div class="kpi-descricao">
-                        Documentos disponíveis
-                    </div>
-
                 </div>
 
             </div>
 
 
             <!-- AÇÕES RÁPIDAS -->
+            <div class="bloco">
 
-            <div class="card">
+                <h2>Ações rápidas</h2>
 
-                <div class="card-header">
-
-                    <div>
-
-                        <h2>
-                            Ações rápidas
-                        </h2>
-
-                        <p>
-                            Acesse rapidamente os principais recursos.
-                        </p>
-
-                    </div>
-
-                </div>
+                <p>
+                    Acesse rapidamente os principais recursos.
+                </p>
 
                 <div class="atalhos">
 
-                    <a
-                        href="inspecoes.html"
-                        class="atalho"
-                    >
-                        <span>+</span>
-                        Nova inspeção
+                    <a href="frontend/inspecoes.html">
+                        + Nova inspeção
                     </a>
 
-                    <a
-                        href="auditorias.html"
-                        class="atalho"
-                    >
-                        <span>+</span>
-                        Nova auditoria
+                    <a href="frontend/auditorias.html">
+                        + Nova auditoria
                     </a>
 
-                    <a
-                        href="nao.conformidades.html"
-                        class="atalho"
-                    >
-                        <span>!</span>
-                        Nova não conformidade
+                    <a href="frontend/não-conformidades.html">
+                        ! Nova não conformidade
                     </a>
 
-                    <a
-                        href="acoes-corretivas.html"
-                        class="atalho"
-                    >
-                        <span>+</span>
-                        Nova ação corretiva
+                    <a href="frontend/acoes-corretivas.html">
+                        + Nova ação corretiva
                     </a>
 
-                    <a
-                        href="documentos.html"
-                        class="atalho"
-                    >
-                        <span>+</span>
-                        Novo documento
+                    <a href="frontend/documentos.html">
+                        + Novo documento
                     </a>
 
                 </div>
@@ -364,31 +215,23 @@
             </div>
 
 
-            <!-- RESUMO -->
+            <!-- GRID INFERIOR -->
+            <div class="grid-inferior">
 
-            <div class="graficos-grid">
 
-                <div class="card">
+                <!-- STATUS -->
+                <div class="bloco">
 
-                    <div class="card-header">
+                    <h2>Status da Qualidade</h2>
 
-                        <div>
+                    <p>
+                        Resumo dos principais indicadores.
+                    </p>
 
-                            <h2>
-                                Status da Qualidade
-                            </h2>
 
-                            <p>
-                                Resumo dos principais indicadores.
-                            </p>
+                    <div class="progresso">
 
-                        </div>
-
-                    </div>
-
-                    <div class="progresso-area">
-
-                        <div class="progresso-header">
+                        <div class="progresso-topo">
 
                             <span>
                                 Taxa de conformidade
@@ -400,18 +243,20 @@
 
                         </div>
 
+
                         <div class="barra">
 
                             <div
                                 class="barra-preenchida"
-                                style="width:75%;"
+                                style="width: 75%;"
                             ></div>
 
                         </div>
 
                     </div>
 
-                    <div class="status-linhas">
+
+                    <div class="status">
 
                         <div>
                             <span>Inspeções</span>
@@ -433,23 +278,14 @@
                 </div>
 
 
-                <div class="card">
+                <!-- ATIVIDADE -->
+                <div class="bloco">
 
-                    <div class="card-header">
+                    <h2>Atividade recente</h2>
 
-                        <div>
-
-                            <h2>
-                                Atividade recente
-                            </h2>
-
-                            <p>
-                                Acompanhe os registros do sistema.
-                            </p>
-
-                        </div>
-
-                    </div>
+                    <p>
+                        Acompanhe os registros do sistema.
+                    </p>
 
                     <div class="atividade-vazia">
                         Nenhuma atividade registrada.
@@ -463,51 +299,10 @@
 
     </main>
 
-</div>
 
+    <!-- JAVASCRIPT -->
+    <script src="frontend/js/app.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+</body>
 
-    const menu = document.getElementById("menu");
-    const abrir = document.getElementById("menuMobile");
-    const fechar = document.getElementById("fecharMenu");
-    const overlay = document.getElementById("overlayMenu");
-
-    function abrirMenu() {
-
-        menu.classList.add("aberto");
-        overlay.classList.add("ativo");
-
-    }
-
-    function fecharMenu() {
-
-        menu.classList.remove("aberto");
-        overlay.classList.remove("ativo");
-
-    }
-
-    abrir.addEventListener("click", abrirMenu);
-
-    fechar.addEventListener("click", fecharMenu);
-
-    overlay.addEventListener("click", fecharMenu);
-
-
-    // Fecha o menu quando clicar em qualquer opção
-    const links = menu.querySelectorAll("nav a");
-
-    links.forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            fecharMenu();
-
-        });
-
-    });
-
-
-    // Tecla ESC também fecha
-    document.addEventListener("keydown", function
+</html>
