@@ -1,3 +1,13 @@
+/* =========================================================
+   ATLAS GESTÃO
+   SISTEMA DE GESTÃO DA QUALIDADE
+   CSS PRINCIPAL
+========================================================= */
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -22,9 +32,15 @@
     --borda: #E5E7EB;
 
     --menu: #FFFFFF;
-    --sombra: 0 4px 18px rgba(15, 23, 42, 0.07);
+
+    --sombra:
+        0 4px 18px rgba(15, 23, 42, 0.07);
 
     --raio: 12px;
+}
+
+html {
+    min-height: 100%;
 }
 
 body {
@@ -50,109 +66,185 @@ a {
     color: inherit;
 }
 
-/* ==============================
-   ESTRUTURA
-================================ */
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   ESTRUTURA DO SISTEMA
+========================================================= */
 
 #sistema {
     display: flex;
     min-height: 100vh;
 }
 
-#menu {
-    width: 250px;
-    min-height: 100vh;
-    background: var(--menu);
-    border-right: 1px solid var(--borda);
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-}
 
-main {
+/*
+   IMPORTANTE:
+
+   Antes existia:
+
+   main {
+       margin-left: 250px;
+       width: calc(100% - 250px);
+   }
+
+   Isso também afetava o <main> da tela de login.
+
+   Agora essas regras pertencem somente ao sistema.
+*/
+
+#sistema > main {
     margin-left: 250px;
     width: calc(100% - 250px);
     min-height: 100vh;
 }
 
-/* ==============================
+
+/* =========================================================
+   MENU LATERAL
+========================================================= */
+
+#menu {
+    width: 250px;
+    min-height: 100vh;
+
+    background: var(--menu);
+
+    border-right:
+        1px solid var(--borda);
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
    LOGO
-================================ */
+========================================================= */
 
 .logo {
     height: 75px;
+
     padding: 0 22px;
+
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     font-size: 20px;
     font-weight: 700;
+
     color: var(--azul);
-    border-bottom: 1px solid var(--borda);
+
+    border-bottom:
+        1px solid var(--borda);
 }
 
 .logo-symbol {
     width: 38px;
     height: 38px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     background: var(--azul);
+
     color: white;
+
     border-radius: 10px;
+
     font-size: 17px;
 }
 
-/* ==============================
+
+/* =========================================================
    MENU
-================================ */
+========================================================= */
 
 .menu-titulo {
-    padding: 22px 20px 10px;
+    padding:
+        22px
+        20px
+        10px;
+
     font-size: 10px;
+
     font-weight: 700;
+
     color: var(--cinza-medio);
+
     letter-spacing: 1px;
 }
 
 #menu nav {
     display: flex;
+
     flex-direction: column;
+
     padding: 5px 12px;
+
     gap: 3px;
+
     overflow-y: auto;
 }
 
 #menu nav a {
     padding: 12px 14px;
+
     border-radius: 9px;
+
     color: #475569;
+
     font-size: 14px;
-    transition: 0.2s;
+
+    transition:
+        0.2s;
 }
 
 #menu nav a:hover {
     background: #EFF6FF;
+
     color: var(--azul);
 }
 
 #menu nav a.ativo {
     background: var(--azul);
+
     color: white;
+
     font-weight: 600;
 }
 
 .btn-menu-sair {
-    margin: auto 12px 18px;
+    margin:
+        auto
+        12px
+        18px;
+
     padding: 11px;
-    border: 1px solid #FECACA;
+
+    border:
+        1px solid #FECACA;
+
     border-radius: 9px;
+
     background: #FEF2F2;
+
     color: var(--vermelho);
+
     font-weight: 600;
 }
 
@@ -160,31 +252,47 @@ main {
     background: #FEE2E2;
 }
 
-/* ==============================
+
+/* =========================================================
    TOPBAR
-================================ */
+========================================================= */
 
 .topbar {
     min-height: 75px;
-    padding: 15px 30px;
+
+    padding:
+        15px
+        30px;
+
     background: white;
-    border-bottom: 1px solid var(--borda);
+
+    border-bottom:
+        1px solid var(--borda);
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 20px;
+
     position: sticky;
+
     top: 0;
+
     z-index: 500;
 }
 
 .topbar h2 {
     font-size: 22px;
+
     margin-bottom: 4px;
 }
 
 .topbar p {
     color: var(--cinza-medio);
+
     font-size: 13px;
 }
 
@@ -194,107 +302,157 @@ main {
 
 .usuario-nome {
     font-weight: 600;
+
     font-size: 14px;
 }
 
 .usuario-perfil {
     color: var(--cinza-medio);
+
     font-size: 12px;
+
     margin-top: 3px;
 }
 
 .menu-mobile {
     display: none;
+
     border: none;
+
     background: var(--azul);
+
     color: white;
+
     border-radius: 8px;
-    padding: 9px 12px;
+
+    padding:
+        9px
+        12px;
+
     font-size: 18px;
 }
 
-/* ==============================
+
+/* =========================================================
    CONTEÚDO
-================================ */
+========================================================= */
 
 #conteudo {
     padding: 30px;
+
     max-width: 1600px;
+
     margin: auto;
 }
 
-/* ==============================
+
+/* =========================================================
    CARDS
-================================ */
+========================================================= */
 
 .card {
     background: white;
-    border: 1px solid var(--borda);
+
+    border:
+        1px solid var(--borda);
+
     border-radius: var(--raio);
+
     box-shadow: var(--sombra);
+
     padding: 24px;
+
     margin-bottom: 24px;
 }
 
 .card-header {
     display: flex;
+
     justify-content: space-between;
+
     align-items: flex-start;
+
     gap: 15px;
+
     margin-bottom: 22px;
 }
 
 .card-header h2 {
     font-size: 18px;
+
     margin-bottom: 5px;
 }
 
 .card-header p {
     color: var(--cinza-medio);
+
     font-size: 13px;
 }
 
-/* ==============================
+
+/* =========================================================
    DASHBOARD
-================================ */
+========================================================= */
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
     gap: 18px;
+
     margin-bottom: 25px;
 }
 
 .kpi-card {
     background: white;
-    border: 1px solid var(--borda);
+
+    border:
+        1px solid var(--borda);
+
     border-radius: var(--raio);
+
     padding: 21px;
+
     box-shadow: var(--sombra);
+
     min-height: 130px;
 }
 
 .kpi-titulo {
     color: var(--cinza-medio);
+
     font-size: 13px;
+
     font-weight: 600;
 }
 
 .kpi-valor {
     font-size: 30px;
+
     font-weight: 700;
+
     color: var(--azul);
-    margin: 12px 0 6px;
+
+    margin:
+        12px
+        0
+        6px;
 }
 
 .kpi-descricao {
     color: #94A3B8;
+
     font-size: 12px;
 }
 
 .graficos-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 20px;
 }
 
@@ -304,22 +462,29 @@ main {
 
 .graficos-grid canvas {
     width: 100% !important;
+
     height: 270px !important;
 }
 
-/* ==============================
+
+/* =========================================================
    FORMULÁRIOS
-================================ */
+========================================================= */
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 18px;
 }
 
 .form-group {
     display: flex;
+
     flex-direction: column;
+
     gap: 7px;
 }
 
@@ -329,7 +494,9 @@ main {
 
 .form-group label {
     font-size: 13px;
+
     font-weight: 600;
+
     color: #334155;
 }
 
@@ -339,12 +506,22 @@ main {
 .filtros input,
 .filtros select {
     width: 100%;
-    border: 1px solid #CBD5E1;
+
+    border:
+        1px solid #CBD5E1;
+
     border-radius: 8px;
-    padding: 11px 12px;
+
+    padding:
+        11px
+        12px;
+
     outline: none;
+
     background: white;
+
     color: var(--texto);
+
     font-size: 14px;
 }
 
@@ -358,29 +535,42 @@ main {
 .filtros input:focus,
 .filtros select:focus {
     border-color: var(--azul);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.1);
 }
 
 .form-group small {
     color: var(--cinza-medio);
+
     font-size: 11px;
 }
 
-/* ==============================
+
+/* =========================================================
    BOTÕES
-================================ */
+========================================================= */
 
 .btn {
     border: none;
+
     border-radius: 8px;
-    padding: 11px 17px;
+
+    padding:
+        11px
+        17px;
+
     font-weight: 600;
+
     font-size: 13px;
+
     margin-right: 7px;
 }
 
 .btn-primary {
     background: var(--azul);
+
     color: white;
 }
 
@@ -390,6 +580,7 @@ main {
 
 .btn-secondary {
     background: #F1F5F9;
+
     color: #475569;
 }
 
@@ -399,43 +590,62 @@ main {
 
 .btn-danger {
     background: var(--vermelho);
+
     color: white;
 }
 
 .btn-success {
     background: var(--verde);
+
     color: white;
 }
 
-/* ==============================
+
+/* =========================================================
    TABELAS
-================================ */
+========================================================= */
 
 .tabela-container {
     width: 100%;
+
     overflow-x: auto;
 }
 
 .tabela {
     width: 100%;
+
     border-collapse: collapse;
+
     min-width: 800px;
 }
 
 .tabela th {
     background: #F8FAFC;
+
     color: #64748B;
+
     font-size: 12px;
+
     text-align: left;
+
     padding: 13px;
-    border-bottom: 1px solid var(--borda);
+
+    border-bottom:
+        1px solid var(--borda);
+
     white-space: nowrap;
 }
 
 .tabela td {
-    padding: 14px 13px;
-    border-bottom: 1px solid #F1F5F9;
+    padding:
+        14px
+        13px;
+
+    border-bottom:
+        1px solid #F1F5F9;
+
     font-size: 13px;
+
     vertical-align: middle;
 }
 
@@ -445,128 +655,217 @@ main {
 
 .tabela-vazia {
     text-align: center !important;
+
     color: #94A3B8;
-    padding: 35px !important;
+
+    padding:
+        35px !important;
 }
 
 .btn-tabela {
     border: none;
+
     border-radius: 6px;
-    padding: 7px 10px;
+
+    padding:
+        7px
+        10px;
+
     font-size: 11px;
+
     font-weight: 600;
 }
 
 .btn-excluir {
     background: #FEF2F2;
+
     color: var(--vermelho);
 }
 
 .btn-editar {
     background: #EFF6FF;
+
     color: var(--azul);
 }
 
 .link-arquivo {
     color: var(--azul);
+
     font-weight: 600;
 }
 
 .badge {
     display: inline-block;
-    padding: 5px 8px;
+
+    padding:
+        5px
+        8px;
+
     background: #EFF6FF;
+
     color: var(--azul);
+
     border-radius: 20px;
+
     font-size: 11px;
+
     font-weight: 600;
 }
 
-/* ==============================
+
+/* =========================================================
    FILTROS
-================================ */
+========================================================= */
 
 .filtros {
     display: grid;
-    grid-template-columns: 1fr 220px;
+
+    grid-template-columns:
+        1fr
+        220px;
+
     gap: 12px;
+
     margin-bottom: 20px;
 }
 
-/* ==============================
+
+/* =========================================================
    MENSAGENS
-================================ */
+========================================================= */
 
 .mensagem {
     margin-top: 15px;
-    padding: 11px 13px;
+
+    padding:
+        11px
+        13px;
+
     border-radius: 8px;
+
     display: none;
+
     font-size: 13px;
 }
 
 .mensagem.sucesso {
     display: block;
+
     background: #F0FDF4;
+
     color: #15803D;
-    border: 1px solid #BBF7D0;
+
+    border:
+        1px solid #BBF7D0;
 }
 
 .mensagem.erro {
     display: block;
+
     background: #FEF2F2;
+
     color: #B91C1C;
-    border: 1px solid #FECACA;
+
+    border:
+        1px solid #FECACA;
 }
 
-/* ==============================
+
+/* =========================================================
    LOGIN
-================================ */
+========================================================= */
 
 .login-body {
     min-height: 100vh;
-    background: linear-gradient(
-        135deg,
-        #EFF6FF,
-        #F8FAFC
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #EFF6FF,
+            #F8FAFC
+        );
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     padding: 20px;
+
+    margin: 0;
 }
+
+
+/*
+   IMPORTANTE:
+
+   O login usa <main class="login-container">.
+
+   Agora ele NÃO recebe as regras de largura/margem
+   utilizadas pelo sistema interno.
+*/
 
 .login-container {
     width: 100%;
+
     max-width: 420px;
+
+    margin: 0;
+
+    min-height: auto;
 }
+
+
+/* =========================================================
+   LOGO DO LOGIN
+========================================================= */
 
 .login-logo {
     text-align: center;
+
     margin-bottom: 25px;
 }
 
 .login-logo .logo-symbol {
-    margin: 0 auto 12px;
+    margin:
+        0
+        auto
+        12px;
 }
 
 .login-logo h1 {
     color: var(--azul);
+
     font-size: 27px;
 }
 
 .login-logo p {
     color: var(--cinza-medio);
+
     font-size: 13px;
+
     margin-top: 5px;
 }
 
+
+/* =========================================================
+   CARD DE LOGIN
+========================================================= */
+
 .login-card {
     background: white;
+
     border-radius: 15px;
+
     padding: 30px;
-    border: 1px solid var(--borda);
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.1);
+
+    border:
+        1px solid var(--borda);
+
+    box-shadow:
+        0 15px 40px
+        rgba(15, 23, 42, 0.1);
 }
 
 .login-card h2 {
@@ -575,59 +874,115 @@ main {
 
 .login-card > p {
     color: var(--cinza-medio);
+
     font-size: 13px;
+
     margin-bottom: 25px;
 }
 
 .login-form {
     display: flex;
+
     flex-direction: column;
+
     gap: 17px;
 }
 
 .login-form .btn {
     width: 100%;
-    margin: 8px 0 0;
+
+    margin:
+        8px
+        0
+        0;
 }
 
 .login-opcoes {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     font-size: 12px;
+
     color: var(--cinza-medio);
+
+    gap: 10px;
+}
+
+.login-opcoes label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    cursor: pointer;
+}
+
+.login-opcoes input[type="checkbox"] {
+    width: auto;
+
+    cursor: pointer;
 }
 
 .login-opcoes a {
     color: var(--azul);
+
+    cursor: pointer;
 }
 
-/* ==============================
-   RESPONSIVIDADE
-================================ */
+.login-opcoes a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE - TABLET
+========================================================= */
 
 @media (max-width: 1200px) {
 
     .dashboard-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
 }
 
+
+/* =========================================================
+   RESPONSIVIDADE - MENU
+========================================================= */
+
 @media (max-width: 900px) {
 
     #menu {
-        transform: translateX(-100%);
-        transition: transform 0.25s ease;
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform
+            0.25s
+            ease;
     }
 
-    #menu.aberto {
-        transform: translateX(0);
-        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+    #menu.aberto,
+    #menu.menu-aberto {
+        transform:
+            translateX(0);
+
+        box-shadow:
+            5px
+            0
+            25px
+            rgba(0, 0, 0, 0.15);
     }
 
-    main {
+    #sistema > main {
         margin-left: 0;
+
         width: 100%;
     }
 
@@ -636,7 +991,9 @@ main {
     }
 
     .topbar {
-        padding: 12px 18px;
+        padding:
+            12px
+            18px;
     }
 
     #conteudo {
@@ -644,6 +1001,11 @@ main {
     }
 
 }
+
+
+/* =========================================================
+   RESPONSIVIDADE - CELULAR
+========================================================= */
 
 @media (max-width: 700px) {
 
@@ -679,7 +1041,20 @@ main {
         padding: 17px;
     }
 
+    .login-card {
+        padding: 24px 20px;
+    }
+
+    .login-logo h1 {
+        font-size: 24px;
+    }
+
 }
+
+
+/* =========================================================
+   RESPONSIVIDADE - CELULARES PEQUENOS
+========================================================= */
 
 @media (max-width: 450px) {
 
@@ -699,4 +1074,56 @@ main {
         font-size: 26px;
     }
 
+    .login-body {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 22px 16px;
+    }
+
+    .login-opcoes {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
 }
+
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline:
+        3px solid
+        rgba(37, 99, 235, 0.25);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO SUAVE
+========================================================= */
+
+.card,
+.kpi-card,
+.login-card,
+.btn {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
