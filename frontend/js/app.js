@@ -1,271 +1,69 @@
-const API_BASE = "/api";
-
-
-/* ==========================================================
-   TOKEN
-========================================================== */
-
-function obterToken() {
-
-    return localStorage.getItem("atlas_token");
-
-}
-
-
-/* ==========================================================
-   USUÁRIO
-========================================================== */
-
-function obterUsuario() {
-
-    const usuario =
-        localStorage.getItem("atlas_usuario");
-
-    if (!usuario) {
-        return null;
-    }
-
-    try {
-
-        return JSON.parse(usuario);
-
-    } catch {
-
-        return null;
-
-    }
-
-}
-
-
-/* ==========================================================
-   VERIFICAR LOGIN
-========================================================== */
-
-function verificarLogin() {
-
-    const token =
-        obterToken();
-
-    const pagina =
-        window.location.pathname;
-
-    const paginaLogin =
-        pagina === "/" ||
-        pagina.endsWith("/index.html");
-
-    if (!token && !paginaLogin) {
-
-        window.location.href =
-            "/index.html";
-
-        return false;
-
-    }
-
-    return true;
-
-}
-
-
-/* ==========================================================
-   API
-========================================================== */
-
-async function api(
-    rota,
-    opcoes = {}
-) {
-
-    const token =
-        obterToken();
-
-    const configuracao = {
-
-        ...opcoes,
-
-        headers: {
-
-            "Content-Type":
-                "application/json",
-
-            ...(opcoes.headers || {})
-
-        }
-
-    };
-
-    if (token) {
-
-        configuracao.headers.Authorization =
-            `Bearer ${token}`;
-
-    }
-
-    const resposta =
-        await fetch(
-            API_BASE + rota,
-            configuracao
-        );
-
-    if (resposta.status === 401) {
-
-        localStorage.removeItem(
-            "atlas_token"
-        );
-
-        localStorage.removeItem(
-            "atlas_usuario"
-        );
-
-        window.location.href =
-            "/index.html";
-
-        throw new Error(
-            "Sua sessão expirou."
-        );
-
-    }
-
-    let dados = {};
-
-    try {
-
-        dados =
-            await resposta.json();
-
-    } catch {
-
-        dados = {};
-
-    }
-
-    if (!resposta.ok) {
-
-        throw new Error(
-            dados.erro ||
-            "Erro na comunicação com o servidor."
-        );
-
-    }
-
-    return dados;
-
-}
-
-
-/* ==========================================================
-   PREENCHER USUÁRIO
-========================================================== */
-
-function preencherUsuario() {
-
-    const usuario =
-        obterUsuario();
-
-    if (!usuario) {
-        return;
-    }
-
-    const nome =
-        document.getElementById(
-            "usuarioNome"
-        );
-
-    const perfil =
-        document.getElementById(
-            "usuarioPerfil"
-        );
-
-    if (nome) {
-
-        nome.textContent =
-            usuario.nome || "Usuário";
-
-    }
-
-    if (perfil) {
-
-        perfil.textContent =
-            usuario.perfil || "Usuário";
-
-    }
-
-}
-
-
-/* ==========================================================
-   LOGOUT
-========================================================== */
-
-function configurarLogout() {
-
-    const botao =
-        document.getElementById("logout");
-
-    if (!botao) {
-        return;
-    }
-
-    botao.addEventListener(
-        "click",
-        function() {
-
-            localStorage.removeItem(
-                "atlas_token"
-            );
-
-            localStorage.removeItem(
-                "atlas_usuario"
-            );
-
-            window.location.href =
-                "/index.html";
-
-        }
-    );
-
-}
-
-
-/* ==========================================================
-   MENU MOBILE
-========================================================== */
-
-function configurarMenuMobile() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const menu =
         document.getElementById("menu");
 
-    const botaoAbrir =
+    const menuMobile =
         document.getElementById("menuMobile");
 
-    const botaoFechar =
+    const fecharMenu =
         document.getElementById("fecharMenu");
 
+    const overlay =
+        document.getElementById("overlay");
 
-    if (!menu) {
-        return;
+
+    /*
+    =================================
+    ABRIR MENU
+    =================================
+    */
+
+    function abrirMenu() {
+
+        if (!menu) return;
+
+        menu.classList.add("aberto");
+
+        if (overlay) {
+            overlay.classList.add("aberto");
+        }
+
     }
 
 
-    /* ======================================================
-       ABRIR MENU
-    ====================================================== */
+    /*
+    =================================
+    FECHAR MENU
+    =================================
+    */
 
-    if (botaoAbrir) {
+    function fecharMenuLateral() {
 
-        botaoAbrir.addEventListener(
+        if (!menu) return;
+
+        menu.classList.remove("aberto");
+
+        if (overlay) {
+            overlay.classList.remove("aberto");
+        }
+
+    }
+
+
+    /*
+    =================================
+    BOTÃO ☰
+    =================================
+    */
+
+    if (menuMobile) {
+
+        menuMobile.addEventListener(
             "click",
-            function(event) {
+            function () {
 
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                menu.classList.add(
-                    "aberto"
-                );
+                abrirMenu();
 
             }
         );
@@ -273,23 +71,19 @@ function configurarMenuMobile() {
     }
 
 
-    /* ======================================================
-       FECHAR MENU
-    ====================================================== */
+    /*
+    =================================
+    BOTÃO X
+    =================================
+    */
 
-    if (botaoFechar) {
+    if (fecharMenu) {
 
-        botaoFechar.addEventListener(
+        fecharMenu.addEventListener(
             "click",
-            function(event) {
+            function () {
 
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                menu.classList.remove(
-                    "aberto"
-                );
+                fecharMenuLateral();
 
             }
         );
@@ -297,120 +91,109 @@ function configurarMenuMobile() {
     }
 
 
-    /* ======================================================
-       CLICAR FORA
-    ====================================================== */
+    /*
+    =================================
+    CLICAR FORA
+    =================================
+    */
 
-    document.addEventListener(
-        "click",
-        function(event) {
+    if (overlay) {
 
-            if (
-                menu.classList.contains("aberto") &&
-                !menu.contains(event.target) &&
-                !(
-                    botaoAbrir &&
-                    botaoAbrir.contains(event.target)
-                )
-            ) {
+        overlay.addEventListener(
+            "click",
+            function () {
 
-                menu.classList.remove(
-                    "aberto"
-                );
+                fecharMenuLateral();
 
             }
+        );
 
-        }
-    );
-
-
-    /* ======================================================
-       CLICAR EM LINK DO MENU
-    ====================================================== */
-
-    const links =
-        menu.querySelectorAll("nav a");
-
-    links.forEach(
-        function(link) {
-
-            link.addEventListener(
-                "click",
-                function() {
-
-                    menu.classList.remove(
-                        "aberto"
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
+    }
 
 
-/* ==========================================================
-   DESTACAR MENU
-========================================================== */
-
-function destacarMenu() {
-
-    const pagina =
-        window.location.pathname;
+    /*
+    =================================
+    CLICAR EM UM LINK
+    FECHA MENU NO CELULAR
+    =================================
+    */
 
     const links =
         document.querySelectorAll(
-            "#menu nav a"
+            ".menu nav a"
         );
 
-    links.forEach(
-        function(link) {
 
-            const href =
-                link.getAttribute("href");
+    links.forEach(function (link) {
 
-            if (!href) {
-                return;
+        link.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    window.innerWidth <= 768
+                ) {
+
+                    fecharMenuLateral();
+
+                }
+
             }
+        );
 
-            const caminho =
-                href.split("/").pop();
+    });
 
-            if (
-                pagina.endsWith(caminho)
-            ) {
 
-                link.classList.add(
-                    "ativo"
-                );
+    /*
+    =================================
+    ESC FECHA O MENU
+    =================================
+    */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                fecharMenuLateral();
 
             }
 
         }
     );
 
-}
+
+    /*
+    =================================
+    BOTÃO SAIR
+    =================================
+    */
+
+    const logout =
+        document.getElementById("logout");
 
 
-/* ==========================================================
-   INICIALIZAÇÃO
-========================================================== */
+    if (logout) {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+        logout.addEventListener(
+            "click",
+            function () {
 
-        verificarLogin();
+                localStorage.removeItem(
+                    "atlas_token"
+                );
 
-        preencherUsuario();
+                localStorage.removeItem(
+                    "atlas_usuario"
+                );
 
-        configurarLogout();
+                window.location.href =
+                    "index.html";
 
-        configurarMenuMobile();
-
-        destacarMenu();
+            }
+        );
 
     }
-);
+
+});
