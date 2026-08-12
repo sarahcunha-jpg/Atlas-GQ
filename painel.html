@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,175 +9,20 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="Atlas Gestão - Sistema de Gestão da Qualidade"
-    >
-
-    <title>
-        Atlas Gestão - Dashboard
-    </title>
-
-
-    <!-- =====================================================
-         CSS
-    ====================================================== -->
+    <title>Atlas Gestão - Dashboard</title>
 
     <link
         rel="stylesheet"
-        href="frontend/css/style.css"
+        href="css/style.css"
     >
-
-
-    <!-- =====================================================
-         CSS ESPECÍFICO DO MENU MOBILE
-    ====================================================== -->
-
-    <style>
-
-        /*
-        ======================================================
-        BOTÃO FECHAR MENU
-        ======================================================
-        */
-
-        .fechar-menu {
-
-            display: none;
-
-            position: absolute;
-
-            top: 18px;
-
-            right: 15px;
-
-            width: 36px;
-
-            height: 36px;
-
-            border: none;
-
-            border-radius: 8px;
-
-            background: #EFF6FF;
-
-            color: #2563EB;
-
-            font-size: 18px;
-
-            cursor: pointer;
-
-            z-index: 1100;
-
-        }
-
-
-        /*
-        ======================================================
-        OVERLAY DO MENU
-        ======================================================
-        */
-
-        #menuOverlay {
-
-            display: none;
-
-        }
-
-
-        /*
-        ======================================================
-        MOBILE
-        ======================================================
-        */
-
-        @media (max-width: 900px) {
-
-            #menu.aberto .fechar-menu {
-
-                display: flex;
-
-                align-items: center;
-
-                justify-content: center;
-
-            }
-
-
-            #menuOverlay.visivel {
-
-                display: block;
-
-                position: fixed;
-
-                inset: 0;
-
-                background: rgba(
-                    15,
-                    23,
-                    42,
-                    0.35
-                );
-
-                z-index: 900;
-
-            }
-
-
-            #menu {
-
-                z-index: 1000;
-
-            }
-
-        }
-
-    </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================================================
-     OVERLAY
-========================================================== -->
-
-<div
-    id="menuOverlay"
-    aria-hidden="true"
-></div>
-
-
-
-<!-- =========================================================
-     SISTEMA
-========================================================== -->
-
 <div id="sistema">
 
-
-    <!-- =====================================================
-         MENU LATERAL
-    ====================================================== -->
-
+    <!-- MENU LATERAL -->
     <aside id="menu">
-
-
-        <!-- BOTÃO FECHAR -->
-
-        <button
-            id="fecharMenu"
-            class="fechar-menu"
-            type="button"
-            aria-label="Fechar menu"
-        >
-            ✕
-        </button>
-
-
-        <!-- LOGO -->
 
         <div class="logo">
 
@@ -190,80 +34,53 @@
                 Atlas Gestão
             </span>
 
+            <!-- BOTÃO FECHAR NO CELULAR -->
+            <button
+                id="fecharMenu"
+                class="btn-fechar-menu"
+                type="button"
+                aria-label="Fechar menu"
+            >
+                ✕
+            </button>
+
         </div>
-
-
-        <!-- TÍTULO DO MENU -->
 
         <div class="menu-titulo">
-
             GESTÃO DA QUALIDADE
-
         </div>
-
-
-        <!-- NAVEGAÇÃO -->
 
         <nav>
 
-
-            <a
-                href="painel.html"
-                class="ativo"
-            >
+            <a href="painel.html" class="ativo">
                 Dashboard
             </a>
-
 
             <a href="inspecoes.html">
                 Inspeções
             </a>
 
-
-            <a href="nao-conformidades.html">
+            <a href="nao.conformidades.html">
                 Não Conformidades
             </a>
-
 
             <a href="acoes-corretivas.html">
                 Ações Corretivas
             </a>
 
-
             <a href="auditorias.html">
                 Auditorias
             </a>
-
 
             <a href="documentos.html">
                 Documentos
             </a>
 
-
             <a href="indicadores.html">
                 Indicadores
             </a>
 
-
-            <a href="relatorios.html">
-                Relatórios
-            </a>
-
-
-            <a href="usuarios.html">
-                Usuários
-            </a>
-
-
-            <a href="configuracoes.html">
-                Configurações
-            </a>
-
-
         </nav>
-
-
-        <!-- LOGOUT -->
 
         <button
             id="logout"
@@ -273,39 +90,30 @@
             Sair
         </button>
 
-
     </aside>
 
 
+    <!-- FUNDO ESCURO NO CELULAR -->
+    <div
+        id="overlayMenu"
+        class="overlay-menu"
+    ></div>
 
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-    ====================================================== -->
 
+    <!-- ÁREA PRINCIPAL -->
     <main>
-
-
-        <!-- =================================================
-             TOPBAR
-        ================================================== -->
 
         <header class="topbar">
 
-
-            <!-- BOTÃO MENU MOBILE -->
-
+            <!-- BOTÃO ABRIR -->
             <button
                 id="menuMobile"
                 class="menu-mobile"
                 type="button"
                 aria-label="Abrir menu"
-                aria-expanded="false"
             >
                 ☰
             </button>
-
-
-            <!-- TÍTULO -->
 
             <div>
 
@@ -319,226 +127,179 @@
 
             </div>
 
-
-            <!-- USUÁRIO -->
-
             <div class="usuario-area">
 
                 <div
                     id="usuarioNome"
                     class="usuario-nome"
                 >
-                    Usuário
+                    sarahhellen2216
                 </div>
 
                 <div
                     id="usuarioPerfil"
                     class="usuario-perfil"
                 >
-                    Perfil
+                    Administrador
                 </div>
 
             </div>
-
 
         </header>
 
 
+        <!-- CONTEÚDO -->
+        <section id="conteudo">
 
-        <!-- =================================================
-             CONTEÚDO
-        ================================================== -->
+            <!-- INDICADORES -->
 
-        <section
-            id="conteudo"
-            class="dashboard"
-        >
+            <div class="dashboard-grid">
 
+                <div class="kpi-card">
 
-            <!-- =================================================
-                 INDICADORES
-            ================================================== -->
-
-            <div class="cards-dashboard">
-
-
-                <!-- INSPEÇÕES -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon azul">
-                        ✓
+                    <div class="kpi-titulo">
+                        Inspeções realizadas
                     </div>
 
-                    <div>
+                    <div
+                        id="inspecoes"
+                        class="kpi-valor"
+                    >
+                        12
+                    </div>
 
-                        <span>
-                            Inspeções realizadas
-                        </span>
-
-                        <strong id="inspecoes">
-                            0
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Total de inspeções
                     </div>
 
                 </div>
 
 
+                <div class="kpi-card">
 
-                <!-- NÃO CONFORMIDADES -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon vermelho">
-                        !
+                    <div class="kpi-titulo">
+                        Não conformidades
                     </div>
 
-                    <div>
+                    <div
+                        id="naoConformidades"
+                        class="kpi-valor"
+                    >
+                        3
+                    </div>
 
-                        <span>
-                            Não conformidades
-                        </span>
-
-                        <strong id="naoConformidades">
-                            0
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Registros identificados
                     </div>
 
                 </div>
 
 
+                <div class="kpi-card">
 
-                <!-- AÇÕES ABERTAS -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon amarelo">
-                        ↻
+                    <div class="kpi-titulo">
+                        Ações abertas
                     </div>
 
-                    <div>
+                    <div
+                        id="acoesAbertas"
+                        class="kpi-valor"
+                    >
+                        4
+                    </div>
 
-                        <span>
-                            Ações abertas
-                        </span>
-
-                        <strong id="acoesAbertas">
-                            0
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Ações pendentes
                     </div>
 
                 </div>
 
 
+                <div class="kpi-card">
 
-                <!-- AÇÕES CONCLUÍDAS -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon verde">
-                        ✓
+                    <div class="kpi-titulo">
+                        Ações concluídas
                     </div>
 
-                    <div>
+                    <div
+                        id="acoesConcluidas"
+                        class="kpi-valor"
+                    >
+                        8
+                    </div>
 
-                        <span>
-                            Ações concluídas
-                        </span>
-
-                        <strong id="acoesConcluidas">
-                            0
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Ações finalizadas
                     </div>
 
                 </div>
 
 
+                <div class="kpi-card">
 
-                <!-- TAXA -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon azul">
-                        %
+                    <div class="kpi-titulo">
+                        Taxa de conformidade
                     </div>
 
-                    <div>
+                    <div
+                        id="taxaConformidade"
+                        class="kpi-valor"
+                    >
+                        75%
+                    </div>
 
-                        <span>
-                            Taxa de conformidade
-                        </span>
-
-                        <strong id="taxaConformidade">
-                            0%
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Índice atual
                     </div>
 
                 </div>
 
 
+                <div class="kpi-card">
 
-                <!-- AUDITORIAS -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon azul">
-                        A
+                    <div class="kpi-titulo">
+                        Auditorias realizadas
                     </div>
 
-                    <div>
+                    <div
+                        id="auditorias"
+                        class="kpi-valor"
+                    >
+                        5
+                    </div>
 
-                        <span>
-                            Auditorias realizadas
-                        </span>
-
-                        <strong id="auditorias">
-                            0
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Auditorias registradas
                     </div>
 
                 </div>
 
 
+                <div class="kpi-card">
 
-                <!-- DOCUMENTOS -->
-
-                <div class="card indicador-card">
-
-                    <div class="indicador-icon verde">
-                        D
+                    <div class="kpi-titulo">
+                        Documentos ativos
                     </div>
 
-                    <div>
+                    <div
+                        id="documentos"
+                        class="kpi-valor"
+                    >
+                        8
+                    </div>
 
-                        <span>
-                            Documentos ativos
-                        </span>
-
-                        <strong id="documentos">
-                            0
-                        </strong>
-
+                    <div class="kpi-descricao">
+                        Documentos disponíveis
                     </div>
 
                 </div>
-
 
             </div>
 
 
-
-            <!-- =================================================
-                 AÇÕES RÁPIDAS
-            ================================================== -->
+            <!-- AÇÕES RÁPIDAS -->
 
             <div class="card">
-
 
                 <div class="card-header">
 
@@ -556,118 +317,58 @@
 
                 </div>
 
-
-
                 <div class="atalhos">
-
 
                     <a
                         href="inspecoes.html"
                         class="atalho"
                     >
-
-                        <span>
-                            +
-                        </span>
-
+                        <span>+</span>
                         Nova inspeção
-
                     </a>
-
-
 
                     <a
                         href="auditorias.html"
                         class="atalho"
                     >
-
-                        <span>
-                            +
-                        </span>
-
+                        <span>+</span>
                         Nova auditoria
-
                     </a>
-
-
 
                     <a
-                        href="nao-conformidades.html"
+                        href="nao.conformidades.html"
                         class="atalho"
                     >
-
-                        <span>
-                            !
-                        </span>
-
+                        <span>!</span>
                         Nova não conformidade
-
                     </a>
-
-
 
                     <a
                         href="acoes-corretivas.html"
                         class="atalho"
                     >
-
-                        <span>
-                            +
-                        </span>
-
+                        <span>+</span>
                         Nova ação corretiva
-
                     </a>
-
-
 
                     <a
                         href="documentos.html"
                         class="atalho"
                     >
-
-                        <span>
-                            +
-                        </span>
-
+                        <span>+</span>
                         Novo documento
-
                     </a>
-
-
-
-                    <a
-                        href="relatorios.html"
-                        class="atalho"
-                    >
-
-                        <span>
-                            =
-                        </span>
-
-                        Gerar relatório
-
-                    </a>
-
 
                 </div>
-
 
             </div>
 
 
+            <!-- RESUMO -->
 
-            <!-- =================================================
-                 RESUMO
-            ================================================== -->
-
-            <div class="dashboard-grid">
-
-
-                <!-- STATUS -->
+            <div class="graficos-grid">
 
                 <div class="card">
-
 
                     <div class="card-header">
 
@@ -685,12 +386,7 @@
 
                     </div>
 
-
-
-                    <!-- PROGRESSO -->
-
                     <div class="progresso-area">
-
 
                         <div class="progresso-header">
 
@@ -698,86 +394,46 @@
                                 Taxa de conformidade
                             </span>
 
-                            <strong id="taxaTexto">
-                                0%
+                            <strong>
+                                75%
                             </strong>
 
                         </div>
-
-
 
                         <div class="barra">
 
                             <div
-                                id="barraConformidade"
                                 class="barra-preenchida"
-                                style="width: 0%;"
+                                style="width:75%;"
                             ></div>
 
                         </div>
 
-
                     </div>
-
-
-
-                    <!-- STATUS -->
 
                     <div class="status-linhas">
 
-
                         <div>
-
-                            <span>
-                                Inspeções
-                            </span>
-
-                            <strong id="statusInspecoes">
-                                0
-                            </strong>
-
+                            <span>Inspeções</span>
+                            <strong>12</strong>
                         </div>
 
-
-
                         <div>
-
-                            <span>
-                                Não conformidades
-                            </span>
-
-                            <strong id="statusNC">
-                                0
-                            </strong>
-
+                            <span>Não conformidades</span>
+                            <strong>3</strong>
                         </div>
 
-
-
                         <div>
-
-                            <span>
-                                Ações pendentes
-                            </span>
-
-                            <strong id="statusAcoes">
-                                0
-                            </strong>
-
+                            <span>Ações pendentes</span>
+                            <strong>4</strong>
                         </div>
-
 
                     </div>
-
 
                 </div>
 
 
-
-                <!-- ATIVIDADE -->
-
                 <div class="card">
-
 
                     <div class="card-header">
 
@@ -795,6 +451,63 @@
 
                     </div>
 
+                    <div class="atividade-vazia">
+                        Nenhuma atividade registrada.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
 
 
-                    <
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menu = document.getElementById("menu");
+    const abrir = document.getElementById("menuMobile");
+    const fechar = document.getElementById("fecharMenu");
+    const overlay = document.getElementById("overlayMenu");
+
+    function abrirMenu() {
+
+        menu.classList.add("aberto");
+        overlay.classList.add("ativo");
+
+    }
+
+    function fecharMenu() {
+
+        menu.classList.remove("aberto");
+        overlay.classList.remove("ativo");
+
+    }
+
+    abrir.addEventListener("click", abrirMenu);
+
+    fechar.addEventListener("click", fecharMenu);
+
+    overlay.addEventListener("click", fecharMenu);
+
+
+    // Fecha o menu quando clicar em qualquer opção
+    const links = menu.querySelectorAll("nav a");
+
+    links.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            fecharMenu();
+
+        });
+
+    });
+
+
+    // Tecla ESC também fecha
+    document.addEventListener("keydown", function
