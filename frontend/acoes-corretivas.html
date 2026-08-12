@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Ações Corretivas - Atlas Gestão
+</title>
+
+<link
+rel="stylesheet"
+href="/css/style.css"
+>
+
+</head>
+
+<body>
+
+<div id="sistema">
+
+
+<aside id="menu">
+
+<div class="logo">
+
+<span class="logo-symbol">
+▲
+</span>
+
+<span>
+Atlas Gestão
+</span>
+
+</div>
+
+<div class="menu-titulo">
+GESTÃO DA QUALIDADE
+</div>
+
+<nav>
+
+<a href="/dashboard.html">
+Dashboard
+</a>
+
+<a href="/inspecoes.html">
+Inspeções
+</a>
+
+<a href="/nao-conformidades.html">
+Não Conformidades
+</a>
+
+<a
+href="/acoes-corretivas.html"
+class="ativo"
+>
+Ações Corretivas
+</a>
+
+<a href="/auditorias.html">
+Auditorias
+</a>
+
+<a href="/documentos.html">
+Documentos
+</a>
+
+<a href="/indicadores.html">
+Indicadores
+</a>
+
+<a href="/relatorios.html">
+Relatórios
+</a>
+
+<a href="/usuarios.html">
+Usuários
+</a>
+
+<a href="/configuracoes.html">
+Configurações
+</a>
+
+</nav>
+
+<button
+id="logout"
+class="btn-menu-sair"
+>
+Sair
+</button>
+
+</aside>
+
+
+
+<main>
+
+<header class="topbar">
+
+<button
+id="menuMobile"
+class="menu-mobile"
+>
+☰
+</button>
+
+<div>
+
+<h2>
+Ações Corretivas
+</h2>
+
+<p>
+Plano de ação e melhoria contínua
+</p>
+
+</div>
+
+<div class="usuario-area">
+
+<div
+id="usuarioNome"
+class="usuario-nome"
+>
+Usuário
+</div>
+
+<div
+id="usuarioPerfil"
+class="usuario-perfil"
+>
+Perfil
+</div>
+
+</div>
+
+</header>
+
+
+
+<section id="conteudo">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Nova Ação Corretiva
+</h2>
+
+<p>
+Crie um plano para tratar uma não conformidade.
+</p>
+
+</div>
+
+</div>
+
+
+<form id="acaoForm">
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Número *
+</label>
+
+<input
+name="numero"
+placeholder="AC-001"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Não conformidade relacionada
+</label>
+
+<select
+name="nao_conformidade_id"
+id="selectNC"
+>
+
+<option value="">
+Selecione uma não conformidade
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Responsável *
+</label>
+
+<input
+name="responsavel"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Data de abertura
+</label>
+
+<input
+type="date"
+name="data_abertura"
+id="dataAbertura"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Prazo
+</label>
+
+<input
+type="date"
+name="prazo"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Status
+</label>
+
+<select name="status">
+
+<option>
+Aberta
+</option>
+
+<option>
+Em andamento
+</option>
+
+<option>
+Concluída
+</option>
+
+<option>
+Atrasada
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group campo-grande">
+
+<label>
+Plano de ação *
+</label>
+
+<textarea
+name="plano_acao"
+rows="6"
+placeholder="Descreva detalhadamente as ações que serão realizadas..."
+required
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<br>
+
+<button
+type="submit"
+class="btn btn-primary"
+>
+Cadastrar ação
+</button>
+
+<button
+type="reset"
+class="btn btn-secondary"
+>
+Limpar
+</button>
+
+
+<div
+id="mensagemAcao"
+class="mensagem"
+></div>
+
+
+</form>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-header">
+
+<div>
+
+<h2>
+Ações cadastradas
+</h2>
+
+<p>
+Acompanhe os planos de ação.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="filtros">
+
+<input
+type="text"
+id="pesquisaAcao"
+placeholder="Pesquisar..."
+>
+
+<select id="filtroAcao">
+
+<option value="">
+Todos os status
+</option>
+
+<option>
+Aberta
+</option>
+
+<option>
+Em andamento
+</option>
+
+<option>
+Concluída
+</option>
+
+<option>
+Atrasada
+</option>
+
+</select>
+
+</div>
+
+
+<div class="tabela-container">
+
+<table class="tabela">
+
+<thead>
+
+<tr>
+
+<th>
+Número
+</th>
+
+<th>
+NC relacionada
+</th>
+
+<th>
+Responsável
+</th>
+
+<th>
+Abertura
+</th>
+
+<th>
+Prazo
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="listaAcoes">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+</section>
+
+</main>
+
+</div>
+
+
+<script src="/js/app.js"></script>
+
+<script src="/js/acoes-corretivas.js"></script>
+
+</body>
+
+</html>
