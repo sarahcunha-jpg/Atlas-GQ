@@ -1,141 +1,545 @@
-document.addEventListener("DOMContentLoaded", function () {
+const API_BASE = "/api";
 
 
-    /*
-     * VERIFICA LOGIN
-     */
+/* ==========================================================
+   TOKEN
+========================================================== */
+
+function obterToken() {
+
+    return localStorage.getItem(
+        "atlas_token"
+    );
+
+}
+
+
+/* ==========================================================
+   USUÁRIO
+========================================================== */
+
+function obterUsuario() {
+
+    const usuario =
+        localStorage.getItem(
+            "atlas_usuario"
+        );
+
+    if (!usuario) {
+        return null;
+    }
+
+    try {
+
+        return JSON.parse(
+            usuario
+        );
+
+    } catch {
+
+        return null;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERIFICAR LOGIN
+========================================================== */
+
+function verificarLogin() {
 
     const token =
-        localStorage.getItem("atlas_token");
-
+        obterToken();
 
     const pagina =
         window.location.pathname;
 
+    const paginaLogin =
+        pagina === "/" ||
+        pagina.endsWith(
+            "/index.html"
+        );
 
-    const estaNoLogin =
-        pagina.endsWith("index.html") ||
-        pagina.endsWith("/");
+    if (
+        !token &&
+        !paginaLogin
+    ) {
 
+        window.location.href =
+            "/index.html";
 
-    if (!token && !estaNoLogin) {
-
-        window.location.href = "index.html";
-
-        return;
+        return false;
 
     }
 
+    return true;
 
-    /*
-     * USUÁRIO
-     */
-
-    const usuarioSalvo =
-        localStorage.getItem("atlas_usuario");
+}
 
 
-    if (usuarioSalvo) {
+/* ==========================================================
+   API
+========================================================== */
 
-        try {
+async function api(
+    rota,
+    opcoes = {}
+) {
 
-            const usuario =
-                JSON.parse(usuarioSalvo);
+    const token =
+        obterToken();
 
+    const configuracao = {
 
-            const nome =
-                document.getElementById("usuarioNome");
+        ...opcoes,
 
+        headers: {
 
-            const perfil =
-                document.getElementById("usuarioPerfil");
+            "Content-Type":
+                "application/json",
 
-
-            if (nome) {
-
-                nome.textContent =
-                    usuario.nome || "Usuário";
-
-            }
-
-
-            if (perfil) {
-
-                perfil.textContent =
-                    usuario.perfil || "Usuário";
-
-            }
-
-
-        } catch (erro) {
-
-            console.log(
-                "Erro ao carregar usuário:",
-                erro
-            );
+            ...(opcoes.headers || {})
 
         }
 
+    };
+
+    if (token) {
+
+        configuracao.headers.Authorization =
+            `Bearer ${token}`;
+
     }
 
+    const resposta =
+        await fetch(
+            API_BASE + rota,
+            configuracao
+        );
 
-    /*
-     * LOGOUT
-     */
+    if (
+        resposta.status === 401
+    ) {
 
-    const logout =
-        document.getElementById("logout");
+        localStorage.removeItem(
+            "atlas_token"
+        );
 
+        localStorage.removeItem(
+            "atlas_usuario"
+        );
 
-    if (logout) {
+        window.location.href =
+            "/index.html";
 
-        logout.addEventListener(
-            "click",
-            function () {
-
-                localStorage.removeItem(
-                    "atlas_token"
-                );
-
-                localStorage.removeItem(
-                    "atlas_usuario"
-                );
-
-
-                window.location.href =
-                    "index.html";
-
-            }
+        throw new Error(
+            "Sua sessão expirou."
         );
 
     }
 
+    let dados = null;
 
-    /*
-     * MENU MOBILE
-     */
+    try {
 
-    const menuMobile =
-        document.getElementById("menuMobile");
+        dados =
+            await resposta.json();
 
+    } catch {
+
+        dados = {};
+
+    }
+
+    if (!resposta.ok) {
+
+        throw new Error(
+            dados.erro ||
+            "Erro na comunicação com o servidor."
+        );
+
+    }
+
+    return dados;
+
+}
+
+
+/* ==========================================================
+   PREENCHER USUÁRIO
+========================================================== */
+
+function preencherUsuario() {
+
+    const usuario =
+        obterUsuario();
+
+    if (!usuario) {
+        return;
+    }
+
+    const nome =
+        document.getElementById(
+            "usuarioNome"
+        );
+
+    const perfil =
+        document.getElementById(
+            "usuarioPerfil"
+        );
+
+    if (nome) {
+
+        nome.textContent =
+            usuario.nome;
+
+    }
+
+    if (perfil) {
+
+        perfil.textContent =
+            usuario.perfil;
+
+    }
+
+    const usuarioLogado =
+        document.getElementById(
+            "usuarioLogado"
+        );
+
+    if (usuarioLogado) {
+
+        usuarioLogado.textContent =
+            usuario.nome;
+
+    }
+
+}
+
+
+/* ==========================================================
+   LOGOUT
+========================================================== */
+
+function configurarLogout() {
+
+    const botao =
+        document.getElementById(
+            "logout"
+        );
+
+    if (!botao) {
+        return;
+    }
+
+    botao.addEventListener(
+        "click",
+        function() {
+
+            localStorage.removeItem(
+                "atlas_token"
+            );
+
+            localStorage.removeItem(
+                "atlas_usuario"
+            );
+
+            window.location.href =
+                "/index.html";
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   MENU MOBILE
+========================================================== */
+
+function configurarMenuMobile() {
+
+    const botao =
+        document.getElementById(
+            "menuMobile"
+        );
 
     const menu =
-        document.getElementById("menu");
+        document.getElementById(
+            "menu"
+        );
+
+    if (!botao || !menu) {
+        return;
+    }
 
 
-    if (menuMobile && menu) {
+    /* ======================================================
+       CRIA BOTÃO FECHAR
+    ====================================================== */
 
-        menuMobile.addEventListener(
-            "click",
-            function () {
+    let botaoFechar =
+        document.getElementById(
+            "fecharMenu"
+        );
 
-                menu.classList.toggle(
-                    "aberto"
-                );
 
-            }
+    if (!botaoFechar) {
+
+        botaoFechar =
+            document.createElement(
+                "button"
+            );
+
+        botaoFechar.id =
+            "fecharMenu";
+
+        botaoFechar.type =
+            "button";
+
+        botaoFechar.innerHTML =
+            "✕";
+
+        botaoFechar.setAttribute(
+            "aria-label",
+            "Fechar menu"
+        );
+
+        botaoFechar.style.position =
+            "absolute";
+
+        botaoFechar.style.top =
+            "18px";
+
+        botaoFechar.style.right =
+            "15px";
+
+        botaoFechar.style.width =
+            "36px";
+
+        botaoFechar.style.height =
+            "36px";
+
+        botaoFechar.style.border =
+            "none";
+
+        botaoFechar.style.borderRadius =
+            "8px";
+
+        botaoFechar.style.background =
+            "#EFF6FF";
+
+        botaoFechar.style.color =
+            "#2563EB";
+
+        botaoFechar.style.fontSize =
+            "18px";
+
+        botaoFechar.style.cursor =
+            "pointer";
+
+        menu.appendChild(
+            botaoFechar
         );
 
     }
 
-});
+
+    /* ======================================================
+       FUNÇÃO ABRIR
+    ====================================================== */
+
+    function abrirMenu() {
+
+        menu.classList.add(
+            "aberto"
+        );
+
+        botao.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
+
+
+    /* ======================================================
+       FUNÇÃO FECHAR
+    ====================================================== */
+
+    function fecharMenu() {
+
+        menu.classList.remove(
+            "aberto"
+        );
+
+        botao.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    /* ======================================================
+       BOTÃO ☰
+    ====================================================== */
+
+    botao.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            if (
+                menu.classList.contains(
+                    "aberto"
+                )
+            ) {
+
+                fecharMenu();
+
+            } else {
+
+                abrirMenu();
+
+            }
+
+        }
+    );
+
+
+    /* ======================================================
+       BOTÃO ✕
+    ====================================================== */
+
+    botaoFechar.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            fecharMenu();
+
+        }
+    );
+
+
+    /* ======================================================
+       CLICAR FORA DO MENU
+    ====================================================== */
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                menu.classList.contains(
+                    "aberto"
+                ) &&
+                !menu.contains(
+                    event.target
+                ) &&
+                !botao.contains(
+                    event.target
+                )
+            ) {
+
+                fecharMenu();
+
+            }
+
+        }
+    );
+
+
+    /* ======================================================
+       CLICAR EM ITEM DO MENU
+    ====================================================== */
+
+    const links =
+        menu.querySelectorAll(
+            "nav a"
+        );
+
+    links.forEach(
+        function(link) {
+
+            link.addEventListener(
+                "click",
+                function() {
+
+                    fecharMenu();
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   DESTACAR MENU
+========================================================== */
+
+function destacarMenu() {
+
+    const pagina =
+        window.location.pathname;
+
+    const links =
+        document.querySelectorAll(
+            "#menu nav a"
+        );
+
+    links.forEach(
+        link => {
+
+            const href =
+                link.getAttribute(
+                    "href"
+                );
+
+            if (
+                href &&
+                pagina.endsWith(
+                    href
+                )
+            ) {
+
+                link.classList.add(
+                    "ativo"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   INICIALIZAÇÃO
+========================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        verificarLogin();
+
+        preencherUsuario();
+
+        configurarLogout();
+
+        configurarMenuMobile();
+
+        destacarMenu();
+
+    }
+);
