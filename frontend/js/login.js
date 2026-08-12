@@ -53,7 +53,7 @@ function mostrarMensagem(
 
 
 /* =========================================================
-   FORMULÁRIO DE LOGIN
+   LOGIN
 ========================================================= */
 
 if (loginForm) {
@@ -64,10 +64,6 @@ if (loginForm) {
 
             event.preventDefault();
 
-
-            /* =============================================
-               DADOS
-            ============================================= */
 
             const email =
                 campoEmail
@@ -116,11 +112,10 @@ if (loginForm) {
                 /*
                  * LOGIN TEMPORÁRIO
                  *
-                 * Nesta fase estamos construindo
-                 * o sistema no GitHub Pages.
+                 * Estamos utilizando o GitHub Pages
+                 * para construir a interface.
                  *
-                 * O banco de dados será conectado
-                 * posteriormente.
+                 * O backend será conectado depois.
                  */
 
 
@@ -137,7 +132,7 @@ if (loginForm) {
 
 
                 /* =========================================
-                   USUÁRIO TEMPORÁRIO
+                   USUÁRIO
                 ========================================= */
 
                 const usuario = {
@@ -160,7 +155,7 @@ if (loginForm) {
 
 
                 /* =========================================
-                   TOKEN TEMPORÁRIO
+                   TOKEN
                 ========================================= */
 
                 const token =
@@ -182,7 +177,7 @@ if (loginForm) {
 
 
                 /* =========================================
-                   LEMBRAR LOGIN
+                   LEMBRAR
                 ========================================= */
 
                 if (
@@ -205,7 +200,7 @@ if (loginForm) {
 
 
                 /* =========================================
-                   SUCESSO
+                   MENSAGEM
                 ========================================= */
 
                 mostrarMensagem(
@@ -215,14 +210,14 @@ if (loginForm) {
 
 
                 /* =========================================
-                   IR PARA DASHBOARD
+                   DASHBOARD
                 ========================================= */
 
                 setTimeout(
                     function() {
 
                         window.location.href =
-                            "./frontend/dashboard.html";
+                            "./front-end/dashboard.html";
 
                     },
                     700
