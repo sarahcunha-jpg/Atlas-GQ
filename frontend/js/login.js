@@ -5,7 +5,7 @@
 
 
 /* =========================================================
-   ELEMENTOS DA PÁGINA
+   ELEMENTOS
 ========================================================= */
 
 const loginForm =
@@ -53,7 +53,7 @@ function mostrarMensagem(
 
 
 /* =========================================================
-   LOGIN
+   FORMULÁRIO DE LOGIN
 ========================================================= */
 
 if (loginForm) {
@@ -111,15 +111,18 @@ if (loginForm) {
             }
 
 
-            /* =============================================
-               LOGIN LOCAL TEMPORÁRIO
-               
-               Nesta primeira etapa o sistema funciona
-               sem backend para conseguirmos construir
-               todas as páginas.
-            ============================================= */
-
             try {
+
+                /*
+                 * LOGIN TEMPORÁRIO
+                 *
+                 * Nesta fase estamos construindo
+                 * o sistema no GitHub Pages.
+                 *
+                 * O banco de dados será conectado
+                 * posteriormente.
+                 */
+
 
                 await new Promise(
                     function(resolve) {
@@ -133,14 +136,11 @@ if (loginForm) {
                 );
 
 
-                /*
-                 * Usuário de demonstração.
-                 *
-                 * Depois vamos substituir esta parte
-                 * pela API + banco de dados.
-                 */
+                /* =========================================
+                   USUÁRIO TEMPORÁRIO
+                ========================================= */
 
-                const usuarioDemo = {
+                const usuario = {
 
                     id: 1,
 
@@ -163,20 +163,20 @@ if (loginForm) {
                    TOKEN TEMPORÁRIO
                 ========================================= */
 
-                const tokenDemo =
+                const token =
                     "atlas-demo-token";
 
 
                 localStorage.setItem(
                     "atlas_token",
-                    tokenDemo
+                    token
                 );
 
 
                 localStorage.setItem(
                     "atlas_usuario",
                     JSON.stringify(
-                        usuarioDemo
+                        usuario
                     )
                 );
 
@@ -205,7 +205,7 @@ if (loginForm) {
 
 
                 /* =========================================
-                   MENSAGEM DE SUCESSO
+                   SUCESSO
                 ========================================= */
 
                 mostrarMensagem(
@@ -222,7 +222,7 @@ if (loginForm) {
                     function() {
 
                         window.location.href =
-                            "./dashboard.html";
+                            "./frontend/dashboard.html";
 
                     },
                     700
@@ -284,55 +284,3 @@ if (linkEsqueciSenha) {
     );
 
 }
-
-
-/* =========================================================
-   VERIFICAR LOGIN EXISTENTE
-========================================================= */
-
-function verificarLoginExistente() {
-
-    const token =
-        localStorage.getItem(
-            "atlas_token"
-        );
-
-
-    const paginaAtual =
-        window.location.pathname;
-
-
-    const estaNoLogin =
-        paginaAtual.endsWith(
-            "/index.html"
-        ) ||
-        paginaAtual.endsWith(
-            "/Atlas-GQ/"
-        ) ||
-        paginaAtual === "/";
-
-
-    if (
-        token &&
-        !estaNoLogin
-    ) {
-
-        return;
-
-    }
-
-}
-
-
-/* =========================================================
-   INICIALIZAÇÃO
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        verificarLoginExistente();
-
-    }
-);
