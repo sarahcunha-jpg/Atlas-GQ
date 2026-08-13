@@ -1,640 +1,1194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Atlas Gestão - Não Conformidades</title>
+<title>Atlas Gestão - Não Conformidades</title>
 
-    <link rel="stylesheet" href="nao.conformidades.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #263238;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+    z-index: 1000;
+    transition: transform .3s ease;
+}
+
+.logo {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #2864d7;
+    color: white;
+    font-weight: bold;
+}
+
+.logo-text {
+    color: #2864d7;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu-title {
+    padding: 28px 20px 12px;
+    color: #7b8794;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.menu a {
+    display: block;
+    margin: 3px 12px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    color: #59636e;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.menu a:hover {
+    background: #eef4ff;
+    color: #2864d7;
+}
+
+.menu a.active {
+    background: #2864d7;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-separator {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 20px;
+}
+
+.logout {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+.close-button {
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    color: #59636e;
+    cursor: pointer;
+}
+
+.menu-button {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #dfe3e8;
+    background: white;
+    border-radius: 9px;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 900;
+}
+
+.overlay.open {
+    display: block;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+.header {
+    height: 76px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.header h1 {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.header p {
+    color: #7c8792;
+    font-size: 14px;
+}
+
+.user {
+    text-align: right;
+}
+
+.user strong {
+    display: block;
+    font-size: 14px;
+}
+
+.user span {
+    color: #7c8792;
+    font-size: 13px;
+}
+
+/* ================= CONTEÚDO ================= */
+
+.content {
+    padding: 28px;
+}
+
+.page-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid #e5e9ee;
+    box-shadow: 0 4px 14px rgba(30,50,70,.05);
+    padding: 20px;
+}
+
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-title h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.page-title p {
+    color: #7b8794;
+}
+
+/* ================= FORMULÁRIO ================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #4f5b66;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    border: 1px solid #d9e0e7;
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #2864d7;
+}
+
+.field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #2864d7;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1f55bd;
+}
+
+.btn-secondary {
+    background: #edf1f5;
+    color: #374151;
+}
+
+/* ================= LISTAGEM ================= */
+
+.list-card {
+    margin-top: 22px;
+}
+
+.list-header {
+    margin-bottom: 18px;
+}
+
+.list-header h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.list-header p {
+    color: #7b8794;
+}
+
+/* FILTROS */
+
+.filters {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr auto;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.filters input,
+.filters select {
+    height: 44px;
+    border: 1px solid #d9e0e7;
+    border-radius: 8px;
+    padding: 0 13px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.filters input:focus,
+.filters select:focus {
+    border-color: #2864d7;
+}
+
+.clear-btn {
+    height: 44px;
+    border: none;
+    border-radius: 8px;
+    background: #edf1f5;
+    color: #374151;
+    font-weight: bold;
+    padding: 0 18px;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: #e3e8ee;
+}
+
+/* TABELA */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f1f5f9;
+}
+
+th {
+    text-align: left;
+    padding: 13px;
+    color: #344054;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+td {
+    padding: 14px 13px;
+    border-bottom: 1px solid #edf0f3;
+    font-size: 13px;
+}
+
+.empty {
+    text-align: center;
+    padding: 35px !important;
+    color: #8a96a3;
+}
+
+/* BADGES */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-open {
+    background: #fff1d6;
+    color: #a15c00;
+}
+
+.badge-progress {
+    background: #e7efff;
+    color: #2864d7;
+}
+
+.badge-closed {
+    background: #e2f6e9;
+    color: #168044;
+}
+
+.badge-critical {
+    background: #ffe5e5;
+    color: #c82333;
+}
+
+.badge-normal {
+    background: #edf1f5;
+    color: #59636e;
+}
+
+/* BOTÕES DA TABELA */
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-view {
+    background: #edf1f5;
+    color: #344054;
+}
+
+.btn-delete {
+    background: #fff0f0;
+    color: #dc3545;
+}
+
+.btn-small {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-small:hover {
+    opacity: .85;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 14px;
+    padding: 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 20px;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.detail {
+    margin-bottom: 14px;
+}
+
+.detail strong {
+    display: block;
+    color: #667085;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.detail span {
+    font-size: 15px;
+}
+
+/* ================= CELULAR ================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 270px;
+        box-shadow: 5px 0 20px rgba(0,0,0,.12);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .close-button {
+        display: block;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .header {
+        padding: 12px 18px 12px 68px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .user {
+        display: none;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .filters input,
+    .filters select,
+    .clear-btn {
+        width: 100%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar">
 
-        <button class="close-button" id="closeMenu">×</button>
+    <button class="close-button" id="closeMenu">×</button>
 
-        <div class="logo">
-            <div class="logo-icon">▲</div>
-            <div class="logo-text">Atlas Gestão</div>
-        </div>
+    <div class="logo">
+        <div class="logo-icon">▲</div>
+        <div class="logo-text">Atlas Gestão</div>
+    </div>
 
-        <div class="menu-title">
-            GESTÃO DA QUALIDADE
-        </div>
+    <div class="menu-title">
+        GESTÃO DA QUALIDADE
+    </div>
 
-        <nav class="menu">
+    <nav class="menu">
 
-            <a href="dashboard.html">
-                Dashboard
-            </a>
+        <a href="dashboard.html">
+            Dashboard
+        </a>
 
-            <a href="inspecoes.html">
-                Inspeções
-            </a>
+        <a href="inspecoes.html">
+            Inspeções
+        </a>
 
-            <a href="nao.conformidades.html" class="active">
-                Não Conformidades
-            </a>
+        <a href="nao.conformidades.html" class="active">
+            Não Conformidades
+        </a>
 
-            <a href="acoes-corretivas.html">
-                Ações Corretivas
-            </a>
+        <a href="acoes-corretivas.html">
+            Ações Corretivas
+        </a>
 
-            <a href="auditorias.html">
-                Auditorias
-            </a>
+        <a href="auditorias.html">
+            Auditorias
+        </a>
 
-            <a href="documentos.html">
-                Documentos
-            </a>
+        <a href="documentos.html">
+            Documentos
+        </a>
 
-            <a href="indicadores.html">
-                Indicadores
-            </a>
+        <a href="indicadores.html">
+            Indicadores
+        </a>
 
-            <div class="separator"></div>
+        <div class="menu-separator"></div>
 
-            <a href="index.html" class="logout">
-                ↪ &nbsp; Sair
-            </a>
+        <a href="index.html" class="logout">
+            ↪&nbsp;&nbsp; Sair
+        </a>
 
-        </nav>
+    </nav>
 
-    </aside>
+</aside>
 
+<div class="overlay" id="overlay"></div>
 
-    <div class="overlay" id="overlay"></div>
+<button class="menu-button" id="menuButton">
+    ☰
+</button>
 
+<main class="main">
 
-    <button class="menu-button" id="menuButton">
-        ☰
-    </button>
+<header class="header">
 
+    <div>
+        <h1>Não Conformidades</h1>
+        <p>Registre e acompanhe as não conformidades identificadas.</p>
+    </div>
 
-    <main class="main">
+    <div class="user">
+        <strong>sarahhellen2216</strong>
+        <span>Administrador</span>
+    </div>
 
-        <header class="header">
+</header>
 
-            <div>
-                <h1>Não Conformidades</h1>
+<div class="content">
 
-                <p>
-                    Controle e acompanhamento das não conformidades
-                </p>
+<!-- ================= CADASTRO ================= -->
+
+<section class="page-card">
+
+    <div class="page-title">
+        <h2>Nova não conformidade</h2>
+        <p>Preencha os dados para registrar uma nova ocorrência.</p>
+    </div>
+
+    <form id="ncForm">
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label for="codigo">Código</label>
+                <input id="codigo" required placeholder="Ex.: NC001">
             </div>
 
-            <div class="user">
+            <div class="field">
+                <label for="tipo">Tipo</label>
+                <select id="tipo" required>
+                    <option value="">Selecione</option>
+                    <option>Interna</option>
+                    <option>Externa</option>
+                    <option>Cliente</option>
+                    <option>Fornecedor</option>
+                    <option>Auditoria</option>
+                    <option>Inspeção</option>
+                </select>
+            </div>
 
-                <strong>
-                    sarahhellen2216
-                </strong>
+            <div class="field">
+                <label for="processo">Processo / Área</label>
+                <input id="processo" required placeholder="Ex.: Produção">
+            </div>
 
-                <span>
-                    Administrador
+            <div class="field">
+                <label for="responsavel">Responsável</label>
+                <input id="responsavel" required placeholder="Nome do responsável">
+            </div>
+
+            <div class="field">
+                <label for="data">Data</label>
+                <input type="date" id="data" required>
+            </div>
+
+            <div class="field">
+                <label for="gravidade">Classificação</label>
+                <select id="gravidade" required>
+                    <option value="">Selecione</option>
+                    <option>Baixa</option>
+                    <option>Média</option>
+                    <option>Alta</option>
+                    <option>Crítica</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="status">Status</label>
+                <select id="status" required>
+                    <option value="Aberta">Aberta</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluída">Concluída</option>
+                </select>
+            </div>
+
+            <div class="field full">
+                <label for="descricao">Descrição da não conformidade</label>
+                <textarea id="descricao" required placeholder="Descreva o ocorrido..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <button type="reset" class="btn btn-secondary">
+                Limpar
+            </button>
+
+            <button type="submit" class="btn btn-primary">
+                Cadastrar não conformidade
+            </button>
+        </div>
+
+    </form>
+
+</section>
+
+<!-- ================= LISTAGEM ================= -->
+
+<section class="page-card list-card">
+
+    <div class="list-header">
+        <h2>Não conformidades cadastradas</h2>
+        <p>Consulte e acompanhe as não conformidades registradas.</p>
+    </div>
+
+    <div class="filters">
+
+        <input
+            type="search"
+            id="search"
+            placeholder="Pesquisar por código, processo ou responsável..."
+        >
+
+        <select id="filterStatus">
+            <option value="">Todos os status</option>
+            <option>Aberta</option>
+            <option>Em andamento</option>
+            <option>Concluída</option>
+        </select>
+
+        <select id="filterClassificacao">
+            <option value="">Todas as classificações</option>
+            <option>Baixa</option>
+            <option>Média</option>
+            <option>Alta</option>
+            <option>Crítica</option>
+        </select>
+
+        <button class="clear-btn" id="clearFilters">
+            Limpar
+        </button>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Tipo</th>
+                    <th>Processo / Área</th>
+                    <th>Responsável</th>
+                    <th>Data</th>
+                    <th>Classificação</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="ncTableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</div>
+
+</main>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>Detalhes da não conformidade</h3>
+
+            <button class="modal-close" id="modalClose">
+                ×
+            </button>
+
+        </div>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ================= MENU ================= */
+
+const menuButton = document.getElementById("menuButton");
+const closeMenu = document.getElementById("closeMenu");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+function openMenu() {
+    sidebar.classList.add("open");
+    overlay.classList.add("open");
+}
+
+function closeMobileMenu() {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("open");
+}
+
+menuButton.addEventListener("click", openMenu);
+closeMenu.addEventListener("click", closeMobileMenu);
+overlay.addEventListener("click", closeMobileMenu);
+
+document.querySelectorAll(".menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        if (window.innerWidth <= 800) {
+            closeMobileMenu();
+        }
+    });
+});
+
+/* ================= DADOS ================= */
+
+const STORAGE_KEY = "atlas_nao_conformidades";
+
+let registros = JSON.parse(
+    localStorage.getItem(STORAGE_KEY) || "[]"
+);
+
+/* ================= ELEMENTOS ================= */
+
+const form = document.getElementById("ncForm");
+const tableBody = document.getElementById("ncTableBody");
+
+const search = document.getElementById("search");
+const filterStatus = document.getElementById("filterStatus");
+const filterClassificacao = document.getElementById("filterClassificacao");
+const clearFilters = document.getElementById("clearFilters");
+
+/* ================= FORMATAÇÃO ================= */
+
+function formatarData(data) {
+
+    if (!data) return "-";
+
+    const partes = data.split("-");
+
+    if (partes.length !== 3) return data;
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+function classeStatus(status) {
+
+    if (status === "Concluída") {
+        return "badge badge-closed";
+    }
+
+    if (status === "Em andamento") {
+        return "badge badge-progress";
+    }
+
+    return "badge badge-open";
+}
+
+function classeGravidade(gravidade) {
+
+    if (gravidade === "Crítica" || gravidade === "Alta") {
+        return "badge badge-critical";
+    }
+
+    return "badge badge-normal";
+}
+
+/* ================= RENDER ================= */
+
+function renderizar() {
+
+    const termo = search.value.toLowerCase().trim();
+    const status = filterStatus.value;
+    const classificacao = filterClassificacao.value;
+
+    const filtrados = registros.filter(item => {
+
+        const texto =
+            `${item.codigo} ${item.tipo} ${item.processo} ${item.responsavel}`
+            .toLowerCase();
+
+        const correspondeTexto =
+            !termo || texto.includes(termo);
+
+        const correspondeStatus =
+            !status || item.status === status;
+
+        const correspondeClassificacao =
+            !classificacao || item.gravidade === classificacao;
+
+        return (
+            correspondeTexto &&
+            correspondeStatus &&
+            correspondeClassificacao
+        );
+
+    });
+
+    tableBody.innerHTML = "";
+
+    if (filtrados.length === 0) {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    Nenhuma não conformidade cadastrada.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    filtrados.forEach(item => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+
+            <td><strong>${escapeHtml(item.codigo)}</strong></td>
+
+            <td>${escapeHtml(item.tipo)}</td>
+
+            <td>${escapeHtml(item.processo)}</td>
+
+            <td>${escapeHtml(item.responsavel)}</td>
+
+            <td>${formatarData(item.data)}</td>
+
+            <td>
+                <span class="${classeGravidade(item.gravidade)}">
+                    ${escapeHtml(item.gravidade)}
                 </span>
+            </td>
 
-            </div>
+            <td>
+                <span class="${classeStatus(item.status)}">
+                    ${escapeHtml(item.status)}
+                </span>
+            </td>
 
-        </header>
+            <td>
 
-
-        <div class="content">
-
-            <!-- RESUMO -->
-
-            <div class="summary">
-
-                <div class="summary-card">
-                    <span class="summary-icon">!</span>
-
-                    <div>
-                        <small>Total</small>
-                        <strong>3</strong>
-                    </div>
-                </div>
-
-
-                <div class="summary-card">
-                    <span class="summary-icon warning">!</span>
-
-                    <div>
-                        <small>Em aberto</small>
-                        <strong>2</strong>
-                    </div>
-                </div>
-
-
-                <div class="summary-card">
-                    <span class="summary-icon success">✓</span>
-
-                    <div>
-                        <small>Resolvidas</small>
-                        <strong>1</strong>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!-- NOVA NÃO CONFORMIDADE -->
-
-            <section class="section">
-
-                <div class="section-header">
-
-                    <div>
-
-                        <h2>
-                            Nova não conformidade
-                        </h2>
-
-                        <p>
-                            Registre uma nova ocorrência de qualidade.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <form id="nonConformityForm">
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label for="codigo">
-                                Código *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="codigo"
-                                value="NC-001"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="titulo">
-                                Título *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="titulo"
-                                placeholder="Ex.: Produto fora do padrão"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="origem">
-                                Origem *
-                            </label>
-
-                            <select id="origem">
-
-                                <option value="Inspeção">
-                                    Inspeção
-                                </option>
-
-                                <option value="Auditoria">
-                                    Auditoria
-                                </option>
-
-                                <option value="Cliente">
-                                    Cliente
-                                </option>
-
-                                <option value="Processo">
-                                    Processo
-                                </option>
-
-                                <option value="Outro">
-                                    Outro
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="responsavel">
-                                Responsável *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="responsavel"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="data">
-                                Data *
-                            </label>
-
-                            <input
-                                type="date"
-                                id="data"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="prioridade">
-                                Prioridade
-                            </label>
-
-                            <select id="prioridade">
-
-                                <option value="Baixa">
-                                    Baixa
-                                </option>
-
-                                <option value="Média" selected>
-                                    Média
-                                </option>
-
-                                <option value="Alta">
-                                    Alta
-                                </option>
-
-                                <option value="Crítica">
-                                    Crítica
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="status">
-                                Status
-                            </label>
-
-                            <select id="status">
-
-                                <option value="Aberta">
-                                    Aberta
-                                </option>
-
-                                <option value="Em análise">
-                                    Em análise
-                                </option>
-
-                                <option value="Resolvida">
-                                    Resolvida
-                                </option>
-
-                                <option value="Cancelada">
-                                    Cancelada
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="descricao">
-                            Descrição *
-                        </label>
-
-                        <textarea
-                            id="descricao"
-                            rows="4"
-                            placeholder="Descreva detalhadamente a não conformidade..."
-                            required></textarea>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="causa">
-                            Causa identificada
-                        </label>
-
-                        <textarea
-                            id="causa"
-                            rows="3"
-                            placeholder="Informe a possível causa..."></textarea>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <button
-                            type="submit"
-                            class="btn-primary">
-
-                            Cadastrar não conformidade
-
-                        </button>
-
-                        <button
-                            type="reset"
-                            class="btn-secondary">
-
-                            Limpar
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </section>
-
-
-            <!-- LISTAGEM -->
-
-            <section class="section">
-
-                <div class="section-header">
-
-                    <div>
-
-                        <h2>
-                            Não conformidades cadastradas
-                        </h2>
-
-                        <p>
-                            Pesquise e acompanhe as ocorrências registradas.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="filters">
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Pesquisar por código, título ou responsável">
-
-
-                    <select id="statusFilter">
-
-                        <option value="">
-                            Todos os status
-                        </option>
-
-                        <option value="Aberta">
-                            Aberta
-                        </option>
-
-                        <option value="Em análise">
-                            Em análise
-                        </option>
-
-                        <option value="Resolvida">
-                            Resolvida
-                        </option>
-
-                        <option value="Cancelada">
-                            Cancelada
-                        </option>
-
-                    </select>
-
+                <div class="action-buttons">
 
                     <button
-                        class="btn-secondary"
-                        id="refreshButton"
-                        type="button">
+                        class="btn-small btn-view"
+                        onclick="verRegistro('${item.id}')">
+                        Ver
+                    </button>
 
-                        Atualizar
-
+                    <button
+                        class="btn-small btn-delete"
+                        onclick="excluirRegistro('${item.id}')">
+                        Excluir
                     </button>
 
                 </div>
 
+            </td>
+        `;
 
-                <div class="table-container">
+        tableBody.appendChild(tr);
 
-                    <table>
+    });
+}
 
-                        <thead>
+/* ================= CADASTRAR ================= */
 
-                            <tr>
+form.addEventListener("submit", function(event) {
 
-                                <th>Código</th>
-                                <th>Título</th>
-                                <th>Origem</th>
-                                <th>Responsável</th>
-                                <th>Data</th>
-                                <th>Prioridade</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+    event.preventDefault();
 
-                            </tr>
+    const registro = {
 
-                        </thead>
+        id: Date.now().toString(),
 
+        codigo:
+            document.getElementById("codigo").value.trim(),
 
-                        <tbody id="ncTable">
+        tipo:
+            document.getElementById("tipo").value,
 
-                            <tr class="empty-row">
+        processo:
+            document.getElementById("processo").value.trim(),
 
-                                <td colspan="8">
+        responsavel:
+            document.getElementById("responsavel").value.trim(),
 
-                                    Nenhuma não conformidade cadastrada.
+        data:
+            document.getElementById("data").value,
 
-                                </td>
+        gravidade:
+            document.getElementById("gravidade").value,
 
-                            </tr>
+        status:
+            document.getElementById("status").value,
 
-                        </tbody>
+        descricao:
+            document.getElementById("descricao").value.trim()
 
-                    </table>
+    };
 
-                </div>
+    registros.unshift(registro);
 
-            </section>
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(registros)
+    );
 
+    form.reset();
+
+    renderizar();
+
+    alert("Não conformidade cadastrada com sucesso!");
+
+});
+
+/* ================= EXCLUIR ================= */
+
+function excluirRegistro(id) {
+
+    const registro = registros.find(item => item.id === id);
+
+    if (!registro) return;
+
+    const confirmar = confirm(
+        `Deseja excluir a não conformidade ${registro.codigo}?`
+    );
+
+    if (!confirmar) return;
+
+    registros = registros.filter(
+        item => item.id !== id
+    );
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(registros)
+    );
+
+    renderizar();
+}
+
+/* ================= VER ================= */
+
+function verRegistro(id) {
+
+    const item = registros.find(
+        registro => registro.id === id
+    );
+
+    if (!item) return;
+
+    document.getElementById("modalContent").innerHTML = `
+
+        <div class="detail">
+            <strong>Código</strong>
+            <span>${escapeHtml(item.codigo)}</span>
         </div>
 
-    </main>
+        <div class="detail">
+            <strong>Tipo</strong>
+            <span>${escapeHtml(item.tipo)}</span>
+        </div>
 
+        <div class="detail">
+            <strong>Processo / Área</strong>
+            <span>${escapeHtml(item.processo)}</span>
+        </div>
 
-    <script>
+        <div class="detail">
+            <strong>Responsável</strong>
+            <span>${escapeHtml(item.responsavel)}</span>
+        </div>
 
-        const menuButton =
-            document.getElementById("menuButton");
+        <div class="detail">
+            <strong>Data</strong>
+            <span>${formatarData(item.data)}</span>
+        </div>
 
-        const closeMenu =
-            document.getElementById("closeMenu");
+        <div class="detail">
+            <strong>Classificação</strong>
+            <span>${escapeHtml(item.gravidade)}</span>
+        </div>
 
-        const sidebar =
-            document.getElementById("sidebar");
+        <div class="detail">
+            <strong>Status</strong>
+            <span>${escapeHtml(item.status)}</span>
+        </div>
 
-        const overlay =
-            document.getElementById("overlay");
+        <div class="detail">
+            <strong>Descrição</strong>
+            <span>${escapeHtml(item.descricao)}</span>
+        </div>
+    `;
 
+    document.getElementById("modal").classList.add("open");
+}
 
-        function openMenu() {
+/* ================= MODAL ================= */
 
-            sidebar.classList.add("open");
+document.getElementById("modalClose")
+    .addEventListener("click", () => {
+        document.getElementById("modal").classList.remove("open");
+    });
 
-            overlay.classList.add("open");
+document.getElementById("modal")
+    .addEventListener("click", event => {
 
+        if (event.target.id === "modal") {
+            document.getElementById("modal").classList.remove("open");
         }
 
+    });
 
-        function closeSidebar() {
+/* ================= FILTROS ================= */
 
-            sidebar.classList.remove("open");
+search.addEventListener("input", renderizar);
+filterStatus.addEventListener("change", renderizar);
+filterClassificacao.addEventListener("change", renderizar);
 
-            overlay.classList.remove("open");
+clearFilters.addEventListener("click", () => {
 
-        }
+    search.value = "";
+    filterStatus.value = "";
+    filterClassificacao.value = "";
 
+    renderizar();
 
-        menuButton.addEventListener(
-            "click",
-            openMenu
-        );
+});
 
+/* ================= SEGURANÇA ================= */
 
-        closeMenu.addEventListener(
-            "click",
-            closeSidebar
-        );
+function escapeHtml(valor) {
 
+    return String(valor ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
-        overlay.addEventListener(
-            "click",
-            closeSidebar
-        );
+/* ================= INICIALIZAÇÃO ================= */
 
+renderizar();
 
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    closeSidebar();
-
-                }
-
-            }
-        );
-
-
-        /* FORMULÁRIO */
-
-        document
-            .getElementById("nonConformityForm")
-            .addEventListener(
-                "submit",
-                function(event) {
-
-                    event.preventDefault();
-
-                    alert(
-                        "Não conformidade cadastrada com sucesso!"
-                    );
-
-                    this.reset();
-
-                }
-            );
-
-
-        /* FILTRO */
-
-        const searchInput =
-            document.getElementById("searchInput");
-
-        const statusFilter =
-            document.getElementById("statusFilter");
-
-
-        function filterTable() {
-
-            const search =
-                searchInput.value.toLowerCase();
-
-            const status =
-                statusFilter.value.toLowerCase();
-
-
-            const rows =
-                document.querySelectorAll(
-                    "#ncTable tr:not(.empty-row)"
-                );
-
-
-            rows.forEach(function(row) {
-
-                const text =
-                    row.innerText.toLowerCase();
-
-                const searchMatch =
-                    text.includes(search);
-
-                const statusMatch =
-                    !status ||
-                    text.includes(status);
-
-
-                row.style.display =
-                    searchMatch && statusMatch
-                        ? ""
-                        : "none";
-
-            });
-
-        }
-
-
-        searchInput.addEventListener(
-            "input",
-            filterTable
-        );
-
-
-        statusFilter.addEventListener(
-            "change",
-            filterTable
-        );
-
-
-        document
-            .getElementById("refreshButton")
-            .addEventListener(
-                "click",
-                filterTable
-            );
-
-    </script>
+</script>
 
 </body>
-
 </html>
