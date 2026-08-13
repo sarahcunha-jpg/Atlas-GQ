@@ -1,574 +1,512 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Atlas Gestão - Não Conformidades</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fb;
-    color: #263238;
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 260px;
-    height: 100vh;
-    background: #fff;
-    border-right: 1px solid #e5e7eb;
-    z-index: 1000;
-    transition: transform .3s ease;
-}
-
-.logo {
-    height: 76px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 20px;
-    border-bottom: 1px solid #eef0f3;
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background: #2864d7;
-    color: white;
-    font-weight: bold;
-}
-
-.logo-text {
-    color: #2864d7;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.menu-title {
-    padding: 28px 20px 12px;
-    color: #7b8794;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.menu a {
-    display: block;
-    margin: 3px 12px;
-    padding: 13px 14px;
-    border-radius: 9px;
-    color: #59636e;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.menu a:hover {
-    background: #eef4ff;
-    color: #2864d7;
-}
-
-.menu a.active {
-    background: #2864d7;
-    color: white;
-    font-weight: bold;
-}
-
-.menu-separator {
-    height: 1px;
-    background: #e5e7eb;
-    margin: 20px;
-}
-
-.logout {
-    color: #dc3545 !important;
-    font-weight: bold;
-}
-
-.close-button {
-    display: none;
-    position: absolute;
-    top: 18px;
-    right: 12px;
-    width: 35px;
-    height: 35px;
-    border: none;
-    background: transparent;
-    font-size: 25px;
-    color: #59636e;
-    cursor: pointer;
-}
-
-.menu-button {
-    display: none;
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    width: 42px;
-    height: 42px;
-    border: 1px solid #dfe3e8;
-    background: white;
-    border-radius: 9px;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 1100;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.35);
-    z-index: 900;
-}
-
-.overlay.open {
-    display: block;
-}
-
-/* ================= MAIN ================= */
-
-.main {
-    margin-left: 260px;
-    min-height: 100vh;
-}
-
-.header {
-    height: 76px;
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-}
-
-.header h1 {
-    font-size: 26px;
-    margin-bottom: 4px;
-}
-
-.header p {
-    color: #7c8792;
-    font-size: 14px;
-}
-
-.user {
-    text-align: right;
-}
-
-.user strong {
-    display: block;
-    font-size: 14px;
-}
-
-.user span {
-    color: #7c8792;
-    font-size: 13px;
-}
-
-/* ================= CONTEÚDO ================= */
-
-.content {
-    padding: 28px;
-}
-
-.page-card {
-    background: white;
-    border-radius: 14px;
-    border: 1px solid #e5e9ee;
-    box-shadow: 0 4px 14px rgba(30,50,70,.05);
-    padding: 20px;
-}
-
-.page-title {
-    margin-bottom: 20px;
-}
-
-.page-title h2 {
-    font-size: 21px;
-    margin-bottom: 6px;
-}
-
-.page-title p {
-    color: #7b8794;
-}
-
-/* ================= FORMULÁRIO ================= */
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.field.full {
-    grid-column: 1 / -1;
-}
-
-.field label {
-    font-size: 13px;
-    font-weight: bold;
-    color: #4f5b66;
-}
-
-.field input,
-.field select,
-.field textarea {
-    width: 100%;
-    border: 1px solid #d9e0e7;
-    border-radius: 8px;
-    padding: 11px 12px;
-    font-family: inherit;
-    font-size: 14px;
-    outline: none;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-    border-color: #2864d7;
-}
-
-.field textarea {
-    min-height: 90px;
-    resize: vertical;
-}
-
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.btn {
-    border: none;
-    border-radius: 8px;
-    padding: 11px 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: #2864d7;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #1f55bd;
-}
-
-.btn-secondary {
-    background: #edf1f5;
-    color: #374151;
-}
-
-/* ================= LISTAGEM ================= */
-
-.list-card {
-    margin-top: 22px;
-}
-
-.list-header {
-    margin-bottom: 18px;
-}
-
-.list-header h2 {
-    font-size: 20px;
-    margin-bottom: 5px;
-}
-
-.list-header p {
-    color: #7b8794;
-}
-
-/* FILTROS */
-
-.filters {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr auto;
-    gap: 10px;
-    margin-bottom: 18px;
-}
-
-.filters input,
-.filters select {
-    height: 44px;
-    border: 1px solid #d9e0e7;
-    border-radius: 8px;
-    padding: 0 13px;
-    font-family: inherit;
-    font-size: 14px;
-    outline: none;
-}
-
-.filters input:focus,
-.filters select:focus {
-    border-color: #2864d7;
-}
-
-.clear-btn {
-    height: 44px;
-    border: none;
-    border-radius: 8px;
-    background: #edf1f5;
-    color: #374151;
-    font-weight: bold;
-    padding: 0 18px;
-    cursor: pointer;
-}
-
-.clear-btn:hover {
-    background: #e3e8ee;
-}
-
-/* TABELA */
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    min-width: 900px;
-    border-collapse: collapse;
-}
-
-thead {
-    background: #f1f5f9;
-}
-
-th {
-    text-align: left;
-    padding: 13px;
-    color: #344054;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-td {
-    padding: 14px 13px;
-    border-bottom: 1px solid #edf0f3;
-    font-size: 13px;
-}
-
-.empty {
-    text-align: center;
-    padding: 35px !important;
-    color: #8a96a3;
-}
-
-/* BADGES */
-
-.badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.badge-open {
-    background: #fff1d6;
-    color: #a15c00;
-}
-
-.badge-progress {
-    background: #e7efff;
-    color: #2864d7;
-}
-
-.badge-closed {
-    background: #e2f6e9;
-    color: #168044;
-}
-
-.badge-critical {
-    background: #ffe5e5;
-    color: #c82333;
-}
-
-.badge-normal {
-    background: #edf1f5;
-    color: #59636e;
-}
-
-/* BOTÕES DA TABELA */
-
-.action-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-view {
-    background: #edf1f5;
-    color: #344054;
-}
-
-.btn-delete {
-    background: #fff0f0;
-    color: #dc3545;
-}
-
-.btn-small {
-    border: none;
-    border-radius: 8px;
-    padding: 9px 13px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-small:hover {
-    opacity: .85;
-}
-
-/* ================= MODAL ================= */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.4);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal.open {
-    display: flex;
-}
-
-.modal-box {
-    background: white;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 14px;
-    padding: 24px;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-header h3 {
-    font-size: 20px;
-}
-
-.modal-close {
-    border: none;
-    background: transparent;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.detail {
-    margin-bottom: 14px;
-}
-
-.detail strong {
-    display: block;
-    color: #667085;
-    font-size: 12px;
-    margin-bottom: 4px;
-}
-
-.detail span {
-    font-size: 15px;
-}
-
-/* ================= CELULAR ================= */
-
-@media (max-width: 800px) {
-
-    .sidebar {
-        transform: translateX(-100%);
-        width: 270px;
-        box-shadow: 5px 0 20px rgba(0,0,0,.12);
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .close-button {
-        display: block;
-    }
-
-    .menu-button {
-        display: block;
-    }
-
-    .main {
-        margin-left: 0;
-    }
-
-    .header {
-        padding: 12px 18px 12px 68px;
-    }
-
-    .header h1 {
-        font-size: 22px;
-    }
-
-    .user {
-        display: none;
-    }
-
-    .content {
-        padding: 16px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .field.full {
-        grid-column: auto;
-    }
-
-    .filters {
-        grid-template-columns: 1fr;
-    }
-
-    .filters input,
-    .filters select,
-    .clear-btn {
-        width: 100%;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas Gestão - Não Conformidades</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #263238;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+            z-index: 1000;
+            overflow-y: auto;
+            transition: transform .3s ease;
+        }
+
+        .logo {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+            border-bottom: 1px solid #eef0f3;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: #2864d7;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            color: #2864d7;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu-title {
+            padding: 28px 20px 12px;
+            color: #7b8794;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .menu a {
+            display: block;
+            margin: 3px 12px;
+            padding: 13px 14px;
+            border-radius: 9px;
+            color: #59636e;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .menu a:hover {
+            background: #eef4ff;
+            color: #2864d7;
+        }
+
+        .menu a.active {
+            background: #2864d7;
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-separator {
+            height: 1px;
+            background: #e5e7eb;
+            margin: 20px;
+        }
+
+        .logout {
+            color: #dc3545 !important;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: #fff1f1 !important;
+            color: #c82333 !important;
+        }
+
+        .close-button {
+            display: none;
+            position: absolute;
+            top: 18px;
+            right: 12px;
+            width: 35px;
+            height: 35px;
+            border: 0;
+            background: transparent;
+            font-size: 25px;
+            color: #59636e;
+            cursor: pointer;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        .menu-button {
+            display: none;
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            width: 42px;
+            height: 42px;
+            border: 1px solid #dfe3e8;
+            background: white;
+            border-radius: 9px;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.35);
+            z-index: 900;
+        }
+
+        .overlay.open {
+            display: block;
+        }
+
+        /* =========================
+           PRINCIPAL
+        ========================= */
+
+        .main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        .header {
+            height: 76px;
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #7c8792;
+            font-size: 14px;
+        }
+
+        .user {
+            text-align: right;
+        }
+
+        .user strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .user span {
+            color: #7c8792;
+            font-size: 13px;
+        }
+
+        .content {
+            padding: 28px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .panel {
+            background: white;
+            border: 1px solid #e1e6ec;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(30,50,70,.05);
+        }
+
+        .page-title {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .page-description {
+            color: #7b8794;
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 9px;
+            padding: 11px 17px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #2864d7;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f55bd;
+        }
+
+        .btn-secondary {
+            background: #edf1f5;
+            color: #263238;
+        }
+
+        .btn-danger {
+            background: #fff0f0;
+            color: #dc3545;
+        }
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        .filters {
+            display: grid;
+            grid-template-columns: 1fr 220px 150px;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #d9e0e7;
+            border-radius: 8px;
+            background: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            color: #263238;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2864d7;
+            box-shadow: 0 0 0 3px rgba(40,100,215,.08);
+        }
+
+        /* =========================
+           TABELA
+        ========================= */
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background: #f3f6fa;
+            color: #52606d;
+            font-size: 13px;
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #e1e6ec;
+        }
+
+        td {
+            padding: 14px 13px;
+            border-bottom: 1px solid #edf0f3;
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background: #fafcff;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8a96a3;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-aberta {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-andamento {
+            background: #e8f0ff;
+            color: #2864d7;
+        }
+
+        .badge-concluida {
+            background: #e3f7eb;
+            color: #18864b;
+        }
+
+        .badge-cancelada {
+            background: #ffe9e9;
+            color: #c82333;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,.45);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,.18);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 21px;
+        }
+
+        .modal-close {
+            border: 0;
+            background: transparent;
+            font-size: 26px;
+            cursor: pointer;
+            color: #66727e;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #52606d;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media(max-width: 800px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                width: 270px;
+                box-shadow: 5px 0 20px rgba(0,0,0,.12);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .close-button {
+                display: block;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .header {
+                padding: 12px 18px 12px 68px;
+            }
+
+            .user {
+                display: none;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
+<!-- =========================
+     MENU
+========================= -->
 
 <aside class="sidebar" id="sidebar">
 
@@ -629,399 +567,420 @@ td {
     ☰
 </button>
 
+
+<!-- =========================
+     PRINCIPAL
+========================= -->
+
 <main class="main">
 
-<header class="header">
+    <header class="header">
 
-    <div>
-        <h1>Não Conformidades</h1>
-        <p>Registre e acompanhe as não conformidades identificadas.</p>
-    </div>
+        <div>
+            <h1>Não Conformidades</h1>
+            <p>Registre e acompanhe as não conformidades identificadas.</p>
+        </div>
 
-    <div class="user">
-        <strong>sarahhellen2216</strong>
-        <span>Administrador</span>
-    </div>
+        <div class="user">
+            <strong>sarahhellen2216</strong>
+            <span>Administrador</span>
+        </div>
 
-</header>
+    </header>
 
-<div class="content">
 
-<!-- ================= CADASTRO ================= -->
+    <div class="content">
 
-<section class="page-card">
+        <section class="panel">
 
-    <div class="page-title">
-        <h2>Nova não conformidade</h2>
-        <p>Preencha os dados para registrar uma nova ocorrência.</p>
-    </div>
-
-    <form id="ncForm">
-
-        <div class="form-grid">
-
-            <div class="field">
-                <label for="codigo">Código</label>
-                <input id="codigo" required placeholder="Ex.: NC001">
+            <div class="top-actions">
+                <button
+                    class="btn btn-primary"
+                    id="btnNovaNC">
+                    + Nova não conformidade
+                </button>
             </div>
 
-            <div class="field">
-                <label for="tipo">Tipo</label>
-                <select id="tipo" required>
-                    <option value="">Selecione</option>
-                    <option>Interna</option>
-                    <option>Externa</option>
-                    <option>Cliente</option>
-                    <option>Fornecedor</option>
-                    <option>Auditoria</option>
-                    <option>Inspeção</option>
-                </select>
-            </div>
+            <h2 class="page-title">
+                Não conformidades cadastradas
+            </h2>
 
-            <div class="field">
-                <label for="processo">Processo / Área</label>
-                <input id="processo" required placeholder="Ex.: Produção">
-            </div>
+            <p class="page-description">
+                Consulte e acompanhe as não conformidades registradas.
+            </p>
 
-            <div class="field">
-                <label for="responsavel">Responsável</label>
-                <input id="responsavel" required placeholder="Nome do responsável">
-            </div>
 
-            <div class="field">
-                <label for="data">Data</label>
-                <input type="date" id="data" required>
-            </div>
+            <!-- FILTROS -->
 
-            <div class="field">
-                <label for="gravidade">Classificação</label>
-                <select id="gravidade" required>
-                    <option value="">Selecione</option>
-                    <option>Baixa</option>
-                    <option>Média</option>
-                    <option>Alta</option>
-                    <option>Crítica</option>
-                </select>
-            </div>
+            <div class="filters">
 
-            <div class="field">
-                <label for="status">Status</label>
-                <select id="status" required>
+                <input
+                    type="text"
+                    id="campoBusca"
+                    placeholder="Pesquisar por código, descrição ou responsável...">
+
+                <select id="filtroStatus">
+                    <option value="">Todos os status</option>
                     <option value="Aberta">Aberta</option>
                     <option value="Em andamento">Em andamento</option>
                     <option value="Concluída">Concluída</option>
+                    <option value="Cancelada">Cancelada</option>
                 </select>
+
+                <button
+                    class="btn btn-secondary"
+                    id="btnLimpar">
+                    Limpar
+                </button>
+
             </div>
 
-            <div class="field full">
-                <label for="descricao">Descrição da não conformidade</label>
-                <textarea id="descricao" required placeholder="Descreva o ocorrido..."></textarea>
+
+            <!-- TABELA -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Processo / Área</th>
+                            <th>Responsável</th>
+                            <th>Data</th>
+                            <th>Prioridade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelaNC">
+                    </tbody>
+
+                </table>
+
             </div>
 
-        </div>
-
-        <div class="form-actions">
-            <button type="reset" class="btn btn-secondary">
-                Limpar
-            </button>
-
-            <button type="submit" class="btn btn-primary">
-                Cadastrar não conformidade
-            </button>
-        </div>
-
-    </form>
-
-</section>
-
-<!-- ================= LISTAGEM ================= -->
-
-<section class="page-card list-card">
-
-    <div class="list-header">
-        <h2>Não conformidades cadastradas</h2>
-        <p>Consulte e acompanhe as não conformidades registradas.</p>
-    </div>
-
-    <div class="filters">
-
-        <input
-            type="search"
-            id="search"
-            placeholder="Pesquisar por código, processo ou responsável..."
-        >
-
-        <select id="filterStatus">
-            <option value="">Todos os status</option>
-            <option>Aberta</option>
-            <option>Em andamento</option>
-            <option>Concluída</option>
-        </select>
-
-        <select id="filterClassificacao">
-            <option value="">Todas as classificações</option>
-            <option>Baixa</option>
-            <option>Média</option>
-            <option>Alta</option>
-            <option>Crítica</option>
-        </select>
-
-        <button class="clear-btn" id="clearFilters">
-            Limpar
-        </button>
+        </section>
 
     </div>
-
-    <div class="table-wrapper">
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Tipo</th>
-                    <th>Processo / Área</th>
-                    <th>Responsável</th>
-                    <th>Data</th>
-                    <th>Classificação</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody id="ncTableBody"></tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
-</div>
 
 </main>
 
-<!-- ================= MODAL ================= -->
 
-<div class="modal" id="modal">
+<!-- =========================
+     MODAL
+========================= -->
 
-    <div class="modal-box">
+<div class="modal" id="modalNC">
+
+    <div class="modal-content">
 
         <div class="modal-header">
 
-            <h3>Detalhes da não conformidade</h3>
+            <h2>Nova não conformidade</h2>
 
-            <button class="modal-close" id="modalClose">
+            <button
+                class="modal-close"
+                id="fecharModal">
                 ×
             </button>
 
         </div>
 
-        <div id="modalContent"></div>
+
+        <form id="formNC">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="codigo">
+                        Código
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigo"
+                        placeholder="Ex.: NC-001"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="data">
+                        Data
+                    </label>
+
+                    <input
+                        type="date"
+                        id="data"
+                        required>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="descricao">
+                        Descrição da não conformidade
+                    </label>
+
+                    <textarea
+                        id="descricao"
+                        placeholder="Descreva o problema identificado..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="processo">
+                        Processo / Área
+                    </label>
+
+                    <input
+                        type="text"
+                        id="processo"
+                        placeholder="Ex.: Produção"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="responsavel">
+                        Responsável
+                    </label>
+
+                    <input
+                        type="text"
+                        id="responsavel"
+                        placeholder="Nome do responsável"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="prioridade">
+                        Prioridade
+                    </label>
+
+                    <select id="prioridade" required>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Baixa">
+                            Baixa
+                        </option>
+
+                        <option value="Média">
+                            Média
+                        </option>
+
+                        <option value="Alta">
+                            Alta
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select id="status" required>
+
+                        <option value="Aberta">
+                            Aberta
+                        </option>
+
+                        <option value="Em andamento">
+                            Em andamento
+                        </option>
+
+                        <option value="Concluída">
+                            Concluída
+                        </option>
+
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelarCadastro">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Salvar cadastro
+                </button>
+
+            </div>
+
+        </form>
 
     </div>
 
 </div>
 
+
 <script>
 
-/* ================= MENU ================= */
-
-const menuButton = document.getElementById("menuButton");
-const closeMenu = document.getElementById("closeMenu");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
-
-function openMenu() {
-    sidebar.classList.add("open");
-    overlay.classList.add("open");
-}
-
-function closeMobileMenu() {
-    sidebar.classList.remove("open");
-    overlay.classList.remove("open");
-}
-
-menuButton.addEventListener("click", openMenu);
-closeMenu.addEventListener("click", closeMobileMenu);
-overlay.addEventListener("click", closeMobileMenu);
-
-document.querySelectorAll(".menu a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (window.innerWidth <= 800) {
-            closeMobileMenu();
-        }
-    });
-});
-
-/* ================= DADOS ================= */
+/* =========================================
+   CHAVE EXCLUSIVA DA PÁGINA
+========================================= */
 
 const STORAGE_KEY = "atlas_nao_conformidades";
 
-let registros = JSON.parse(
-    localStorage.getItem(STORAGE_KEY) || "[]"
-);
 
-/* ================= ELEMENTOS ================= */
+/* =========================================
+   ELEMENTOS
+========================================= */
 
-const form = document.getElementById("ncForm");
-const tableBody = document.getElementById("ncTableBody");
+const modal = document.getElementById("modalNC");
+const form = document.getElementById("formNC");
+const tabela = document.getElementById("tabelaNC");
 
-const search = document.getElementById("search");
-const filterStatus = document.getElementById("filterStatus");
-const filterClassificacao = document.getElementById("filterClassificacao");
-const clearFilters = document.getElementById("clearFilters");
+const btnNova = document.getElementById("btnNovaNC");
+const fecharModal = document.getElementById("fecharModal");
+const cancelarCadastro = document.getElementById("cancelarCadastro");
 
-/* ================= FORMATAÇÃO ================= */
+const campoBusca = document.getElementById("campoBusca");
+const filtroStatus = document.getElementById("filtroStatus");
+const btnLimpar = document.getElementById("btnLimpar");
 
-function formatarData(data) {
 
-    if (!data) return "-";
+/* =========================================
+   PEGAR REGISTROS SALVOS
+========================================= */
 
-    const partes = data.split("-");
+function obterNCs() {
 
-    if (partes.length !== 3) return data;
+    try {
 
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
-}
+        const dados =
+            localStorage.getItem(STORAGE_KEY);
 
-function classeStatus(status) {
+        if (!dados) {
+            return [];
+        }
 
-    if (status === "Concluída") {
-        return "badge badge-closed";
-    }
+        const registros = JSON.parse(dados);
 
-    if (status === "Em andamento") {
-        return "badge badge-progress";
-    }
+        return Array.isArray(registros)
+            ? registros
+            : [];
 
-    return "badge badge-open";
-}
+    } catch (erro) {
 
-function classeGravidade(gravidade) {
-
-    if (gravidade === "Crítica" || gravidade === "Alta") {
-        return "badge badge-critical";
-    }
-
-    return "badge badge-normal";
-}
-
-/* ================= RENDER ================= */
-
-function renderizar() {
-
-    const termo = search.value.toLowerCase().trim();
-    const status = filterStatus.value;
-    const classificacao = filterClassificacao.value;
-
-    const filtrados = registros.filter(item => {
-
-        const texto =
-            `${item.codigo} ${item.tipo} ${item.processo} ${item.responsavel}`
-            .toLowerCase();
-
-        const correspondeTexto =
-            !termo || texto.includes(termo);
-
-        const correspondeStatus =
-            !status || item.status === status;
-
-        const correspondeClassificacao =
-            !classificacao || item.gravidade === classificacao;
-
-        return (
-            correspondeTexto &&
-            correspondeStatus &&
-            correspondeClassificacao
+        console.error(
+            "Erro ao ler não conformidades:",
+            erro
         );
 
-    });
-
-    tableBody.innerHTML = "";
-
-    if (filtrados.length === 0) {
-
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="8" class="empty">
-                    Nenhuma não conformidade cadastrada.
-                </td>
-            </tr>
-        `;
-
-        return;
+        return [];
     }
-
-    filtrados.forEach(item => {
-
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = `
-
-            <td><strong>${escapeHtml(item.codigo)}</strong></td>
-
-            <td>${escapeHtml(item.tipo)}</td>
-
-            <td>${escapeHtml(item.processo)}</td>
-
-            <td>${escapeHtml(item.responsavel)}</td>
-
-            <td>${formatarData(item.data)}</td>
-
-            <td>
-                <span class="${classeGravidade(item.gravidade)}">
-                    ${escapeHtml(item.gravidade)}
-                </span>
-            </td>
-
-            <td>
-                <span class="${classeStatus(item.status)}">
-                    ${escapeHtml(item.status)}
-                </span>
-            </td>
-
-            <td>
-
-                <div class="action-buttons">
-
-                    <button
-                        class="btn-small btn-view"
-                        onclick="verRegistro('${item.id}')">
-                        Ver
-                    </button>
-
-                    <button
-                        class="btn-small btn-delete"
-                        onclick="excluirRegistro('${item.id}')">
-                        Excluir
-                    </button>
-
-                </div>
-
-            </td>
-        `;
-
-        tableBody.appendChild(tr);
-
-    });
 }
 
-/* ================= CADASTRAR ================= */
+
+/* =========================================
+   SALVAR REGISTROS
+========================================= */
+
+function salvarNCs(registros) {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(registros)
+    );
+}
+
+
+/* =========================================
+   ABRIR MODAL
+========================================= */
+
+btnNova.addEventListener("click", function () {
+
+    modal.classList.add("open");
+
+    document.getElementById("data").value =
+        new Date().toISOString().split("T")[0];
+
+});
+
+
+/* =========================================
+   FECHAR MODAL
+========================================= */
+
+function fecharCadastro() {
+
+    modal.classList.remove("open");
+
+    form.reset();
+
+}
+
+
+fecharModal.addEventListener(
+    "click",
+    fecharCadastro
+);
+
+cancelarCadastro.addEventListener(
+    "click",
+    fecharCadastro
+);
+
+
+/* =========================================
+   CADASTRAR
+========================================= */
 
 form.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    const registro = {
 
-        id: Date.now().toString(),
+    const novaNC = {
+
+        id: Date.now(),
 
         codigo:
             document.getElementById("codigo").value.trim(),
 
-        tipo:
-            document.getElementById("tipo").value,
+        descricao:
+            document.getElementById("descricao").value.trim(),
 
         processo:
             document.getElementById("processo").value.trim(),
@@ -1032,161 +991,427 @@ form.addEventListener("submit", function(event) {
         data:
             document.getElementById("data").value,
 
-        gravidade:
-            document.getElementById("gravidade").value,
+        prioridade:
+            document.getElementById("prioridade").value,
 
         status:
             document.getElementById("status").value,
 
-        descricao:
-            document.getElementById("descricao").value.trim()
+        criadoEm:
+            new Date().toISOString()
 
     };
 
-    registros.unshift(registro);
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(registros)
+    /* PEGA OS EXISTENTES */
+
+    const registros = obterNCs();
+
+
+    /* ADICIONA O NOVO */
+
+    registros.push(novaNC);
+
+
+    /* SALVA */
+
+    salvarNCs(registros);
+
+
+    /* ATUALIZA A TABELA IMEDIATAMENTE */
+
+    renderizarNCs();
+
+
+    /* FECHA */
+
+    fecharCadastro();
+
+
+    alert(
+        "Não conformidade cadastrada com sucesso!"
     );
-
-    form.reset();
-
-    renderizar();
-
-    alert("Não conformidade cadastrada com sucesso!");
 
 });
 
-/* ================= EXCLUIR ================= */
 
-function excluirRegistro(id) {
+/* =========================================
+   EXCLUIR
+========================================= */
 
-    const registro = registros.find(item => item.id === id);
-
-    if (!registro) return;
+function excluirNC(id) {
 
     const confirmar = confirm(
-        `Deseja excluir a não conformidade ${registro.codigo}?`
+        "Tem certeza que deseja excluir esta não conformidade?"
     );
 
-    if (!confirmar) return;
+    if (!confirmar) {
+        return;
+    }
 
-    registros = registros.filter(
-        item => item.id !== id
-    );
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(registros)
-    );
+    let registros = obterNCs();
 
-    renderizar();
-}
 
-/* ================= VER ================= */
+    registros = registros.filter(function(item) {
 
-function verRegistro(id) {
+        return String(item.id) !== String(id);
 
-    const item = registros.find(
-        registro => registro.id === id
-    );
-
-    if (!item) return;
-
-    document.getElementById("modalContent").innerHTML = `
-
-        <div class="detail">
-            <strong>Código</strong>
-            <span>${escapeHtml(item.codigo)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Tipo</strong>
-            <span>${escapeHtml(item.tipo)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Processo / Área</strong>
-            <span>${escapeHtml(item.processo)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Responsável</strong>
-            <span>${escapeHtml(item.responsavel)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Data</strong>
-            <span>${formatarData(item.data)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Classificação</strong>
-            <span>${escapeHtml(item.gravidade)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Status</strong>
-            <span>${escapeHtml(item.status)}</span>
-        </div>
-
-        <div class="detail">
-            <strong>Descrição</strong>
-            <span>${escapeHtml(item.descricao)}</span>
-        </div>
-    `;
-
-    document.getElementById("modal").classList.add("open");
-}
-
-/* ================= MODAL ================= */
-
-document.getElementById("modalClose")
-    .addEventListener("click", () => {
-        document.getElementById("modal").classList.remove("open");
     });
 
-document.getElementById("modal")
-    .addEventListener("click", event => {
 
-        if (event.target.id === "modal") {
-            document.getElementById("modal").classList.remove("open");
+    salvarNCs(registros);
+
+
+    renderizarNCs();
+
+}
+
+
+/* =========================================
+   VER DETALHES
+========================================= */
+
+function visualizarNC(id) {
+
+    const registros = obterNCs();
+
+    const nc = registros.find(function(item) {
+
+        return String(item.id) === String(id);
+
+    });
+
+
+    if (!nc) {
+        return;
+    }
+
+
+    alert(
+        "Código: " + nc.codigo +
+        "\n\n" +
+
+        "Descrição: " + nc.descricao +
+        "\n\n" +
+
+        "Processo / Área: " + nc.processo +
+        "\n\n" +
+
+        "Responsável: " + nc.responsavel +
+        "\n\n" +
+
+        "Data: " + formatarData(nc.data) +
+        "\n\n" +
+
+        "Prioridade: " + nc.prioridade +
+        "\n\n" +
+
+        "Status: " + nc.status
+    );
+
+}
+
+
+/* =========================================
+   FORMATA DATA
+========================================= */
+
+function formatarData(data) {
+
+    if (!data) {
+        return "-";
+    }
+
+    const partes = data.split("-");
+
+    if (partes.length !== 3) {
+        return data;
+    }
+
+    return partes[2] + "/" +
+           partes[1] + "/" +
+           partes[0];
+
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+function classeStatus(status) {
+
+    if (status === "Aberta") {
+        return "badge badge-aberta";
+    }
+
+    if (status === "Em andamento") {
+        return "badge badge-andamento";
+    }
+
+    if (status === "Concluída") {
+        return "badge badge-concluida";
+    }
+
+    if (status === "Cancelada") {
+        return "badge badge-cancelada";
+    }
+
+    return "badge";
+}
+
+
+/* =========================================
+   RENDERIZAR TABELA
+========================================= */
+
+function renderizarNCs() {
+
+    const registros = obterNCs();
+
+    const busca =
+        campoBusca.value
+            .trim()
+            .toLowerCase();
+
+    const statusSelecionado =
+        filtroStatus.value;
+
+
+    const filtrados = registros.filter(function(nc) {
+
+        const texto =
+            (
+                nc.codigo + " " +
+                nc.descricao + " " +
+                nc.processo + " " +
+                nc.responsavel
+            ).toLowerCase();
+
+
+        const correspondeBusca =
+            !busca ||
+            texto.includes(busca);
+
+
+        const correspondeStatus =
+            !statusSelecionado ||
+            nc.status === statusSelecionado;
+
+
+        return
+            correspondeBusca &&
+            correspondeStatus;
+
+    });
+
+
+    tabela.innerHTML = "";
+
+
+    if (filtrados.length === 0) {
+
+        tabela.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    Nenhuma não conformidade cadastrada.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    filtrados.forEach(function(nc) {
+
+        const linha =
+            document.createElement("tr");
+
+
+        linha.innerHTML = `
+
+            <td>
+                <strong>
+                    ${escaparHTML(nc.codigo)}
+                </strong>
+            </td>
+
+            <td>
+                ${escaparHTML(nc.descricao)}
+            </td>
+
+            <td>
+                ${escaparHTML(nc.processo)}
+            </td>
+
+            <td>
+                ${escaparHTML(nc.responsavel)}
+            </td>
+
+            <td>
+                ${formatarData(nc.data)}
+            </td>
+
+            <td>
+                ${escaparHTML(nc.prioridade)}
+            </td>
+
+            <td>
+                <span class="${classeStatus(nc.status)}">
+                    ${escaparHTML(nc.status)}
+                </span>
+            </td>
+
+            <td>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="visualizarNC('${nc.id}')">
+                    Ver
+                </button>
+
+                <button
+                    class="btn btn-danger"
+                    onclick="excluirNC('${nc.id}')">
+                    Excluir
+                </button>
+
+            </td>
+
+        `;
+
+
+        tabela.appendChild(linha);
+
+    });
+
+}
+
+
+/* =========================================
+   SEGURANÇA PARA TEXTO
+========================================= */
+
+function escaparHTML(texto) {
+
+    return String(texto ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   FILTROS
+========================================= */
+
+campoBusca.addEventListener(
+    "input",
+    renderizarNCs
+);
+
+filtroStatus.addEventListener(
+    "change",
+    renderizarNCs
+);
+
+
+btnLimpar.addEventListener(
+    "click",
+    function() {
+
+        campoBusca.value = "";
+
+        filtroStatus.value = "";
+
+        renderizarNCs();
+
+    }
+);
+
+
+/* =========================================
+   MENU MOBILE
+========================================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const closeMenu =
+    document.getElementById("closeMenu");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function abrirMenu() {
+
+    sidebar.classList.add("open");
+
+    overlay.classList.add("open");
+
+}
+
+
+function fecharMenu() {
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("open");
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    abrirMenu
+);
+
+closeMenu.addEventListener(
+    "click",
+    fecharMenu
+);
+
+overlay.addEventListener(
+    "click",
+    fecharMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            fecharMenu();
+
         }
 
-    });
+    }
+);
 
-/* ================= FILTROS ================= */
 
-search.addEventListener("input", renderizar);
-filterStatus.addEventListener("change", renderizar);
-filterClassificacao.addEventListener("change", renderizar);
+/* =========================================
+   CARREGAR AO ABRIR A PÁGINA
+========================================= */
 
-clearFilters.addEventListener("click", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-    search.value = "";
-    filterStatus.value = "";
-    filterClassificacao.value = "";
+        renderizarNCs();
 
-    renderizar();
-
-});
-
-/* ================= SEGURANÇA ================= */
-
-function escapeHtml(valor) {
-
-    return String(valor ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
-
-/* ================= INICIALIZAÇÃO ================= */
-
-renderizar();
+    }
+);
 
 </script>
 
