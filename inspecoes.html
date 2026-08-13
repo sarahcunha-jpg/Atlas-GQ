@@ -3,572 +3,575 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>
-Inspeções - Atlas Gestão
-</title>
+    <title>Atlas Gestão - Inspeções</title>
 
-<link
-rel="stylesheet"
-href="/css/style.css"
->
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css"
+    >
 
 </head>
 
-
 <body>
 
+    <!-- MENU LATERAL -->
+
+    <aside class="sidebar" id="sidebar">
 
-<div id="sistema">
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                ▲
+            </div>
 
+            <div class="logo-name">
+                Atlas Gestão
+            </div>
 
-<aside id="menu">
+        </div>
 
-<div class="logo">
+        <button
+            id="closeMenu"
+            class="close-menu"
+            type="button"
+        >
+            ×
+        </button>
 
-<span class="logo-symbol">
-▲
-</span>
+        <div class="sidebar-title">
+            GESTÃO DA QUALIDADE
+        </div>
 
-<span>
-Atlas Gestão
-</span>
+        <nav class="sidebar-nav">
 
-</div>
+            <a href="dashboard.html">
+                <span>▣</span>
+                Dashboard
+            </a>
 
+            <a
+                href="inspecoes.html"
+                class="active"
+            >
+                <span>✓</span>
+                Inspeções
+            </a>
 
-<div class="menu-titulo">
-GESTÃO DA QUALIDADE
-</div>
+            <a href="nao-conformidades.html">
+                <span>!</span>
+                Não Conformidades
+            </a>
 
+            <a href="acoes-corretivas.html">
+                <span>↻</span>
+                Ações Corretivas
+            </a>
 
-<nav>
+            <a href="auditorias.html">
+                <span>A</span>
+                Auditorias
+            </a>
 
-<a href="/dashboard.html">
-Dashboard
-</a>
+            <a href="documentos.html">
+                <span>D</span>
+                Documentos
+            </a>
 
-<a
-href="/inspecoes.html"
-class="ativo"
->
-Inspeções
-</a>
+            <a href="indicadores.html">
+                <span>%</span>
+                Indicadores
+            </a>
 
-<a href="/nao-conformidades.html">
-Não Conformidades
-</a>
+            <a href="relatorios.html">
+                <span>≡</span>
+                Relatórios
+            </a>
 
-<a href="/acoes-corretivas.html">
-Ações Corretivas
-</a>
+            <a href="usuarios.html">
+                <span>U</span>
+                Usuários
+            </a>
 
-<a href="/auditorias.html">
-Auditorias
-</a>
+            <a href="configuracoes.html">
+                <span>⚙</span>
+                Configurações
+            </a>
 
-<a href="/documentos.html">
-Documentos
-</a>
+        </nav>
 
-<a href="/indicadores.html">
-Indicadores
-</a>
+        <div class="sidebar-bottom">
 
-<a href="/relatorios.html">
-Relatórios
-</a>
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button"
+            >
+                <span>↪</span>
+                Sair
+            </button>
 
-<a href="/usuarios.html">
-Usuários
-</a>
+        </div>
 
-<a href="/configuracoes.html">
-Configurações
-</a>
+    </aside>
 
-</nav>
 
+    <!-- FUNDO MOBILE -->
 
-<button
-id="logout"
-class="btn-menu-sair"
->
-Sair
-</button>
+    <div
+        id="menuOverlay"
+        class="menu-overlay"
+    ></div>
 
-</aside>
 
+    <!-- CONTEÚDO -->
 
+    <main class="main">
 
-<main>
+        <header class="topbar">
 
+            <div class="topbar-left">
 
-<header class="topbar">
+                <button
+                    id="openMenu"
+                    class="open-menu"
+                    type="button"
+                >
+                    ☰
+                </button>
 
-<button
-id="menuMobile"
-class="menu-mobile"
->
-☰
-</button>
+                <div>
 
+                    <h1>
+                        Inspeções
+                    </h1>
 
-<div>
+                    <p>
+                        Controle e acompanhamento das inspeções.
+                    </p>
 
-<h2>
-Inspeções
-</h2>
+                </div>
 
-<p>
-Controle de inspeções da qualidade
-</p>
+            </div>
 
-</div>
 
+            <div class="user-area">
 
-<div class="usuario-area">
+                <strong id="usuarioNome">
+                    Usuário
+                </strong>
 
-<div
-id="usuarioNome"
-class="usuario-nome"
->
-Usuário
-</div>
+                <span id="usuarioPerfil">
+                    Administrador
+                </span>
 
-<div
-id="usuarioPerfil"
-class="usuario-perfil"
->
-Perfil
-</div>
+            </div>
 
-</div>
+        </header>
 
-</header>
 
+        <section class="content">
 
 
-<section id="conteudo">
+            <!-- CABEÇALHO DA PÁGINA -->
 
+            <div class="page-header">
 
-<div class="card">
+                <div>
 
-<div class="card-header">
+                    <h2>
+                        Inspeções
+                    </h2>
 
-<div>
+                    <p>
+                        Registre e acompanhe as inspeções realizadas.
+                    </p>
 
-<h2>
-Nova inspeção
-</h2>
+                </div>
 
-<p>
-Registre uma inspeção de qualidade.
-</p>
+                <button
+                    id="novaInspecao"
+                    class="btn-primary"
+                    type="button"
+                >
+                    + Nova inspeção
+                </button>
 
-</div>
+            </div>
 
-</div>
 
+            <!-- FILTROS -->
 
-<form id="inspecaoForm">
+            <section class="panel">
 
+                <div class="panel-header">
 
-<div class="form-grid">
+                    <div>
 
+                        <h2>
+                            Filtros
+                        </h2>
 
-<div class="form-group">
+                        <p>
+                            Pesquise uma inspeção.
+                        </p>
 
-<label>
-Código *
-</label>
+                    </div>
 
-<input
-name="codigo"
-placeholder="INS-001"
-required
->
+                </div>
 
-</div>
 
+                <div class="filters">
 
-<div class="form-group">
+                    <div class="field">
 
-<label>
-Produto *
-</label>
+                        <label for="busca">
+                            Buscar
+                        </label>
 
-<input
-name="produto"
-required
->
+                        <input
+                            id="busca"
+                            type="text"
+                            placeholder="Digite para pesquisar..."
+                        >
 
-</div>
+                    </div>
 
 
-<div class="form-group">
+                    <div class="field">
 
-<label>
-Lote
-</label>
+                        <label for="status">
+                            Status
+                        </label>
 
-<input
-name="lote"
->
+                        <select id="status">
 
-</div>
+                            <option value="">
+                                Todos
+                            </option>
 
+                            <option value="Concluída">
+                                Concluída
+                            </option>
 
-<div class="form-group">
+                            <option value="Pendente">
+                                Pendente
+                            </option>
 
-<label>
-Responsável *
-</label>
+                            <option value="Em andamento">
+                                Em andamento
+                            </option>
 
-<input
-name="responsavel"
-required
->
+                        </select>
 
-</div>
+                    </div>
 
+                </div>
 
-<div class="form-group">
+            </section>
 
-<label>
-Data *
-</label>
 
-<input
-type="date"
-name="data"
-required
->
+            <!-- TABELA -->
 
-</div>
+            <section class="panel">
 
+                <div class="panel-header">
 
-<div class="form-group">
+                    <div>
 
-<label>
-Local
-</label>
+                        <h2>
+                            Lista de inspeções
+                        </h2>
 
-<input
-name="local"
->
+                        <p>
+                            Inspeções cadastradas no sistema.
+                        </p>
 
-</div>
+                    </div>
 
+                </div>
 
-<div class="form-group">
 
-<label>
-Tipo de inspeção
-</label>
+                <div class="table-container">
 
-<select name="tipo">
+                    <table class="data-table">
 
-<option>
-Recebimento
-</option>
+                        <thead>
 
-<option>
-Processo
-</option>
+                            <tr>
 
-<option>
-Produto acabado
-</option>
+                                <th>
+                                    Nº
+                                </th>
 
-<option>
-Expedição
-</option>
+                                <th>
+                                    Data
+                                </th>
 
-<option>
-Especial
-</option>
+                                <th>
+                                    Local
+                                </th>
 
-</select>
+                                <th>
+                                    Responsável
+                                </th>
 
-</div>
+                                <th>
+                                    Status
+                                </th>
 
+                                <th>
+                                    Ações
+                                </th>
 
-<div class="form-group">
+                            </tr>
 
-<label>
-Resultado *
-</label>
+                        </thead>
 
-<select
-name="resultado"
-id="resultado"
-required
->
+                        <tbody id="tabelaInspecoes">
 
-<option value="Conforme">
-Conforme
-</option>
+                            <tr>
 
-<option value="Não Conforme">
-Não Conforme
-</option>
+                                <td>
+                                    001
+                                </td>
 
-</select>
+                                <td>
+                                    13/08/2026
+                                </td>
 
-</div>
+                                <td>
+                                    Área de Produção
+                                </td>
 
+                                <td>
+                                    Administrador
+                                </td>
 
-<div
-class="form-group"
-id="gravidadeArea"
-style="display:none"
->
+                                <td>
+                                    <span class="badge success">
+                                        Concluída
+                                    </span>
+                                </td>
 
-<label>
-Gravidade
-</label>
+                                <td>
 
-<select name="gravidade">
+                                    <button
+                                        class="table-button"
+                                        type="button"
+                                    >
+                                        Ver
+                                    </button>
 
-<option>
-Baixa
-</option>
+                                </td>
 
-<option>
-Média
-</option>
+                            </tr>
 
-<option>
-Alta
-</option>
 
-<option>
-Crítica
-</option>
+                            <tr>
 
-</select>
+                                <td>
+                                    002
+                                </td>
 
-</div>
+                                <td>
+                                    13/08/2026
+                                </td>
 
+                                <td>
+                                    Almoxarifado
+                                </td>
 
-<div
-class="form-group"
-id="prazoArea"
-style="display:none"
->
+                                <td>
+                                    Administrador
+                                </td>
 
-<label>
-Prazo
-</label>
+                                <td>
+                                    <span class="badge warning">
+                                        Pendente
+                                    </span>
+                                </td>
 
-<input
-type="date"
-name="prazo"
->
+                                <td>
 
-</div>
+                                    <button
+                                        class="table-button"
+                                        type="button"
+                                    >
+                                        Ver
+                                    </button>
 
+                                </td>
 
-<div class="form-group campo-grande">
+                            </tr>
 
-<label>
-Descrição
-</label>
+                        </tbody>
 
-<textarea
-name="descricao"
-rows="4"
-></textarea>
+                    </table>
 
-</div>
+                </div>
 
+            </section>
 
-<div class="form-group campo-grande">
 
-<label>
-Observações
-</label>
+        </section>
 
-<textarea
-name="observacoes"
-rows="4"
-></textarea>
+    </main>
 
-</div>
 
+    <script>
 
-</div>
+        const openMenu =
+            document.getElementById("openMenu");
 
+        const closeMenu =
+            document.getElementById("closeMenu");
 
-<br>
+        const sidebar =
+            document.getElementById("sidebar");
 
+        const overlay =
+            document.getElementById("menuOverlay");
 
-<button
-type="submit"
-class="btn btn-primary"
->
-Cadastrar inspeção
-</button>
+        const logout =
+            document.getElementById("logoutButton");
 
 
-<button
-type="reset"
-class="btn btn-secondary"
->
-Limpar
-</button>
+        function abrirMenu() {
 
+            sidebar.classList.add("open");
 
-<div
-id="mensagemInspecao"
-class="mensagem"
-></div>
+            overlay.classList.add("open");
 
+        }
 
-</form>
 
-</div>
+        function fecharMenu() {
 
+            sidebar.classList.remove("open");
 
+            overlay.classList.remove("open");
 
-<div class="card">
+        }
 
-<div class="card-header">
 
-<div>
+        openMenu.addEventListener(
+            "click",
+            abrirMenu
+        );
 
-<h2>
-Inspeções cadastradas
-</h2>
 
-<p>
-Pesquise e acompanhe as inspeções realizadas.
-</p>
+        closeMenu.addEventListener(
+            "click",
+            fecharMenu
+        );
 
-</div>
 
-</div>
+        overlay.addEventListener(
+            "click",
+            fecharMenu
+        );
 
 
-<div class="filtros">
+        document
+            .querySelectorAll(".sidebar-nav a")
+            .forEach(function(link) {
 
+                link.addEventListener(
+                    "click",
+                    fecharMenu
+                );
 
-<input
-type="text"
-id="pesquisa"
-placeholder="Pesquisar por código, produto ou responsável..."
->
+            });
 
 
-<select id="filtroResultado">
+        document.addEventListener(
+            "keydown",
+            function(event) {
 
-<option value="">
-Todos os resultados
-</option>
+                if (event.key === "Escape") {
 
-<option value="Conforme">
-Conforme
-</option>
+                    fecharMenu();
 
-<option value="Não Conforme">
-Não Conforme
-</option>
+                }
 
-</select>
+            }
+        );
 
 
-<button
-class="btn btn-secondary"
-onclick="carregarInspecoes()"
->
-Atualizar
-</button>
+        logout.addEventListener(
+            "click",
+            function() {
 
+                localStorage.removeItem(
+                    "atlas_token"
+                );
 
-</div>
+                localStorage.removeItem(
+                    "atlas_usuario"
+                );
 
+                window.location.href =
+                    "index.html";
 
+            }
+        );
 
-<div class="tabela-container">
 
-<table class="tabela">
+        const usuarioSalvo =
+            localStorage.getItem(
+                "atlas_usuario"
+            );
 
 
-<thead>
+        if (usuarioSalvo) {
 
-<tr>
+            try {
 
-<th>
-Código
-</th>
+                const usuario =
+                    JSON.parse(usuarioSalvo);
 
-<th>
-Produto
-</th>
+                document.getElementById(
+                    "usuarioNome"
+                ).textContent =
+                    usuario.nome || "Usuário";
 
-<th>
-Lote
-</th>
+                document.getElementById(
+                    "usuarioPerfil"
+                ).textContent =
+                    usuario.perfil || "Administrador";
 
-<th>
-Responsável
-</th>
+            } catch (erro) {
 
-<th>
-Data
-</th>
+                console.log(
+                    "Usuário não encontrado."
+                );
 
-<th>
-Tipo
-</th>
+            }
 
-<th>
-Resultado
-</th>
+        }
 
-<th>
-Ações
-</th>
 
-</tr>
+        document
+            .getElementById("novaInspecao")
+            .addEventListener(
+                "click",
+                function() {
 
-</thead>
+                    alert(
+                        "Formulário de nova inspeção será aberto na próxima etapa."
+                    );
 
+                }
+            );
 
-<tbody
-id="listaInspecoes"
->
-</tbody>
-
-
-</table>
-
-</div>
-
-</div>
-
-
-</section>
-
-
-</main>
-
-
-</div>
-
-
-
-<script src="/js/app.js"></script>
-
-<script src="/js/inspecoes.js"></script>
-
+    </script>
 
 </body>
 
