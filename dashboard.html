@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas Gestão - Dashboard</title>
+
+    <style>
+        /* ================================
+           RESET
+        ================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #263238;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            font-family: inherit;
+        }
+
+        /* ================================
+           LAYOUT PRINCIPAL
+        ================================= */
+        .atlas-app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* ================================
+           BOTÃO MENU MOBILE
+        ================================= */
+        .menu-button {
+            display: none;
+            position: fixed;
+            top: 14px;
+            left: 14px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #dfe5ec;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #263238;
+            font-size: 23px;
+            cursor: pointer;
+            z-index: 1100;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        }
+
+        /* ================================
+           SIDEBAR
+        ================================= */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 258px;
+            background: #ffffff;
+            border-right: 1px solid #e4e9ef;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform .25s ease;
+        }
+
+        .sidebar-header {
+            height: 82px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #eef1f5;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #2864dc;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2864dc;
+        }
+
+        .sidebar-content {
+            padding: 25px 12px;
+            flex: 1;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #7a8794;
+            letter-spacing: 1px;
+            padding: 0 12px 12px;
+        }
+
+        .menu-link {
+            display: block;
+            text-decoration: none;
+            color: #56616d;
+            padding: 12px 14px;
+            margin-bottom: 4px;
+            border-radius: 9px;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        .menu-link:hover {
+            background: #f1f5fb;
+            color: #2864dc;
+        }
+
+        .menu-link.active {
+            background: #2864dc;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* BOTÃO SAIR */
+        .logout-button {
+            width: calc(100% - 24px);
+            margin: 12px;
+            padding: 12px;
+            border: 0;
+            border-radius: 9px;
+            background: #fff1f1;
+            color: #d93030;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .logout-button:hover {
+            background: #ffe1e1;
+        }
+
+        /* ================================
+           FUNDO ESCURO DO MENU MOBILE
+        ================================= */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 900;
+        }
+
+        /* ================================
+           CONTEÚDO
+        ================================= */
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            margin-left: 258px;
+        }
+
+        .topbar {
+            min-height: 82px;
+            background: #ffffff;
+            border-bottom: 1px solid #e4e9ef;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 28px;
+            color: #202b36;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            margin-top: 4px;
+            color: #7b8794;
+            font-size: 14px;
+        }
+
+        .user-info {
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .user-name {
+            font-weight: 700;
+            color: #263238;
+        }
+
+        .user-role {
+            font-size: 13px;
+            color: #7b8794;
+        }
+
+        .content {
+            padding: 28px 30px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ================================
+           CARDS
+        ================================= */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5eaf0;
+            border-radius: 14px;
+            padding: 22px;
+            min-height: 135px;
+            box-shadow: 0 4px 14px rgba(32,43,54,.05);
+        }
+
+        .card-label {
+            color: #7a8794;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .card-number {
+            color: #263238;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .card-icon {
+            float: right;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            background: #eef4ff;
+            color: #2864dc;
+        }
+
+        .danger .card-icon {
+            background: #fff0f0;
+            color: #e53935;
+        }
+
+        .success .card-icon {
+            background: #eefaf2;
+            color: #2eb872;
+        }
+
+        /* ================================
+           GRID INFERIOR
+        ================================= */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #e5eaf0;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 4px 14px rgba(32,43,54,.05);
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: #263238;
+        }
+
+        .panel-description {
+            color: #7a8794;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* ================================
+           AÇÕES RÁPIDAS
+        ================================= */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .quick-action {
+            display: block;
+            text-decoration: none;
+            color: #263238;
+            background: #ffffff;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            padding: 15px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .quick-action:hover {
+            border-color: #2864dc;
+            color: #2864dc;
+            transform: translateY(-1px);
+        }
+
+        /* ================================
+           STATUS
+        ================================= */
+        .progress-area {
+            margin-top: 10px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #56616d;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #e4e8ed;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 75%;
+            height: 100%;
+            background: #2864dc;
+            border-radius: 20px;
+        }
+
+        .status-list {
+            margin-top: 18px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 9px;
+            border-bottom: 1px solid #eef1f5;
+            color: #56616d;
+        }
+
+        .status-row strong {
+            color: #263238;
+        }
+
+        /* ================================
+           ATIVIDADE
+        ================================= */
+        .empty-state {
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #9aa5b1;
+            font-size: 14px;
+        }
+
+        /* ================================
+           RESPONSIVO TABLET
+        ================================= */
+        @media (max-width: 1000px) {
+
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ================================
+           RESPONSIVO CELULAR
+        ================================= */
+        @media (max-width: 700px) {
+
+            .menu-button {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                width: 270px;
+                box-shadow: 5px 0 20px rgba(0,0,0,.12);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .topbar {
+                min-height: 100px;
+                padding: 65px 18px 16px;
+                display: block;
+            }
+
+            .page-title {
+                font-size: 27px;
+            }
+
+            .user-info {
+                text-align: left;
+                margin-top: 8px;
+            }
+
+            .content {
+                padding: 18px 12px 30px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .card {
+                min-height: 110px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="atlas-app">
+
+    <!-- BOTÃO DO MENU -->
+    <button
+        type="button"
+        class="menu-button"
+        id="menuButton"
+        aria-label="Abrir menu">
+        ☰
+    </button>
+
+    <!-- FUNDO PARA FECHAR O MENU -->
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay">
+    </div>
+
+    <!-- =========================
+         BARRA LATERAL
+    ========================== -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+            <div class="logo">▲</div>
+            <div class="logo-name">Atlas Gestão</div>
+        </div>
+
+        <div class="sidebar-content">
+
+            <div class="menu-title">
+                GESTÃO DA QUALIDADE
+            </div>
+
+            <a href="dashboard.html"
+               class="menu-link active">
+                Dashboard
+            </a>
+
+            <a href="inspecoes.html"
+               class="menu-link">
+                Inspeções
+            </a>
+
+            <a href="nao.conformidades.html"
+               class="menu-link">
+                Não Conformidades
+            </a>
+
+            <a href="acoes-corretivas.html"
+               class="menu-link">
+                Ações Corretivas
+            </a>
+
+            <a href="auditorias.html"
+               class="menu-link">
+                Auditorias
+            </a>
+
+            <a href="documentos.html"
+               class="menu-link">
+                Documentos
+            </a>
+
+            <a href="indicadores.html"
+               class="menu-link">
+                Indicadores
+            </a>
+
+        </div>
+
+        <!-- BOTÃO SAIR -->
+        <button
+            type="button"
+            class="logout-button"
+            id="logoutButton">
+            Sair
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         ÁREA PRINCIPAL
+    ========================== -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <h1 class="page-title">
+                    Dashboard
+                </h1>
+
+                <p class="page-subtitle">
+                    Visão geral da qualidade
+                </p>
+            </div>
+
+            <div class="user-info">
+                <div class="user-name">
+                    sarahellen2216
+                </div>
+
+                <div class="user-role">
+                    Administrador
+                </div>
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <!-- =========================
+                 CARDS
+            ========================== -->
+            <div class="cards">
+
+                <div class="card">
+                    <div class="card-icon">✓</div>
+
+                    <div class="card-label">
+                        Inspeções realizadas
+                    </div>
+
+                    <div class="card-number">
+                        12
+                    </div>
+                </div>
+
+
+                <div class="card danger">
+                    <div class="card-icon">!</div>
+
+                    <div class="card-label">
+                        Não conformidades
+                    </div>
+
+                    <div class="card-number">
+                        3
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-icon">↻</div>
+
+                    <div class="card-label">
+                        Ações abertas
+                    </div>
+
+                    <div class="card-number">
+                        4
+                    </div>
+                </div>
+
+
+                <div class="card success">
+                    <div class="card-icon">✓</div>
+
+                    <div class="card-label">
+                        Ações concluídas
+                    </div>
+
+                    <div class="card-number">
+                        8
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-icon">%</div>
+
+                    <div class="card-label">
+                        Taxa de conformidade
+                    </div>
+
+                    <div class="card-number">
+                        75%
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-icon">A</div>
+
+                    <div class="card-label">
+                        Auditorias realizadas
+                    </div>
+
+                    <div class="card-number">
+                        5
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-icon">D</div>
+
+                    <div class="card-label">
+                        Documentos ativos
+                    </div>
+
+                    <div class="card-number">
+                        8
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PAINÉIS
+            ========================== -->
+            <div class="dashboard-grid">
+
+                <!-- AÇÕES -->
+                <div class="panel">
+
+                    <h2>
+                        Ações rápidas
+                    </h2>
+
+                    <p class="panel-description">
+                        Acesse rapidamente os principais recursos.
+                    </p>
+
+                    <div class="quick-actions">
+
+                        <a href="inspecoes.html"
+                           class="quick-action">
+                            + Nova inspeção
+                        </a>
+
+                        <a href="auditorias.html"
+                           class="quick-action">
+                            + Nova auditoria
+                        </a>
+
+                        <a href="nao.conformidades.html"
+                           class="quick-action">
+                            ! Nova não conformidade
+                        </a>
+
+                        <a href="acoes-corretivas.html"
+                           class="quick-action">
+                            + Nova ação corretiva
+                        </a>
+
+                        <a href="documentos.html"
+                           class="quick-action">
+                            + Novo documento
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+                <div class="panel">
+
+                    <h2>
+                        Status da Qualidade
+                    </h2>
+
+                    <p class="panel-description">
+                        Resumo dos principais indicadores.
+                    </p>
+
+                    <div class="progress-area">
+
+                        <div class="progress-label">
+                            <span>Taxa de conformidade</span>
+                            <strong>75%</strong>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="status-list">
+
+                        <div class="status-row">
+                            <span>Inspeções</span>
+                            <strong>12</strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>Não conformidades</span>
+                            <strong>3</strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>Ações pendentes</span>
+                            <strong>4</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ATIVIDADE -->
+                <div class="panel">
+
+                    <h2>
+                        Atividade recente
+                    </h2>
+
+                    <p class="panel-description">
+                        Acompanhe os registros do sistema.
+                    </p>
+
+                    <div class="empty-state">
+                        Nenhuma atividade registrada.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+    /* =================================
+       MENU MOBILE
+    ================================= */
+
+    const menuButton = document.getElementById("menuButton");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+    function abrirMenu() {
+        sidebar.classList.add("open");
+        sidebarOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function fecharMenu() {
+        sidebar.classList.remove("open");
+        sidebarOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    menuButton.addEventListener("click", function () {
+
+        if (sidebar.classList.contains("open")) {
+            fecharMenu();
+        } else {
+            abrirMenu();
+        }
+
+    });
+
+    /* Clicar fora fecha */
+    sidebarOverlay.addEventListener("click", function () {
+        fecharMenu();
+    });
+
+
+    /* Clicar em qualquer item do menu fecha no celular */
+    document.querySelectorAll(".menu-link").forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            if (window.innerWidth <= 700) {
+                fecharMenu();
+            }
+
+        });
+
+    });
+
+
+    /* ESC fecha o menu */
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "Escape") {
+            fecharMenu();
+        }
+
+    });
+
+
+    /* Se aumentar a tela, limpa o estado do menu */
+    window.addEventListener("resize", function() {
+
+        if (window.innerWidth > 700) {
+            fecharMenu();
+        }
+
+    });
+
+
+    /* =================================
+       SAIR
+    ================================= */
+
+    const logoutButton = document.getElementById("logoutButton");
+
+    logoutButton.addEventListener("click", function() {
+
+        /*
+         * Mantém o login separado.
+         * Remove somente possíveis dados de sessão.
+         */
+
+        try {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("usuario");
+            sessionStorage.clear();
+        } catch (erro) {
+            console.log("Sessão local não pôde ser
