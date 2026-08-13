@@ -20,9 +20,6 @@
     --fundo: #F8FAFC;
     --texto: #1F2937;
     --borda: #E5E7EB;
-
-    --sombra: 0 4px 18px rgba(15, 23, 42, 0.07);
-    --raio: 12px;
 }
 
 body {
@@ -49,9 +46,9 @@ a {
 }
 
 
-/* =====================================
+/* =========================
    LOGIN
-===================================== */
+========================= */
 
 .login-body {
     min-height: 100vh;
@@ -63,7 +60,6 @@ a {
     );
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -105,9 +101,7 @@ a {
 
 .login-logo p {
     color: var(--cinza-medio);
-
     font-size: 13px;
-
     margin-top: 5px;
 }
 
@@ -139,31 +133,19 @@ a {
 
 .login-form {
     display: flex;
-
     flex-direction: column;
-
     gap: 17px;
-}
-
-.login-form .btn {
-    width: 100%;
-
-    margin: 8px 0 0;
 }
 
 .form-group {
     display: flex;
-
     flex-direction: column;
-
     gap: 7px;
 }
 
 .form-group label {
     font-size: 13px;
-
     font-weight: 600;
-
     color: #334155;
 }
 
@@ -194,9 +176,35 @@ a {
 }
 
 
-/* =====================================
-   OPÇÕES DO LOGIN
-===================================== */
+/* =========================
+   BOTÕES
+========================= */
+
+.btn {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 11px 17px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+}
+
+.btn-primary {
+    background: var(--azul);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--azul-escuro);
+}
+
+
+/* =========================
+   OPÇÕES
+========================= */
 
 .login-opcoes {
     display: flex;
@@ -215,36 +223,9 @@ a {
 }
 
 
-/* =====================================
-   BOTÕES DO LOGIN
-===================================== */
-
-.btn {
-    border: none;
-
-    border-radius: 8px;
-
-    padding: 11px 17px;
-
-    font-weight: 600;
-
-    font-size: 13px;
-}
-
-.btn-primary {
-    background: var(--azul);
-
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--azul-escuro);
-}
-
-
-/* =====================================
+/* =========================
    MENSAGENS
-===================================== */
+========================= */
 
 .mensagem {
     margin-top: 15px;
