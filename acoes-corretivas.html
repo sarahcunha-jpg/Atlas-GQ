@@ -1,108 +1,582 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Atlas Gestão - Ações Corretivas</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <title>
-        Atlas Gestão - Ações Corretivas
-    </title>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #263238;
+}
 
-    <link
-        rel="stylesheet"
-        href="./acoes-corretivas.css"
-    >
+/* SIDEBAR */
 
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+    z-index: 1000;
+    transition: transform .3s ease;
+}
+
+.logo {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #2864d7;
+    color: white;
+    font-weight: bold;
+}
+
+.logo-text {
+    color: #2864d7;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu-title {
+    padding: 28px 20px 12px;
+    color: #7b8794;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.menu a {
+    display: block;
+    margin: 3px 12px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    color: #59636e;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.menu a:hover {
+    background: #eef4ff;
+    color: #2864d7;
+}
+
+.menu a.active {
+    background: #2864d7;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-separator {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 20px;
+}
+
+.logout {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+.close-button {
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    color: #59636e;
+    cursor: pointer;
+}
+
+.menu-button {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #dfe3e8;
+    background: white;
+    border-radius: 9px;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 900;
+}
+
+.overlay.open {
+    display: block;
+}
+
+/* MAIN */
+
+.main {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+.header {
+    height: 76px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.header h1 {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.header p {
+    color: #7c8792;
+    font-size: 14px;
+}
+
+.user {
+    text-align: right;
+}
+
+.user strong {
+    display: block;
+    font-size: 14px;
+}
+
+.user span {
+    color: #7c8792;
+    font-size: 13px;
+}
+
+.content {
+    padding: 28px;
+}
+
+.page-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid #e5e9ee;
+    box-shadow: 0 4px 14px rgba(30,50,70,.05);
+    padding: 20px;
+}
+
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-title h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.page-title p {
+    color: #7b8794;
+}
+
+/* FORM */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #4f5b66;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    border: 1px solid #d9e0e7;
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #2864d7;
+}
+
+.field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #2864d7;
+    color: white;
+}
+
+.btn-secondary {
+    background: #edf1f5;
+    color: #374151;
+}
+
+/* LISTAGEM */
+
+.list-card {
+    margin-top: 22px;
+}
+
+.list-header {
+    margin-bottom: 18px;
+}
+
+.list-header h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.list-header p {
+    color: #7b8794;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr auto;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.filters input,
+.filters select {
+    height: 44px;
+    border: 1px solid #d9e0e7;
+    border-radius: 8px;
+    padding: 0 13px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.clear-btn {
+    height: 44px;
+    border: none;
+    border-radius: 8px;
+    background: #edf1f5;
+    color: #374151;
+    font-weight: bold;
+    padding: 0 18px;
+    cursor: pointer;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 950px;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f1f5f9;
+}
+
+th {
+    text-align: left;
+    padding: 13px;
+    color: #344054;
+    font-size: 12px;
+}
+
+td {
+    padding: 14px 13px;
+    border-bottom: 1px solid #edf0f3;
+    font-size: 13px;
+}
+
+.empty {
+    text-align: center;
+    padding: 35px !important;
+    color: #8a96a3;
+}
+
+/* BADGES */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-open {
+    background: #fff1d6;
+    color: #a15c00;
+}
+
+.badge-progress {
+    background: #e7efff;
+    color: #2864d7;
+}
+
+.badge-closed {
+    background: #e2f6e9;
+    color: #168044;
+}
+
+.badge-result {
+    background: #e2f6e9;
+    color: #168044;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-view {
+    background: #edf1f5;
+    color: #344054;
+}
+
+.btn-delete {
+    background: #fff0f0;
+    color: #dc3545;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 14px;
+    padding: 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 20px;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.detail {
+    margin-bottom: 14px;
+}
+
+.detail strong {
+    display: block;
+    color: #667085;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.detail span {
+    font-size: 15px;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 270px;
+        box-shadow: 5px 0 20px rgba(0,0,0,.12);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .close-button {
+        display: block;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .header {
+        padding: 12px 18px 12px 68px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .user {
+        display: none;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
+<aside class="sidebar" id="sidebar">
 
-<!-- ==================================================
-     MENU LATERAL
-================================================== -->
-
-<aside
-    class="sidebar"
-    id="sidebar"
->
-
-    <button
-        class="close-menu"
-        id="closeMenu"
-        type="button"
-        aria-label="Fechar menu"
-    >
-        ×
-    </button>
-
+    <button class="close-button" id="closeMenu">×</button>
 
     <div class="logo">
-
-        <div class="logo-icon">
-            ▲
-        </div>
-
-        <span>
-            Atlas Gestão
-        </span>
-
+        <div class="logo-icon">▲</div>
+        <div class="logo-text">Atlas Gestão</div>
     </div>
-
 
     <div class="menu-title">
         GESTÃO DA QUALIDADE
     </div>
 
-
     <nav class="menu">
 
-        <a href="./dashboard.html">
+        <a href="dashboard.html">
             Dashboard
         </a>
 
-        <a href="./inspecoes.html">
+        <a href="inspecoes.html">
             Inspeções
         </a>
 
-        <a href="./nao.conformidades.html">
+        <a href="nao.conformidades.html">
             Não Conformidades
         </a>
 
-        <a
-            href="./acoes-corretivas.html"
-            class="active"
-        >
+        <a href="acoes-corretivas.html" class="active">
             Ações Corretivas
         </a>
 
-        <a href="./auditorias.html">
+        <a href="auditorias.html">
             Auditorias
         </a>
 
-        <a href="./documentos.html">
+        <a href="documentos.html">
             Documentos
         </a>
 
-        <a href="./indicadores.html">
+        <a href="indicadores.html">
             Indicadores
         </a>
 
-
         <div class="menu-separator"></div>
 
-
-        <a
-            href="./index.html"
-            class="logout"
-        >
+        <a href="index.html" class="logout">
             ↪&nbsp;&nbsp; Sair
         </a>
 
@@ -110,1976 +584,588 @@
 
 </aside>
 
+<div class="overlay" id="overlay"></div>
 
-
-<!-- ==================================================
-     OVERLAY MOBILE
-================================================== -->
-
-<div
-    class="overlay"
-    id="overlay"
-></div>
-
-
-
-<!-- ==================================================
-     BOTÃO MENU MOBILE
-================================================== -->
-
-<button
-    class="menu-button"
-    id="menuButton"
-    type="button"
-    aria-label="Abrir menu"
->
+<button class="menu-button" id="menuButton">
     ☰
 </button>
 
-
-
-<!-- ==================================================
-     CONTEÚDO PRINCIPAL
-================================================== -->
-
 <main class="main">
 
+<header class="header">
 
-    <!-- CABEÇALHO -->
+    <div>
+        <h1>Ações Corretivas</h1>
+        <p>Registre e acompanhe as ações para tratamento das ocorrências.</p>
+    </div>
 
-    <header class="header">
+    <div class="user">
+        <strong>sarahhellen2216</strong>
+        <span>Administrador</span>
+    </div>
 
-        <div class="header-left">
+</header>
 
-            <h1>
-                Ações Corretivas
-            </h1>
+<div class="content">
 
-            <p>
-                Planejamento e acompanhamento das ações de melhoria
-            </p>
+<!-- ================= CADASTRO ================= -->
 
-        </div>
+<section class="page-card">
 
+    <div class="page-title">
+        <h2>Nova ação corretiva</h2>
+        <p>Cadastre uma ação para tratar uma ocorrência ou não conformidade.</p>
+    </div>
 
-        <div class="user">
+    <form id="acaoForm">
 
-            <strong id="usuarioNome">
-                Administrador
-            </strong>
+        <div class="form-grid">
 
-            <span id="usuarioPerfil">
-                Administrador
-            </span>
-
-        </div>
-
-    </header>
-
-
-
-    <div class="content">
-
-
-        <!-- ==================================================
-             INDICADORES
-        ================================================== -->
-
-        <section class="cards">
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    A
-                </div>
-
-                <div class="card-title">
-                    Total de ações
-                </div>
-
-                <div
-                    class="card-value"
-                    id="totalAcoes"
-                >
-                    0
-                </div>
-
+            <div class="field">
+                <label for="codigo">Código</label>
+                <input id="codigo" required placeholder="Ex.: AC001">
             </div>
 
-
-            <div class="card">
-
-                <div class="card-icon">
-                    !
-                </div>
-
-                <div class="card-title">
-                    Ações abertas
-                </div>
-
-                <div
-                    class="card-value"
-                    id="acoesAbertas"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    ↻
-                </div>
-
-                <div class="card-title">
-                    Em andamento
-                </div>
-
-                <div
-                    class="card-value"
-                    id="acoesAndamento"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    ✓
-                </div>
-
-                <div class="card-title">
-                    Concluídas
-                </div>
-
-                <div
-                    class="card-value"
-                    id="acoesConcluidas"
-                >
-                    0
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- ==================================================
-             NOVA AÇÃO CORRETIVA
-        ================================================== -->
-
-        <section class="section">
-
-
-            <div class="section-header">
-
-                <h2>
-                    Nova ação corretiva
-                </h2>
-
-                <p>
-                    Registre uma ação para eliminar a causa de uma não conformidade.
-                </p>
-
-            </div>
-
-
-
-            <form id="acaoForm">
-
-
-                <div class="form-grid">
-
-
-                    <!-- CÓDIGO -->
-
-                    <div class="form-group">
-
-                        <label for="codigo">
-                            Código da ação *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="codigo"
-                            placeholder="Ex.: AC-001"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <!-- NC -->
-
-                    <div class="form-group">
-
-                        <label for="nc">
-                            Não conformidade relacionada
-                        </label>
-
-                        <select id="nc">
-
-                            <option value="">
-                                Selecione uma NC
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <!-- DATA ABERTURA -->
-
-                    <div class="form-group">
-
-                        <label for="dataAbertura">
-                            Data de abertura *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="dataAbertura"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <!-- PRAZO -->
-
-                    <div class="form-group">
-
-                        <label for="prazo">
-                            Prazo *
-                        </label>
-
-                        <input
-                            type="date"
-                            id="prazo"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <!-- RESPONSÁVEL -->
-
-                    <div class="form-group">
-
-                        <label for="responsavel">
-                            Responsável *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="responsavel"
-                            placeholder="Responsável pela ação"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <!-- PRIORIDADE -->
-
-                    <div class="form-group">
-
-                        <label for="prioridade">
-                            Prioridade *
-                        </label>
-
-                        <select
-                            id="prioridade"
-                            required
-                        >
-
-                            <option value="">
-                                Selecione
-                            </option>
-
-                            <option value="Baixa">
-                                Baixa
-                            </option>
-
-                            <option value="Média">
-                                Média
-                            </option>
-
-                            <option value="Alta">
-                                Alta
-                            </option>
-
-                            <option value="Crítica">
-                                Crítica
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <!-- STATUS -->
-
-                    <div class="form-group">
-
-                        <label for="status">
-                            Status *
-                        </label>
-
-                        <select
-                            id="status"
-                            required
-                        >
-
-                            <option value="Aberta">
-                                Aberta
-                            </option>
-
-                            <option value="Em andamento">
-                                Em andamento
-                            </option>
-
-                            <option value="Aguardando verificação">
-                                Aguardando verificação
-                            </option>
-
-                            <option value="Concluída">
-                                Concluída
-                            </option>
-
-                            <option value="Cancelada">
-                                Cancelada
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <!-- DESCRIÇÃO -->
-
-                    <div class="form-group full">
-
-                        <label for="descricao">
-                            Descrição do problema *
-                        </label>
-
-                        <textarea
-                            id="descricao"
-                            placeholder="Descreva o problema ou situação que originou a ação..."
-                            required
-                        ></textarea>
-
-                    </div>
-
-
-
-                    <!-- CAUSA -->
-
-                    <div class="form-group full">
-
-                        <label for="causa">
-                            Causa raiz *
-                        </label>
-
-                        <textarea
-                            id="causa"
-                            placeholder="Descreva a causa raiz identificada..."
-                            required
-                        ></textarea>
-
-                    </div>
-
-
-
-                    <!-- AÇÃO -->
-
-                    <div class="form-group full">
-
-                        <label for="acao">
-                            Ação corretiva *
-                        </label>
-
-                        <textarea
-                            id="acao"
-                            placeholder="Descreva o que será feito para eliminar a causa..."
-                            required
-                        ></textarea>
-
-                    </div>
-
-
-
-                    <!-- VERIFICAÇÃO -->
-
-                    <div class="form-group full">
-
-                        <label for="verificacao">
-                            Critério de verificação
-                        </label>
-
-                        <textarea
-                            id="verificacao"
-                            placeholder="Como será verificada a eficácia da ação?"
-                        ></textarea>
-
-                    </div>
-
-
-
-                    <!-- OBSERVAÇÕES -->
-
-                    <div class="form-group full">
-
-                        <label for="observacoes">
-                            Observações
-                        </label>
-
-                        <textarea
-                            id="observacoes"
-                            placeholder="Informações adicionais..."
-                        ></textarea>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="form-actions">
-
-                    <button
-                        type="submit"
-                        class="btn-primary"
-                    >
-                        Cadastrar ação
-                    </button>
-
-
-                    <button
-                        type="reset"
-                        class="btn-secondary"
-                    >
-                        Limpar
-                    </button>
-
-                </div>
-
-
-            </form>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             FILTROS E LISTAGEM
-        ================================================== -->
-
-        <section class="section">
-
-
-            <div class="section-header">
-
-                <h2>
-                    Ações corretivas cadastradas
-                </h2>
-
-                <p>
-                    Acompanhe o andamento, prazos e responsáveis.
-                </p>
-
-            </div>
-
-
-
-            <div class="filters">
-
-
-                <input
-                    type="search"
-                    id="pesquisa"
-                    placeholder="Pesquisar por código, responsável ou descrição..."
-                >
-
-
-                <select id="filtroStatus">
-
-                    <option value="">
-                        Todos os status
-                    </option>
-
-                    <option value="Aberta">
-                        Aberta
-                    </option>
-
-                    <option value="Em andamento">
-                        Em andamento
-                    </option>
-
-                    <option value="Aguardando verificação">
-                        Aguardando verificação
-                    </option>
-
-                    <option value="Concluída">
-                        Concluída
-                    </option>
-
-                    <option value="Cancelada">
-                        Cancelada
-                    </option>
-
+            <div class="field">
+                <label for="tipo">Tipo</label>
+                <select id="tipo" required>
+                    <option value="">Selecione</option>
+                    <option>Ação corretiva</option>
+                    <option>Ação preventiva</option>
+                    <option>Melhoria</option>
                 </select>
-
-
-                <button
-                    type="button"
-                    class="btn-secondary"
-                    id="limparFiltros"
-                >
-                    Limpar
-                </button>
-
-
             </div>
 
-
-
-            <div class="table-container">
-
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Código
-                            </th>
-
-                            <th>
-                                NC
-                            </th>
-
-                            <th>
-                                Ação corretiva
-                            </th>
-
-                            <th>
-                                Responsável
-                            </th>
-
-                            <th>
-                                Prazo
-                            </th>
-
-                            <th>
-                                Prioridade
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                            <th>
-                                Situação
-                            </th>
-
-                            <th>
-                                Ações
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="listaAcoes">
-                    </tbody>
-
-
-                </table>
-
-
-                <div
-                    class="empty-state"
-                    id="emptyState"
-                >
-                    Nenhuma ação corretiva cadastrada.
-                </div>
-
-
+            <div class="field">
+                <label for="origem">Origem / Não conformidade</label>
+                <input id="origem" required placeholder="Ex.: NC001">
             </div>
 
+            <div class="field">
+                <label for="responsavel">Responsável</label>
+                <input id="responsavel" required placeholder="Nome do responsável">
+            </div>
 
-        </section>
+            <div class="field">
+                <label for="prazo">Prazo</label>
+                <input type="date" id="prazo" required>
+            </div>
 
+            <div class="field">
+                <label for="status">Status</label>
+                <select id="status" required>
+                    <option value="Aberta">Aberta</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluída">Concluída</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="resultado">Resultado</label>
+                <select id="resultado" required>
+                    <option value="">Selecione</option>
+                    <option>Conforme</option>
+                    <option>Pendente</option>
+                    <option>Não conforme</option>
+                    <option>Em avaliação</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="processo">Processo / Área</label>
+                <input id="processo" required placeholder="Ex.: Produção">
+            </div>
+
+            <div class="field full">
+                <label for="descricao">Descrição da ação</label>
+                <textarea id="descricao" required placeholder="Descreva a ação que será realizada..."></textarea>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button type="reset" class="btn btn-secondary">
+                Limpar
+            </button>
+
+            <button type="submit" class="btn btn-primary">
+                Cadastrar ação corretiva
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+<!-- ================= LISTAGEM ================= -->
+
+<section class="page-card list-card">
+
+    <div class="list-header">
+
+        <h2>Ações corretivas cadastradas</h2>
+
+        <p>
+            Consulte e acompanhe as ações corretivas registradas.
+        </p>
 
     </div>
 
-</main>
+    <div class="filters">
 
-
-
-<!-- ==================================================
-     MODAL DE DETALHES
-================================================== -->
-
-<div
-    id="modal"
-    style="
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,.45);
-        z-index:2000;
-        align-items:center;
-        justify-content:center;
-        padding:20px;
-    "
->
-
-
-    <div
-        style="
-            background:white;
-            width:100%;
-            max-width:700px;
-            max-height:90vh;
-            overflow:auto;
-            border-radius:14px;
-            padding:25px;
-        "
-    >
-
-        <div
-            style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                gap:15px;
-                margin-bottom:20px;
-            "
+        <input
+            type="search"
+            id="search"
+            placeholder="Pesquisar por código, origem, processo ou responsável..."
         >
 
-            <h2>
-                Detalhes da ação
-            </h2>
+        <select id="filterStatus">
+            <option value="">Todos os status</option>
+            <option>Aberta</option>
+            <option>Em andamento</option>
+            <option>Concluída</option>
+        </select>
 
+        <select id="filterResultado">
+            <option value="">Todos os resultados</option>
+            <option>Conforme</option>
+            <option>Pendente</option>
+            <option>Não conforme</option>
+            <option>Em avaliação</option>
+        </select>
 
-            <button
-                type="button"
-                id="fecharModal"
-                style="
-                    border:none;
-                    background:#f0f2f5;
-                    width:35px;
-                    height:35px;
-                    border-radius:8px;
-                    font-size:20px;
-                    cursor:pointer;
-                "
-            >
+        <button class="clear-btn" id="clearFilters">
+            Limpar
+        </button>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Código</th>
+                    <th>Tipo</th>
+                    <th>Origem</th>
+                    <th>Processo / Área</th>
+                    <th>Responsável</th>
+                    <th>Prazo</th>
+                    <th>Resultado</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="acaoTableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</div>
+
+</main>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>Detalhes da ação corretiva</h3>
+
+            <button class="modal-close" id="modalClose">
                 ×
             </button>
 
         </div>
 
-
-        <div id="detalhesAcao">
-        </div>
+        <div id="modalContent"></div>
 
     </div>
 
 </div>
 
-
-
 <script>
 
-/* ==================================================
-   MENU MOBILE
-================================================== */
+/* ================= MENU ================= */
 
-const sidebar =
-    document.getElementById("sidebar");
+const menuButton = document.getElementById("menuButton");
+const closeMenu = document.getElementById("closeMenu");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
 
-const menuButton =
-    document.getElementById("menuButton");
-
-const closeMenu =
-    document.getElementById("closeMenu");
-
-const overlay =
-    document.getElementById("overlay");
-
-
-function abrirMenu() {
-
+function openMenu() {
     sidebar.classList.add("open");
-
     overlay.classList.add("open");
-
 }
 
-
-function fecharMenu() {
-
+function closeMobileMenu() {
     sidebar.classList.remove("open");
-
     overlay.classList.remove("open");
-
 }
 
+menuButton.addEventListener("click", openMenu);
+closeMenu.addEventListener("click", closeMobileMenu);
+overlay.addEventListener("click", closeMobileMenu);
 
-menuButton.addEventListener(
-    "click",
-    abrirMenu
+/* ================= DADOS ================= */
+
+const STORAGE_KEY = "atlas_acoes_corretivas";
+
+let registros = JSON.parse(
+    localStorage.getItem(STORAGE_KEY) || "[]"
 );
 
+/* ================= ELEMENTOS ================= */
 
-closeMenu.addEventListener(
-    "click",
-    fecharMenu
-);
+const form = document.getElementById("acaoForm");
+const tableBody = document.getElementById("acaoTableBody");
 
+const search = document.getElementById("search");
+const filterStatus = document.getElementById("filterStatus");
+const filterResultado = document.getElementById("filterResultado");
+const clearFilters = document.getElementById("clearFilters");
 
-overlay.addEventListener(
-    "click",
-    fecharMenu
-);
+/* ================= FORMATAÇÃO ================= */
 
+function formatarData(data) {
 
-document.addEventListener(
-    "keydown",
-    function(event) {
+    if (!data) return "-";
 
-        if (event.key === "Escape") {
+    const partes = data.split("-");
 
-            fecharMenu();
+    if (partes.length !== 3) return data;
 
-        }
-
-    }
-);
-
-
-
-/* ==================================================
-   USUÁRIO
-================================================== */
-
-try {
-
-    const usuario =
-        JSON.parse(
-            localStorage.getItem(
-                "atlas_usuario"
-            ) || "null"
-        );
-
-
-    if (usuario) {
-
-        if (usuario.nome) {
-
-            document
-                .getElementById("usuarioNome")
-                .textContent =
-                usuario.nome;
-
-        }
-
-
-        if (usuario.perfil) {
-
-            document
-                .getElementById("usuarioPerfil")
-                .textContent =
-                usuario.perfil;
-
-        }
-
-    }
-
-} catch (erro) {
-
-    console.log(
-        "Não foi possível carregar usuário."
-    );
-
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
+function classeStatus(status) {
 
+    if (status === "Concluída") {
+        return "badge badge-closed";
+    }
 
-/* ==================================================
-   BANCO LOCAL
-================================================== */
+    if (status === "Em andamento") {
+        return "badge badge-progress";
+    }
 
-const STORAGE_ACOES =
-    "atlas_acoes_corretivas";
-
-
-const STORAGE_NC =
-    "atlas_nao_conformidades";
-
-
-let acoes =
-    JSON.parse(
-        localStorage.getItem(
-            STORAGE_ACOES
-        ) || "[]"
-    );
-
-
-
-/* ==================================================
-   ELEMENTOS
-================================================== */
-
-const form =
-    document.getElementById(
-        "acaoForm"
-    );
-
-
-const lista =
-    document.getElementById(
-        "listaAcoes"
-    );
-
-
-const emptyState =
-    document.getElementById(
-        "emptyState"
-    );
-
-
-const pesquisa =
-    document.getElementById(
-        "pesquisa"
-    );
-
-
-const filtroStatus =
-    document.getElementById(
-        "filtroStatus"
-    );
-
-
-const selectNC =
-    document.getElementById(
-        "nc"
-    );
-
-
-
-/* ==================================================
-   DATA ATUAL
-================================================== */
-
-function dataHoje() {
-
-    const data =
-        new Date();
-
-    const ano =
-        data.getFullYear();
-
-    const mes =
-        String(
-            data.getMonth() + 1
-        ).padStart(2, "0");
-
-    const dia =
-        String(
-            data.getDate()
-        ).padStart(2, "0");
-
-
-    return `${ano}-${mes}-${dia}`;
-
+    return "badge badge-open";
 }
 
+/* ================= RENDER ================= */
 
-document
-    .getElementById("dataAbertura")
-    .value =
-    dataHoje();
+function renderizar() {
 
+    const termo = search.value.toLowerCase().trim();
+    const status = filterStatus.value;
+    const resultado = filterResultado.value;
 
+    const filtrados = registros.filter(item => {
 
-/* ==================================================
-   CARREGAR NÃO CONFORMIDADES
-================================================== */
+        const texto =
+            `${item.codigo} ${item.tipo} ${item.origem} ${item.processo} ${item.responsavel}`
+            .toLowerCase();
 
-function carregarNCs() {
-
-    let ncs = [];
-
-
-    try {
-
-        ncs =
-            JSON.parse(
-                localStorage.getItem(
-                    STORAGE_NC
-                ) || "[]"
-            );
-
-    } catch (erro) {
-
-        ncs = [];
-
-    }
-
-
-    selectNC.innerHTML = `
-        <option value="">
-            Selecione uma NC
-        </option>
-    `;
-
-
-    if (ncs.length === 0) {
-
-        return;
-
-    }
-
-
-    ncs.forEach(function(nc) {
-
-        const option =
-            document.createElement(
-                "option"
-            );
-
-
-        const codigo =
-            nc.codigo ||
-            nc.id ||
-            "NC";
-
-
-        const descricao =
-            nc.descricao ||
-            nc.titulo ||
-            nc.problema ||
-            "";
-
-
-        option.value =
-            codigo;
-
-
-        option.textContent =
-            descricao
-                ? `${codigo} - ${descricao}`
-                : codigo;
-
-
-        selectNC.appendChild(
-            option
+        return (
+            (!termo || texto.includes(termo)) &&
+            (!status || item.status === status) &&
+            (!resultado || item.resultado === resultado)
         );
 
     });
 
-}
+    tableBody.innerHTML = "";
 
+    if (filtrados.length === 0) {
 
-carregarNCs();
-
-
-
-/* ==================================================
-   SALVAR
-================================================== */
-
-function salvarAcoes() {
-
-    localStorage.setItem(
-        STORAGE_ACOES,
-        JSON.stringify(acoes)
-    );
-
-}
-
-
-
-/* ==================================================
-   ESCAPAR HTML
-================================================== */
-
-function escapar(valor) {
-
-    return String(
-        valor || ""
-    )
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
-
-}
-
-
-
-/* ==================================================
-   FORMATAR DATA
-================================================== */
-
-function formatarData(data) {
-
-    if (!data) {
-
-        return "-";
-
-    }
-
-
-    const partes =
-        data.split("-");
-
-
-    if (partes.length !== 3) {
-
-        return data;
-
-    }
-
-
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
-
-}
-
-
-
-/* ==================================================
-   VERIFICAR ATRASO
-================================================== */
-
-function estaAtrasada(acao) {
-
-    if (
-        !acao.prazo ||
-        acao.status === "Concluída" ||
-        acao.status === "Cancelada"
-    ) {
-
-        return false;
-
-    }
-
-
-    return (
-        acao.prazo <
-        dataHoje()
-    );
-
-}
-
-
-
-/* ==================================================
-   SITUAÇÃO
-================================================== */
-
-function situacaoAcao(acao) {
-
-    if (estaAtrasada(acao)) {
-
-        return "Atrasada";
-
-    }
-
-
-    if (
-        acao.status ===
-        "Concluída"
-    ) {
-
-        return "Concluída";
-
-    }
-
-
-    return "No prazo";
-
-}
-
-
-
-/* ==================================================
-   CLASSE STATUS
-================================================== */
-
-function classeStatus(status) {
-
-    if (
-        status ===
-        "Aberta"
-    ) {
-
-        return "status aberta";
-
-    }
-
-
-    if (
-        status ===
-        "Em andamento"
-    ) {
-
-        return "status andamento";
-
-    }
-
-
-    if (
-        status ===
-        "Aguardando verificação"
-    ) {
-
-        return "status andamento";
-
-    }
-
-
-    if (
-        status ===
-        "Concluída"
-    ) {
-
-        return "status concluida";
-
-    }
-
-
-    return "status";
-
-}
-
-
-
-/* ==================================================
-   ATUALIZAR INDICADORES
-================================================== */
-
-function atualizarIndicadores() {
-
-    const abertas =
-        acoes.filter(
-            item =>
-                item.status ===
-                "Aberta"
-        ).length;
-
-
-    const andamento =
-        acoes.filter(
-            item =>
-                item.status ===
-                "Em andamento"
-        ).length;
-
-
-    const concluidas =
-        acoes.filter(
-            item =>
-                item.status ===
-                "Concluída"
-        ).length;
-
-
-    document
-        .getElementById(
-            "totalAcoes"
-        )
-        .textContent =
-        acoes.length;
-
-
-    document
-        .getElementById(
-            "acoesAbertas"
-        )
-        .textContent =
-        abertas;
-
-
-    document
-        .getElementById(
-            "acoesAndamento"
-        )
-        .textContent =
-        andamento;
-
-
-    document
-        .getElementById(
-            "acoesConcluidas"
-        )
-        .textContent =
-        concluidas;
-
-}
-
-
-
-/* ==================================================
-   RENDERIZAR
-================================================== */
-
-function renderizar() {
-
-    lista.innerHTML = "";
-
-
-    const termo =
-        pesquisa
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    const statusFiltro =
-        filtroStatus.value;
-
-
-    const filtradas =
-        acoes.filter(
-            function(item) {
-
-                const texto = (
-
-                    item.codigo +
-                    " " +
-                    item.responsavel +
-                    " " +
-                    item.descricao +
-                    " " +
-                    item.acao +
-                    " " +
-                    item.nc
-
-                )
-                .toLowerCase();
-
-
-                const correspondeTexto =
-                    texto.includes(
-                        termo
-                    );
-
-
-                const correspondeStatus =
-                    !statusFiltro ||
-                    item.status ===
-                    statusFiltro;
-
-
-                return (
-                    correspondeTexto &&
-                    correspondeStatus
-                );
-
-            }
-        );
-
-
-
-    emptyState.style.display =
-        filtradas.length === 0
-            ? "block"
-            : "none";
-
-
-
-    filtradas.forEach(
-        function(item) {
-
-            const indice =
-                acoes.indexOf(
-                    item
-                );
-
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            const situacao =
-                situacaoAcao(
-                    item
-                );
-
-
-            const situacaoHTML =
-                situacao ===
-                "Atrasada"
-
-                    ? `<span style="
-                        color:#dc3545;
-                        font-weight:bold;
-                      ">
-                        ⚠ Atrasada
-                       </span>`
-
-                    : `<span style="
-                        color:#218838;
-                        font-weight:bold;
-                      ">
-                        ✓ ${situacao}
-                       </span>`;
-
-
-
-            tr.innerHTML = `
-
-                <td>
-                    <strong>
-                        ${escapar(item.codigo)}
-                    </strong>
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="9" class="empty">
+                    Nenhuma ação corretiva cadastrada.
                 </td>
+            </tr>
+        `;
 
+        return;
+    }
 
-                <td>
-                    ${escapar(item.nc) || "-"}
-                </td>
+    filtrados.forEach(item => {
 
+        const tr = document.createElement("tr");
 
-                <td>
-                    ${escapar(item.acao)}
-                </td>
+        tr.innerHTML = `
 
+            <td>
+                <strong>${escapeHtml(item.codigo)}</strong>
+            </td>
 
-                <td>
-                    ${escapar(item.responsavel)}
-                </td>
+            <td>
+                ${escapeHtml(item.tipo)}
+            </td>
 
+            <td>
+                ${escapeHtml(item.origem)}
+            </td>
 
-                <td>
-                    ${formatarData(item.prazo)}
-                </td>
+            <td>
+                ${escapeHtml(item.processo)}
+            </td>
 
+            <td>
+                ${escapeHtml(item.responsavel)}
+            </td>
 
-                <td>
-                    ${escapar(item.prioridade)}
-                </td>
+            <td>
+                ${formatarData(item.prazo)}
+            </td>
 
+            <td>
+                <span class="badge badge-result">
+                    ${escapeHtml(item.resultado)}
+                </span>
+            </td>
 
-                <td>
+            <td>
+                <span class="${classeStatus(item.status)}">
+                    ${escapeHtml(item.status)}
+                </span>
+            </td>
 
-                    <span class="${classeStatus(item.status)}">
-                        ${escapar(item.status)}
-                    </span>
+            <td>
 
-                </td>
-
-
-                <td>
-                    ${situacaoHTML}
-                </td>
-
-
-                <td>
+                <div class="action-buttons">
 
                     <button
-                        type="button"
-                        class="btn-secondary"
-                        data-detalhes="${indice}"
-                    >
+                        class="btn-small btn-view"
+                        onclick="verRegistro('${item.id}')">
                         Ver
                     </button>
 
                     <button
-                        type="button"
-                        class="btn-delete"
-                        data-excluir="${indice}"
-                    >
+                        class="btn-small btn-delete"
+                        onclick="excluirRegistro('${item.id}')">
                         Excluir
                     </button>
 
-                </td>
+                </div>
 
-            `;
+            </td>
+        `;
 
+        tableBody.appendChild(tr);
 
-            lista.appendChild(
-                tr
-            );
-
-        }
-    );
-
-
-    atualizarIndicadores();
-
+    });
 }
 
+/* ================= CADASTRO ================= */
 
+form.addEventListener("submit", function(event) {
 
-/* ==================================================
-   CADASTRAR
-================================================== */
-
-form.addEventListener(
-    "submit",
-    function(event) {
-
-        event.preventDefault();
-
-
-        const novaAcao = {
-
-            id:
-                Date.now(),
-
-            codigo:
-                document
-                    .getElementById(
-                        "codigo"
-                    )
-                    .value
-                    .trim(),
-
-            nc:
-                document
-                    .getElementById(
-                        "nc"
-                    )
-                    .value,
-
-            dataAbertura:
-                document
-                    .getElementById(
-                        "dataAbertura"
-                    )
-                    .value,
-
-            prazo:
-                document
-                    .getElementById(
-                        "prazo"
-                    )
-                    .value,
+    event.preventDefault();
 
-            responsavel:
-                document
-                    .getElementById(
-                        "responsavel"
-                    )
-                    .value
-                    .trim(),
+    const registro = {
 
-            prioridade:
-                document
-                    .getElementById(
-                        "prioridade"
-                    )
-                    .value,
+        id: Date.now().toString(),
 
-            status:
-                document
-                    .getElementById(
-                        "status"
-                    )
-                    .value,
+        codigo:
+            document.getElementById("codigo").value.trim(),
 
-            descricao:
-                document
-                    .getElementById(
-                        "descricao"
-                    )
-                    .value
-                    .trim(),
+        tipo:
+            document.getElementById("tipo").value,
 
-            causa:
-                document
-                    .getElementById(
-                        "causa"
-                    )
-                    .value
-                    .trim(),
+        origem:
+            document.getElementById("origem").value.trim(),
 
-            acao:
-                document
-                    .getElementById(
-                        "acao"
-                    )
-                    .value
-                    .trim(),
+        processo:
+            document.getElementById("processo").value.trim(),
 
-            verificacao:
-                document
-                    .getElementById(
-                        "verificacao"
-                    )
-                    .value
-                    .trim(),
+        responsavel:
+            document.getElementById("responsavel").value.trim(),
 
-            observacoes:
-                document
-                    .getElementById(
-                        "observacoes"
-                    )
-                    .value
-                    .trim(),
+        prazo:
+            document.getElementById("prazo").value,
 
-            criadoEm:
-                new Date().toISOString()
+        resultado:
+            document.getElementById("resultado").value,
 
-        };
+        status:
+            document.getElementById("status").value,
 
+        descricao:
+            document.getElementById("descricao").value.trim()
 
-        acoes.push(
-            novaAcao
-        );
+    };
 
+    registros.unshift(registro);
 
-        salvarAcoes();
-
-
-        form.reset();
-
-
-        document
-            .getElementById(
-                "dataAbertura"
-            )
-            .value =
-            dataHoje();
-
-
-        renderizar();
-
-
-        alert(
-            "Ação corretiva cadastrada com sucesso!"
-        );
-
-    }
-);
-
-
-
-/* ==================================================
-   AÇÕES DA TABELA
-================================================== */
-
-lista.addEventListener(
-    "click",
-    function(event) {
-
-
-        const botaoDetalhes =
-            event.target.closest(
-                "[data-detalhes]"
-            );
-
-
-        const botaoExcluir =
-            event.target.closest(
-                "[data-excluir]"
-            );
-
-
-
-        /* DETALHES */
-
-        if (botaoDetalhes) {
-
-            const indice =
-                Number(
-                    botaoDetalhes
-                        .dataset
-                        .detalhes
-                );
-
-
-            abrirDetalhes(
-                acoes[indice]
-            );
-
-
-            return;
-
-        }
-
-
-
-        /* EXCLUIR */
-
-        if (botaoExcluir) {
-
-            const indice =
-                Number(
-                    botaoExcluir
-                        .dataset
-                        .excluir
-                );
-
-
-            const acao =
-                acoes[indice];
-
-
-            if (!acao) {
-
-                return;
-
-            }
-
-
-            const confirmar =
-                confirm(
-                    `Excluir a ação ${acao.codigo}?`
-                );
-
-
-            if (!confirmar) {
-
-                return;
-
-            }
-
-
-            acoes.splice(
-                indice,
-                1
-            );
-
-
-            salvarAcoes();
-
-
-            renderizar();
-
-        }
-
-    }
-);
-
-
-
-/* ==================================================
-   MODAL
-================================================== */
-
-const modal =
-    document.getElementById(
-        "modal"
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(registros)
     );
 
+    form.reset();
 
-const detalhesAcao =
-    document.getElementById(
-        "detalhesAcao"
+    renderizar();
+
+    alert("Ação corretiva cadastrada com sucesso!");
+
+});
+
+/* ================= EXCLUIR ================= */
+
+function excluirRegistro(id) {
+
+    const registro = registros.find(
+        item => item.id === id
     );
 
+    if (!registro) return;
 
-const fecharModal =
-    document.getElementById(
-        "fecharModal"
-    );
-
-
-
-function abrirDetalhes(acao) {
-
-    if (!acao) {
-
+    if (!confirm(
+        `Deseja excluir a ação ${registro.codigo}?`
+    )) {
         return;
-
     }
 
+    registros = registros.filter(
+        item => item.id !== id
+    );
 
-    detalhesAcao.innerHTML = `
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(registros)
+    );
 
-        <div style="
-            display:grid;
-            gap:16px;
-        ">
+    renderizar();
+}
 
+/* ================= VER ================= */
 
-            <div>
+function verRegistro(id) {
 
-                <strong>
-                    Código
-                </strong>
+    const item = registros.find(
+        registro => registro.id === id
+    );
 
-                <p>
-                    ${escapar(acao.codigo)}
-                </p>
+    if (!item) return;
 
-            </div>
+    document.getElementById("modalContent").innerHTML = `
 
-
-            <div>
-
-                <strong>
-                    Não conformidade
-                </strong>
-
-                <p>
-                    ${escapar(acao.nc) || "Não vinculada"}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Descrição do problema
-                </strong>
-
-                <p>
-                    ${escapar(acao.descricao)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Causa raiz
-                </strong>
-
-                <p>
-                    ${escapar(acao.causa)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Ação corretiva
-                </strong>
-
-                <p>
-                    ${escapar(acao.acao)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Responsável
-                </strong>
-
-                <p>
-                    ${escapar(acao.responsavel)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Data de abertura
-                </strong>
-
-                <p>
-                    ${formatarData(acao.dataAbertura)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Prazo
-                </strong>
-
-                <p>
-                    ${formatarData(acao.prazo)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Prioridade
-                </strong>
-
-                <p>
-                    ${escapar(acao.prioridade)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Status
-                </strong>
-
-                <p>
-                    ${escapar(acao.status)}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Critério de verificação
-                </strong>
-
-                <p>
-                    ${escapar(acao.verificacao) || "-"}
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Observações
-                </strong>
-
-                <p>
-                    ${escapar(acao.observacoes) || "-"}
-                </p>
-
-            </div>
-
-
+        <div class="detail">
+            <strong>Código</strong>
+            <span>${escapeHtml(item.codigo)}</span>
         </div>
 
+        <div class="detail">
+            <strong>Tipo</strong>
+            <span>${escapeHtml(item.tipo)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Origem / Não conformidade</strong>
+            <span>${escapeHtml(item.origem)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Processo / Área</strong>
+            <span>${escapeHtml(item.processo)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Responsável</strong>
+            <span>${escapeHtml(item.responsavel)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Prazo</strong>
+            <span>${formatarData(item.prazo)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Resultado</strong>
+            <span>${escapeHtml(item.resultado)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Status</strong>
+            <span>${escapeHtml(item.status)}</span>
+        </div>
+
+        <div class="detail">
+            <strong>Descrição</strong>
+            <span>${escapeHtml(item.descricao)}</span>
+        </div>
     `;
 
-
-    modal.style.display =
-        "flex";
-
+    document.getElementById("modal").classList.add("open");
 }
 
+/* ================= MODAL ================= */
 
+document.getElementById("modalClose")
+    .addEventListener("click", () => {
 
-fecharModal.addEventListener(
-    "click",
-    function() {
+        document.getElementById("modal")
+            .classList.remove("open");
 
-        modal.style.display =
-            "none";
+    });
 
-    }
-);
+document.getElementById("modal")
+    .addEventListener("click", event => {
 
+        if (event.target.id === "modal") {
 
-modal.addEventListener(
-    "click",
-    function(event) {
-
-        if (
-            event.target ===
-            modal
-        ) {
-
-            modal.style.display =
-                "none";
+            document.getElementById("modal")
+                .classList.remove("open");
 
         }
 
-    }
-);
+    });
 
+/* ================= FILTROS ================= */
 
+search.addEventListener("input", renderizar);
+filterStatus.addEventListener("change", renderizar);
+filterResultado.addEventListener("change", renderizar);
 
-/* ==================================================
-   FILTROS
-================================================== */
+clearFilters.addEventListener("click", () => {
 
-pesquisa.addEventListener(
-    "input",
-    renderizar
-);
+    search.value = "";
+    filterStatus.value = "";
+    filterResultado.value = "";
 
+    renderizar();
 
-filtroStatus.addEventListener(
-    "change",
-    renderizar
-);
+});
 
+/* ================= SEGURANÇA ================= */
 
-document
-    .getElementById(
-        "limparFiltros"
-    )
-    .addEventListener(
-        "click",
-        function() {
+function escapeHtml(valor) {
 
-            pesquisa.value = "";
+    return String(valor ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
-            filtroStatus.value = "";
-
-            renderizar();
-
-        }
-    );
-
-
-
-/* ==================================================
-   INICIALIZAÇÃO
-================================================== */
+/* ================= INICIALIZAÇÃO ================= */
 
 renderizar();
 
 </script>
 
-
 </body>
-
-    </html>
+</html>
