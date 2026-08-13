@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,182 +9,139 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="theme-color"
-        content="#2563eb"
-    >
+    <title>Atlas Gestão - Login</title>
 
-    <title>
-        Atlas Gestão - Login
-    </title>
-
-    <!-- CSS CORRETO -->
     <link
         rel="stylesheet"
-        href="./frontend/css/style.css"
+        href="css/style.css"
     >
-
 </head>
 
+<body class="login-page">
 
-<body>
-
-
-<div class="login-page">
-
-
-    <div class="login-card">
-
+    <main class="login-container">
 
         <!-- LOGO -->
 
-        <div class="login-logo">
+        <div class="login-brand">
 
-            <div class="logo-icon">
+            <div class="brand-icon">
                 ▲
             </div>
 
-            <div>
-
-                <div class="logo-title">
-                    Atlas Gestão
-                </div>
-
-                <div class="logo-subtitle">
-                    Gestão Inteligente da Qualidade
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- CABEÇALHO -->
-
-        <div class="login-header">
-
             <h1>
-                Bem-vindo
+                Atlas Gestão
             </h1>
 
             <p>
-                Entre para acessar o Sistema de Gestão da Qualidade.
+                Gestão Inteligente da Qualidade
             </p>
 
         </div>
 
 
-
         <!-- LOGIN -->
 
-        <form
-            id="loginForm"
-            class="login-form"
-        >
+        <section class="login-card">
+
+            <h2>
+                Entrar
+            </h2>
+
+            <p>
+                Acesse o sistema de gestão da qualidade.
+            </p>
 
 
-            <div class="campo">
+            <form id="loginForm">
 
                 <label for="email">
                     E-mail
                 </label>
 
                 <input
-                    type="email"
                     id="email"
-                    name="email"
+                    type="email"
                     placeholder="seu@email.com"
-                    autocomplete="email"
                     required
                 >
 
-            </div>
-
-
-
-            <div class="campo">
 
                 <label for="senha">
                     Senha
                 </label>
 
                 <input
-                    type="password"
                     id="senha"
-                    name="senha"
+                    type="password"
                     placeholder="Digite sua senha"
-                    autocomplete="current-password"
                     required
                 >
 
-            </div>
+
+                <div class="login-options">
+
+                    <label class="remember">
+
+                        <input
+                            id="lembrar"
+                            type="checkbox"
+                        >
+
+                        <span>
+                            Lembrar acesso
+                        </span>
+
+                    </label>
 
 
-
-            <div class="login-opcoes">
-
-                <label class="lembrar">
-
-                    <input
-                        type="checkbox"
-                        id="lembrar"
+                    <a
+                        href="#"
+                        id="esqueciSenha"
                     >
+                        Esqueci minha senha
+                    </a>
 
-                    <span>
-                        Lembrar-me
-                    </span>
-
-                </label>
+                </div>
 
 
-                <a
-                    href="#"
-                    id="esqueciSenha"
+                <button
+                    type="submit"
+                    class="btn-primary btn-full"
                 >
-                    Esqueci minha senha
-                </a>
+                    Entrar
+                </button>
+
+
+                <div
+                    id="mensagem"
+                    class="message"
+                ></div>
+
+            </form>
+
+
+            <!-- AVISO -->
+
+            <div class="demo-box">
+
+                <strong>
+                    Acesso de demonstração
+                </strong>
+
+                <span>
+                    Use qualquer e-mail válido e uma senha
+                    com 4 ou mais caracteres.
+                </span>
 
             </div>
 
+        </section>
+
+    </main>
 
 
-            <button
-                type="submit"
-                class="btn-login"
-            >
-                Entrar
-            </button>
-
-
-
-            <div
-                id="mensagem"
-                class="mensagem"
-            ></div>
-
-
-        </form>
-
-
-    </div>
-
-
-
-    <footer>
-
-        Atlas Gestão © 2026
-
-    </footer>
-
-
-</div>
-
-
-
-<!-- JAVASCRIPT CORRETO -->
-
-<script src="./frontend/js/login.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 
