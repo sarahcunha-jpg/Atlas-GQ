@@ -2,38 +2,68 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Atlas Gestão - Não Conformidades</title>
 
-    <link rel="stylesheet" href="nao-conformidades.css">
+    <!-- CSS EXCLUSIVO DESTA PÁGINA -->
+    <link
+        rel="stylesheet"
+        href="nao.conformidades.css">
+
 </head>
 
 <body>
 
-    <!-- =========================================
-         MENU LATERAL
-    ========================================== -->
 
-    <aside class="sidebar" id="sidebar">
+    <!-- =====================================================
+         MENU LATERAL
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+        <!-- BOTÃO FECHAR NO CELULAR -->
 
         <button
-            class="close-menu"
+            class="close-button"
             id="closeMenu"
-            type="button"
             aria-label="Fechar menu">
+
             ×
+
         </button>
 
+
+        <!-- LOGO -->
+
         <div class="logo">
-            <div class="logo-icon">▲</div>
-            <div class="logo-text">Atlas Gestão</div>
+
+            <div class="logo-icon">
+                ▲
+            </div>
+
+            <div class="logo-text">
+                Atlas Gestão
+            </div>
+
         </div>
+
+
+        <!-- TÍTULO -->
 
         <div class="menu-title">
             GESTÃO DA QUALIDADE
         </div>
+
+
+        <!-- MENU -->
 
         <nav class="menu">
 
@@ -45,8 +75,12 @@
                 Inspeções
             </a>
 
-            <a href="nao.conformidades.html" class="active">
+            <a
+                href="nao.conformidades.html"
+                class="active">
+
                 Não Conformidades
+
             </a>
 
             <a href="acoes-corretivas.html">
@@ -65,10 +99,16 @@
                 Indicadores
             </a>
 
+
             <div class="menu-separator"></div>
 
-            <a href="index.html" class="logout">
+
+            <a
+                href="index.html"
+                class="logout">
+
                 ↪&nbsp;&nbsp; Sair
+
             </a>
 
         </nav>
@@ -76,17 +116,25 @@
     </aside>
 
 
-    <!-- FUNDO MOBILE -->
 
-    <div class="overlay" id="overlay"></div>
+    <!-- =====================================================
+         FUNDO MOBILE
+    ====================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay">
+    </div>
 
 
-    <!-- BOTÃO MOBILE -->
+
+    <!-- =====================================================
+         BOTÃO MENU MOBILE
+    ====================================================== -->
 
     <button
         class="menu-button"
         id="menuButton"
-        type="button"
         aria-label="Abrir menu">
 
         ☰
@@ -94,55 +142,63 @@
     </button>
 
 
-    <!-- =========================================
-         ÁREA PRINCIPAL
-    ========================================== -->
 
-    <main class="main">
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
 
-        <!-- CABEÇALHO -->
+    <main class="page">
 
-        <header class="header">
+
+        <!-- =================================================
+             CABEÇALHO
+        ================================================== -->
+
+        <header class="page-header">
 
             <div>
-                <h1>Não Conformidades</h1>
+
+                <h1>
+                    Não Conformidades
+                </h1>
 
                 <p>
                     Registre, acompanhe e gerencie as não conformidades.
                 </p>
-            </div>
 
-            <div class="user">
-                <strong>sarahhellen2216</strong>
-                <span>Administrador</span>
             </div>
 
         </header>
 
 
-        <!-- =========================================
+
+        <!-- =================================================
              CONTEÚDO
-        ========================================== -->
+        ================================================== -->
 
-        <div class="content">
+        <div class="page-content">
 
 
-            <!-- TÍTULO E BOTÃO -->
+            <!-- CABEÇALHO DA SEÇÃO -->
 
-            <div class="page-top">
+            <div class="content-header">
 
                 <div>
-                    <h2>Não conformidades cadastradas</h2>
+
+                    <h2>
+                        Não conformidades cadastradas
+                    </h2>
 
                     <p>
                         Consulte e acompanhe as não conformidades registradas.
                     </p>
+
                 </div>
 
+
                 <button
-                    type="button"
-                    class="btn-primary"
-                    id="openModal">
+                    class="btn btn-primary"
+                    id="btnNovaNC">
 
                     + Nova não conformidade
 
@@ -151,24 +207,29 @@
             </div>
 
 
-            <!-- =========================================
-                 FILTROS
-            ========================================== -->
+
+            <!-- =================================================
+                 PAINEL
+            ================================================== -->
 
             <section class="panel">
 
+
+                <!-- FILTROS -->
+
                 <div class="filters">
 
-                    <div class="search-box">
 
-                        <input
-                            type="text"
-                            id="searchInput"
-                            placeholder="Pesquisar por código, descrição, processo ou responsável...">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="input"
+                        placeholder="Pesquisar por código, descrição, processo ou responsável...">
 
-                    </div>
 
-                    <select id="statusFilter">
+                    <select
+                        id="statusFilter"
+                        class="select">
 
                         <option value="">
                             Todos os status
@@ -178,12 +239,8 @@
                             Aberta
                         </option>
 
-                        <option value="Em análise">
-                            Em análise
-                        </option>
-
-                        <option value="Em tratamento">
-                            Em tratamento
+                        <option value="Em andamento">
+                            Em andamento
                         </option>
 
                         <option value="Concluída">
@@ -192,10 +249,13 @@
 
                     </select>
 
-                    <select id="severityFilter">
+
+                    <select
+                        id="priorityFilter"
+                        class="select">
 
                         <option value="">
-                            Todas as classificações
+                            Todas as prioridades
                         </option>
 
                         <option value="Baixa">
@@ -210,16 +270,12 @@
                             Alta
                         </option>
 
-                        <option value="Crítica">
-                            Crítica
-                        </option>
-
                     </select>
 
+
                     <button
-                        type="button"
-                        class="btn-clear"
-                        id="clearFilters">
+                        class="btn btn-secondary"
+                        id="btnLimpar">
 
                         Limpar
 
@@ -227,33 +283,15 @@
 
                 </div>
 
-            </section>
 
 
-            <!-- =========================================
-                 TABELA
-            ========================================== -->
+                <!-- =================================================
+                     TABELA
+                ================================================== -->
 
-            <section class="table-panel">
+                <div class="table-wrapper">
 
-                <div class="table-header">
-
-                    <div>
-                        <h2>
-                            Registros
-                        </h2>
-
-                        <span id="recordCount">
-                            0 registros
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <div class="table-container">
-
-                    <table>
+                    <table class="data-table">
 
                         <thead>
 
@@ -276,7 +314,7 @@
                                 </th>
 
                                 <th>
-                                    Classificação
+                                    Prioridade
                                 </th>
 
                                 <th>
@@ -295,41 +333,12 @@
 
                         </thead>
 
-                        <tbody id="tableBody">
+
+                        <tbody id="ncTableBody">
 
                         </tbody>
 
                     </table>
-
-                </div>
-
-
-                <!-- ESTADO VAZIO -->
-
-                <div
-                    class="empty-state"
-                    id="emptyState">
-
-                    <div class="empty-icon">
-                        !
-                    </div>
-
-                    <h3>
-                        Nenhuma não conformidade encontrada
-                    </h3>
-
-                    <p>
-                        Cadastre uma nova não conformidade para começar.
-                    </p>
-
-                    <button
-                        type="button"
-                        class="btn-primary"
-                        id="emptyButton">
-
-                        + Nova não conformidade
-
-                    </button>
 
                 </div>
 
@@ -340,32 +349,29 @@
     </main>
 
 
-    <!-- =========================================
-         MODAL CADASTRO
-    ========================================== -->
+
+    <!-- =====================================================
+         MODAL - NOVA NÃO CONFORMIDADE
+    ====================================================== -->
 
     <div
         class="modal"
-        id="modal">
+        id="ncModal">
 
-        <div class="modal-content">
+
+        <div class="modal-box">
+
 
             <div class="modal-header">
 
-                <div>
-                    <h2>
-                        Nova não conformidade
-                    </h2>
-
-                    <p>
-                        Preencha os dados para cadastrar o registro.
-                    </p>
-                </div>
+                <h2>
+                    Nova não conformidade
+                </h2>
 
                 <button
-                    type="button"
                     class="modal-close"
-                    id="closeModal">
+                    id="closeNcModal"
+                    aria-label="Fechar">
 
                     ×
 
@@ -374,910 +380,173 @@
             </div>
 
 
+
             <form id="ncForm">
 
-                <div class="form-grid">
 
+                <div class="modal-body">
 
-                    <div class="form-group">
 
-                        <label for="description">
-                            Descrição *
-                        </label>
+                    <div class="form-grid">
 
-                        <input
-                            type="text"
-                            id="description"
-                            required
-                            placeholder="Descreva a não conformidade">
 
-                    </div>
+                        <!-- CÓDIGO -->
 
+                        <div class="form-group">
 
-                    <div class="form-group">
+                            <label for="codigo">
+                                Código
+                            </label>
 
-                        <label for="process">
-                            Processo / Área *
-                        </label>
+                            <input
+                                type="text"
+                                id="codigo"
+                                class="input"
+                                placeholder="Ex.: NC-001"
+                                required>
 
-                        <input
-                            type="text"
-                            id="process"
-                            required
-                            placeholder="Ex.: Produção">
+                        </div>
 
-                    </div>
 
 
-                    <div class="form-group">
+                        <!-- DATA -->
 
-                        <label for="responsible">
-                            Responsável *
-                        </label>
+                        <div class="form-group">
 
-                        <input
-                            type="text"
-                            id="responsible"
-                            required
-                            placeholder="Nome do responsável">
+                            <label for="data">
+                                Data
+                            </label>
 
-                    </div>
+                            <input
+                                type="date"
+                                id="data"
+                                class="input"
+                                required>
 
+                        </div>
 
-                    <div class="form-group">
 
-                        <label for="severity">
-                            Classificação *
-                        </label>
 
-                        <select id="severity" required>
+                        <!-- DESCRIÇÃO -->
 
-                            <option value="">
-                                Selecione
-                            </option>
+                        <div class="form-group full">
 
-                            <option value="Baixa">
-                                Baixa
-                            </option>
+                            <label for="descricao">
+                                Descrição da não conformidade
+                            </label>
 
-                            <option value="Média">
-                                Média
-                            </option>
+                            <textarea
+                                id="descricao"
+                                class="textarea"
+                                placeholder="Descreva a não conformidade encontrada..."
+                                required></textarea>
 
-                            <option value="Alta">
-                                Alta
-                            </option>
+                        </div>
 
-                            <option value="Crítica">
-                                Crítica
-                            </option>
 
-                        </select>
 
-                    </div>
+                        <!-- PROCESSO -->
 
+                        <div class="form-group">
 
-                    <div class="form-group">
+                            <label for="processo">
+                                Processo / Área
+                            </label>
 
-                        <label for="date">
-                            Data *
-                        </label>
+                            <input
+                                type="text"
+                                id="processo"
+                                class="input"
+                                placeholder="Ex.: Produção"
+                                required>
 
-                        <input
-                            type="date"
-                            id="date"
-                            required>
+                        </div>
 
-                    </div>
 
 
-                    <div class="form-group">
+                        <!-- RESPONSÁVEL -->
 
-                        <label for="status">
-                            Status *
-                        </label>
+                        <div class="form-group">
 
-                        <select id="status" required>
+                            <label for="responsavel">
+                                Responsável
+                            </label>
 
-                            <option value="Aberta">
-                                Aberta
-                            </option>
+                            <input
+                                type="text"
+                                id="responsavel"
+                                class="input"
+                                placeholder="Nome do responsável"
+                                required>
 
-                            <option value="Em análise">
-                                Em análise
-                            </option>
+                        </div>
 
-                            <option value="Em tratamento">
-                                Em tratamento
-                            </option>
 
-                            <option value="Concluída">
-                                Concluída
-                            </option>
 
-                        </select>
+                        <!-- PRIORIDADE -->
 
-                    </div>
+                        <div class="form-group">
 
+                            <label for="prioridade">
+                                Prioridade
+                            </label>
 
-                    <div class="form-group full">
+                            <select
+                                id="prioridade"
+                                class="select"
+                                required>
 
-                        <label for="details">
-                            Detalhes / Observações
-                        </label>
+                                <option value="">
+                                    Selecione
+                                </option>
 
-                        <textarea
-                            id="details"
-                            rows="4"
-                            placeholder="Informe detalhes adicionais..."></textarea>
+                                <option value="Baixa">
+                                    Baixa
+                                </option>
 
-                    </div>
+                                <option value="Média">
+                                    Média
+                                </option>
 
-                </div>
+                                <option value="Alta">
+                                    Alta
+                                </option>
 
+                            </select>
 
-                <div class="modal-footer">
+                        </div>
 
-                    <button
-                        type="button"
-                        class="btn-secondary"
-                        id="cancelModal">
 
-                        Cancelar
 
-                    </button>
+                        <!-- STATUS -->
 
-                    <button
-                        type="submit"
-                        class="btn-primary">
+                        <div class="form-group">
 
-                        Salvar não conformidade
+                            <label for="status">
+                                Status
+                            </label>
 
-                    </button>
+                            <select
+                                id="status"
+                                class="select"
+                                required>
 
-                </div>
+                                <option value="Aberta">
+                                    Aberta
+                                </option>
 
-            </form>
+                                <option value="Em andamento">
+                                    Em andamento
+                                </option>
 
-        </div>
+                                <option value="Concluída">
+                                    Concluída
+                                </option>
 
-    </div>
+                            </select>
 
+                        </div>
 
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
 
-    <script>
 
-        /* ======================================
-           MENU MOBILE
-        ====================================== */
-
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("overlay");
-        const menuButton = document.getElementById("menuButton");
-        const closeMenu = document.getElementById("closeMenu");
-
-        function openSidebar() {
-
-            sidebar.classList.add("open");
-            overlay.classList.add("open");
-
-        }
-
-        function closeSidebar() {
-
-            sidebar.classList.remove("open");
-            overlay.classList.remove("open");
-
-        }
-
-        menuButton.addEventListener("click", openSidebar);
-
-        closeMenu.addEventListener("click", closeSidebar);
-
-        overlay.addEventListener("click", closeSidebar);
-
-
-        /* ======================================
-           ELEMENTOS
-        ====================================== */
-
-        const modal = document.getElementById("modal");
-
-        const openModalButton =
-            document.getElementById("openModal");
-
-        const emptyButton =
-            document.getElementById("emptyButton");
-
-        const closeModalButton =
-            document.getElementById("closeModal");
-
-        const cancelModalButton =
-            document.getElementById("cancelModal");
-
-        const form =
-            document.getElementById("ncForm");
-
-        const tableBody =
-            document.getElementById("tableBody");
-
-        const emptyState =
-            document.getElementById("emptyState");
-
-        const recordCount =
-            document.getElementById("recordCount");
-
-        const searchInput =
-            document.getElementById("searchInput");
-
-        const statusFilter =
-            document.getElementById("statusFilter");
-
-        const severityFilter =
-            document.getElementById("severityFilter");
-
-        const clearFilters =
-            document.getElementById("clearFilters");
-
-
-        /* ======================================
-           LOCAL STORAGE
-        ====================================== */
-
-        const STORAGE_KEY =
-            "atlas_nao_conformidades";
-
-
-        let registros =
-            JSON.parse(
-                localStorage.getItem(STORAGE_KEY)
-            ) || [];
-
-
-        /* ======================================
-           MODAL
-        ====================================== */
-
-        function openModal() {
-
-            modal.classList.add("show");
-
-            document.body.classList.add("modal-open");
-
-            document
-                .getElementById("description")
-                .focus();
-
-        }
-
-
-        function closeModal() {
-
-            modal.classList.remove("show");
-
-            document.body.classList.remove("modal-open");
-
-        }
-
-
-        openModalButton.addEventListener(
-            "click",
-            openModal
-        );
-
-        emptyButton.addEventListener(
-            "click",
-            openModal
-        );
-
-        closeModalButton.addEventListener(
-            "click",
-            closeModal
-        );
-
-        cancelModalButton.addEventListener(
-            "click",
-            closeModal
-        );
-
-
-        modal.addEventListener(
-            "click",
-            function(event) {
-
-                if (event.target === modal) {
-                    closeModal();
-                }
-
-            }
-        );
-
-
-        /* ======================================
-           DATA ATUAL
-        ====================================== */
-
-        function getToday() {
-
-            const date = new Date();
-
-            const year =
-                date.getFullYear();
-
-            const month =
-                String(
-                    date.getMonth() + 1
-                ).padStart(2, "0");
-
-            const day =
-                String(
-                    date.getDate()
-                ).padStart(2, "0");
-
-            return `${year}-${month}-${day}`;
-
-        }
-
-
-        document.getElementById("date").value =
-            getToday();
-
-
-        /* ======================================
-           GERAR CÓDIGO
-        ====================================== */
-
-        function generateCode() {
-
-            const number =
-                registros.length + 1;
-
-            let code =
-                "NC" +
-                String(number).padStart(4, "0");
-
-
-            while (
-                registros.some(
-                    item => item.code === code
-                )
-            ) {
-
-                code =
-                    "NC" +
-                    String(
-                        Number(
-                            code.replace("NC", "")
-                        ) + 1
-                    ).padStart(4, "0");
-
-            }
-
-            return code;
-
-        }
-
-
-        /* ======================================
-           ESCAPAR HTML
-        ====================================== */
-
-        function escapeHtml(value) {
-
-            return String(value || "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-
-        }
-
-
-        /* ======================================
-           FORMATAR DATA
-        ====================================== */
-
-        function formatDate(dateString) {
-
-            if (!dateString) {
-                return "-";
-            }
-
-            const parts =
-                dateString.split("-");
-
-            if (parts.length !== 3) {
-                return dateString;
-            }
-
-            return (
-                parts[2] +
-                "/" +
-                parts[1] +
-                "/" +
-                parts[0]
-            );
-
-        }
-
-
-        /* ======================================
-           CLASSES
-        ====================================== */
-
-        function statusClass(status) {
-
-            if (status === "Concluída") {
-                return "status-concluida";
-            }
-
-            if (status === "Em tratamento") {
-                return "status-tratamento";
-            }
-
-            if (status === "Em análise") {
-                return "status-analise";
-            }
-
-            return "status-aberta";
-
-        }
-
-
-        function severityClass(severity) {
-
-            if (severity === "Crítica") {
-                return "severity-critica";
-            }
-
-            if (severity === "Alta") {
-                return "severity-alta";
-            }
-
-            if (severity === "Média") {
-                return "severity-media";
-            }
-
-            return "severity-baixa";
-
-        }
-
-
-        /* ======================================
-           FILTRAR
-        ====================================== */
-
-        function getFilteredRecords() {
-
-            const search =
-                searchInput.value
-                    .trim()
-                    .toLowerCase();
-
-            const status =
-                statusFilter.value;
-
-            const severity =
-                severityFilter.value;
-
-
-            return registros.filter(
-                function(item) {
-
-                    const text =
-                        (
-                            item.code +
-                            " " +
-                            item.description +
-                            " " +
-                            item.process +
-                            " " +
-                            item.responsible
-                        ).toLowerCase();
-
-
-                    const matchesSearch =
-                        !search ||
-                        text.includes(search);
-
-
-                    const matchesStatus =
-                        !status ||
-                        item.status === status;
-
-
-                    const matchesSeverity =
-                        !severity ||
-                        item.severity === severity;
-
-
-                    return (
-                        matchesSearch &&
-                        matchesStatus &&
-                        matchesSeverity
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* ======================================
-           RENDERIZAR TABELA
-        ====================================== */
-
-        function renderTable() {
-
-            const filtered =
-                getFilteredRecords();
-
-
-            tableBody.innerHTML = "";
-
-
-            recordCount.textContent =
-                filtered.length +
-                (
-                    filtered.length === 1
-                        ? " registro"
-                        : " registros"
-                );
-
-
-            if (filtered.length === 0) {
-
-                emptyState.style.display = "flex";
-
-                return;
-
-            }
-
-
-            emptyState.style.display = "none";
-
-
-            filtered.forEach(
-                function(item) {
-
-                    const row =
-                        document.createElement("tr");
-
-
-                    row.innerHTML = `
-
-                        <td>
-                            <strong class="code">
-                                ${escapeHtml(item.code)}
-                            </strong>
-                        </td>
-
-                        <td>
-                            <div class="description-cell">
-                                ${escapeHtml(item.description)}
-                            </div>
-                        </td>
-
-                        <td>
-                            ${escapeHtml(item.process)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(item.responsible)}
-                        </td>
-
-                        <td>
-                            <span class="badge ${severityClass(item.severity)}">
-                                ${escapeHtml(item.severity)}
-                            </span>
-                        </td>
-
-                        <td>
-                            ${formatDate(item.date)}
-                        </td>
-
-                        <td>
-                            <span class="badge ${statusClass(item.status)}">
-                                ${escapeHtml(item.status)}
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <div class="actions">
-
-                                <button
-                                    type="button"
-                                    class="action-view"
-                                    onclick="viewRecord('${item.id}')">
-
-                                    Ver
-
-                                </button>
-
-                                <button
-                                    type="button"
-                                    class="action-delete"
-                                    onclick="deleteRecord('${item.id}')">
-
-                                    Excluir
-
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    `;
-
-
-                    tableBody.appendChild(row);
-
-                }
-            );
-
-        }
-
-
-        /* ======================================
-           SALVAR
-        ====================================== */
-
-        form.addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-
-                const record = {
-
-                    id:
-                        Date.now().toString(),
-
-                    code:
-                        generateCode(),
-
-                    description:
-                        document
-                            .getElementById("description")
-                            .value
-                            .trim(),
-
-                    process:
-                        document
-                            .getElementById("process")
-                            .value
-                            .trim(),
-
-                    responsible:
-                        document
-                            .getElementById("responsible")
-                            .value
-                            .trim(),
-
-                    severity:
-                        document
-                            .getElementById("severity")
-                            .value,
-
-                    date:
-                        document
-                            .getElementById("date")
-                            .value,
-
-                    status:
-                        document
-                            .getElementById("status")
-                            .value,
-
-                    details:
-                        document
-                            .getElementById("details")
-                            .value
-                            .trim()
-
-                };
-
-
-                registros.push(record);
-
-
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(registros)
-                );
-
-
-                form.reset();
-
-
-                document.getElementById("date").value =
-                    getToday();
-
-
-                document.getElementById("status").value =
-                    "Aberta";
-
-
-                closeModal();
-
-
-                renderTable();
-
-            }
-        );
-
-
-        /* ======================================
-           VISUALIZAR
-        ====================================== */
-
-        window.viewRecord =
-            function(id) {
-
-                const record =
-                    registros.find(
-                        item => item.id === id
-                    );
-
-
-                if (!record) {
-                    return;
-                }
-
-
-                alert(
-
-                    "Código: " +
-                    record.code +
-
-                    "\n\nDescrição: " +
-                    record.description +
-
-                    "\n\nProcesso / Área: " +
-                    record.process +
-
-                    "\n\nResponsável: " +
-                    record.responsible +
-
-                    "\n\nClassificação: " +
-                    record.severity +
-
-                    "\n\nData: " +
-                    formatDate(record.date) +
-
-                    "\n\nStatus: " +
-                    record.status +
-
-                    "\n\nObservações: " +
-                    (
-                        record.details || "Nenhuma"
-                    )
-
-                );
-
-            };
-
-
-        /* ======================================
-           EXCLUIR
-        ====================================== */
-
-        window.deleteRecord =
-            function(id) {
-
-                const record =
-                    registros.find(
-                        item => item.id === id
-                    );
-
-
-                if (!record) {
-                    return;
-                }
-
-
-                const confirmed =
-                    confirm(
-                        "Deseja realmente excluir a não conformidade " +
-                        record.code +
-                        "?"
-                    );
-
-
-                if (!confirmed) {
-                    return;
-                }
-
-
-                registros =
-                    registros.filter(
-                        item => item.id !== id
-                    );
-
-
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(registros)
-                );
-
-
-                renderTable();
-
-            };
-
-
-        /* ======================================
-           FILTROS
-        ====================================== */
-
-        searchInput.addEventListener(
-            "input",
-            renderTable
-        );
-
-
-        statusFilter.addEventListener(
-            "change",
-            renderTable
-        );
-
-
-        severityFilter.addEventListener(
-            "change",
-            renderTable
-        );
-
-
-        clearFilters.addEventListener(
-            "click",
-            function() {
-
-                searchInput.value = "";
-
-                statusFilter.value = "";
-
-                severityFilter.value = "";
-
-                renderTable();
-
-            }
-        );
-
-
-        /* ======================================
-           ESC FECHA MODAL / MENU
-        ====================================== */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    closeModal();
-
-                    closeSidebar();
-
-                }
-
-            }
-        );
-
-
-        /* ======================================
-           INICIALIZAÇÃO
-        ====================================== */
-
-        renderTable();
-
-    </script>
-
-</body>
-
-</html>
+                        <!--
