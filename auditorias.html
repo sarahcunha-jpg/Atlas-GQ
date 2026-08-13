@@ -2,484 +2,1462 @@
 <html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Atlas Gestão - Auditorias</title>
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>
-Auditorias - Atlas Gestão
-</title>
-
-<link
-rel="stylesheet"
-href="/css/style.css"
->
-
+    <link rel="stylesheet" href="./auditorias.css">
 </head>
 
 <body>
 
-<div id="sistema">
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
 
+        <button
+            class="close-menu"
+            id="closeMenu"
+            type="button"
+            aria-label="Fechar menu">
+            ×
+        </button>
 
-<aside id="menu">
+        <div class="logo">
+            <div class="logo-icon">▲</div>
+            <span>Atlas Gestão</span>
+        </div>
 
-<div class="logo">
+        <div class="menu-title">
+            GESTÃO DA QUALIDADE
+        </div>
 
-<span class="logo-symbol">
-▲
-</span>
+        <nav class="menu">
 
-<span>
-Atlas Gestão
-</span>
+            <a href="./dashboard.html">
+                Dashboard
+            </a>
 
-</div>
+            <a href="./inspecoes.html">
+                Inspeções
+            </a>
 
+            <a href="./nao.conformidades.html">
+                Não Conformidades
+            </a>
 
-<div class="menu-titulo">
-GESTÃO DA QUALIDADE
-</div>
+            <a href="./acoes-corretivas.html">
+                Ações Corretivas
+            </a>
 
+            <a
+                href="./auditorias.html"
+                class="active">
+                Auditorias
+            </a>
 
-<nav>
+            <a href="./documentos.html">
+                Documentos
+            </a>
 
-<a href="/dashboard.html">
-Dashboard
-</a>
+            <a href="./indicadores.html">
+                Indicadores
+            </a>
 
-<a href="/inspecoes.html">
-Inspeções
-</a>
+            <div class="menu-separator"></div>
 
-<a href="/nao-conformidades.html">
-Não Conformidades
-</a>
+            <a
+                href="./index.html"
+                class="logout">
+                ↪&nbsp;&nbsp; Sair
+            </a>
 
-<a href="/acoes-corretivas.html">
-Ações Corretivas
-</a>
+        </nav>
 
-<a
-href="/auditorias.html"
-class="ativo"
->
-Auditorias
-</a>
+    </aside>
 
-<a href="/documentos.html">
-Documentos
-</a>
 
-<a href="/indicadores.html">
-Indicadores
-</a>
+    <!-- FUNDO MOBILE -->
+    <div
+        class="overlay"
+        id="overlay">
+    </div>
 
-<a href="/relatorios.html">
-Relatórios
-</a>
 
-<a href="/usuarios.html">
-Usuários
-</a>
+    <!-- BOTÃO MOBILE -->
+    <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Abrir menu">
+        ☰
+    </button>
 
-<a href="/configuracoes.html">
-Configurações
-</a>
 
-</nav>
+    <!-- CONTEÚDO -->
+    <main class="main">
 
+        <header class="header">
 
-<button
-id="logout"
-class="btn-menu-sair"
->
-Sair
-</button>
+            <div class="header-left">
 
-</aside>
+                <h1>
+                    Auditorias
+                </h1>
 
+                <p>
+                    Planejamento, execução e acompanhamento das auditorias
+                </p>
 
-<main>
+            </div>
 
+            <div class="user">
 
-<header class="topbar">
+                <strong id="usuarioNome">
+                    Administrador
+                </strong>
 
-<button
-id="menuMobile"
-class="menu-mobile"
->
-☰
-</button>
+                <span id="usuarioPerfil">
+                    Administrador
+                </span>
 
+            </div>
 
-<div>
+        </header>
 
-<h2>
-Auditorias
-</h2>
 
-<p>
-Controle das auditorias internas da qualidade
-</p>
+        <div class="content">
 
-</div>
 
+            <!-- INDICADORES -->
+            <section class="cards">
 
-<div class="usuario-area">
+                <div class="card">
 
-<div
-id="usuarioNome"
-class="usuario-nome"
->
-Usuário
-</div>
+                    <div class="card-icon">
+                        A
+                    </div>
 
-<div
-id="usuarioPerfil"
-class="usuario-perfil"
->
-Perfil
-</div>
+                    <div class="card-title">
+                        Total de auditorias
+                    </div>
 
-</div>
+                    <div
+                        class="card-value"
+                        id="totalAuditorias">
+                        0
+                    </div>
 
-</header>
+                </div>
 
 
-<section id="conteudo">
+                <div class="card">
 
+                    <div class="card-icon">
+                        P
+                    </div>
 
-<div class="card">
+                    <div class="card-title">
+                        Planejadas
+                    </div>
 
-<div class="card-header">
+                    <div
+                        class="card-value"
+                        id="planejadas">
+                        0
+                    </div>
 
-<div>
+                </div>
 
-<h2>
-Nova Auditoria
-</h2>
 
-<p>
-Cadastre uma nova auditoria interna.
-</p>
+                <div class="card">
 
-</div>
+                    <div class="card-icon">
+                        ↻
+                    </div>
 
-</div>
+                    <div class="card-title">
+                        Em andamento
+                    </div>
 
+                    <div
+                        class="card-value"
+                        id="emAndamento">
+                        0
+                    </div>
 
-<form id="auditoriaForm">
+                </div>
 
 
-<div class="form-grid">
+                <div class="card">
 
+                    <div class="card-icon">
+                        ✓
+                    </div>
 
-<div class="form-group">
+                    <div class="card-title">
+                        Concluídas
+                    </div>
 
-<label>
-Código *
-</label>
+                    <div
+                        class="card-value"
+                        id="concluidas">
+                        0
+                    </div>
 
-<input
-name="codigo"
-placeholder="AUD-001"
-required
->
+                </div>
 
-</div>
+            </section>
 
 
-<div class="form-group">
+            <!-- NOVA AUDITORIA -->
+            <section class="section">
 
-<label>
-Auditor *
-</label>
+                <div class="section-header">
 
-<input
-name="auditor"
-placeholder="Nome do auditor"
-required
->
+                    <h2>
+                        Nova auditoria
+                    </h2>
 
-</div>
+                    <p>
+                        Cadastre uma auditoria para planejar e acompanhar sua execução.
+                    </p>
 
+                </div>
 
-<div class="form-group">
 
-<label>
-Setor
-</label>
+                <form id="auditoriaForm">
 
-<input
-name="setor"
-placeholder="Ex.: Produção"
->
+                    <div class="form-grid">
 
-</div>
 
+                        <div class="form-group">
 
-<div class="form-group">
+                            <label for="codigo">
+                                Código da auditoria *
+                            </label>
 
-<label>
-Data
-</label>
+                            <input
+                                type="text"
+                                id="codigo"
+                                placeholder="Ex.: AUD-001"
+                                required>
 
-<input
-type="date"
-name="data"
-id="dataAuditoria"
->
+                        </div>
 
-</div>
 
+                        <div class="form-group">
 
-<div class="form-group">
+                            <label for="tipo">
+                                Tipo de auditoria *
+                            </label>
 
-<label>
-Tipo
-</label>
+                            <select
+                                id="tipo"
+                                required>
 
-<select name="tipo">
+                                <option value="">
+                                    Selecione
+                                </option>
 
-<option>
-Interna
-</option>
+                                <option value="Interna">
+                                    Interna
+                                </option>
 
-<option>
-Processo
-</option>
+                                <option value="Externa">
+                                    Externa
+                                </option>
 
-<option>
-Produto
-</option>
+                                <option value="Fornecedor">
+                                    Fornecedor
+                                </option>
 
-<option>
-Sistema
-</option>
+                                <option value="Processo">
+                                    Processo
+                                </option>
 
-<option>
-Fornecedor
-</option>
+                                <option value="Produto">
+                                    Produto
+                                </option>
 
-</select>
+                            </select>
 
-</div>
+                        </div>
 
 
-<div class="form-group">
+                        <div class="form-group">
 
-<label>
-Resultado
-</label>
+                            <label for="processo">
+                                Processo / Área *
+                            </label>
 
-<select name="resultado">
+                            <input
+                                type="text"
+                                id="processo"
+                                placeholder="Ex.: Produção"
+                                required>
 
-<option>
-Conforme
-</option>
+                        </div>
 
-<option>
-Parcialmente Conforme
-</option>
 
-<option>
-Não Conforme
-</option>
+                        <div class="form-group">
 
-</select>
+                            <label for="auditor">
+                                Auditor responsável *
+                            </label>
 
-</div>
+                            <input
+                                type="text"
+                                id="auditor"
+                                placeholder="Nome do auditor"
+                                required>
 
+                        </div>
 
-<div class="form-group campo-grande">
 
-<label>
-Checklist
-</label>
+                        <div class="form-group">
 
-<textarea
-name="checklist"
-rows="5"
-placeholder="Descreva os itens verificados..."
-></textarea>
+                            <label for="dataInicio">
+                                Data de início *
+                            </label>
 
-</div>
+                            <input
+                                type="date"
+                                id="dataInicio"
+                                required>
 
+                        </div>
 
-<div class="form-group campo-grande">
 
-<label>
-Observações
-</label>
+                        <div class="form-group">
 
-<textarea
-name="observacoes"
-rows="5"
-placeholder="Registre observações da auditoria..."
-></textarea>
+                            <label for="dataFim">
+                                Data de término
+                            </label>
 
-</div>
+                            <input
+                                type="date"
+                                id="dataFim">
 
+                        </div>
 
-</div>
 
+                        <div class="form-group">
 
-<br>
+                            <label for="status">
+                                Status *
+                            </label>
 
+                            <select
+                                id="status"
+                                required>
 
-<button
-type="submit"
-class="btn btn-primary"
->
-Cadastrar auditoria
-</button>
+                                <option value="Planejada">
+                                    Planejada
+                                </option>
 
+                                <option value="Em andamento">
+                                    Em andamento
+                                </option>
 
-<button
-type="reset"
-class="btn btn-secondary"
->
-Limpar
-</button>
+                                <option value="Concluída">
+                                    Concluída
+                                </option>
 
+                                <option value="Cancelada">
+                                    Cancelada
+                                </option>
 
-<div
-id="mensagemAuditoria"
-class="mensagem"
-></div>
+                            </select>
 
+                        </div>
 
-</form>
 
-</div>
+                        <div class="form-group">
 
+                            <label for="resultado">
+                                Resultado
+                            </label>
 
+                            <select id="resultado">
 
-<div class="card">
+                                <option value="">
+                                    Ainda não definido
+                                </option>
 
+                                <option value="Conforme">
+                                    Conforme
+                                </option>
 
-<div class="card-header">
+                                <option value="Parcialmente conforme">
+                                    Parcialmente conforme
+                                </option>
 
-<div>
+                                <option value="Não conforme">
+                                    Não conforme
+                                </option>
 
-<h2>
-Auditorias cadastradas
-</h2>
+                            </select>
 
-<p>
-Histórico das auditorias realizadas.
-</p>
+                        </div>
 
-</div>
 
-</div>
+                        <div class="form-group full">
 
+                            <label for="objetivo">
+                                Objetivo da auditoria *
+                            </label>
 
-<div class="filtros">
+                            <textarea
+                                id="objetivo"
+                                placeholder="Descreva o objetivo da auditoria..."
+                                required></textarea>
 
-<input
-type="text"
-id="pesquisaAuditoria"
-placeholder="Pesquisar..."
->
+                        </div>
 
 
-<select id="filtroResultado">
+                        <div class="form-group full">
 
-<option value="">
-Todos os resultados
-</option>
+                            <label for="escopo">
+                                Escopo
+                            </label>
 
-<option>
-Conforme
-</option>
+                            <textarea
+                                id="escopo"
+                                placeholder="Informe os processos, setores ou atividades abrangidos..."></textarea>
 
-<option>
-Parcialmente Conforme
-</option>
+                        </div>
 
-<option>
-Não Conforme
-</option>
 
-</select>
+                        <div class="form-group full">
 
-</div>
+                            <label for="criterios">
+                                Critérios da auditoria
+                            </label>
 
+                            <textarea
+                                id="criterios"
+                                placeholder="Informe normas, procedimentos ou requisitos utilizados..."></textarea>
 
+                        </div>
 
-<div class="tabela-container">
 
+                        <div class="form-group full">
 
-<table class="tabela">
+                            <label for="constatacoes">
+                                Constatações
+                            </label>
 
+                            <textarea
+                                id="constatacoes"
+                                placeholder="Registre os principais achados da auditoria..."></textarea>
 
-<thead>
+                        </div>
 
-<tr>
 
-<th>
-Código
-</th>
+                        <div class="form-group full">
 
-<th>
-Auditor
-</th>
+                            <label for="observacoes">
+                                Observações
+                            </label>
 
-<th>
-Setor
-</th>
+                            <textarea
+                                id="observacoes"
+                                placeholder="Informações adicionais..."></textarea>
 
-<th>
-Data
-</th>
+                        </div>
 
-<th>
-Tipo
-</th>
+                    </div>
 
-<th>
-Resultado
-</th>
 
-<th>
-Ações
-</th>
+                    <div class="form-actions">
 
-</tr>
+                        <button
+                            type="submit"
+                            class="btn-primary">
+                            Cadastrar auditoria
+                        </button>
 
-</thead>
+                        <button
+                            type="reset"
+                            class="btn-secondary">
+                            Limpar
+                        </button>
 
+                    </div>
 
-<tbody
-id="listaAuditorias"
->
-</tbody>
+                </form>
 
+            </section>
 
-</table>
 
+            <!-- LISTAGEM -->
+            <section class="section">
 
-</div>
+                <div class="section-header">
 
-</div>
+                    <h2>
+                        Auditorias cadastradas
+                    </h2>
 
+                    <p>
+                        Consulte e acompanhe as auditorias registradas.
+                    </p>
 
-</section>
+                </div>
 
-</main>
 
-</div>
+                <div class="filters">
 
+                    <input
+                        type="search"
+                        id="pesquisa"
+                        placeholder="Pesquisar por código, processo ou auditor...">
 
-<script src="/js/app.js"></script>
 
-<script src="/js/auditorias.js"></script>
+                    <select id="filtroStatus">
+
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="Planejada">
+                            Planejada
+                        </option>
+
+                        <option value="Em andamento">
+                            Em andamento
+                        </option>
+
+                        <option value="Concluída">
+                            Concluída
+                        </option>
+
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
+
+                    </select>
+
+
+                    <select id="filtroResultado">
+
+                        <option value="">
+                            Todos os resultados
+                        </option>
+
+                        <option value="Conforme">
+                            Conforme
+                        </option>
+
+                        <option value="Parcialmente conforme">
+                            Parcialmente conforme
+                        </option>
+
+                        <option value="Não conforme">
+                            Não conforme
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="limparFiltros">
+                        Limpar
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Código
+                                </th>
+
+                                <th>
+                                    Tipo
+                                </th>
+
+                                <th>
+                                    Processo / Área
+                                </th>
+
+                                <th>
+                                    Auditor
+                                </th>
+
+                                <th>
+                                    Período
+                                </th>
+
+                                <th>
+                                    Resultado
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="listaAuditorias">
+                        </tbody>
+
+                    </table>
+
+
+                    <div
+                        class="empty-state"
+                        id="emptyState">
+
+                        Nenhuma auditoria cadastrada.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- MODAL -->
+    <div
+        class="modal"
+        id="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Detalhes da auditoria
+                </h2>
+
+                <button
+                    type="button"
+                    id="fecharModal"
+                    class="modal-close">
+                    ×
+                </button>
+
+            </div>
+
+            <div id="detalhesAuditoria">
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+/* ==================================================
+   MENU
+================================================== */
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const closeMenu =
+    document.getElementById("closeMenu");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function abrirMenu() {
+
+    sidebar.classList.add("open");
+    overlay.classList.add("open");
+
+}
+
+
+function fecharMenu() {
+
+    sidebar.classList.remove("open");
+    overlay.classList.remove("open");
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    abrirMenu
+);
+
+
+closeMenu.addEventListener(
+    "click",
+    fecharMenu
+);
+
+
+overlay.addEventListener(
+    "click",
+    fecharMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            fecharMenu();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   STORAGE
+================================================== */
+
+const STORAGE =
+    "atlas_auditorias";
+
+
+let auditorias =
+    JSON.parse(
+        localStorage.getItem(STORAGE) || "[]"
+    );
+
+
+/* ==================================================
+   ELEMENTOS
+================================================== */
+
+const form =
+    document.getElementById("auditoriaForm");
+
+const lista =
+    document.getElementById("listaAuditorias");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+const pesquisa =
+    document.getElementById("pesquisa");
+
+const filtroStatus =
+    document.getElementById("filtroStatus");
+
+const filtroResultado =
+    document.getElementById("filtroResultado");
+
+
+/* ==================================================
+   DATA
+================================================== */
+
+function dataHoje() {
+
+    const data = new Date();
+
+    return (
+        data.getFullYear() +
+        "-" +
+        String(data.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(data.getDate()).padStart(2, "0")
+    );
+
+}
+
+
+document.getElementById("dataInicio").value =
+    dataHoje();
+
+
+/* ==================================================
+   SALVAR
+================================================== */
+
+function salvar() {
+
+    localStorage.setItem(
+        STORAGE,
+        JSON.stringify(auditorias)
+    );
+
+}
+
+
+/* ==================================================
+   ESCAPAR HTML
+================================================== */
+
+function escapar(valor) {
+
+    return String(valor || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* ==================================================
+   FORMATAR DATA
+================================================== */
+
+function formatarData(data) {
+
+    if (!data) {
+        return "-";
+    }
+
+    const partes =
+        data.split("-");
+
+    if (partes.length !== 3) {
+        return data;
+    }
+
+    return (
+        partes[2] +
+        "/" +
+        partes[1] +
+        "/" +
+        partes[0]
+    );
+
+}
+
+
+/* ==================================================
+   STATUS
+================================================== */
+
+function classeStatus(status) {
+
+    if (status === "Planejada") {
+        return "status planejada";
+    }
+
+    if (status === "Em andamento") {
+        return "status andamento";
+    }
+
+    if (status === "Concluída") {
+        return "status concluida";
+    }
+
+    return "status cancelada";
+
+}
+
+
+/* ==================================================
+   RESULTADO
+================================================== */
+
+function classeResultado(resultado) {
+
+    if (resultado === "Conforme") {
+        return "resultado conforme";
+    }
+
+    if (resultado === "Não conforme") {
+        return "resultado nao-conforme";
+    }
+
+    if (resultado === "Parcialmente conforme") {
+        return "resultado parcial";
+    }
+
+    return "resultado";
+
+}
+
+
+/* ==================================================
+   INDICADORES
+================================================== */
+
+function atualizarIndicadores() {
+
+    document.getElementById(
+        "totalAuditorias"
+    ).textContent =
+        auditorias.length;
+
+
+    document.getElementById(
+        "planejadas"
+    ).textContent =
+        auditorias.filter(
+            item => item.status === "Planejada"
+        ).length;
+
+
+    document.getElementById(
+        "emAndamento"
+    ).textContent =
+        auditorias.filter(
+            item => item.status === "Em andamento"
+        ).length;
+
+
+    document.getElementById(
+        "concluidas"
+    ).textContent =
+        auditorias.filter(
+            item => item.status === "Concluída"
+        ).length;
+
+}
+
+
+/* ==================================================
+   RENDERIZAR
+================================================== */
+
+function renderizar() {
+
+    lista.innerHTML = "";
+
+
+    const termo =
+        pesquisa.value
+            .toLowerCase()
+            .trim();
+
+
+    const status =
+        filtroStatus.value;
+
+
+    const resultado =
+        filtroResultado.value;
+
+
+    const filtradas =
+        auditorias.filter(
+            function(item) {
+
+                const texto = (
+
+                    item.codigo +
+                    " " +
+                    item.tipo +
+                    " " +
+                    item.processo +
+                    " " +
+                    item.auditor +
+                    " " +
+                    item.objetivo
+
+                ).toLowerCase();
+
+
+                return (
+
+                    texto.includes(termo) &&
+
+                    (
+                        !status ||
+                        item.status === status
+                    ) &&
+
+                    (
+                        !resultado ||
+                        item.resultado === resultado
+                    )
+
+                );
+
+            }
+        );
+
+
+    emptyState.style.display =
+        filtradas.length === 0
+            ? "block"
+            : "none";
+
+
+    filtradas.forEach(
+        function(item) {
+
+            const indice =
+                auditorias.indexOf(item);
+
+
+            const tr =
+                document.createElement("tr");
+
+
+            const periodo =
+                formatarData(item.dataInicio) +
+                " - " +
+                formatarData(item.dataFim);
+
+
+            tr.innerHTML = `
+
+                <td>
+                    <strong>
+                        ${escapar(item.codigo)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapar(item.tipo)}
+                </td>
+
+                <td>
+                    ${escapar(item.processo)}
+                </td>
+
+                <td>
+                    ${escapar(item.auditor)}
+                </td>
+
+                <td>
+                    ${periodo}
+                </td>
+
+                <td>
+
+                    <span class="${classeResultado(item.resultado)}">
+                        ${escapar(item.resultado) || "Não definido"}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="${classeStatus(item.status)}">
+                        ${escapar(item.status)}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        data-ver="${indice}">
+                        Ver
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-delete"
+                        data-excluir="${indice}">
+                        Excluir
+                    </button>
+
+                </td>
+
+            `;
+
+
+            lista.appendChild(tr);
+
+        }
+    );
+
+
+    atualizarIndicadores();
+
+}
+
+
+/* ==================================================
+   CADASTRAR
+================================================== */
+
+form.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const auditoria = {
+
+            id: Date.now(),
+
+            codigo:
+                document.getElementById("codigo").value.trim(),
+
+            tipo:
+                document.getElementById("tipo").value,
+
+            processo:
+                document.getElementById("processo").value.trim(),
+
+            auditor:
+                document.getElementById("auditor").value.trim(),
+
+            dataInicio:
+                document.getElementById("dataInicio").value,
+
+            dataFim:
+                document.getElementById("dataFim").value,
+
+            status:
+                document.getElementById("status").value,
+
+            resultado:
+                document.getElementById("resultado").value,
+
+            objetivo:
+                document.getElementById("objetivo").value.trim(),
+
+            escopo:
+                document.getElementById("escopo").value.trim(),
+
+            criterios:
+                document.getElementById("criterios").value.trim(),
+
+            constatacoes:
+                document.getElementById("constatacoes").value.trim(),
+
+            observacoes:
+                document.getElementById("observacoes").value.trim(),
+
+            criadoEm:
+                new Date().toISOString()
+
+        };
+
+
+        auditorias.push(auditoria);
+
+        salvar();
+
+        form.reset();
+
+        document.getElementById("dataInicio").value =
+            dataHoje();
+
+        renderizar();
+
+
+        alert(
+            "Auditoria cadastrada com sucesso!"
+        );
+
+    }
+);
+
+
+/* ==================================================
+   AÇÕES DA TABELA
+================================================== */
+
+lista.addEventListener(
+    "click",
+    function(event) {
+
+        const ver =
+            event.target.closest("[data-ver]");
+
+        const excluir =
+            event.target.closest("[data-excluir]");
+
+
+        if (ver) {
+
+            const indice =
+                Number(ver.dataset.ver);
+
+            abrirDetalhes(
+                auditorias[indice]
+            );
+
+            return;
+
+        }
+
+
+        if (excluir) {
+
+            const indice =
+                Number(excluir.dataset.excluir);
+
+
+            const auditoria =
+                auditorias[indice];
+
+
+            if (!auditoria) {
+                return;
+            }
+
+
+            if (
+                confirm(
+                    `Excluir a auditoria ${auditoria.codigo}?`
+                )
+            ) {
+
+                auditorias.splice(
+                    indice,
+                    1
+                );
+
+                salvar();
+
+                renderizar();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   MODAL
+================================================== */
+
+const modal =
+    document.getElementById("modal");
+
+const detalhes =
+    document.getElementById("detalhesAuditoria");
+
+const fecharModal =
+    document.getElementById("fecharModal");
+
+
+function abrirDetalhes(auditoria) {
+
+    if (!auditoria) {
+        return;
+    }
+
+
+    detalhes.innerHTML = `
+
+        <div class="details-grid">
+
+            <div class="detail-item">
+                <strong>Código</strong>
+                <p>${escapar(auditoria.codigo)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Tipo</strong>
+                <p>${escapar(auditoria.tipo)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Processo / Área</strong>
+                <p>${escapar(auditoria.processo)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Auditor responsável</strong>
+                <p>${escapar(auditoria.auditor)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Data de início</strong>
+                <p>${formatarData(auditoria.dataInicio)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Data de término</strong>
+                <p>${formatarData(auditoria.dataFim)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Status</strong>
+                <p>${escapar(auditoria.status)}</p>
+            </div>
+
+            <div class="detail-item">
+                <strong>Resultado</strong>
+                <p>${escapar(auditoria.resultado) || "Não definido"}</p>
+            </div>
+
+            <div class="detail-item full">
+                <strong>Objetivo</strong>
+                <p>${escapar(auditoria.objetivo)}</p>
+            </div>
+
+            <div class="detail-item full">
+                <strong>Escopo</strong>
+                <p>${escapar(auditoria.escopo) || "-"}</p>
+            </div>
+
+            <div class="detail-item full">
+                <strong>Critérios</strong>
+                <p>${escapar(auditoria.criterios) || "-"}</p>
+            </div>
+
+            <div class="detail-item full">
+                <strong>Constatações</strong>
+                <p>${escapar(auditoria.constatacoes) || "-"}</p>
+            </div>
+
+            <div class="detail-item full">
+                <strong>Observações</strong>
+                <p>${escapar(auditoria.observacoes) || "-"}</p>
+            </div>
+
+        </div>
+
+    `;
+
+
+    modal.classList.add("open");
+
+}
+
+
+fecharModal.addEventListener(
+    "click",
+    function() {
+
+        modal.classList.remove("open");
+
+    }
+);
+
+
+modal.addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === modal) {
+
+            modal.classList.remove("open");
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   FILTROS
+================================================== */
+
+pesquisa.addEventListener(
+    "input",
+    renderizar
+);
+
+
+filtroStatus.addEventListener(
+    "change",
+    renderizar
+);
+
+
+filtroResultado.addEventListener(
+    "change",
+    renderizar
+);
+
+
+document
+    .getElementById("limparFiltros")
+    .addEventListener(
+        "click",
+        function() {
+
+            pesquisa.value = "";
+
+            filtroStatus.value = "";
+
+            filtroResultado.value = "";
+
+            renderizar();
+
+        }
+    );
+
+
+/* ==================================================
+   USUÁRIO
+================================================== */
+
+try {
+
+    const usuario =
+        JSON.parse(
+            localStorage.getItem(
+                "atlas_usuario"
+            ) || "null"
+        );
+
+
+    if (usuario) {
+
+        if (usuario.nome) {
+
+            document.getElementById(
+                "usuarioNome"
+            ).textContent =
+                usuario.nome;
+
+        }
+
+
+        if (usuario.perfil) {
+
+            document.getElementById(
+                "usuarioPerfil"
+            ).textContent =
+                usuario.perfil;
+
+        }
+
+    }
+
+} catch (erro) {
+
+    console.log(
+        "Usuário não encontrado."
+    );
+
+}
+
+
+/* ==================================================
+   INICIALIZAÇÃO
+================================================== */
+
+renderizar();
+
+</script>
 
 </body>
 
