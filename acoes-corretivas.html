@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -12,311 +11,31 @@
 
     <title>Atlas Gestão - Ações Corretivas</title>
 
-    <!-- CSS EXCLUSIVO DAS PÁGINAS INTERNAS -->
     <link
         rel="stylesheet"
-        href="dashboard.css"
+        href="acoes-corretivas.css"
     >
-
-    <style>
-
-        /* ==============================
-           FORMULÁRIO
-        ============================== */
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin-top: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-        }
-
-        .form-group.full {
-            grid-column: span 2;
-        }
-
-        .form-group label {
-            font-size: 13px;
-            font-weight: bold;
-            color: #46515c;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-
-            border: 1px solid #dfe3e8;
-            border-radius: 8px;
-
-            background: white;
-            color: #263238;
-
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-
-            outline: none;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #2864d7;
-
-            box-shadow:
-                0 0 0 3px rgba(40, 100, 215, 0.10);
-        }
-
-        /* ==============================
-           BOTÕES
-        ============================== */
-
-        .form-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-            border: none;
-            border-radius: 8px;
-
-            padding: 12px 18px;
-
-            font-size: 14px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: #2864d7;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1f52b5;
-        }
-
-        .btn-secondary {
-            background: #eef1f5;
-            color: #46515c;
-        }
-
-        .btn-secondary:hover {
-            background: #e2e6eb;
-        }
-
-        /* ==============================
-           FILTROS
-        ============================== */
-
-        .filters {
-            display: grid;
-
-            grid-template-columns: 1fr 220px auto;
-
-            gap: 10px;
-
-            margin: 20px 0;
-        }
-
-        .filters input,
-        .filters select {
-            width: 100%;
-
-            padding: 11px 12px;
-
-            border: 1px solid #dfe3e8;
-            border-radius: 8px;
-
-            background: white;
-
-            font-size: 14px;
-
-            outline: none;
-        }
-
-        .filters input:focus,
-        .filters select:focus {
-            border-color: #2864d7;
-        }
-
-        /* ==============================
-           TABELA
-        ============================== */
-
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            min-width: 900px;
-
-            border-collapse: collapse;
-        }
-
-        table th {
-            background: #f5f7fa;
-
-            color: #687582;
-
-            font-size: 12px;
-
-            text-align: left;
-
-            padding: 13px;
-
-            border-bottom: 1px solid #e5e9ee;
-
-            white-space: nowrap;
-        }
-
-        table td {
-            padding: 14px 13px;
-
-            border-bottom: 1px solid #edf0f3;
-
-            font-size: 13px;
-
-            vertical-align: middle;
-        }
-
-        table tbody tr:hover td {
-            background: #fafbfd;
-        }
-
-        .table-button {
-            border: none;
-
-            background: #eef4ff;
-
-            color: #2864d7;
-
-            padding: 7px 10px;
-
-            border-radius: 6px;
-
-            font-size: 11px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .table-button:hover {
-            background: #dfeaff;
-        }
-
-        /* ==============================
-           STATUS
-        ============================== */
-
-        .status {
-            display: inline-block;
-
-            padding: 5px 9px;
-
-            border-radius: 20px;
-
-            font-size: 11px;
-
-            font-weight: bold;
-        }
-
-        .status-aberta {
-            background: #fff4e5;
-            color: #b86b00;
-        }
-
-        .status-andamento {
-            background: #eef4ff;
-            color: #2864d7;
-        }
-
-        .status-concluida {
-            background: #eaf8ef;
-            color: #218838;
-        }
-
-        .status-atrasada {
-            background: #fff0f0;
-            color: #dc3545;
-        }
-
-        /* ==============================
-           RESPONSIVO
-        ============================== */
-
-        @media (max-width: 700px) {
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group.full {
-                grid-column: span 1;
-            }
-
-            .filters {
-                grid-template-columns: 1fr;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-            }
-
-        }
-
-    </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- ==================================
+    <!-- =========================
          MENU LATERAL
-    =================================== -->
+    ========================== -->
 
     <aside
         class="sidebar"
         id="sidebar"
     >
 
-        <!-- BOTÃO FECHAR -->
-
         <button
-            class="close-button"
+            class="close-menu"
             id="closeMenu"
+            type="button"
             aria-label="Fechar menu"
         >
             ×
         </button>
-
-
-        <!-- LOGO -->
 
         <div class="logo">
 
@@ -324,21 +43,15 @@
                 ▲
             </div>
 
-            <div class="logo-text">
+            <span>
                 Atlas Gestão
-            </div>
+            </span>
 
         </div>
-
-
-        <!-- TÍTULO -->
 
         <div class="menu-title">
             GESTÃO DA QUALIDADE
         </div>
-
-
-        <!-- MENU -->
 
         <nav class="menu">
 
@@ -346,16 +59,13 @@
                 Dashboard
             </a>
 
-
             <a href="inspecoes.html">
                 Inspeções
             </a>
 
-
             <a href="nao.conformidades.html">
                 Não Conformidades
             </a>
-
 
             <a
                 href="acoes-corretivas.html"
@@ -364,28 +74,19 @@
                 Ações Corretivas
             </a>
 
-
             <a href="auditorias.html">
                 Auditorias
             </a>
-
 
             <a href="documentos.html">
                 Documentos
             </a>
 
-
             <a href="indicadores.html">
                 Indicadores
             </a>
 
-
-            <!-- SEPARADOR -->
-
             <div class="menu-separator"></div>
-
-
-            <!-- SAIR -->
 
             <a
                 href="index.html"
@@ -399,39 +100,31 @@
     </aside>
 
 
-
-    <!-- ==================================
-         OVERLAY MOBILE
-    =================================== -->
+    <!-- FUNDO DO MENU NO CELULAR -->
 
     <div
         class="overlay"
         id="overlay"
-    >
-    </div>
+    ></div>
 
 
-
-    <!-- ==================================
-         BOTÃO MENU MOBILE
-    =================================== -->
+    <!-- BOTÃO MENU MOBILE -->
 
     <button
         class="menu-button"
         id="menuButton"
+        type="button"
         aria-label="Abrir menu"
     >
         ☰
     </button>
 
 
-
-    <!-- ==================================
-         ÁREA PRINCIPAL
-    =================================== -->
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
 
     <main class="main">
-
 
         <!-- CABEÇALHO -->
 
@@ -449,11 +142,10 @@
 
             </div>
 
-
             <div class="user">
 
-                <strong>
-                    sarahhellen2216
+                <strong id="usuarioNome">
+                    Administrador
                 </strong>
 
                 <span>
@@ -465,20 +157,16 @@
         </header>
 
 
-
-        <!-- ==================================
+        <!-- =========================
              CONTEÚDO
-        =================================== -->
+        ========================== -->
 
         <div class="content">
 
 
-            <!-- ==================================
-                 CARDS
-            =================================== -->
+            <!-- CARDS -->
 
-            <div class="cards">
-
+            <section class="cards">
 
                 <div class="card">
 
@@ -494,7 +182,7 @@
                         class="card-value"
                         id="totalAcoes"
                     >
-                        8
+                        0
                     </div>
 
                 </div>
@@ -514,7 +202,7 @@
                         class="card-value"
                         id="acoesAbertas"
                     >
-                        2
+                        0
                     </div>
 
                 </div>
@@ -534,7 +222,7 @@
                         class="card-value"
                         id="acoesAndamento"
                     >
-                        3
+                        0
                     </div>
 
                 </div>
@@ -554,38 +242,41 @@
                         class="card-value"
                         id="acoesConcluidas"
                     >
-                        3
+                        0
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 NOVA AÇÃO
+            ========================== -->
+
+            <section class="section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Nova ação corretiva
+                        </h2>
+
+                        <p>
+                            Cadastre uma ação para tratar uma causa ou ocorrência identificada.
+                        </p>
+
                     </div>
 
                 </div>
 
 
-            </div>
-
-
-
-            <!-- ==================================
-                 NOVA AÇÃO
-            =================================== -->
-
-            <section class="section">
-
-                <h2>
-                    Nova ação corretiva
-                </h2>
-
-                <p>
-                    Cadastre uma ação para tratar uma causa ou ocorrência identificada.
-                </p>
-
-
                 <form id="acaoForm">
-
 
                     <div class="form-grid">
 
-
-                        <!-- CÓDIGO -->
 
                         <div class="form-group">
 
@@ -596,14 +287,12 @@
                             <input
                                 type="text"
                                 id="codigo"
-                                value="AC-001"
+                                placeholder="Ex.: AC-001"
                                 required
                             >
 
                         </div>
 
-
-                        <!-- NÃO CONFORMIDADE -->
 
                         <div class="form-group">
 
@@ -623,529 +312,4 @@
 
                                 <option value="NC-002">
                                     NC-002
-                                </option>
-
-                                <option value="NC-003">
-                                    NC-003
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <!-- RESPONSÁVEL -->
-
-                        <div class="form-group">
-
-                            <label for="responsavel">
-                                Responsável *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="responsavel"
-                                placeholder="Nome do responsável"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- PRAZO -->
-
-                        <div class="form-group">
-
-                            <label for="prazo">
-                                Prazo *
-                            </label>
-
-                            <input
-                                type="date"
-                                id="prazo"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- PRIORIDADE -->
-
-                        <div class="form-group">
-
-                            <label for="prioridade">
-                                Prioridade *
-                            </label>
-
-                            <select
-                                id="prioridade"
-                                required
-                            >
-
-                                <option value="">
-                                    Selecione
-                                </option>
-
-                                <option value="Baixa">
-                                    Baixa
-                                </option>
-
-                                <option value="Média">
-                                    Média
-                                </option>
-
-                                <option value="Alta">
-                                    Alta
-                                </option>
-
-                                <option value="Crítica">
-                                    Crítica
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <!-- STATUS -->
-
-                        <div class="form-group">
-
-                            <label for="status">
-                                Status *
-                            </label>
-
-                            <select
-                                id="status"
-                                required
-                            >
-
-                                <option value="Aberta">
-                                    Aberta
-                                </option>
-
-                                <option value="Em andamento">
-                                    Em andamento
-                                </option>
-
-                                <option value="Concluída">
-                                    Concluída
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <!-- DESCRIÇÃO -->
-
-                        <div class="form-group full">
-
-                            <label for="descricao">
-                                Ação a ser realizada *
-                            </label>
-
-                            <textarea
-                                id="descricao"
-                                placeholder="Descreva detalhadamente a ação corretiva..."
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <!-- CAUSA -->
-
-                        <div class="form-group full">
-
-                            <label for="causa">
-                                Causa identificada
-                            </label>
-
-                            <textarea
-                                id="causa"
-                                placeholder="Descreva a causa identificada..."
-                            ></textarea>
-
-                        </div>
-
-
-                        <!-- OBSERVAÇÕES -->
-
-                        <div class="form-group full">
-
-                            <label for="observacoes">
-                                Observações
-                            </label>
-
-                            <textarea
-                                id="observacoes"
-                                placeholder="Informações adicionais..."
-                            ></textarea>
-
-                        </Usuários
-</a>
-
-<a href="/configuracoes.html">
-Configurações
-</a>
-
-</nav>
-
-<button
-id="logout"
-class="btn-menu-sair"
->
-Sair
-</button>
-
-</aside>
-
-
-
-<main>
-
-<header class="topbar">
-
-<button
-id="menuMobile"
-class="menu-mobile"
->
-☰
-</button>
-
-<div>
-
-<h2>
-Ações Corretivas
-</h2>
-
-<p>
-Plano de ação e melhoria contínua
-</p>
-
-</div>
-
-<div class="usuario-area">
-
-<div
-id="usuarioNome"
-class="usuario-nome"
->
-Usuário
-</div>
-
-<div
-id="usuarioPerfil"
-class="usuario-perfil"
->
-Perfil
-</div>
-
-</div>
-
-</header>
-
-
-
-<section id="conteudo">
-
-
-<div class="card">
-
-<div class="card-header">
-
-<div>
-
-<h2>
-Nova Ação Corretiva
-</h2>
-
-<p>
-Crie um plano para tratar uma não conformidade.
-</p>
-
-</div>
-
-</div>
-
-
-<form id="acaoForm">
-
-
-<div class="form-grid">
-
-
-<div class="form-group">
-
-<label>
-Número *
-</label>
-
-<input
-name="numero"
-placeholder="AC-001"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Não conformidade relacionada
-</label>
-
-<select
-name="nao_conformidade_id"
-id="selectNC"
->
-
-<option value="">
-Selecione uma não conformidade
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Responsável *
-</label>
-
-<input
-name="responsavel"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Data de abertura
-</label>
-
-<input
-type="date"
-name="data_abertura"
-id="dataAbertura"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Prazo
-</label>
-
-<input
-type="date"
-name="prazo"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Status
-</label>
-
-<select name="status">
-
-<option>
-Aberta
-</option>
-
-<option>
-Em andamento
-</option>
-
-<option>
-Concluída
-</option>
-
-<option>
-Atrasada
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group campo-grande">
-
-<label>
-Plano de ação *
-</label>
-
-<textarea
-name="plano_acao"
-rows="6"
-placeholder="Descreva detalhadamente as ações que serão realizadas..."
-required
-></textarea>
-
-</div>
-
-
-</div>
-
-
-<br>
-
-<button
-type="submit"
-class="btn btn-primary"
->
-Cadastrar ação
-</button>
-
-<button
-type="reset"
-class="btn btn-secondary"
->
-Limpar
-</button>
-
-
-<div
-id="mensagemAcao"
-class="mensagem"
-></div>
-
-
-</form>
-
-</div>
-
-
-
-<div class="card">
-
-<div class="card-header">
-
-<div>
-
-<h2>
-Ações cadastradas
-</h2>
-
-<p>
-Acompanhe os planos de ação.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="filtros">
-
-<input
-type="text"
-id="pesquisaAcao"
-placeholder="Pesquisar..."
->
-
-<select id="filtroAcao">
-
-<option value="">
-Todos os status
-</option>
-
-<option>
-Aberta
-</option>
-
-<option>
-Em andamento
-</option>
-
-<option>
-Concluída
-</option>
-
-<option>
-Atrasada
-</option>
-
-</select>
-
-</div>
-
-
-<div class="tabela-container">
-
-<table class="tabela">
-
-<thead>
-
-<tr>
-
-<th>
-Número
-</th>
-
-<th>
-NC relacionada
-</th>
-
-<th>
-Responsável
-</th>
-
-<th>
-Abertura
-</th>
-
-<th>
-Prazo
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Ações
-</th>
-
-</tr>
-
-</thead>
-
-<tbody id="listaAcoes">
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-</section>
-
-</main>
-
-</div>
-
-
-<script src="/js/app.js"></script>
-
-<script src="/js/acoes-corretivas.js"></script>
-
-</body>
-
-</html>
+                                </
