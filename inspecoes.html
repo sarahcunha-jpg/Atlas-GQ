@@ -2,295 +2,323 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Atlas Gestão - Inspeções</title>
 
-    <link
-        rel="stylesheet"
-        href="css/dashboard.css"
-    >
-
+    <link rel="stylesheet" href="inspecoes.css">
 </head>
 
 <body>
 
     <!-- MENU LATERAL -->
-
     <aside class="sidebar" id="sidebar">
 
-        <div class="sidebar-logo">
+        <button class="close-button" id="closeMenu">×</button>
 
-            <div class="logo-icon">
-                ▲
-            </div>
-
-            <div class="logo-name">
-                Atlas Gestão
-            </div>
-
+        <div class="logo">
+            <div class="logo-icon">▲</div>
+            <div class="logo-text">Atlas Gestão</div>
         </div>
 
-        <button
-            id="closeMenu"
-            class="close-menu"
-            type="button"
-        >
-            ×
-        </button>
-
-        <div class="sidebar-title">
+        <div class="menu-title">
             GESTÃO DA QUALIDADE
         </div>
 
-        <nav class="sidebar-nav">
+        <nav class="menu">
 
             <a href="dashboard.html">
-                <span>▣</span>
                 Dashboard
             </a>
 
-            <a
-                href="inspecoes.html"
-                class="active"
-            >
-                <span>✓</span>
+            <a href="inspecoes.html" class="active">
                 Inspeções
             </a>
 
-            <a href="nao-conformidades.html">
-                <span>!</span>
+            <a href="nao.conformidades.html">
                 Não Conformidades
             </a>
 
             <a href="acoes-corretivas.html">
-                <span>↻</span>
                 Ações Corretivas
             </a>
 
             <a href="auditorias.html">
-                <span>A</span>
                 Auditorias
             </a>
 
             <a href="documentos.html">
-                <span>D</span>
                 Documentos
             </a>
 
             <a href="indicadores.html">
-                <span>%</span>
                 Indicadores
             </a>
 
-            <a href="relatorios.html">
-                <span>≡</span>
-                Relatórios
-            </a>
+            <div class="separator"></div>
 
-            <a href="usuarios.html">
-                <span>U</span>
-                Usuários
-            </a>
-
-            <a href="configuracoes.html">
-                <span>⚙</span>
-                Configurações
+            <a href="index.html" class="logout">
+                ↪ &nbsp; Sair
             </a>
 
         </nav>
-
-        <div class="sidebar-bottom">
-
-            <button
-                id="logoutButton"
-                class="logout-button"
-                type="button"
-            >
-                <span>↪</span>
-                Sair
-            </button>
-
-        </div>
 
     </aside>
 
 
     <!-- FUNDO MOBILE -->
-
-    <div
-        id="menuOverlay"
-        class="menu-overlay"
-    ></div>
+    <div class="overlay" id="overlay"></div>
 
 
-    <!-- CONTEÚDO -->
+    <!-- BOTÃO MENU -->
+    <button class="menu-button" id="menuButton">
+        ☰
+    </button>
 
+
+    <!-- ÁREA PRINCIPAL -->
     <main class="main">
 
-        <header class="topbar">
+        <!-- CABEÇALHO -->
+        <header class="header">
 
-            <div class="topbar-left">
-
-                <button
-                    id="openMenu"
-                    class="open-menu"
-                    type="button"
-                >
-                    ☰
-                </button>
-
-                <div>
-
-                    <h1>
-                        Inspeções
-                    </h1>
-
-                    <p>
-                        Controle e acompanhamento das inspeções.
-                    </p>
-
-                </div>
-
+            <div>
+                <h1>Inspeções</h1>
+                <p>Controle de inspeções da qualidade</p>
             </div>
 
-
-            <div class="user-area">
-
-                <strong id="usuarioNome">
-                    Usuário
-                </strong>
-
-                <span id="usuarioPerfil">
-                    Administrador
-                </span>
-
+            <div class="user">
+                <strong>sarahhellen2216</strong>
+                <span>Administrador</span>
             </div>
 
         </header>
 
 
-        <section class="content">
+        <!-- CONTEÚDO -->
+        <div class="content">
 
-
-            <!-- CABEÇALHO DA PÁGINA -->
-
-            <div class="page-header">
+            <!-- INFORMAÇÕES -->
+            <div class="info-row">
 
                 <div>
-
-                    <h2>
-                        Inspeções
-                    </h2>
-
-                    <p>
-                        Registre e acompanhe as inspeções realizadas.
-                    </p>
-
+                    <span>Usuário</span>
+                    <strong>sarahhellen2216</strong>
                 </div>
 
-                <button
-                    id="novaInspecao"
-                    class="btn-primary"
-                    type="button"
-                >
-                    + Nova inspeção
-                </button>
+                <div>
+                    <span>Perfil</span>
+                    <strong>Administrador</strong>
+                </div>
 
             </div>
 
 
-            <!-- FILTROS -->
+            <!-- NOVA INSPEÇÃO -->
+            <section class="section">
 
-            <section class="panel">
-
-                <div class="panel-header">
-
+                <div class="section-header">
                     <div>
-
-                        <h2>
-                            Filtros
-                        </h2>
-
-                        <p>
-                            Pesquise uma inspeção.
-                        </p>
-
+                        <h2>Nova inspeção</h2>
+                        <p>Registre uma nova inspeção de qualidade.</p>
                     </div>
-
                 </div>
 
 
-                <div class="filters">
+                <form id="inspectionForm">
 
-                    <div class="field">
+                    <div class="form-grid">
 
-                        <label for="busca">
-                            Buscar
-                        </label>
+                        <div class="form-group">
+                            <label for="codigo">
+                                Código *
+                            </label>
 
-                        <input
-                            id="busca"
-                            type="text"
-                            placeholder="Digite para pesquisar..."
-                        >
+                            <input
+                                type="text"
+                                id="codigo"
+                                value="INS-001"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="produto">
+                                Produto *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="produto"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="lote">
+                                Lote
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lote">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="responsavel">
+                                Responsável *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="responsavel"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="data">
+                                Data *
+                            </label>
+
+                            <input
+                                type="date"
+                                id="data"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="local">
+                                Local
+                            </label>
+
+                            <input
+                                type="text"
+                                id="local">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="tipo">
+                                Tipo de inspeção
+                            </label>
+
+                            <select id="tipo">
+
+                                <option value="Recebimento">
+                                    Recebimento
+                                </option>
+
+                                <option value="Processo">
+                                    Processo
+                                </option>
+
+                                <option value="Final">
+                                    Final
+                                </option>
+
+                                <option value="Produto">
+                                    Produto
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="resultado">
+                                Resultado *
+                            </label>
+
+                            <select id="resultado">
+
+                                <option value="Conforme">
+                                    Conforme
+                                </option>
+
+                                <option value="Não conforme">
+                                    Não conforme
+                                </option>
+
+                                <option value="Parcialmente conforme">
+                                    Parcialmente conforme
+                                </option>
+
+                            </select>
+                        </div>
 
                     </div>
 
 
-                    <div class="field">
+                    <div class="form-group full">
 
-                        <label for="status">
-                            Status
+                        <label for="descricao">
+                            Descrição
                         </label>
 
-                        <select id="status">
-
-                            <option value="">
-                                Todos
-                            </option>
-
-                            <option value="Concluída">
-                                Concluída
-                            </option>
-
-                            <option value="Pendente">
-                                Pendente
-                            </option>
-
-                            <option value="Em andamento">
-                                Em andamento
-                            </option>
-
-                        </select>
+                        <textarea
+                            id="descricao"
+                            rows="4"
+                            placeholder="Descreva a inspeção..."></textarea>
 
                     </div>
 
-                </div>
+
+                    <div class="form-group full">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+                        <textarea
+                            id="observacoes"
+                            rows="4"
+                            placeholder="Informe observações adicionais..."></textarea>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="btn-primary">
+
+                            Cadastrar inspeção
+
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="btn-secondary">
+
+                            Limpar
+
+                        </button>
+
+                    </div>
+
+                </form>
 
             </section>
 
 
-            <!-- TABELA -->
+            <!-- INSPEÇÕES CADASTRADAS -->
+            <section class="section">
 
-            <section class="panel">
-
-                <div class="panel-header">
+                <div class="section-header">
 
                     <div>
 
                         <h2>
-                            Lista de inspeções
+                            Inspeções cadastradas
                         </h2>
 
                         <p>
-                            Inspeções cadastradas no sistema.
+                            Pesquise e acompanhe as inspeções realizadas.
                         </p>
 
                     </div>
@@ -298,114 +326,75 @@
                 </div>
 
 
+                <!-- FILTROS -->
+                <div class="filters">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Pesquisar por código, produto ou responsável">
+
+                    <select id="resultFilter">
+
+                        <option value="">
+                            Todos os resultados
+                        </option>
+
+                        <option value="Conforme">
+                            Conforme
+                        </option>
+
+                        <option value="Não conforme">
+                            Não conforme
+                        </option>
+
+                        <option value="Parcialmente conforme">
+                            Parcialmente conforme
+                        </option>
+
+                    </select>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="refreshButton">
+
+                        Atualizar
+
+                    </button>
+
+                </div>
+
+
+                <!-- TABELA -->
                 <div class="table-container">
 
-                    <table class="data-table">
+                    <table>
 
                         <thead>
 
                             <tr>
 
-                                <th>
-                                    Nº
-                                </th>
-
-                                <th>
-                                    Data
-                                </th>
-
-                                <th>
-                                    Local
-                                </th>
-
-                                <th>
-                                    Responsável
-                                </th>
-
-                                <th>
-                                    Status
-                                </th>
-
-                                <th>
-                                    Ações
-                                </th>
+                                <th>Código</th>
+                                <th>Produto</th>
+                                <th>Lote</th>
+                                <th>Responsável</th>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Resultado</th>
+                                <th>Ações</th>
 
                             </tr>
 
                         </thead>
 
-                        <tbody id="tabelaInspecoes">
+                        <tbody id="inspectionTable">
 
-                            <tr>
+                            <tr class="empty-row">
 
-                                <td>
-                                    001
-                                </td>
+                                <td colspan="8">
 
-                                <td>
-                                    13/08/2026
-                                </td>
-
-                                <td>
-                                    Área de Produção
-                                </td>
-
-                                <td>
-                                    Administrador
-                                </td>
-
-                                <td>
-                                    <span class="badge success">
-                                        Concluída
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <button
-                                        class="table-button"
-                                        type="button"
-                                    >
-                                        Ver
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-                                    002
-                                </td>
-
-                                <td>
-                                    13/08/2026
-                                </td>
-
-                                <td>
-                                    Almoxarifado
-                                </td>
-
-                                <td>
-                                    Administrador
-                                </td>
-
-                                <td>
-                                    <span class="badge warning">
-                                        Pendente
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <button
-                                        class="table-button"
-                                        type="button"
-                                    >
-                                        Ver
-                                    </button>
+                                    Nenhuma inspeção cadastrada.
 
                                 </td>
 
@@ -419,16 +408,15 @@
 
             </section>
 
-
-        </section>
+        </div>
 
     </main>
 
 
     <script>
 
-        const openMenu =
-            document.getElementById("openMenu");
+        const menuButton =
+            document.getElementById("menuButton");
 
         const closeMenu =
             document.getElementById("closeMenu");
@@ -437,13 +425,10 @@
             document.getElementById("sidebar");
 
         const overlay =
-            document.getElementById("menuOverlay");
-
-        const logout =
-            document.getElementById("logoutButton");
+            document.getElementById("overlay");
 
 
-        function abrirMenu() {
+        function openMenu() {
 
             sidebar.classList.add("open");
 
@@ -452,7 +437,7 @@
         }
 
 
-        function fecharMenu() {
+        function closeSidebar() {
 
             sidebar.classList.remove("open");
 
@@ -461,34 +446,22 @@
         }
 
 
-        openMenu.addEventListener(
+        menuButton.addEventListener(
             "click",
-            abrirMenu
+            openMenu
         );
 
 
         closeMenu.addEventListener(
             "click",
-            fecharMenu
+            closeSidebar
         );
 
 
         overlay.addEventListener(
             "click",
-            fecharMenu
+            closeSidebar
         );
-
-
-        document
-            .querySelectorAll(".sidebar-nav a")
-            .forEach(function(link) {
-
-                link.addEventListener(
-                    "click",
-                    fecharMenu
-                );
-
-            });
 
 
         document.addEventListener(
@@ -497,7 +470,7 @@
 
                 if (event.key === "Escape") {
 
-                    fecharMenu();
+                    closeSidebar();
 
                 }
 
@@ -505,70 +478,91 @@
         );
 
 
-        logout.addEventListener(
-            "click",
-            function() {
+        /* FORMULÁRIO */
 
-                localStorage.removeItem(
-                    "atlas_token"
+        const form =
+            document.getElementById("inspectionForm");
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                alert(
+                    "Inspeção cadastrada com sucesso!"
                 );
 
-                localStorage.removeItem(
-                    "atlas_usuario"
-                );
-
-                window.location.href =
-                    "index.html";
+                form.reset();
 
             }
         );
 
 
-        const usuarioSalvo =
-            localStorage.getItem(
-                "atlas_usuario"
-            );
+        /* FILTRO */
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const resultFilter =
+            document.getElementById("resultFilter");
 
 
-        if (usuarioSalvo) {
+        function filterTable() {
 
-            try {
+            const search =
+                searchInput.value.toLowerCase();
 
-                const usuario =
-                    JSON.parse(usuarioSalvo);
+            const result =
+                resultFilter.value;
 
-                document.getElementById(
-                    "usuarioNome"
-                ).textContent =
-                    usuario.nome || "Usuário";
-
-                document.getElementById(
-                    "usuarioPerfil"
-                ).textContent =
-                    usuario.perfil || "Administrador";
-
-            } catch (erro) {
-
-                console.log(
-                    "Usuário não encontrado."
+            const rows =
+                document.querySelectorAll(
+                    "#inspectionTable tr:not(.empty-row)"
                 );
 
-            }
+
+            rows.forEach(function(row) {
+
+                const text =
+                    row.innerText.toLowerCase();
+
+                const matchesSearch =
+                    text.includes(search);
+
+                const matchesResult =
+                    !result ||
+                    text.includes(result.toLowerCase());
+
+
+                row.style.display =
+                    matchesSearch && matchesResult
+                        ? ""
+                        : "none";
+
+            });
 
         }
 
 
+        searchInput.addEventListener(
+            "input",
+            filterTable
+        );
+
+
+        resultFilter.addEventListener(
+            "change",
+            filterTable
+        );
+
+
         document
-            .getElementById("novaInspecao")
+            .getElementById("refreshButton")
             .addEventListener(
                 "click",
-                function() {
-
-                    alert(
-                        "Formulário de nova inspeção será aberto na próxima etapa."
-                    );
-
-                }
+                filterTable
             );
 
     </script>
