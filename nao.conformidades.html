@@ -2,553 +2,639 @@
 <html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Atlas Gestão - Não Conformidades</title>
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>
-Não Conformidades - Atlas Gestão
-</title>
-
-<link
-rel="stylesheet"
-href="/css/style.css"
->
-
+    <link rel="stylesheet" href="nao.conformidades.css">
 </head>
 
 <body>
 
-<div id="sistema">
+    <aside class="sidebar" id="sidebar">
 
+        <button class="close-button" id="closeMenu">×</button>
 
-<aside id="menu">
+        <div class="logo">
+            <div class="logo-icon">▲</div>
+            <div class="logo-text">Atlas Gestão</div>
+        </div>
 
-<div class="logo">
+        <div class="menu-title">
+            GESTÃO DA QUALIDADE
+        </div>
 
-<span class="logo-symbol">
-▲
-</span>
+        <nav class="menu">
 
-<span>
-Atlas Gestão
-</span>
+            <a href="dashboard.html">
+                Dashboard
+            </a>
 
-</div>
+            <a href="inspecoes.html">
+                Inspeções
+            </a>
 
-<div class="menu-titulo">
-GESTÃO DA QUALIDADE
-</div>
+            <a href="nao.conformidades.html" class="active">
+                Não Conformidades
+            </a>
 
-<nav>
+            <a href="acoes-corretivas.html">
+                Ações Corretivas
+            </a>
 
-<a href="/dashboard.html">
-Dashboard
-</a>
+            <a href="auditorias.html">
+                Auditorias
+            </a>
 
-<a href="/inspecoes.html">
-Inspeções
-</a>
+            <a href="documentos.html">
+                Documentos
+            </a>
 
-<a
-href="/nao-conformidades.html"
-class="ativo"
->
-Não Conformidades
-</a>
+            <a href="indicadores.html">
+                Indicadores
+            </a>
 
-<a href="/acoes-corretivas.html">
-Ações Corretivas
-</a>
+            <div class="separator"></div>
 
-<a href="/auditorias.html">
-Auditorias
-</a>
+            <a href="index.html" class="logout">
+                ↪ &nbsp; Sair
+            </a>
 
-<a href="/documentos.html">
-Documentos
-</a>
+        </nav>
 
-<a href="/indicadores.html">
-Indicadores
-</a>
+    </aside>
 
-<a href="/relatorios.html">
-Relatórios
-</a>
 
-<a href="/usuarios.html">
-Usuários
-</a>
+    <div class="overlay" id="overlay"></div>
 
-<a href="/configuracoes.html">
-Configurações
-</a>
 
-</nav>
+    <button class="menu-button" id="menuButton">
+        ☰
+    </button>
 
-<button
-id="logout"
-class="btn-menu-sair"
->
-Sair
-</button>
 
-</aside>
+    <main class="main">
 
+        <header class="header">
 
+            <div>
+                <h1>Não Conformidades</h1>
 
-<main>
+                <p>
+                    Controle e acompanhamento das não conformidades
+                </p>
+            </div>
 
-<header class="topbar">
+            <div class="user">
 
-<button
-id="menuMobile"
-class="menu-mobile"
->
-☰
-</button>
+                <strong>
+                    sarahhellen2216
+                </strong>
 
-<div>
+                <span>
+                    Administrador
+                </span>
 
-<h2>
-Não Conformidades
-</h2>
+            </div>
 
-<p>
-Controle e tratamento das não conformidades
-</p>
+        </header>
 
-</div>
 
-<div class="usuario-area">
+        <div class="content">
 
-<div
-id="usuarioNome"
-class="usuario-nome"
->
-Usuário
-</div>
+            <!-- RESUMO -->
 
-<div
-id="usuarioPerfil"
-class="usuario-perfil"
->
-Perfil
-</div>
+            <div class="summary">
 
-</div>
+                <div class="summary-card">
+                    <span class="summary-icon">!</span>
 
-</header>
+                    <div>
+                        <small>Total</small>
+                        <strong>3</strong>
+                    </div>
+                </div>
 
 
+                <div class="summary-card">
+                    <span class="summary-icon warning">!</span>
 
-<section id="conteudo">
+                    <div>
+                        <small>Em aberto</small>
+                        <strong>2</strong>
+                    </div>
+                </div>
 
 
-<div class="card">
+                <div class="summary-card">
+                    <span class="summary-icon success">✓</span>
 
-<div class="card-header">
+                    <div>
+                        <small>Resolvidas</small>
+                        <strong>1</strong>
+                    </div>
+                </div>
 
-<div>
+            </div>
 
-<h2>
-Registrar Não Conformidade
-</h2>
 
-<p>
-Registre uma ocorrência identificada no processo.
-</p>
+            <!-- NOVA NÃO CONFORMIDADE -->
 
-</div>
+            <section class="section">
 
-</div>
+                <div class="section-header">
 
+                    <div>
 
-<form id="ncForm">
+                        <h2>
+                            Nova não conformidade
+                        </h2>
 
+                        <p>
+                            Registre uma nova ocorrência de qualidade.
+                        </p>
 
-<div class="form-grid">
+                    </div>
 
+                </div>
 
-<div class="form-group">
 
-<label>
-Código *
-</label>
+                <form id="nonConformityForm">
 
-<input
-name="codigo"
-placeholder="NC-001"
-required
->
+                    <div class="form-grid">
 
-</div>
+                        <div class="form-group">
 
+                            <label for="codigo">
+                                Código *
+                            </label>
 
-<div class="form-group">
+                            <input
+                                type="text"
+                                id="codigo"
+                                value="NC-001"
+                                required>
 
-<label>
-Inspeção relacionada
-</label>
+                        </div>
 
-<select
-name="inspecao_id"
-id="inspecao"
->
 
-<option value="">
-Selecione uma inspeção
-</option>
+                        <div class="form-group">
 
-</select>
+                            <label for="titulo">
+                                Título *
+                            </label>
 
-</div>
+                            <input
+                                type="text"
+                                id="titulo"
+                                placeholder="Ex.: Produto fora do padrão"
+                                required>
 
+                        </div>
 
-<div class="form-group">
 
-<label>
-Produto
-</label>
+                        <div class="form-group">
 
-<input
-name="produto"
->
+                            <label for="origem">
+                                Origem *
+                            </label>
 
-</div>
+                            <select id="origem">
 
+                                <option value="Inspeção">
+                                    Inspeção
+                                </option>
 
-<div class="form-group">
+                                <option value="Auditoria">
+                                    Auditoria
+                                </option>
 
-<label>
-Processo / Setor
-</label>
+                                <option value="Cliente">
+                                    Cliente
+                                </option>
 
-<input
-name="processo"
-placeholder="Ex.: Produção"
->
+                                <option value="Processo">
+                                    Processo
+                                </option>
 
-</div>
+                                <option value="Outro">
+                                    Outro
+                                </option>
 
+                            </select>
 
-<div class="form-group">
+                        </div>
 
-<label>
-Categoria
-</label>
 
-<select name="categoria">
+                        <div class="form-group">
 
-<option>
-Produto
-</option>
+                            <label for="responsavel">
+                                Responsável *
+                            </label>
 
-<option>
-Processo
-</option>
+                            <input
+                                type="text"
+                                id="responsavel"
+                                required>
 
-<option>
-Documentação
-</option>
+                        </div>
 
-<option>
-Fornecedor
-</option>
 
-<option>
-Sistema
-</option>
+                        <div class="form-group">
 
-<option>
-Outro
-</option>
+                            <label for="data">
+                                Data *
+                            </label>
 
-</select>
+                            <input
+                                type="date"
+                                id="data"
+                                required>
 
-</div>
+                        </div>
 
 
-<div class="form-group">
+                        <div class="form-group">
 
-<label>
-Gravidade
-</label>
+                            <label for="prioridade">
+                                Prioridade
+                            </label>
 
-<select name="gravidade">
+                            <select id="prioridade">
 
-<option>
-Baixa
-</option>
+                                <option value="Baixa">
+                                    Baixa
+                                </option>
 
-<option selected>
-Média
-</option>
+                                <option value="Média" selected>
+                                    Média
+                                </option>
 
-<option>
-Alta
-</option>
+                                <option value="Alta">
+                                    Alta
+                                </option>
 
-<option>
-Crítica
-</option>
+                                <option value="Crítica">
+                                    Crítica
+                                </option>
 
-</select>
+                            </select>
 
-</div>
+                        </div>
 
 
-<div class="form-group">
+                        <div class="form-group">
 
-<label>
-Responsável
-</label>
+                            <label for="status">
+                                Status
+                            </label>
 
-<input
-name="responsavel"
->
+                            <select id="status">
 
-</div>
+                                <option value="Aberta">
+                                    Aberta
+                                </option>
 
+                                <option value="Em análise">
+                                    Em análise
+                                </option>
 
-<div class="form-group">
+                                <option value="Resolvida">
+                                    Resolvida
+                                </option>
 
-<label>
-Data
-</label>
+                                <option value="Cancelada">
+                                    Cancelada
+                                </option>
 
-<input
-type="date"
-name="data"
-id="dataNC"
->
+                            </select>
 
-</div>
+                        </div>
 
+                    </div>
 
-<div class="form-group">
 
-<label>
-Status
-</label>
+                    <div class="form-group full">
 
-<select name="status">
+                        <label for="descricao">
+                            Descrição *
+                        </label>
 
-<option>
-Aberta
-</option>
+                        <textarea
+                            id="descricao"
+                            rows="4"
+                            placeholder="Descreva detalhadamente a não conformidade..."
+                            required></textarea>
 
-<option>
-Em análise
-</option>
+                    </div>
 
-<option>
-Em andamento
-</option>
 
-<option>
-Resolvida
-</option>
+                    <div class="form-group full">
 
-<option>
-Fechada
-</option>
+                        <label for="causa">
+                            Causa identificada
+                        </label>
 
-</select>
+                        <textarea
+                            id="causa"
+                            rows="3"
+                            placeholder="Informe a possível causa..."></textarea>
 
-</div>
+                    </div>
 
 
-<div class="form-group campo-grande">
+                    <div class="form-actions">
 
-<label>
-Descrição *
-</label>
+                        <button
+                            type="submit"
+                            class="btn-primary">
 
-<textarea
-name="descricao"
-rows="5"
-required
-></textarea>
+                            Cadastrar não conformidade
 
-</div>
+                        </button>
 
+                        <button
+                            type="reset"
+                            class="btn-secondary">
 
-<div class="form-group campo-grande">
+                            Limpar
 
-<label>
-Evidências
-</label>
+                        </button>
 
-<textarea
-name="evidencias"
-rows="4"
-placeholder="Descreva ou identifique as evidências."
-></textarea>
+                    </div>
 
-</div>
+                </form>
 
+            </section>
 
-</div>
 
+            <!-- LISTAGEM -->
 
-<br>
+            <section class="section">
 
-<button
-type="submit"
-class="btn btn-primary"
->
-Cadastrar não conformidade
-</button>
+                <div class="section-header">
 
-<button
-type="reset"
-class="btn btn-secondary"
->
-Limpar
-</button>
+                    <div>
 
+                        <h2>
+                            Não conformidades cadastradas
+                        </h2>
 
-<div
-id="mensagemNC"
-class="mensagem"
-></div>
+                        <p>
+                            Pesquise e acompanhe as ocorrências registradas.
+                        </p>
 
+                    </div>
 
-</form>
+                </div>
 
-</div>
 
+                <div class="filters">
 
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Pesquisar por código, título ou responsável">
 
-<div class="card">
 
-<div class="card-header">
+                    <select id="statusFilter">
 
-<div>
+                        <option value="">
+                            Todos os status
+                        </option>
 
-<h2>
-Registros
-</h2>
+                        <option value="Aberta">
+                            Aberta
+                        </option>
 
-<p>
-Acompanhe as não conformidades cadastradas.
-</p>
+                        <option value="Em análise">
+                            Em análise
+                        </option>
 
-</div>
+                        <option value="Resolvida">
+                            Resolvida
+                        </option>
 
-</div>
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
 
+                    </select>
 
-<div class="filtros">
 
-<input
-type="text"
-id="pesquisaNC"
-placeholder="Pesquisar..."
->
+                    <button
+                        class="btn-secondary"
+                        id="refreshButton"
+                        type="button">
 
-<select id="filtroNC">
+                        Atualizar
 
-<option value="">
-Todos os status
-</option>
+                    </button>
 
-<option>
-Aberta
-</option>
+                </div>
 
-<option>
-Em análise
-</option>
 
-<option>
-Em andamento
-</option>
+                <div class="table-container">
 
-<option>
-Resolvida
-</option>
+                    <table>
 
-<option>
-Fechada
-</option>
+                        <thead>
 
-</select>
+                            <tr>
 
-</div>
+                                <th>Código</th>
+                                <th>Título</th>
+                                <th>Origem</th>
+                                <th>Responsável</th>
+                                <th>Data</th>
+                                <th>Prioridade</th>
+                                <th>Status</th>
+                                <th>Ações</th>
 
+                            </tr>
 
-<div class="tabela-container">
+                        </thead>
 
-<table class="tabela">
 
-<thead>
+                        <tbody id="ncTable">
 
-<tr>
+                            <tr class="empty-row">
 
-<th>
-Código
-</th>
+                                <td colspan="8">
 
-<th>
-Produto
-</th>
+                                    Nenhuma não conformidade cadastrada.
 
-<th>
-Processo
-</th>
+                                </td>
 
-<th>
-Gravidade
-</th>
+                            </tr>
 
-<th>
-Responsável
-</th>
+                        </tbody>
 
-<th>
-Data
-</th>
+                    </table>
 
-<th>
-Status
-</th>
+                </div>
 
-<th>
-Ações
-</th>
+            </section>
 
-</tr>
+        </div>
 
-</thead>
+    </main>
 
-<tbody id="listaNC">
-</tbody>
 
-</table>
+    <script>
 
-</div>
+        const menuButton =
+            document.getElementById("menuButton");
 
-</div>
+        const closeMenu =
+            document.getElementById("closeMenu");
 
+        const sidebar =
+            document.getElementById("sidebar");
 
-</section>
+        const overlay =
+            document.getElementById("overlay");
 
-</main>
 
-</div>
+        function openMenu() {
 
+            sidebar.classList.add("open");
 
-<script src="/js/app.js"></script>
+            overlay.classList.add("open");
 
-<script src="/js/nao-conformidades.js"></script>
+        }
+
+
+        function closeSidebar() {
+
+            sidebar.classList.remove("open");
+
+            overlay.classList.remove("open");
+
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            openMenu
+        );
+
+
+        closeMenu.addEventListener(
+            "click",
+            closeSidebar
+        );
+
+
+        overlay.addEventListener(
+            "click",
+            closeSidebar
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeSidebar();
+
+                }
+
+            }
+        );
+
+
+        /* FORMULÁRIO */
+
+        document
+            .getElementById("nonConformityForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Não conformidade cadastrada com sucesso!"
+                    );
+
+                    this.reset();
+
+                }
+            );
+
+
+        /* FILTRO */
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+
+        function filterTable() {
+
+            const search =
+                searchInput.value.toLowerCase();
+
+            const status =
+                statusFilter.value.toLowerCase();
+
+
+            const rows =
+                document.querySelectorAll(
+                    "#ncTable tr:not(.empty-row)"
+                );
+
+
+            rows.forEach(function(row) {
+
+                const text =
+                    row.innerText.toLowerCase();
+
+                const searchMatch =
+                    text.includes(search);
+
+                const statusMatch =
+                    !status ||
+                    text.includes(status);
+
+
+                row.style.display =
+                    searchMatch && statusMatch
+                        ? ""
+                        : "none";
+
+            });
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            filterTable
+        );
+
+
+        statusFilter.addEventListener(
+            "change",
+            filterTable
+        );
+
+
+        document
+            .getElementById("refreshButton")
+            .addEventListener(
+                "click",
+                filterTable
+            );
+
+    </script>
 
 </body>
 
-  </html>
+</html>
