@@ -2,46 +2,25 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Atlas Gestão - Não Conformidades</title>
 
-    <!-- CSS EXCLUSIVO DESTA PÁGINA -->
-    <link
-        rel="stylesheet"
-        href="nao.conformidades.css">
-
+    <link rel="stylesheet" href="nao.conformidades.css">
 </head>
 
 <body>
-
 
     <!-- =====================================================
          MENU LATERAL
     ====================================================== -->
 
-    <aside
-        class="sidebar"
-        id="sidebar">
+    <aside class="sidebar" id="sidebar">
 
-        <!-- BOTÃO FECHAR NO CELULAR -->
-
-        <button
-            class="close-button"
-            id="closeMenu"
-            aria-label="Fechar menu">
-
+        <button class="close-button" id="closeMenu" aria-label="Fechar menu">
             ×
-
         </button>
-
-
-        <!-- LOGO -->
 
         <div class="logo">
 
@@ -55,15 +34,9 @@
 
         </div>
 
-
-        <!-- TÍTULO -->
-
         <div class="menu-title">
             GESTÃO DA QUALIDADE
         </div>
-
-
-        <!-- MENU -->
 
         <nav class="menu">
 
@@ -75,12 +48,8 @@
                 Inspeções
             </a>
 
-            <a
-                href="nao.conformidades.html"
-                class="active">
-
+            <a href="nao.conformidades.html" class="active">
                 Não Conformidades
-
             </a>
 
             <a href="acoes-corretivas.html">
@@ -99,16 +68,10 @@
                 Indicadores
             </a>
 
-
             <div class="menu-separator"></div>
 
-
-            <a
-                href="index.html"
-                class="logout">
-
+            <a href="index.html" class="logout">
                 ↪&nbsp;&nbsp; Sair
-
             </a>
 
         </nav>
@@ -116,16 +79,11 @@
     </aside>
 
 
-
     <!-- =====================================================
-         FUNDO MOBILE
+         OVERLAY MOBILE
     ====================================================== -->
 
-    <div
-        class="overlay"
-        id="overlay">
-    </div>
-
+    <div class="overlay" id="overlay"></div>
 
 
     <!-- =====================================================
@@ -142,21 +100,17 @@
     </button>
 
 
-
     <!-- =====================================================
-         CONTEÚDO PRINCIPAL
+         ÁREA PRINCIPAL
     ====================================================== -->
 
-    <main class="page">
+    <main class="main">
 
+        <!-- CABEÇALHO -->
 
-        <!-- =================================================
-             CABEÇALHO
-        ================================================== -->
+        <header class="header">
 
-        <header class="page-header">
-
-            <div>
+            <div class="header-left">
 
                 <h1>
                     Não Conformidades
@@ -168,20 +122,33 @@
 
             </div>
 
-        </header>
+            <div class="user">
 
+                <strong>
+                    sarahhellen2216
+                </strong>
+
+                <span>
+                    Administrador
+                </span>
+
+            </div>
+
+        </header>
 
 
         <!-- =================================================
              CONTEÚDO
         ================================================== -->
 
-        <div class="page-content">
+        <div class="content">
 
 
-            <!-- CABEÇALHO DA SEÇÃO -->
+            <!-- =================================================
+                 TÍTULO E BOTÃO
+            ================================================== -->
 
-            <div class="content-header">
+            <section class="page-intro">
 
                 <div>
 
@@ -195,41 +162,45 @@
 
                 </div>
 
-
                 <button
-                    class="btn btn-primary"
-                    id="btnNovaNC">
+                    type="button"
+                    class="primary-button"
+                    id="btnNovaNaoConformidade">
 
                     + Nova não conformidade
 
                 </button>
 
-            </div>
-
+            </section>
 
 
             <!-- =================================================
-                 PAINEL
+                 FILTROS
             ================================================== -->
 
-            <section class="panel">
+            <section class="filters">
 
+                <div class="filter-group">
 
-                <!-- FILTROS -->
-
-                <div class="filters">
-
+                    <label for="busca">
+                        Pesquisar
+                    </label>
 
                     <input
                         type="text"
-                        id="searchInput"
-                        class="input"
-                        placeholder="Pesquisar por código, descrição, processo ou responsável...">
+                        id="busca"
+                        placeholder="Pesquisar por código, descrição ou responsável...">
+
+                </div>
 
 
-                    <select
-                        id="statusFilter"
-                        class="select">
+                <div class="filter-group">
+
+                    <label for="filtroStatus">
+                        Status
+                    </label>
+
+                    <select id="filtroStatus">
 
                         <option value="">
                             Todos os status
@@ -239,20 +210,34 @@
                             Aberta
                         </option>
 
-                        <option value="Em andamento">
-                            Em andamento
+                        <option value="Em análise">
+                            Em análise
+                        </option>
+
+                        <option value="Em tratamento">
+                            Em tratamento
                         </option>
 
                         <option value="Concluída">
                             Concluída
                         </option>
 
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
+
                     </select>
 
+                </div>
 
-                    <select
-                        id="priorityFilter"
-                        class="select">
+
+                <div class="filter-group">
+
+                    <label for="filtroPrioridade">
+                        Prioridade
+                    </label>
+
+                    <select id="filtroPrioridade">
 
                         <option value="">
                             Todas as prioridades
@@ -270,28 +255,53 @@
                             Alta
                         </option>
 
+                        <option value="Crítica">
+                            Crítica
+                        </option>
+
                     </select>
-
-
-                    <button
-                        class="btn btn-secondary"
-                        id="btnLimpar">
-
-                        Limpar
-
-                    </button>
 
                 </div>
 
 
+                <button
+                    type="button"
+                    class="clear-button"
+                    id="btnLimparFiltros">
 
-                <!-- =================================================
-                     TABELA
-                ================================================== -->
+                    Limpar
 
-                <div class="table-wrapper">
+                </button>
 
-                    <table class="data-table">
+            </section>
+
+
+            <!-- =================================================
+                 TABELA
+            ================================================== -->
+
+            <section class="table-card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Registros
+                        </h2>
+
+                        <span id="contadorRegistros">
+                            0 registros
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
 
                         <thead>
 
@@ -314,11 +324,11 @@
                                 </th>
 
                                 <th>
-                                    Prioridade
+                                    Data
                                 </th>
 
                                 <th>
-                                    Data
+                                    Prioridade
                                 </th>
 
                                 <th>
@@ -333,12 +343,41 @@
 
                         </thead>
 
-
-                        <tbody id="ncTableBody">
+                        <tbody id="tabelaNaoConformidades">
 
                         </tbody>
 
                     </table>
+
+                </div>
+
+
+                <!-- ESTADO VAZIO -->
+
+                <div
+                    class="empty-state"
+                    id="estadoVazio">
+
+                    <div class="empty-icon">
+                        !
+                    </div>
+
+                    <h3>
+                        Nenhuma não conformidade cadastrada
+                    </h3>
+
+                    <p>
+                        Clique em "Nova não conformidade" para cadastrar o primeiro registro.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="btnNovaVazio">
+
+                        + Nova não conformidade
+
+                    </button>
 
                 </div>
 
@@ -349,28 +388,35 @@
     </main>
 
 
-
     <!-- =====================================================
-         MODAL - NOVA NÃO CONFORMIDADE
+         MODAL
     ====================================================== -->
 
     <div
         class="modal"
-        id="ncModal">
+        id="modalNaoConformidade"
+        aria-hidden="true">
 
-
-        <div class="modal-box">
-
+        <div class="modal-content">
 
             <div class="modal-header">
 
-                <h2>
-                    Nova não conformidade
-                </h2>
+                <div>
+
+                    <h2 id="tituloModal">
+                        Nova não conformidade
+                    </h2>
+
+                    <p>
+                        Preencha os dados abaixo para cadastrar o registro.
+                    </p>
+
+                </div>
 
                 <button
+                    type="button"
                     class="modal-close"
-                    id="closeNcModal"
+                    id="fecharModal"
                     aria-label="Fechar">
 
                     ×
@@ -380,173 +426,1338 @@
             </div>
 
 
+            <!-- FORMULÁRIO -->
 
-            <form id="ncForm">
+            <form id="formNaoConformidade">
 
+                <input
+                    type="hidden"
+                    id="idEdicao">
 
-                <div class="modal-body">
 
+                <div class="form-grid">
 
-                    <div class="form-grid">
 
+                    <!-- CÓDIGO -->
 
-                        <!-- CÓDIGO -->
+                    <div class="form-group">
 
-                        <div class="form-group">
+                        <label for="codigo">
+                            Código *
+                        </label>
 
-                            <label for="codigo">
-                                Código
-                            </label>
+                        <input
+                            type="text"
+                            id="codigo"
+                            required
+                            maxlength="30"
+                            placeholder="Ex.: NC-001">
 
-                            <input
-                                type="text"
-                                id="codigo"
-                                class="input"
-                                placeholder="Ex.: NC-001"
-                                required>
+                    </div>
 
-                        </div>
 
+                    <!-- DATA -->
 
+                    <div class="form-group">
 
-                        <!-- DATA -->
+                        <label for="data">
+                            Data *
+                        </label>
 
-                        <div class="form-group">
+                        <input
+                            type="date"
+                            id="data"
+                            required>
 
-                            <label for="data">
-                                Data
-                            </label>
+                    </div>
 
-                            <input
-                                type="date"
-                                id="data"
-                                class="input"
-                                required>
 
-                        </div>
+                    <!-- PROCESSO -->
 
+                    <div class="form-group">
 
+                        <label for="processo">
+                            Processo / Área *
+                        </label>
 
-                        <!-- DESCRIÇÃO -->
+                        <input
+                            type="text"
+                            id="processo"
+                            required
+                            placeholder="Ex.: Produção">
 
-                        <div class="form-group full">
+                    </div>
 
-                            <label for="descricao">
-                                Descrição da não conformidade
-                            </label>
 
-                            <textarea
-                                id="descricao"
-                                class="textarea"
-                                placeholder="Descreva a não conformidade encontrada..."
-                                required></textarea>
+                    <!-- RESPONSÁVEL -->
 
-                        </div>
+                    <div class="form-group">
 
+                        <label for="responsavel">
+                            Responsável *
+                        </label>
 
+                        <input
+                            type="text"
+                            id="responsavel"
+                            required
+                            placeholder="Nome do responsável">
 
-                        <!-- PROCESSO -->
+                    </div>
 
-                        <div class="form-group">
 
-                            <label for="processo">
-                                Processo / Área
-                            </label>
+                    <!-- PRIORIDADE -->
 
-                            <input
-                                type="text"
-                                id="processo"
-                                class="input"
-                                placeholder="Ex.: Produção"
-                                required>
+                    <div class="form-group">
 
-                        </div>
+                        <label for="prioridade">
+                            Prioridade *
+                        </label>
 
+                        <select id="prioridade" required>
 
+                            <option value="">
+                                Selecione
+                            </option>
 
-                        <!-- RESPONSÁVEL -->
+                            <option value="Baixa">
+                                Baixa
+                            </option>
 
-                        <div class="form-group">
+                            <option value="Média">
+                                Média
+                            </option>
 
-                            <label for="responsavel">
-                                Responsável
-                            </label>
+                            <option value="Alta">
+                                Alta
+                            </option>
 
-                            <input
-                                type="text"
-                                id="responsavel"
-                                class="input"
-                                placeholder="Nome do responsável"
-                                required>
+                            <option value="Crítica">
+                                Crítica
+                            </option>
 
-                        </div>
+                        </select>
 
+                    </div>
 
 
-                        <!-- PRIORIDADE -->
+                    <!-- STATUS -->
 
-                        <div class="form-group">
+                    <div class="form-group">
 
-                            <label for="prioridade">
-                                Prioridade
-                            </label>
+                        <label for="status">
+                            Status *
+                        </label>
 
-                            <select
-                                id="prioridade"
-                                class="select"
-                                required>
+                        <select id="status" required>
 
-                                <option value="">
-                                    Selecione
-                                </option>
+                            <option value="Aberta">
+                                Aberta
+                            </option>
 
-                                <option value="Baixa">
-                                    Baixa
-                                </option>
+                            <option value="Em análise">
+                                Em análise
+                            </option>
 
-                                <option value="Média">
-                                    Média
-                                </option>
+                            <option value="Em tratamento">
+                                Em tratamento
+                            </option>
 
-                                <option value="Alta">
-                                    Alta
-                                </option>
+                            <option value="Concluída">
+                                Concluída
+                            </option>
 
-                            </select>
+                            <option value="Cancelada">
+                                Cancelada
+                            </option>
 
-                        </div>
+                        </select>
 
+                    </div>
 
 
-                        <!-- STATUS -->
+                    <!-- DESCRIÇÃO -->
 
-                        <div class="form-group">
+                    <div class="form-group full">
 
-                            <label for="status">
-                                Status
-                            </label>
+                        <label for="descricao">
+                            Descrição da não conformidade *
+                        </label>
 
-                            <select
-                                id="status"
-                                class="select"
-                                required>
+                        <textarea
+                            id="descricao"
+                            rows="4"
+                            required
+                            placeholder="Descreva o problema encontrado..."></textarea>
 
-                                <option value="Aberta">
-                                    Aberta
-                                </option>
+                    </div>
 
-                                <option value="Em andamento">
-                                    Em andamento
-                                </option>
 
-                                <option value="Concluída">
-                                    Concluída
-                                </option>
+                    <!-- CAUSA -->
 
-                            </select>
+                    <div class="form-group full">
 
-                        </div>
+                        <label for="causa">
+                            Causa identificada
+                        </label>
 
+                        <textarea
+                            id="causa"
+                            rows="3"
+                            placeholder="Informe a causa, se já identificada..."></textarea>
 
+                    </div>
 
-                        <!--
+
+                    <!-- OBSERVAÇÕES -->
+
+                    <div class="form-group full">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+                        <textarea
+                            id="observacoes"
+                            rows="3"
+                            placeholder="Informações adicionais..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelarModal">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        Salvar não conformidade
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =====================================================
+           CONFIGURAÇÃO
+        ====================================================== */
+
+        const STORAGE_KEY = "atlas_nao_conformidades";
+
+
+        /* =====================================================
+           ELEMENTOS
+        ====================================================== */
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const closeMenu =
+            document.getElementById("closeMenu");
+
+        const overlay =
+            document.getElementById("overlay");
+
+        const modal =
+            document.getElementById("modalNaoConformidade");
+
+        const form =
+            document.getElementById("formNaoConformidade");
+
+        const tabela =
+            document.getElementById("tabelaNaoConformidades");
+
+        const estadoVazio =
+            document.getElementById("estadoVazio");
+
+        const contador =
+            document.getElementById("contadorRegistros");
+
+        const busca =
+            document.getElementById("busca");
+
+        const filtroStatus =
+            document.getElementById("filtroStatus");
+
+        const filtroPrioridade =
+            document.getElementById("filtroPrioridade");
+
+
+        /* =====================================================
+           BANCO LOCAL
+        ====================================================== */
+
+        let naoConformidades = carregarRegistros();
+
+
+        function carregarRegistros() {
+
+            try {
+
+                const dados =
+                    localStorage.getItem(STORAGE_KEY);
+
+                if (!dados) {
+                    return [];
+                }
+
+                const registros =
+                    JSON.parse(dados);
+
+                return Array.isArray(registros)
+                    ? registros
+                    : [];
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao carregar registros:",
+                    erro
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+        function salvarRegistros() {
+
+            try {
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(naoConformidades)
+                );
+
+                return true;
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao salvar registros:",
+                    erro
+                );
+
+                alert(
+                    "Não foi possível salvar o registro no navegador."
+                );
+
+                return false;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MENU MOBILE
+        ====================================================== */
+
+        function abrirMenu() {
+
+            sidebar.classList.add("open");
+            overlay.classList.add("open");
+
+        }
+
+
+        function fecharMenuMobile() {
+
+            sidebar.classList.remove("open");
+            overlay.classList.remove("open");
+
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            abrirMenu
+        );
+
+
+        closeMenu.addEventListener(
+            "click",
+            fecharMenuMobile
+        );
+
+
+        overlay.addEventListener(
+            "click",
+            fecharMenuMobile
+        );
+
+
+        document
+            .querySelectorAll(".menu a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        fecharMenuMobile();
+
+                    }
+                );
+
+            });
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    fecharMenuMobile();
+
+                    if (
+                        modal.classList.contains("open")
+                    ) {
+
+                        fecharModal();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           MODAL
+        ====================================================== */
+
+        function abrirModal(registro = null) {
+
+            modal.classList.add("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+
+            if (registro) {
+
+                document.getElementById(
+                    "tituloModal"
+                ).textContent =
+                    "Editar não conformidade";
+
+                document.getElementById(
+                    "idEdicao"
+                ).value =
+                    registro.id;
+
+                document.getElementById(
+                    "codigo"
+                ).value =
+                    registro.codigo;
+
+                document.getElementById(
+                    "data"
+                ).value =
+                    registro.data;
+
+                document.getElementById(
+                    "processo"
+                ).value =
+                    registro.processo;
+
+                document.getElementById(
+                    "responsavel"
+                ).value =
+                    registro.responsavel;
+
+                document.getElementById(
+                    "prioridade"
+                ).value =
+                    registro.prioridade;
+
+                document.getElementById(
+                    "status"
+                ).value =
+                    registro.status;
+
+                document.getElementById(
+                    "descricao"
+                ).value =
+                    registro.descricao;
+
+                document.getElementById(
+                    "causa"
+                ).value =
+                    registro.causa || "";
+
+                document.getElementById(
+                    "observacoes"
+                ).value =
+                    registro.observacoes || "";
+
+            } else {
+
+                document.getElementById(
+                    "tituloModal"
+                ).textContent =
+                    "Nova não conformidade";
+
+                form.reset();
+
+                document.getElementById(
+                    "idEdicao"
+                ).value = "";
+
+                document.getElementById(
+                    "data"
+                ).value =
+                    obterDataAtual();
+
+                document.getElementById(
+                    "status"
+                ).value =
+                    "Aberta";
+
+            }
+
+
+            setTimeout(
+                function() {
+
+                    document
+                        .getElementById("codigo")
+                        .focus();
+
+                },
+                100
+            );
+
+        }
+
+
+        function fecharModal() {
+
+            modal.classList.remove("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+            form.reset();
+
+            document.getElementById(
+                "idEdicao"
+            ).value = "";
+
+        }
+
+
+        document
+            .getElementById("btnNovaNaoConformidade")
+            .addEventListener(
+                "click",
+                function() {
+
+                    abrirModal();
+
+                }
+            );
+
+
+        document
+            .getElementById("btnNovaVazio")
+            .addEventListener(
+                "click",
+                function() {
+
+                    abrirModal();
+
+                }
+            );
+
+
+        document
+            .getElementById("fecharModal")
+            .addEventListener(
+                "click",
+                fecharModal
+            );
+
+
+        document
+            .getElementById("cancelarModal")
+            .addEventListener(
+                "click",
+                fecharModal
+            );
+
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    fecharModal();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           DATA ATUAL
+        ====================================================== */
+
+        function obterDataAtual() {
+
+            const hoje =
+                new Date();
+
+            const ano =
+                hoje.getFullYear();
+
+            const mes =
+                String(
+                    hoje.getMonth() + 1
+                ).padStart(2, "0");
+
+            const dia =
+                String(
+                    hoje.getDate()
+                ).padStart(2, "0");
+
+            return `${ano}-${mes}-${dia}`;
+
+        }
+
+
+        /* =====================================================
+           GERAR ID
+        ====================================================== */
+
+        function gerarId() {
+
+            return (
+                Date.now().toString() +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8)
+            );
+
+        }
+
+
+        /* =====================================================
+           FORMULÁRIO - SALVAR
+        ====================================================== */
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const idEdicao =
+                    document
+                        .getElementById("idEdicao")
+                        .value;
+
+
+                const registro = {
+
+                    id:
+                        idEdicao ||
+                        gerarId(),
+
+                    codigo:
+                        document
+                            .getElementById("codigo")
+                            .value
+                            .trim(),
+
+                    data:
+                        document
+                            .getElementById("data")
+                            .value,
+
+                    processo:
+                        document
+                            .getElementById("processo")
+                            .value
+                            .trim(),
+
+                    responsavel:
+                        document
+                            .getElementById("responsavel")
+                            .value
+                            .trim(),
+
+                    prioridade:
+                        document
+                            .getElementById("prioridade")
+                            .value,
+
+                    status:
+                        document
+                            .getElementById("status")
+                            .value,
+
+                    descricao:
+                        document
+                            .getElementById("descricao")
+                            .value
+                            .trim(),
+
+                    causa:
+                        document
+                            .getElementById("causa")
+                            .value
+                            .trim(),
+
+                    observacoes:
+                        document
+                            .getElementById("observacoes")
+                            .value
+                            .trim(),
+
+                    atualizadoEm:
+                        new Date().toISOString()
+
+                };
+
+
+                /* VALIDAÇÃO */
+
+                if (!registro.codigo) {
+
+                    alert(
+                        "Informe o código da não conformidade."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.descricao) {
+
+                    alert(
+                        "Informe a descrição da não conformidade."
+                    );
+
+                    return;
+
+                }
+
+
+                /* =================================================
+                   EDITAR
+                ================================================== */
+
+                if (idEdicao) {
+
+                    const indice =
+                        naoConformidades.findIndex(
+                            function(item) {
+
+                                return item.id === idEdicao;
+
+                            }
+                        );
+
+
+                    if (indice !== -1) {
+
+                        naoConformidades[indice] =
+                            registro;
+
+                    }
+
+                }
+
+
+                /* =================================================
+                   NOVO
+                ================================================== */
+
+                else {
+
+                    naoConformidades.unshift(
+                        registro
+                    );
+
+                }
+
+
+                /* SALVAR */
+
+                if (salvarRegistros()) {
+
+                    fecharModal();
+
+                    renderizarTabela();
+
+                    alert(
+                        idEdicao
+                            ? "Não conformidade atualizada com sucesso!"
+                            : "Não conformidade cadastrada com sucesso!"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           EXCLUIR
+        ====================================================== */
+
+        function excluirRegistro(id) {
+
+            const registro =
+                naoConformidades.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (!registro) {
+                return;
+            }
+
+
+            const confirmar =
+                confirm(
+                    `Deseja realmente excluir a não conformidade "${registro.codigo}"?`
+                );
+
+
+            if (!confirmar) {
+                return;
+            }
+
+
+            naoConformidades =
+                naoConformidades.filter(
+                    function(item) {
+
+                        return item.id !== id;
+
+                    }
+                );
+
+
+            salvarRegistros();
+
+            renderizarTabela();
+
+        }
+
+
+        /* =====================================================
+           EDITAR
+        ====================================================== */
+
+        function editarRegistro(id) {
+
+            const registro =
+                naoConformidades.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (!registro) {
+                return;
+            }
+
+
+            abrirModal(registro);
+
+        }
+
+
+        /* =====================================================
+           ESCAPAR HTML
+        ====================================================== */
+
+        function escaparHTML(valor) {
+
+            if (valor === null ||
+                valor === undefined) {
+
+                return "";
+
+            }
+
+            return String(valor)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        /* =====================================================
+           FORMATAR DATA
+        ====================================================== */
+
+        function formatarData(data) {
+
+            if (!data) {
+                return "-";
+            }
+
+            const partes =
+                data.split("-");
+
+            if (partes.length !== 3) {
+                return data;
+            }
+
+            return (
+                partes[2] +
+                "/" +
+                partes[1] +
+                "/" +
+                partes[0]
+            );
+
+        }
+
+
+        /* =====================================================
+           CLASSES DE STATUS
+        ====================================================== */
+
+        function classeStatus(status) {
+
+            const mapa = {
+
+                "Aberta":
+                    "status-aberta",
+
+                "Em análise":
+                    "status-analise",
+
+                "Em tratamento":
+                    "status-tratamento",
+
+                "Concluída":
+                    "status-concluida",
+
+                "Cancelada":
+                    "status-cancelada"
+
+            };
+
+            return mapa[status] ||
+                "status-default";
+
+        }
+
+
+        /* =====================================================
+           CLASSES DE PRIORIDADE
+        ====================================================== */
+
+        function classePrioridade(prioridade) {
+
+            const mapa = {
+
+                "Baixa":
+                    "prioridade-baixa",
+
+                "Média":
+                    "prioridade-media",
+
+                "Alta":
+                    "prioridade-alta",
+
+                "Crítica":
+                    "prioridade-critica"
+
+            };
+
+            return mapa[prioridade] ||
+                "prioridade-default";
+
+        }
+
+
+        /* =====================================================
+           FILTROS
+        ====================================================== */
+
+        function obterRegistrosFiltrados() {
+
+            const texto =
+                busca.value
+                    .trim()
+                    .toLowerCase();
+
+            const status =
+                filtroStatus.value;
+
+            const prioridade =
+                filtroPrioridade.value;
+
+
+            return naoConformidades.filter(
+                function(registro) {
+
+                    const correspondeTexto =
+                        !texto ||
+                        (
+                            registro.codigo +
+                            " " +
+                            registro.descricao +
+                            " " +
+                            registro.processo +
+                            " " +
+                            registro.responsavel
+                        )
+                        .toLowerCase()
+                        .includes(texto);
+
+
+                    const correspondeStatus =
+                        !status ||
+                        registro.status === status;
+
+
+                    const correspondePrioridade =
+                        !prioridade ||
+                        registro.prioridade === prioridade;
+
+
+                    return (
+                        correspondeTexto &&
+                        correspondeStatus &&
+                        correspondePrioridade
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           RENDERIZAR TABELA
+        ====================================================== */
+
+        function renderizarTabela() {
+
+            const registros =
+                obterRegistrosFiltrados();
+
+
+            contador.textContent =
+                registros.length === 1
+                    ? "1 registro"
+                    : `${registros.length} registros`;
+
+
+            tabela.innerHTML = "";
+
+
+            if (registros.length === 0) {
+
+                tabela.style.display =
+                    "none";
+
+                estadoVazio.style.display =
+                    "flex";
+
+                return;
+
+            }
+
+
+            tabela.style.display =
+                "table";
+
+            estadoVazio.style.display =
+                "none";
+
+
+            registros.forEach(
+                function(registro) {
+
+                    const tr =
+                        document.createElement("tr");
+
+
+                    tr.innerHTML = `
+
+                        <td>
+                            <strong>
+                                ${escaparHTML(registro.codigo)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            <span
+                                class="descricao-tabela"
+                                title="${escaparHTML(registro.descricao)}">
+
+                                ${escaparHTML(registro.descricao)}
+
+                            </span>
+                        </td>
+
+                        <td>
+                            ${escaparHTML(registro.processo)}
+                        </td>
+
+                        <td>
+                            ${escaparHTML(registro.responsavel)}
+                        </td>
+
+                        <td>
+                            ${formatarData(registro.data)}
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${classePrioridade(registro.prioridade)}">
+
+                                ${escaparHTML(registro.prioridade)}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${classeStatus(registro.status)}">
+
+                                ${escaparHTML(registro.status)}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button
+                                    type="button"
+                                    class="action-button view-button"
+                                    onclick="visualizarRegistro('${registro.id}')">
+
+                                    Ver
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="action-button edit-button"
+                                    onclick="editarRegistro('${registro.id}')">
+
+                                    Editar
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="action-button delete-button"
+                                    onclick="excluirRegistro('${registro.id}')">
+
+                                    Excluir
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    tabela.appendChild(tr);
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           VISUALIZAR
+        ====================================================== */
+
+        function visualizarRegistro(id) {
+
+            const registro =
+                naoConformidades.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (!registro) {
+                return;
+            }
+
+
+            alert(
+
+                "NÃO CONFORMIDADE\n\n" +
+
+                "Código: " +
+                registro.codigo +
+
+                "\n\nDescrição:\n" +
+                registro.descricao +
+
+                "\n\nProcesso / Área: " +
+                registro.processo +
+
+                "\nResponsável: " +
+                registro.responsavel +
+
+                "\nData: " +
+                formatarData(registro.data) +
+
+                "\nPrioridade: " +
+                registro.prioridade +
+
+                "\nStatus: " +
+                registro.status +
+
+                (
+                    registro.causa
+                        ? "\n\nCausa:\n" +
+                          registro.causa
+                        : ""
+                ) +
+
+                (
+                    registro.observacoes
+                        ? "\n\nObservações:\n" +
+                          registro.observacoes
+                        : ""
+                )
+
+            );
+
+        }
+
+
+        /* =====================================================
+           FILTROS EM TEMPO REAL
+        ====================================================== */
+
+        busca.addEventListener(
+            "input",
+            renderizarTabela
+        );
+
+
+        filtroStatus.addEventListener(
+            "change",
+            renderizarTabela
+        );
+
+
+        filtroPrioridade.addEventListener(
+            "change",
+            renderizarTabela
+        );
+
+
+        /* =====================================================
+           LIMPAR FILTROS
+        ====================================================== */
+
+        document
+            .getElementById("btnLimparFiltros")
+            .addEventListener(
+                "click",
+                function() {
+
+                    busca.value = "";
+
+                    filtroStatus.value = "";
+
+                    filtroPrioridade.value = "";
+
+                    renderizarTabela();
+
+                }
+            );
+
+
+        /* =====================================================
+           INICIALIZAÇÃO
+        ====================================================== */
+
+        renderizarTabela();
+
+    </script>
+
+</body>
+
+    </html>
