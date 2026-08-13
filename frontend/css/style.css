@@ -1,40 +1,42 @@
-/* =========================================================
-   ATLAS GESTÃO
-   STYLE.CSS COMPLETO
-   Login + Dashboard + Menu Responsivo
-   ========================================================= */
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+:root {
+    --azul: #2563EB;
+    --azul-escuro: #1D4ED8;
+    --verde: #22C55E;
+    --vermelho: #EF4444;
+    --amarelo: #F59E0B;
+
+    --branco: #FFFFFF;
+    --cinza-claro: #F8FAFC;
+    --cinza: #E5E7EB;
+    --cinza-medio: #64748B;
+    --cinza-escuro: #1F2937;
+
+    --fundo: #F8FAFC;
+    --texto: #1F2937;
+    --borda: #E5E7EB;
+
+    --sombra: 0 4px 18px rgba(15, 23, 42, 0.07);
+    --raio: 12px;
 }
 
 body {
-    font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background: #f4f7fb;
-    color: #1f2937;
+    font-family: Arial, sans-serif;
+    background: var(--fundo);
+    color: var(--texto);
+    min-height: 100vh;
 }
 
 button,
 input,
 select,
 textarea {
-    font: inherit;
+    font-family: inherit;
 }
 
 button {
@@ -42,1275 +44,246 @@ button {
 }
 
 a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
 }
 
 
-/* =========================================================
+/* =====================================
    LOGIN
-   ========================================================= */
+===================================== */
 
-.login-page {
+.login-body {
     min-height: 100vh;
 
+    background: linear-gradient(
+        135deg,
+        #EFF6FF,
+        #F8FAFC
+    );
+
     display: flex;
-    flex-direction: column;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    padding: 30px 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #eff6ff 0%,
-            #f8fafc 50%,
-            #eef4ff 100%
-        );
+    padding: 20px;
 }
 
-
-.login-card {
+.login-container {
     width: 100%;
-    max-width: 440px;
-
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 20px;
-
-    padding: 36px;
-
-    box-shadow:
-        0 20px 50px rgba(15, 23, 42, 0.10);
+    max-width: 420px;
 }
-
-
-/* LOGO */
 
 .login-logo {
-    display: flex;
-    align-items: center;
-
-    gap: 14px;
-
-    margin-bottom: 32px;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
+.login-logo .logo-symbol {
+    width: 38px;
+    height: 38px;
 
-.logo-icon {
-    width: 52px;
-    height: 52px;
+    margin: 0 auto 12px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 14px;
-
-    background: #2563eb;
-
+    background: var(--azul);
     color: white;
-
-    font-size: 24px;
-    font-weight: 800;
-
-    box-shadow:
-        0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-
-.logo-title {
-    color: #2563eb;
-
-    font-size: 23px;
-    font-weight: 800;
-}
-
-
-.logo-subtitle {
-    margin-top: 3px;
-
-    color: #64748b;
-
-    font-size: 13px;
-}
-
-
-/* CABEÇALHO */
-
-.login-header {
-    margin-bottom: 26px;
-}
-
-
-.login-header h1 {
-    margin-bottom: 7px;
-
-    color: #111827;
-
-    font-size: 28px;
-    font-weight: 800;
-}
-
-
-.login-header p {
-    color: #64748b;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-
-/* FORM */
-
-.login-form {
-    width: 100%;
-}
-
-
-.campo {
-    margin-bottom: 18px;
-}
-
-
-.campo label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #374151;
-
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-.campo input {
-    width: 100%;
-
-    height: 48px;
-
-    padding: 0 14px;
-
-    border: 1px solid #d1d5db;
 
     border-radius: 10px;
 
-    outline: none;
-
-    background: #ffffff;
-
-    color: #111827;
-
-    font-size: 15px;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
+    font-size: 17px;
 }
 
-
-.campo input::placeholder {
-    color: #9ca3af;
+.login-logo h1 {
+    color: var(--azul);
+    font-size: 27px;
 }
 
+.login-logo p {
+    color: var(--cinza-medio);
 
-.campo input:focus {
-    border-color: #2563eb;
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+.login-card {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    border: 1px solid var(--borda);
 
     box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.12);
+        0 15px 40px
+        rgba(15, 23, 42, 0.1);
+}
+
+.login-card h2 {
+    margin-bottom: 7px;
+}
+
+.login-card > p {
+    color: var(--cinza-medio);
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+.login-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+.login-form .btn {
+    width: 100%;
+
+    margin: 8px 0 0;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+.form-group input {
+    width: 100%;
+
+    border: 1px solid #CBD5E1;
+
+    border-radius: 8px;
+
+    padding: 11px 12px;
+
+    outline: none;
+
+    background: white;
+
+    color: var(--texto);
+
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: var(--azul);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.1);
 }
 
 
-/* OPÇÕES */
+/* =====================================
+   OPÇÕES DO LOGIN
+===================================== */
 
 .login-opcoes {
     display: flex;
 
     justify-content: space-between;
-    align-items: center;
-
-    gap: 10px;
-
-    margin: 4px 0 22px;
-
-    font-size: 13px;
-}
-
-
-.lembrar {
-    display: flex;
 
     align-items: center;
-
-    gap: 7px;
-
-    color: #64748b;
-
-    cursor: pointer;
-}
-
-
-.lembrar input {
-    width: 16px;
-    height: 16px;
-
-    accent-color: #2563eb;
-}
-
-
-#esqueciSenha {
-    color: #2563eb;
-
-    font-weight: 600;
-}
-
-
-#esqueciSenha:hover {
-    text-decoration: underline;
-}
-
-
-/* BOTÃO LOGIN */
-
-.btn-login {
-    width: 100%;
-
-    height: 50px;
-
-    border: 0;
-
-    border-radius: 10px;
-
-    background: #2563eb;
-
-    color: white;
-
-    font-size: 15px;
-    font-weight: 700;
-
-    transition:
-        background 0.2s,
-        transform 0.2s,
-        box-shadow 0.2s;
-}
-
-
-.btn-login:hover {
-    background: #1d4ed8;
-
-    box-shadow:
-        0 8px 18px rgba(37, 99, 235, 0.25);
-
-    transform: translateY(-1px);
-}
-
-
-.btn-login:active {
-    transform: translateY(0);
-}
-
-
-/* MENSAGENS */
-
-.mensagem {
-    min-height: 22px;
-
-    margin-top: 15px;
-
-    text-align: center;
-
-    font-size: 14px;
-}
-
-
-.mensagem.erro {
-    color: #dc2626;
-}
-
-
-.mensagem.sucesso {
-    color: #16a34a;
-}
-
-
-.mensagem.info {
-    color: #2563eb;
-}
-
-
-.login-page footer {
-    margin-top: 24px;
-
-    color: #94a3b8;
 
     font-size: 12px;
 
-    text-align: center;
+    color: var(--cinza-medio);
 }
 
-
-/* =========================================================
-   SISTEMA / DASHBOARD
-   ========================================================= */
-
-#sistema {
-    min-height: 100vh;
-
-    display: flex;
-}
-
-
-/* =========================================================
-   MENU LATERAL
-   ========================================================= */
-
-#menu {
-    position: fixed;
-
-    left: 0;
-    top: 0;
-
-    width: 258px;
-    height: 100vh;
-
-    z-index: 1000;
-
-    display: flex;
-    flex-direction: column;
-
-    background: #ffffff;
-
-    border-right: 1px solid #e5e7eb;
-
-    padding: 20px 13px;
-
-    transition:
-        transform 0.25s ease;
-}
-
-
-/* LOGO DO MENU */
-
-.logo {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 0 8px;
-
-    margin-bottom: 30px;
-
-    color: #2563eb;
-
-    font-size: 20px;
-    font-weight: 800;
-}
-
-
-.logo-symbol {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: #2563eb;
-
-    color: white;
-
-    font-size: 18px;
-}
-
-
-/* TÍTULO MENU */
-
-.menu-titulo {
-    padding: 0 8px;
-
-    margin-bottom: 12px;
-
-    color: #7b8794;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-/* LINKS */
-
-#menu nav {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 3px;
-}
-
-
-#menu nav a {
-    display: flex;
-
-    align-items: center;
-
-    min-height: 42px;
-
-    padding: 0 14px;
-
-    border-radius: 9px;
-
-    color: #4b5563;
-
-    font-size: 14px;
-
-    transition:
-        background 0.2s,
-        color 0.2s;
-}
-
-
-#menu nav a:hover {
-    background: #eff6ff;
-
-    color: #2563eb;
-}
-
-
-#menu nav a.ativo {
-    background: #2563eb;
-
-    color: white;
-
-    font-weight: 700;
-}
-
-
-/* BOTÃO SAIR */
-
-.btn-menu-sair {
-    width: 100%;
-
-    margin-top: auto;
-
-    min-height: 42px;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 9px;
-
-    background: white;
-
-    color: #64748b;
-
-    font-weight: 600;
-}
-
-
-.btn-menu-sair:hover {
-    background: #fef2f2;
-
-    color: #dc2626;
-
-    border-color: #fecaca;
-}
-
-
-/* =========================================================
-   CONTEÚDO PRINCIPAL
-   ========================================================= */
-
-#sistema main {
-    width: calc(100% - 258px);
-
-    min-height: 100vh;
-
-    margin-left: 258px;
-
-    background: #f4f7fb;
-}
-
-
-/* =========================================================
-   TOPBAR
-   ========================================================= */
-
-.topbar {
-    min-height: 76px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 15px 28px;
-
-    background: #ffffff;
-
-    border-bottom: 1px solid #e5e7eb;
-}
-
-
-.topbar h2 {
-    color: #1f2937;
-
-    font-size: 23px;
-}
-
-
-.topbar p {
-    margin-top: 3px;
-
-    color: #7b8794;
-
-    font-size: 13px;
-}
-
-
-.usuario-area {
-    text-align: right;
-}
-
-
-.usuario-nome {
-    color: #1f2937;
-
-    font-size: 14px;
-    font-weight: 700;
-}
-
-
-.usuario-perfil {
-    margin-top: 3px;
-
-    color: #7b8794;
-
-    font-size: 12px;
-}
-
-
-/* BOTÃO MOBILE */
-
-.menu-mobile {
-    display: none;
-
-    width: 42px;
-    height: 42px;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 9px;
-
-    background: white;
-
-    color: #374151;
-
-    font-size: 20px;
-}
-
-
-/* =========================================================
-   DASHBOARD
-   ========================================================= */
-
-.dashboard {
-    padding: 28px;
-}
-
-
-.cards-dashboard {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 18px;
-
-    margin-bottom: 22px;
-}
-
-
-.card {
-    background: #ffffff;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 5px 20px rgba(15, 23, 42, 0.04);
-}
-
-
-/* CARDS INDICADORES */
-
-.indicador-card {
-    min-height: 122px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 16px;
-
-    padding: 20px;
-}
-
-
-.indicador-icon {
-    width: 48px;
-    height: 48px;
-
-    flex: 0 0 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    font-size: 21px;
-    font-weight: 800;
-}
-
-
-.indicador-icon.azul {
-    background: #eff6ff;
-
-    color: #2563eb;
-}
-
-
-.indicador-icon.vermelho {
-    background: #fef2f2;
-
-    color: #ef4444;
-}
-
-
-.indicador-icon.amarelo {
-    background: #fffbeb;
-
-    color: #d97706;
-}
-
-
-.indicador-icon.verde {
-    background: #f0fdf4;
-
-    color: #22c55e;
-}
-
-
-.indicador-card span {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #7b8794;
-
-    font-size: 13px;
-}
-
-
-.indicador-card strong {
-    display: block;
-
-    color: #1f2937;
-
-    font-size: 28px;
-}
-
-
-/* =========================================================
-   CABEÇALHO DOS CARDS
-   ========================================================= */
-
-.card-header {
-    padding: 22px 22px 16px;
-}
-
-
-.card-header h2 {
-    color: #1f2937;
-
-    font-size: 18px;
-}
-
-
-.card-header p {
-    margin-top: 5px;
-
-    color: #7b8794;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   AÇÕES RÁPIDAS
-   ========================================================= */
-
-#conteudo > .card {
-    margin-bottom: 22px;
-
-    padding: 0;
-}
-
-
-.atalhos {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 12px;
-
-    padding: 0 22px 22px;
-}
-
-
-.atalho {
-    min-height: 58px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 12px;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 10px;
-
-    background: #ffffff;
-
-    color: #374151;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    transition:
-        border-color 0.2s,
-        background 0.2s;
-}
-
-
-.atalho:hover {
-    border-color: #bfdbfe;
-
-    background: #eff6ff;
-
-    color: #2563eb;
-}
-
-
-.atalho span {
-    width: 32px;
-    height: 32px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 8px;
-
-    background: #eff6ff;
-
-    color: #2563eb;
-
-    font-size: 18px;
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   GRID INFERIOR
-   ========================================================= */
-
-.dashboard-grid {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
-
-    gap: 20px;
-}
-
-
-.dashboard-grid > .card {
-    padding: 0;
-
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   PROGRESSO
-   ========================================================= */
-
-.progresso-area {
-    padding: 0 22px 20px;
-}
-
-
-.progresso-header {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 10px;
-
-    color: #64748b;
-
-    font-size: 13px;
-}
-
-
-.progresso-header strong {
-    color: #2563eb;
-
-    font-size: 14px;
-}
-
-
-.barra {
-    width: 100%;
-
-    height: 9px;
-
-    overflow: hidden;
-
-    border-radius: 10px;
-
-    background: #e5e7eb;
-}
-
-
-.barra-preenchida {
-    height: 100%;
-
-    width: 0%;
-
-    border-radius: inherit;
-
-    background: #2563eb;
-
-    transition: width 0.5s ease;
-}
-
-
-/* =========================================================
-   STATUS
-   ========================================================= */
-
-.status-linhas {
-    padding: 0 22px 22px;
-}
-
-
-.status-linhas > div {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 12px 0;
-
-    border-top: 1px solid #f1f5f9;
-
-    color: #64748b;
-
-    font-size: 13px;
-}
-
-
-.status-linhas strong {
-    color: #1f2937;
-
-    font-size: 15px;
-}
-
-
-/* =========================================================
-   ATIVIDADE
-   ========================================================= */
-
-#atividadeRecente {
-    min-height: 210px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 22px;
-}
-
-
-.atividade-vazia {
-    color: #94a3b8;
-
-    font-size: 13px;
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   OVERLAY MOBILE
-   ========================================================= */
-
-.menu-overlay {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 999;
-
-    background: rgba(15, 23, 42, 0.45);
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    #menu {
-        transform: translateX(-100%);
-
-        box-shadow:
-            10px 0 30px rgba(15, 23, 42, 0.12);
-    }
-
-
-    #menu.aberto {
-        transform: translateX(0);
-    }
-
-
-    #sistema main {
-        width: 100%;
-
-        margin-left: 0;
-    }
-
-
-    .menu-mobile {
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        order: -1;
-
-        margin-right: 12px;
-    }
-
-
-    .topbar {
-        justify-content: flex-start;
-
-        gap: 12px;
-    }
-
-
-    .usuario-area {
-        margin-left: auto;
-    }
-
-
-    .menu-overlay.aberto {
-        display: block;
-    }
-
-
-    .cards-dashboard {
-        grid-template-columns: 1fr;
-    }
-
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .atalhos {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .dashboard {
-        padding: 16px;
-    }
-
-
-    .topbar {
-        padding: 12px 16px;
-    }
-
-
-    .topbar h2 {
-        font-size: 19px;
-    }
-
-
-    .topbar p {
-        font-size: 11px;
-    }
-
-
-    .usuario-nome {
-        font-size: 12px;
-    }
-
-
-    .usuario-perfil {
-        font-size: 10px;
-    }
-
-
-    .atalhos {
-        grid-template-columns: 1fr;
-    }
-
-
-    .login-card {
-        padding: 26px 20px;
-
-        border-radius: 16px;
-    }
-
-
-    .login-logo {
-        margin-bottom: 25px;
-    }
-
-
-    .login-header h1 {
-        font-size: 25px;
-    }
-
-
-    .login-opcoes {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-}
-
-
-/* =========================================================
-   BOTÃO FECHAR MENU
-   ========================================================= */
-
-.menu-fechar {
-    display: none;
-
-    position: absolute;
-
-    right: 12px;
-    top: 12px;
-
-    width: 34px;
-    height: 34px;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 8px;
-
-    background: white;
-
-    color: #475569;
-
-    font-size: 18px;
-
-    z-index: 20;
-}
-
-
-@media (max-width: 900px) {
-
-    .menu-fechar {
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-    }
-
-}
-
-
-/* =========================================================
-   PÁGINAS INTERNAS
-   ========================================================= */
-
-.pagina {
-    padding: 28px;
-}
-
-
-.pagina .card {
-    padding: 22px;
-}
-
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-}
-
-
-th,
-td {
-    padding: 12px;
-
-    border-bottom: 1px solid #e5e7eb;
-
-    text-align: left;
-
-    font-size: 13px;
-}
-
-
-th {
-    color: #64748b;
-
-    font-weight: 700;
-}
-
-
-td {
-    color: #374151;
-}
-
-
-/* =========================================================
-   FORMULÁRIOS INTERNOS
-   ========================================================= */
-
-.form-grupo {
-    margin-bottom: 16px;
-}
-
-
-.form-grupo label {
-    display: block;
-
-    margin-bottom: 6px;
-
-    color: #374151;
-
-    font-size: 13px;
-
-    font-weight: 600;
-}
-
-
-.form-grupo input,
-.form-grupo select,
-.form-grupo textarea {
-    width: 100%;
-
-    padding: 11px 12px;
-
-    border: 1px solid #d1d5db;
-
-    border-radius: 8px;
-
-    outline: none;
-
-    background: white;
-}
-
-
-.form-grupo textarea {
-    min-height: 110px;
-
-    resize: vertical;
-}
-
-
-.form-grupo input:focus,
-.form-grupo select:focus,
-.form-grupo textarea:focus {
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.10);
+.login-opcoes a {
+    color: var(--azul);
 }
 
 
-/* =========================================================
-   BOTÕES
-   ========================================================= */
+/* =====================================
+   BOTÕES DO LOGIN
+===================================== */
 
 .btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-height: 40px;
-
-    padding: 0 16px;
-
-    border: 0;
+    border: none;
 
     border-radius: 8px;
 
-    background: #2563eb;
+    padding: 11px 17px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+}
+
+.btn-primary {
+    background: var(--azul);
 
     color: white;
+}
 
-    font-weight: 700;
+.btn-primary:hover {
+    background: var(--azul-escuro);
 }
 
 
-.btn:hover {
-    background: #1d4ed8;
+/* =====================================
+   MENSAGENS
+===================================== */
+
+.mensagem {
+    margin-top: 15px;
+
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    display: none;
+
+    font-size: 13px;
 }
 
+.mensagem.sucesso {
+    display: block;
 
-.btn-secundario {
-    background: #f1f5f9;
+    background: #F0FDF4;
 
-    color: #475569;
+    color: #15803D;
+
+    border: 1px solid #BBF7D0;
 }
 
+.mensagem.erro {
+    display: block;
 
-.btn-secundario:hover {
-    background: #e2e8f0;
+    background: #FEF2F2;
+
+    color: #B91C1C;
+
+    border: 1px solid #FECACA;
+}
+
+.mensagem.info {
+    display: block;
+
+    background: #EFF6FF;
+
+    color: #1D4ED8;
+
+    border: 1px solid #BFDBFE;
 }
