@@ -3,398 +3,984 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<title>
-Indicadores - Atlas Gestão
-</title>
+    <title>
+        Atlas Gestão - Indicadores
+    </title>
 
-<link
-rel="stylesheet"
-href="/css/style.css"
->
+    <link
+        rel="stylesheet"
+        href="indicadores.css">
 
 </head>
 
 <body>
 
-<div id="sistema">
+<aside class="sidebar" id="sidebar">
 
-<aside id="menu">
+    <button
+        class="close-button"
+        id="closeMenu">
 
-<div class="logo">
+        ×
 
-<span class="logo-symbol">
-▲
-</span>
+    </button>
 
-<span>
-Atlas Gestão
-</span>
+    <div class="logo">
 
-</div>
+        <div class="logo-icon">
+            ▲
+        </div>
 
-<div class="menu-titulo">
-GESTÃO DA QUALIDADE
-</div>
+        <div class="logo-text">
+            Atlas Gestão
+        </div>
 
-<nav>
+    </div>
 
-<a href="/dashboard.html">
-Dashboard
-</a>
+    <div class="menu-title">
+        GESTÃO DA QUALIDADE
+    </div>
 
-<a href="/inspecoes.html">
-Inspeções
-</a>
+    <nav class="menu">
 
-<a href="/nao-conformidades.html">
-Não Conformidades
-</a>
+        <a href="dashboard.html">
+            Dashboard
+        </a>
 
-<a href="/acoes-corretivas.html">
-Ações Corretivas
-</a>
+        <a href="inspecoes.html">
+            Inspeções
+        </a>
 
-<a href="/auditorias.html">
-Auditorias
-</a>
+        <a href="nao.conformidades.html">
+            Não Conformidades
+        </a>
 
-<a href="/documentos.html">
-Documentos
-</a>
+        <a href="acoes-corretivas.html">
+            Ações Corretivas
+        </a>
 
-<a
-href="/indicadores.html"
-class="ativo"
->
-Indicadores
-</a>
+        <a href="auditorias.html">
+            Auditorias
+        </a>
 
-<a href="/relatorios.html">
-Relatórios
-</a>
+        <a href="documentos.html">
+            Documentos
+        </a>
 
-<a href="/usuarios.html">
-Usuários
-</a>
+        <a
+            href="indicadores.html"
+            class="active">
 
-<a href="/configuracoes.html">
-Configurações
-</a>
+            Indicadores
 
-</nav>
+        </a>
 
-<button
-id="logout"
-class="btn-menu-sair"
->
-Sair
-</button>
+        <div class="menu-separator"></div>
+
+        <a
+            href="index.html"
+            class="logout">
+
+            ↪&nbsp;&nbsp; Sair
+
+        </a>
+
+    </nav>
 
 </aside>
 
-
-<main>
-
-<header class="topbar">
+<div
+    class="overlay"
+    id="overlay">
+</div>
 
 <button
-id="menuMobile"
-class="menu-mobile"
->
-☰
+    class="menu-button"
+    id="menuButton">
+
+    ☰
+
 </button>
 
-<div>
+<main class="main">
 
-<h2>
-Indicadores
-</h2>
+<header class="header">
 
-<p>
-Indicadores de desempenho da qualidade
-</p>
+    <div class="header-left">
 
-</div>
+        <h1>
+            Indicadores
+        </h1>
 
-<div class="usuario-area">
+        <p>
+            Acompanhe o desempenho da gestão da qualidade.
+        </p>
 
-<div
-id="usuarioNome"
-class="usuario-nome"
->
-Usuário
-</div>
+    </div>
 
-<div
-id="usuarioPerfil"
-class="usuario-perfil"
->
-Perfil
-</div>
+    <div class="user">
 
-</div>
+        <strong>
+            Administrador
+        </strong>
+
+        <span>
+            Gestão da Qualidade
+        </span>
+
+    </div>
 
 </header>
 
+<div class="content">
 
-<section id="conteudo">
+    <section class="page-intro">
 
+        <div>
 
-<div class="dashboard-grid">
+            <h2>
+                Indicadores da qualidade
+            </h2>
 
+            <p>
+                Cadastre e acompanhe os principais indicadores.
+            </p>
 
-<div class="kpi-card">
+        </div>
 
-<div class="kpi-titulo">
-Inspeções
-</div>
+        <button
+            class="primary-button"
+            id="novoIndicador">
 
-<div
-id="totalInspecoes"
-class="kpi-valor"
->
-0
-</div>
+            + Novo indicador
 
-<div class="kpi-descricao">
-Total realizadas
-</div>
+        </button>
 
-</div>
+    </section>
 
+    <section class="indicator-cards">
 
-<div class="kpi-card">
+        <div class="indicator-card">
 
-<div class="kpi-titulo">
-Taxa de conformidade
-</div>
+            <span>
+                Taxa de conformidade
+            </span>
 
-<div
-id="taxaConformidade"
-class="kpi-valor"
->
-0%
-</div>
+            <strong id="taxaConformidade">
+                75%
+            </strong>
 
-<div class="kpi-descricao">
-Inspeções conformes
-</div>
+            <small>
+                Desempenho geral
+            </small>
 
-</div>
+        </div>
 
+        <div class="indicator-card">
 
-<div class="kpi-card">
+            <span>
+                Inspeções
+            </span>
 
-<div class="kpi-titulo">
-Não conformidades
-</div>
+            <strong id="totalInspecoes">
+                12
+            </strong>
 
-<div
-id="ncAbertas"
-class="kpi-valor"
->
-0
-</div>
+            <small>
+                Registros realizados
+            </small>
 
-<div class="kpi-descricao">
-Em aberto
-</div>
+        </div>
 
-</div>
+        <div class="indicator-card">
 
+            <span>
+                Não conformidades
+            </span>
 
-<div class="kpi-card">
+            <strong id="totalNC">
+                3
+            </strong>
 
-<div class="kpi-titulo">
-Ações corretivas
-</div>
+            <small>
+                Ocorrências registradas
+            </small>
 
-<div
-id="acoesAbertas"
-class="kpi-valor"
->
-0
-</div>
+        </div>
 
-<div class="kpi-descricao">
-Em aberto
-</div>
+        <div class="indicator-card">
 
-</div>
+            <span>
+                Ações pendentes
+            </span>
 
+            <strong id="acoesPendentes">
+                4
+            </strong>
 
-<div class="kpi-card">
+            <small>
+                Necessitam acompanhamento
+            </small>
 
-<div class="kpi-titulo">
-Eficiência das ações
-</div>
+        </div>
 
-<div
-id="eficienciaAcoes"
-class="kpi-valor"
->
-0%
-</div>
+    </section>
 
-<div class="kpi-descricao">
-Ações concluídas
-</div>
+    <section class="table-card">
 
-</div>
+        <div class="table-header">
 
+            <div>
 
-<div class="kpi-card">
+                <h2>
+                    Indicadores cadastrados
+                </h2>
 
-<div class="kpi-titulo">
-Auditorias
-</div>
+                <span id="contador">
+                    0 indicadores
+                </span>
 
-<div
-id="totalAuditorias"
-class="kpi-valor"
->
-0
-</div>
+            </div>
 
-<div class="kpi-descricao">
-Realizadas
-</div>
+        </div>
 
-</div>
+        <div class="table-container">
 
+            <table>
 
-<div class="kpi-card">
+                <thead>
 
-<div class="kpi-titulo">
-Documentos
-</div>
+                    <tr>
 
-<div
-id="totalDocumentos"
-class="kpi-valor"
->
-0
-</div>
+                        <th>
+                            Código
+                        </th>
 
-<div class="kpi-descricao">
-Cadastrados
-</div>
+                        <th>
+                            Indicador
+                        </th>
 
-</div>
+                        <th>
+                            Meta
+                        </th>
 
-</div>
+                        <th>
+                            Resultado
+                        </th>
 
+                        <th>
+                            Unidade
+                        </th>
 
+                        <th>
+                            Periodicidade
+                        </th>
 
-<div class="graficos-grid">
+                        <th>
+                            Status
+                        </th>
 
+                        <th>
+                            Ações
+                        </th>
 
-<div class="card">
+                    </tr>
 
-<div class="card-header">
+                </thead>
 
-<div>
+                <tbody
+                    id="tabelaIndicadores">
+                </tbody>
 
-<h2>
-Inspeções por resultado
-</h2>
+            </table>
 
-</div>
+        </div>
 
-</div>
+        <div
+            class="empty-state"
+            id="vazio">
 
-<canvas
-id="graficoInspecoes"
-></canvas>
+            <div class="empty-icon">
+                %
+            </div>
 
-</div>
+            <h3>
+                Nenhum indicador cadastrado
+            </h3>
 
+            <p>
+                Cadastre o primeiro indicador para acompanhar os resultados.
+            </p>
 
-<div class="card">
+            <button
+                class="primary-button"
+                id="novoIndicadorVazio">
 
-<div class="card-header">
+                + Novo indicador
 
-<div>
+            </button>
 
-<h2>
-Não conformidades
-</h2>
+        </div>
 
-</div>
-
-</div>
-
-<canvas
-id="graficoNC"
-></canvas>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-header">
-
-<div>
-
-<h2>
-Ações corretivas
-</h2>
+    </section>
 
 </div>
-
-</div>
-
-<canvas
-id="graficoAcoes"
-></canvas>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-header">
-
-<div>
-
-<h2>
-Auditorias
-</h2>
-
-</div>
-
-</div>
-
-<canvas
-id="graficoAuditorias"
-></canvas>
-
-</div>
-
-</div>
-
-
-</section>
 
 </main>
 
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Novo indicador
+                </h2>
+
+                <p>
+                    Cadastre um indicador de qualidade.
+                </p>
+
+            </div>
+
+            <button
+                class="modal-close"
+                id="fechar">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <form id="form">
+
+            <input
+                type="hidden"
+                id="id">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Código *
+                    </label>
+
+                    <input
+                        id="codigo"
+                        required
+                        placeholder="IND-001">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Nome do indicador *
+                    </label>
+
+                    <input
+                        id="nome"
+                        required
+                        placeholder="Ex.: Taxa de conformidade">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Meta *
+                    </label>
+
+                    <input
+                        id="meta"
+                        required
+                        placeholder="Ex.: 90">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Resultado *
+                    </label>
+
+                    <input
+                        id="resultado"
+                        required
+                        placeholder="Ex.: 95">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Unidade *
+                    </label>
+
+                    <select
+                        id="unidade"
+                        required>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>
+                            %
+                        </option>
+
+                        <option>
+                            Quantidade
+                        </option>
+
+                        <option>
+                            Dias
+                        </option>
+
+                        <option>
+                            Horas
+                        </option>
+
+                        <option>
+                            Pontos
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Periodicidade *
+                    </label>
+
+                    <select
+                        id="periodicidade"
+                        required>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>
+                            Mensal
+                        </option>
+
+                        <option>
+                            Trimestral
+                        </option>
+
+                        <option>
+                            Semestral
+                        </option>
+
+                        <option>
+                            Anual
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Status *
+                    </label>
+
+                    <select
+                        id="status">
+
+                        <option>
+                            Ativo
+                        </option>
+
+                        <option>
+                            Em análise
+                        </option>
+
+                        <option>
+                            Inativo
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group full">
+
+                    <label>
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="observacoes"
+                        rows="4"
+                        placeholder="Informações adicionais..."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelar">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Salvar indicador
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
 
+<script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+const KEY =
+    "atlas_indicadores";
 
-<script src="/js/app.js"></script>
+let indicadores =
+    JSON.parse(
+        localStorage.getItem(KEY) || "[]"
+    );
 
-<script src="/js/indicadores.js"></script>
+const modal =
+    document.getElementById("modal");
+
+const form =
+    document.getElementById("form");
+
+const tabela =
+    document.getElementById("tabelaIndicadores");
+
+const vazio =
+    document.getElementById("vazio");
+
+function salvar() {
+
+    localStorage.setItem(
+        KEY,
+        JSON.stringify(indicadores)
+    );
+
+}
+
+function abrir(indicador = null) {
+
+    modal.classList.add("open");
+
+    if (indicador) {
+
+        document.querySelector(
+            ".modal-header h2"
+        ).textContent =
+            "Editar indicador";
+
+        id.value =
+            indicador.id;
+
+        codigo.value =
+            indicador.codigo;
+
+        nome.value =
+            indicador.nome;
+
+        meta.value =
+            indicador.meta;
+
+        resultado.value =
+            indicador.resultado;
+
+        unidade.value =
+            indicador.unidade;
+
+        periodicidade.value =
+            indicador.periodicidade;
+
+        status.value =
+            indicador.status;
+
+        observacoes.value =
+            indicador.observacoes || "";
+
+    } else {
+
+        form.reset();
+
+        id.value = "";
+
+        status.value =
+            "Ativo";
+
+        document.querySelector(
+            ".modal-header h2"
+        ).textContent =
+            "Novo indicador";
+
+    }
+
+}
+
+function fechar() {
+
+    modal.classList.remove("open");
+
+    form.reset();
+
+}
+
+novoIndicador.onclick =
+    () => abrir();
+
+novoIndicadorVazio.onclick =
+    () => abrir();
+
+fechar.onclick =
+    fechar;
+
+cancelar.onclick =
+    fechar;
+
+form.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        const registro = {
+
+            id:
+                id.value ||
+                Date.now().toString(),
+
+            codigo:
+                codigo.value.trim(),
+
+            nome:
+                nome.value.trim(),
+
+            meta:
+                meta.value.trim(),
+
+            resultado:
+                resultado.value.trim(),
+
+            unidade:
+                unidade.value,
+
+            periodicidade:
+                periodicidade.value,
+
+            status:
+                status.value,
+
+            observacoes:
+                observacoes.value.trim()
+
+        };
+
+        if (id.value) {
+
+            const index =
+                indicadores.findIndex(
+                    item =>
+                        item.id === id.value
+                );
+
+            if (index !== -1) {
+
+                indicadores[index] =
+                    registro;
+
+            }
+
+        } else {
+
+            indicadores.unshift(
+                registro
+            );
+
+        }
+
+        salvar();
+
+        fechar();
+
+        renderizar();
+
+    }
+);
+
+function editar(id) {
+
+    const indicador =
+        indicadores.find(
+            item =>
+                item.id === id
+        );
+
+    if (indicador) {
+
+        abrir(indicador);
+
+    }
+
+}
+
+function excluir(id) {
+
+    const indicador =
+        indicadores.find(
+            item =>
+                item.id === id
+        );
+
+    if (!indicador) return;
+
+    if (
+        !confirm(
+            `Excluir o indicador "${indicador.codigo}"?`
+        )
+    ) return;
+
+    indicadores =
+        indicadores.filter(
+            item =>
+                item.id !== id
+        );
+
+    salvar();
+
+    renderizar();
+
+}
+
+function visualizar(id) {
+
+    const indicador =
+        indicadores.find(
+            item =>
+                item.id === id
+        );
+
+    if (!indicador) return;
+
+    alert(
+
+        "INDICADOR\n\n" +
+
+        "Código: " +
+        indicador.codigo +
+
+        "\nNome: " +
+        indicador.nome +
+
+        "\nMeta: " +
+        indicador.meta +
+
+        " " +
+        indicador.unidade +
+
+        "\nResultado: " +
+        indicador.resultado +
+
+        " " +
+        indicador.unidade +
+
+        "\nPeriodicidade: " +
+        indicador.periodicidade +
+
+        "\nStatus: " +
+        indicador.status +
+
+        "\n\nObservações:\n" +
+        (
+            indicador.observacoes ||
+            "Não informadas."
+        )
+
+    );
+
+}
+
+function renderizar() {
+
+    tabela.innerHTML = "";
+
+    document.getElementById(
+        "contador"
+    ).textContent =
+
+        indicadores.length === 1
+            ? "1 indicador"
+            : `${indicadores.length} indicadores`;
+
+    if (!indicadores.length) {
+
+        tabela.style.display =
+            "none";
+
+        vazio.style.display =
+            "flex";
+
+        return;
+
+    }
+
+    tabela.style.display =
+        "table";
+
+    vazio.style.display =
+        "none";
+
+    indicadores.forEach(
+        indicador => {
+
+            const tr =
+                document.createElement("tr");
+
+            tr.innerHTML = `
+
+                <td>
+                    <strong>
+                        ${indicador.codigo}
+                    </strong>
+                </td>
+
+                <td>
+                    ${indicador.nome}
+                </td>
+
+                <td>
+                    ${indicador.meta}
+                    ${indicador.unidade}
+                </td>
+
+                <td>
+                    ${indicador.resultado}
+                    ${indicador.unidade}
+                </td>
+
+                <td>
+                    ${indicador.unidade}
+                </td>
+
+                <td>
+                    ${indicador.periodicidade}
+                </td>
+
+                <td>
+                    <span class="badge">
+                        ${indicador.status}
+                    </span>
+                </td>
+
+                <td>
+
+                    <div class="action-buttons">
+
+                        <button
+                            class="action-button view-button"
+                            onclick="visualizar('${indicador.id}')">
+
+                            Ver
+
+                        </button>
+
+                        <button
+                            class="action-button edit-button"
+                            onclick="editar('${indicador.id}')">
+
+                            Editar
+
+                        </button>
+
+                        <button
+                            class="action-button delete-button"
+                            onclick="excluir('${indicador.id}')">
+
+                            Excluir
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+            tabela.appendChild(tr);
+
+        }
+    );
+
+}
+
+/* MENU */
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const overlay =
+    document.getElementById("overlay");
+
+menuButton.onclick =
+    function() {
+
+        sidebar.classList.add("open");
+
+        overlay.classList.add("open");
+
+    };
+
+function fecharMenu() {
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("open");
+
+}
+
+closeMenu.onclick =
+    fecharMenu;
+
+overlay.onclick =
+    fecharMenu;
+
+renderizar();
+
+</script>
 
 </body>
-
 </html>
