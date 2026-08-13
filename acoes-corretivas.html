@@ -3,37 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Atlas Gestão - Ações Corretivas</title>
 
-    <link
-        rel="stylesheet"
-        href="acoes-corretivas.css"
-    >
+    <!-- CSS DA PÁGINA -->
+    <link rel="stylesheet" href="./acoes-corretivas.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         MENU LATERAL
-    ========================== -->
-
-    <aside
-        class="sidebar"
-        id="sidebar"
-    >
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
 
         <button
             class="close-menu"
             id="closeMenu"
             type="button"
-            aria-label="Fechar menu"
-        >
+            aria-label="Fechar menu">
             ×
         </button>
 
@@ -55,43 +42,41 @@
 
         <nav class="menu">
 
-            <a href="dashboard.html">
+            <a href="./dashboard.html">
                 Dashboard
             </a>
 
-            <a href="inspecoes.html">
+            <a href="./inspecoes.html">
                 Inspeções
             </a>
 
-            <a href="nao.conformidades.html">
+            <a href="./nao.conformidades.html">
                 Não Conformidades
             </a>
 
             <a
-                href="acoes-corretivas.html"
-                class="active"
-            >
+                href="./acoes-corretivas.html"
+                class="active">
                 Ações Corretivas
             </a>
 
-            <a href="auditorias.html">
+            <a href="./auditorias.html">
                 Auditorias
             </a>
 
-            <a href="documentos.html">
+            <a href="./documentos.html">
                 Documentos
             </a>
 
-            <a href="indicadores.html">
+            <a href="./indicadores.html">
                 Indicadores
             </a>
 
             <div class="menu-separator"></div>
 
             <a
-                href="index.html"
-                class="logout"
-            >
+                href="./index.html"
+                class="logout">
                 ↪&nbsp;&nbsp; Sair
             </a>
 
@@ -100,34 +85,27 @@
     </aside>
 
 
-    <!-- FUNDO DO MENU NO CELULAR -->
-
+    <!-- FUNDO MOBILE -->
     <div
         class="overlay"
-        id="overlay"
-    ></div>
+        id="overlay">
+    </div>
 
 
     <!-- BOTÃO MENU MOBILE -->
-
     <button
         class="menu-button"
         id="menuButton"
         type="button"
-        aria-label="Abrir menu"
-    >
+        aria-label="Abrir menu">
         ☰
     </button>
 
 
-    <!-- =========================
-         CONTEÚDO PRINCIPAL
-    ========================== -->
-
+    <!-- CONTEÚDO -->
     <main class="main">
 
         <!-- CABEÇALHO -->
-
         <header class="header">
 
             <div class="header-left">
@@ -157,15 +135,9 @@
         </header>
 
 
-        <!-- =========================
-             CONTEÚDO
-        ========================== -->
-
         <div class="content">
 
-
             <!-- CARDS -->
-
             <section class="cards">
 
                 <div class="card">
@@ -180,8 +152,7 @@
 
                     <div
                         class="card-value"
-                        id="totalAcoes"
-                    >
+                        id="totalAcoes">
                         0
                     </div>
 
@@ -200,8 +171,7 @@
 
                     <div
                         class="card-value"
-                        id="acoesAbertas"
-                    >
+                        id="acoesAbertas">
                         0
                     </div>
 
@@ -220,8 +190,7 @@
 
                     <div
                         class="card-value"
-                        id="acoesAndamento"
-                    >
+                        id="acoesAndamento">
                         0
                     </div>
 
@@ -240,8 +209,7 @@
 
                     <div
                         class="card-value"
-                        id="acoesConcluidas"
-                    >
+                        id="acoesConcluidas">
                         0
                     </div>
 
@@ -250,10 +218,7 @@
             </section>
 
 
-            <!-- =========================
-                 NOVA AÇÃO
-            ========================== -->
-
+            <!-- NOVA AÇÃO -->
             <section class="section">
 
                 <div class="section-header">
@@ -277,7 +242,6 @@
 
                     <div class="form-grid">
 
-
                         <div class="form-group">
 
                             <label for="codigo">
@@ -288,8 +252,7 @@
                                 type="text"
                                 id="codigo"
                                 placeholder="Ex.: AC-001"
-                                required
-                            >
+                                required>
 
                         </div>
 
@@ -312,4 +275,781 @@
 
                                 <option value="NC-002">
                                     NC-002
-                                </
+                                </option>
+
+                                <option value="NC-003">
+                                    NC-003
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="responsavel">
+                                Responsável *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="responsavel"
+                                placeholder="Nome do responsável"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="prazo">
+                                Prazo *
+                            </label>
+
+                            <input
+                                type="date"
+                                id="prazo"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="prioridade">
+                                Prioridade *
+                            </label>
+
+                            <select
+                                id="prioridade"
+                                required>
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option value="Baixa">
+                                    Baixa
+                                </option>
+
+                                <option value="Média">
+                                    Média
+                                </option>
+
+                                <option value="Alta">
+                                    Alta
+                                </option>
+
+                                <option value="Crítica">
+                                    Crítica
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="status">
+                                Status *
+                            </label>
+
+                            <select
+                                id="status"
+                                required>
+
+                                <option value="Aberta">
+                                    Aberta
+                                </option>
+
+                                <option value="Em andamento">
+                                    Em andamento
+                                </option>
+
+                                <option value="Concluída">
+                                    Concluída
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label for="descricao">
+                                Ação a ser realizada *
+                            </label>
+
+                            <textarea
+                                id="descricao"
+                                placeholder="Descreva detalhadamente a ação corretiva..."
+                                required></textarea>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label for="causa">
+                                Causa identificada
+                            </label>
+
+                            <textarea
+                                id="causa"
+                                placeholder="Descreva a causa identificada..."></textarea>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label for="observacoes">
+                                Observações
+                            </label>
+
+                            <textarea
+                                id="observacoes"
+                                placeholder="Informações adicionais..."></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="btn-primary">
+                            Cadastrar ação
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="btn-secondary">
+                            Limpar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- LISTAGEM -->
+            <section class="section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Ações cadastradas
+                        </h2>
+
+                        <p>
+                            Consulte e acompanhe todas as ações corretivas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <input
+                        type="search"
+                        id="pesquisa"
+                        placeholder="Pesquisar ação...">
+
+                    <select id="filtroStatus">
+
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="Aberta">
+                            Abertas
+                        </option>
+
+                        <option value="Em andamento">
+                            Em andamento
+                        </option>
+
+                        <option value="Concluída">
+                            Concluídas
+                        </option>
+
+                    </select>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="limparFiltros">
+                        Limpar filtros
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Código
+                                </th>
+
+                                <th>
+                                    NC
+                                </th>
+
+                                <th>
+                                    Ação
+                                </th>
+
+                                <th>
+                                    Responsável
+                                </th>
+
+                                <th>
+                                    Prazo
+                                </th>
+
+                                <th>
+                                    Prioridade
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ação
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="listaAcoes">
+                        </tbody>
+
+                    </table>
+
+                    <div
+                        class="empty-state"
+                        id="emptyState">
+
+                        Nenhuma ação corretiva cadastrada.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const closeMenu =
+            document.getElementById("closeMenu");
+
+        const overlay =
+            document.getElementById("overlay");
+
+
+        function abrirMenu() {
+
+            sidebar.classList.add("open");
+
+            overlay.classList.add("open");
+
+        }
+
+
+        function fecharMenu() {
+
+            sidebar.classList.remove("open");
+
+            overlay.classList.remove("open");
+
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            abrirMenu
+        );
+
+
+        closeMenu.addEventListener(
+            "click",
+            fecharMenu
+        );
+
+
+        overlay.addEventListener(
+            "click",
+            fecharMenu
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    fecharMenu();
+
+                }
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(".menu a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        if (window.innerWidth <= 700) {
+
+                            fecharMenu();
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =========================
+           AÇÕES
+        ========================== */
+
+        let acoes = JSON.parse(
+            localStorage.getItem(
+                "atlas_acoes_corretivas"
+            ) || "[]"
+        );
+
+
+        const form =
+            document.getElementById("acaoForm");
+
+        const lista =
+            document.getElementById("listaAcoes");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const pesquisa =
+            document.getElementById("pesquisa");
+
+        const filtroStatus =
+            document.getElementById("filtroStatus");
+
+
+        function salvar() {
+
+            localStorage.setItem(
+                "atlas_acoes_corretivas",
+                JSON.stringify(acoes)
+            );
+
+        }
+
+
+        function atualizarCards() {
+
+            document.getElementById(
+                "totalAcoes"
+            ).textContent =
+                acoes.length;
+
+
+            document.getElementById(
+                "acoesAbertas"
+            ).textContent =
+                acoes.filter(
+                    item =>
+                        item.status === "Aberta"
+                ).length;
+
+
+            document.getElementById(
+                "acoesAndamento"
+            ).textContent =
+                acoes.filter(
+                    item =>
+                        item.status === "Em andamento"
+                ).length;
+
+
+            document.getElementById(
+                "acoesConcluidas"
+            ).textContent =
+                acoes.filter(
+                    item =>
+                        item.status === "Concluída"
+                ).length;
+
+        }
+
+
+        function classeStatus(status) {
+
+            if (status === "Aberta") {
+
+                return "status aberta";
+
+            }
+
+            if (status === "Em andamento") {
+
+                return "status andamento";
+
+            }
+
+            if (status === "Concluída") {
+
+                return "status concluida";
+
+            }
+
+            return "status";
+
+        }
+
+
+        function renderizar() {
+
+            lista.innerHTML = "";
+
+            const termo =
+                pesquisa.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const statusFiltro =
+                filtroStatus.value;
+
+
+            const filtradas =
+                acoes.filter(function(item) {
+
+                    const texto = (
+                        item.codigo +
+                        " " +
+                        item.nc +
+                        " " +
+                        item.descricao +
+                        " " +
+                        item.responsavel
+                    ).toLowerCase();
+
+
+                    return (
+                        texto.includes(termo) &&
+                        (
+                            !statusFiltro ||
+                            item.status === statusFiltro
+                        )
+                    );
+
+                });
+
+
+            emptyState.style.display =
+                filtradas.length === 0
+                    ? "block"
+                    : "none";
+
+
+            filtradas.forEach(function(item) {
+
+                const indice =
+                    acoes.indexOf(item);
+
+
+                const tr =
+                    document.createElement("tr");
+
+
+                tr.innerHTML = `
+
+                    <td>
+                        <strong>
+                            ${item.codigo}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${item.nc || "-"}
+                    </td>
+
+                    <td>
+                        ${item.descricao}
+                    </td>
+
+                    <td>
+                        ${item.responsavel}
+                    </td>
+
+                    <td>
+                        ${item.prazo
+                            ? new Date(
+                                item.prazo + "T00:00:00"
+                              ).toLocaleDateString("pt-BR")
+                            : "-"
+                        }
+                    </td>
+
+                    <td>
+                        ${item.prioridade}
+                    </td>
+
+                    <td>
+                        <span class="${classeStatus(item.status)}">
+                            ${item.status}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <button
+                            type="button"
+                            class="btn-delete"
+                            data-index="${indice}">
+                            Excluir
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                lista.appendChild(tr);
+
+            });
+
+
+            atualizarCards();
+
+        }
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const novaAcao = {
+
+                    codigo:
+                        document
+                            .getElementById("codigo")
+                            .value
+                            .trim(),
+
+                    nc:
+                        document
+                            .getElementById("nc")
+                            .value,
+
+                    responsavel:
+                        document
+                            .getElementById("responsavel")
+                            .value
+                            .trim(),
+
+                    prazo:
+                        document
+                            .getElementById("prazo")
+                            .value,
+
+                    prioridade:
+                        document
+                            .getElementById("prioridade")
+                            .value,
+
+                    status:
+                        document
+                            .getElementById("status")
+                            .value,
+
+                    descricao:
+                        document
+                            .getElementById("descricao")
+                            .value
+                            .trim(),
+
+                    causa:
+                        document
+                            .getElementById("causa")
+                            .value
+                            .trim(),
+
+                    observacoes:
+                        document
+                            .getElementById("observacoes")
+                            .value
+                            .trim()
+
+                };
+
+
+                acoes.push(novaAcao);
+
+                salvar();
+
+                form.reset();
+
+                renderizar();
+
+
+                alert(
+                    "Ação corretiva cadastrada com sucesso!"
+                );
+
+            }
+        );
+
+
+        lista.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    !event.target.classList.contains(
+                        "btn-delete"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const index =
+                    Number(
+                        event.target.dataset.index
+                    );
+
+
+                if (
+                    !confirm(
+                        "Deseja realmente excluir esta ação?"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                acoes.splice(index, 1);
+
+                salvar();
+
+                renderizar();
+
+            }
+        );
+
+
+        pesquisa.addEventListener(
+            "input",
+            renderizar
+        );
+
+
+        filtroStatus.addEventListener(
+            "change",
+            renderizar
+        );
+
+
+        document
+            .getElementById("limparFiltros")
+            .addEventListener(
+                "click",
+                function() {
+
+                    pesquisa.value = "";
+
+                    filtroStatus.value = "";
+
+                    renderizar();
+
+                }
+            );
+
+
+        try {
+
+            const usuario =
+                JSON.parse(
+                    localStorage.getItem(
+                        "atlas_usuario"
+                    ) || "null"
+                );
+
+
+            if (
+                usuario &&
+                usuario.nome
+            ) {
+
+                document
+                    .getElementById("usuarioNome")
+                    .textContent =
+                    usuario.nome;
+
+            }
+
+        } catch (erro) {
+
+            console.log(
+                "Usuário não encontrado."
+            );
+
+        }
+
+
+        renderizar();
+
+    </script>
+
+</body>
+
+    </html>
