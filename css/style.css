@@ -1,0 +1,544 @@
+/* ==================================================
+   ATLAS GESTÃO
+   STYLE.CSS
+   CSS EXCLUSIVO DA PÁGINA DE LOGIN
+================================================== */
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --azul: #2563EB;
+    --azul-escuro: #1D4ED8;
+
+    --branco: #FFFFFF;
+
+    --cinza-fundo: #F8FAFC;
+    --cinza-borda: #E5E7EB;
+    --cinza-texto: #64748B;
+    --cinza-escuro: #1F2937;
+
+    --vermelho: #EF4444;
+
+}
+
+
+/* ==================================================
+   BASE
+================================================== */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--cinza-escuro);
+
+    background: var(--cinza-fundo);
+
+}
+
+
+button,
+input {
+
+    font-family: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+a {
+
+    text-decoration: none;
+
+}
+
+
+/* ==================================================
+   PÁGINA DE LOGIN
+================================================== */
+
+.login-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #EFF6FF,
+            #F8FAFC
+        );
+
+}
+
+
+/* ==================================================
+   CONTAINER
+================================================== */
+
+.login-container {
+
+    width: 100%;
+
+    max-width: 420px;
+
+}
+
+
+/* ==================================================
+   MARCA
+================================================== */
+
+.login-brand {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.brand-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: var(--azul);
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+.login-brand h1 {
+
+    color: var(--azul);
+
+    font-size: 28px;
+
+    line-height: 1.2;
+
+}
+
+
+.login-brand p {
+
+    margin-top: 6px;
+
+    color: var(--cinza-texto);
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   CARD DE LOGIN
+================================================== */
+
+.login-card {
+
+    background: var(--branco);
+
+    border: 1px solid var(--cinza-borda);
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(15, 23, 42, 0.10);
+
+}
+
+
+/* ==================================================
+   TÍTULO
+================================================== */
+
+.login-card h2 {
+
+    margin-bottom: 7px;
+
+    font-size: 22px;
+
+    color: var(--cinza-escuro);
+
+}
+
+
+.login-card > p {
+
+    margin-bottom: 24px;
+
+    color: var(--cinza-texto);
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   FORMULÁRIO
+================================================== */
+
+.login-card form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.login-card label {
+
+    margin-top: 5px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==================================================
+   CAMPOS
+================================================== */
+
+.login-card input[type="email"],
+.login-card input[type="password"] {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #CBD5E1;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: var(--cinza-escuro);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+
+}
+
+
+.login-card input[type="email"]:focus,
+.login-card input[type="password"]:focus {
+
+    border-color: var(--azul);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.10);
+
+}
+
+
+/* ==================================================
+   OPÇÕES DO LOGIN
+================================================== */
+
+.login-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin: 8px 0 5px;
+
+    font-size: 12px;
+
+    color: var(--cinza-texto);
+
+}
+
+
+.remember {
+
+    display: flex !important;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin: 0 !important;
+
+    font-weight: normal !important;
+
+}
+
+
+.remember input {
+
+    width: 14px;
+
+    height: 14px;
+
+    accent-color: var(--azul);
+
+}
+
+
+.login-options a {
+
+    color: var(--azul);
+
+    font-weight: 600;
+
+}
+
+
+.login-options a:hover {
+
+    color: var(--azul-escuro);
+
+    text-decoration: underline;
+
+}
+
+
+/* ==================================================
+   BOTÃO
+================================================== */
+
+.btn-primary {
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+    background: var(--azul);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+}
+
+
+.btn-primary:hover {
+
+    background: var(--azul-escuro);
+
+}
+
+
+.btn-full {
+
+    width: 100%;
+
+    margin-top: 7px;
+
+}
+
+
+/* ==================================================
+   MENSAGEM
+================================================== */
+
+.message {
+
+    display: none;
+
+    margin-top: 5px;
+
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+}
+
+
+.message.show {
+
+    display: block;
+
+}
+
+
+.message.error {
+
+    background: #FEF2F2;
+
+    color: #B91C1C;
+
+    border: 1px solid #FECACA;
+
+}
+
+
+.message.success {
+
+    background: #F0FDF4;
+
+    color: #15803D;
+
+    border: 1px solid #BBF7D0;
+
+}
+
+
+.message.info {
+
+    background: #EFF6FF;
+
+    color: #1D4ED8;
+
+    border: 1px solid #BFDBFE;
+
+}
+
+
+/* ==================================================
+   AVISO DE DEMONSTRAÇÃO
+================================================== */
+
+.demo-box {
+
+    margin-top: 18px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background: #F8FAFC;
+
+    color: var(--cinza-texto);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.demo-box strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #334155;
+
+}
+
+
+.demo-box span {
+
+    display: block;
+
+}
+
+
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+@media (max-width: 480px) {
+
+    .login-page {
+
+        padding: 15px;
+
+    }
+
+
+    .login-card {
+
+        padding: 22px;
+
+    }
+
+
+    .login-brand h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .login-options {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
