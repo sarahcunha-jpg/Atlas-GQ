@@ -12,15 +12,19 @@
 
 <body>
 
-    <!-- MENU MOBILE -->
-    <button class="menu-button" id="menuButton">☰</button>
+    <!-- =========================================
+         MENU LATERAL
+    ========================================== -->
 
-    <div class="overlay" id="overlay"></div>
-
-    <!-- MENU LATERAL -->
     <aside class="sidebar" id="sidebar">
 
-        <button class="close-button" id="closeMenu">×</button>
+        <button
+            class="close-menu"
+            id="closeMenu"
+            type="button"
+            aria-label="Fechar menu">
+            ×
+        </button>
 
         <div class="logo">
             <div class="logo-icon">▲</div>
@@ -41,7 +45,7 @@
                 Inspeções
             </a>
 
-            <a href="nao-conformidades.html" class="active">
+            <a href="nao.conformidades.html" class="active">
                 Não Conformidades
             </a>
 
@@ -72,8 +76,31 @@
     </aside>
 
 
-    <!-- CONTEÚDO -->
+    <!-- FUNDO MOBILE -->
+
+    <div class="overlay" id="overlay"></div>
+
+
+    <!-- BOTÃO MOBILE -->
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Abrir menu">
+
+        ☰
+
+    </button>
+
+
+    <!-- =========================================
+         ÁREA PRINCIPAL
+    ========================================== -->
+
     <main class="main">
+
+        <!-- CABEÇALHO -->
 
         <header class="header">
 
@@ -81,7 +108,7 @@
                 <h1>Não Conformidades</h1>
 
                 <p>
-                    Registre e acompanhe as não conformidades identificadas.
+                    Registre, acompanhe e gerencie as não conformidades.
                 </p>
             </div>
 
@@ -93,9 +120,15 @@
         </header>
 
 
+        <!-- =========================================
+             CONTEÚDO
+        ========================================== -->
+
         <div class="content">
 
-            <!-- CABEÇALHO DA PÁGINA -->
+
+            <!-- TÍTULO E BOTÃO -->
+
             <div class="page-top">
 
                 <div>
@@ -107,85 +140,118 @@
                 </div>
 
                 <button
+                    type="button"
                     class="btn-primary"
                     id="openModal">
+
                     + Nova não conformidade
+
                 </button>
 
             </div>
 
 
-            <!-- FILTROS -->
-            <div class="filters">
+            <!-- =========================================
+                 FILTROS
+            ========================================== -->
 
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Pesquisar por código, descrição ou área...">
+            <section class="panel">
 
-                <select id="statusFilter">
+                <div class="filters">
 
-                    <option value="">
-                        Todos os status
-                    </option>
+                    <div class="search-box">
 
-                    <option value="Aberta">
-                        Aberta
-                    </option>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Pesquisar por código, descrição, processo ou responsável...">
 
-                    <option value="Em análise">
-                        Em análise
-                    </option>
+                    </div>
 
-                    <option value="Em tratamento">
-                        Em tratamento
-                    </option>
+                    <select id="statusFilter">
 
-                    <option value="Concluída">
-                        Concluída
-                    </option>
+                        <option value="">
+                            Todos os status
+                        </option>
 
-                </select>
+                        <option value="Aberta">
+                            Aberta
+                        </option>
+
+                        <option value="Em análise">
+                            Em análise
+                        </option>
+
+                        <option value="Em tratamento">
+                            Em tratamento
+                        </option>
+
+                        <option value="Concluída">
+                            Concluída
+                        </option>
+
+                    </select>
+
+                    <select id="severityFilter">
+
+                        <option value="">
+                            Todas as classificações
+                        </option>
+
+                        <option value="Baixa">
+                            Baixa
+                        </option>
+
+                        <option value="Média">
+                            Média
+                        </option>
+
+                        <option value="Alta">
+                            Alta
+                        </option>
+
+                        <option value="Crítica">
+                            Crítica
+                        </option>
+
+                    </select>
+
+                    <button
+                        type="button"
+                        class="btn-clear"
+                        id="clearFilters">
+
+                        Limpar
+
+                    </button>
+
+                </div>
+
+            </section>
 
 
-                <select id="severityFilter">
+            <!-- =========================================
+                 TABELA
+            ========================================== -->
 
-                    <option value="">
-                        Todas as classificações
-                    </option>
+            <section class="table-panel">
 
-                    <option value="Baixa">
-                        Baixa
-                    </option>
+                <div class="table-header">
 
-                    <option value="Média">
-                        Média
-                    </option>
+                    <div>
+                        <h2>
+                            Registros
+                        </h2>
 
-                    <option value="Alta">
-                        Alta
-                    </option>
+                        <span id="recordCount">
+                            0 registros
+                        </span>
+                    </div>
 
-                    <option value="Crítica">
-                        Crítica
-                    </option>
-
-                </select>
+                </div>
 
 
-                <button
-                    class="btn-clear"
-                    id="clearFilters">
-                    Limpar
-                </button>
-
-            </div>
-
-
-            <!-- TABELA -->
-            <section class="table-card">
-
-                <div class="table-wrapper">
+                <div class="table-container">
 
                     <table>
 
@@ -193,39 +259,77 @@
 
                             <tr>
 
-                                <th>Código</th>
+                                <th>
+                                    Código
+                                </th>
 
-                                <th>Descrição</th>
+                                <th>
+                                    Descrição
+                                </th>
 
-                                <th>Processo / Área</th>
+                                <th>
+                                    Processo / Área
+                                </th>
 
-                                <th>Responsável</th>
+                                <th>
+                                    Responsável
+                                </th>
 
-                                <th>Data</th>
+                                <th>
+                                    Classificação
+                                </th>
 
-                                <th>Classificação</th>
+                                <th>
+                                    Data
+                                </th>
 
-                                <th>Status</th>
+                                <th>
+                                    Status
+                                </th>
 
-                                <th>Ações</th>
+                                <th>
+                                    Ações
+                                </th>
 
                             </tr>
 
                         </thead>
 
-                        <tbody id="tableBody"></tbody>
+                        <tbody id="tableBody">
+
+                        </tbody>
 
                     </table>
 
                 </div>
 
 
-                <!-- SEM REGISTROS -->
+                <!-- ESTADO VAZIO -->
+
                 <div
-                    class="empty"
+                    class="empty-state"
                     id="emptyState">
 
-                    Nenhuma não conformidade cadastrada.
+                    <div class="empty-icon">
+                        !
+                    </div>
+
+                    <h3>
+                        Nenhuma não conformidade encontrada
+                    </h3>
+
+                    <p>
+                        Cadastre uma nova não conformidade para começar.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        id="emptyButton">
+
+                        + Nova não conformidade
+
+                    </button>
 
                 </div>
 
@@ -236,27 +340,35 @@
     </main>
 
 
-    <!-- MODAL -->
+    <!-- =========================================
+         MODAL CADASTRO
+    ========================================== -->
+
     <div
         class="modal"
         id="modal">
 
-        <div class="modal-box">
+        <div class="modal-content">
 
             <div class="modal-header">
 
                 <div>
-                    <h2>Nova não conformidade</h2>
+                    <h2>
+                        Nova não conformidade
+                    </h2>
 
                     <p>
-                        Preencha os dados para cadastrar uma nova ocorrência.
+                        Preencha os dados para cadastrar o registro.
                     </p>
                 </div>
 
                 <button
+                    type="button"
                     class="modal-close"
                     id="closeModal">
+
                     ×
+
                 </button>
 
             </div>
@@ -266,86 +378,59 @@
 
                 <div class="form-grid">
 
+
                     <div class="form-group">
 
-                        <label>
-                            Código
+                        <label for="description">
+                            Descrição *
                         </label>
 
                         <input
                             type="text"
-                            id="codigo"
-                            placeholder="Ex.: NC-001"
-                            required>
+                            id="description"
+                            required
+                            placeholder="Descreva a não conformidade">
 
                     </div>
 
 
                     <div class="form-group">
 
-                        <label>
-                            Data
-                        </label>
-
-                        <input
-                            type="date"
-                            id="data"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label>
-                            Descrição
-                        </label>
-
-                        <textarea
-                            id="descricao"
-                            placeholder="Descreva a não conformidade..."
-                            required></textarea>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Processo / Área
+                        <label for="process">
+                            Processo / Área *
                         </label>
 
                         <input
                             type="text"
-                            id="area"
-                            placeholder="Ex.: Produção"
-                            required>
+                            id="process"
+                            required
+                            placeholder="Ex.: Produção">
 
                     </div>
 
 
                     <div class="form-group">
 
-                        <label>
-                            Responsável
+                        <label for="responsible">
+                            Responsável *
                         </label>
 
                         <input
                             type="text"
-                            id="responsavel"
-                            placeholder="Nome do responsável"
-                            required>
+                            id="responsible"
+                            required
+                            placeholder="Nome do responsável">
 
                     </div>
 
 
                     <div class="form-group">
 
-                        <label>
-                            Classificação
+                        <label for="severity">
+                            Classificação *
                         </label>
 
-                        <select id="classificacao" required>
+                        <select id="severity" required>
 
                             <option value="">
                                 Selecione
@@ -374,8 +459,22 @@
 
                     <div class="form-group">
 
-                        <label>
-                            Status
+                        <label for="date">
+                            Data *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status *
                         </label>
 
                         <select id="status" required>
@@ -400,6 +499,20 @@
 
                     </div>
 
+
+                    <div class="form-group full">
+
+                        <label for="details">
+                            Detalhes / Observações
+                        </label>
+
+                        <textarea
+                            id="details"
+                            rows="4"
+                            placeholder="Informe detalhes adicionais..."></textarea>
+
+                    </div>
+
                 </div>
 
 
@@ -409,13 +522,17 @@
                         type="button"
                         class="btn-secondary"
                         id="cancelModal">
+
                         Cancelar
+
                     </button>
 
                     <button
                         type="submit"
                         class="btn-primary">
+
                         Salvar não conformidade
+
                     </button>
 
                 </div>
@@ -427,721 +544,740 @@
     </div>
 
 
-    <!-- MODAL VISUALIZAÇÃO -->
-    <div
-        class="modal"
-        id="viewModal">
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
 
-        <div class="modal-box small">
+    <script>
 
-            <div class="modal-header">
+        /* ======================================
+           MENU MOBILE
+        ====================================== */
 
-                <div>
-                    <h2>Detalhes da não conformidade</h2>
-                </div>
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const menuButton = document.getElementById("menuButton");
+        const closeMenu = document.getElementById("closeMenu");
 
-                <button
-                    class="modal-close"
-                    id="closeViewModal">
-                    ×
-                </button>
+        function openSidebar() {
 
-            </div>
+            sidebar.classList.add("open");
+            overlay.classList.add("open");
 
-            <div id="details"></div>
-
-        </div>
-
-    </div>
-
-
-<script>
-
-/* =========================================
-   ELEMENTOS
-========================================= */
-
-const modal = document.getElementById("modal");
-const viewModal = document.getElementById("viewModal");
-
-const openModal = document.getElementById("openModal");
-const closeModal = document.getElementById("closeModal");
-const cancelModal = document.getElementById("cancelModal");
-const closeViewModal = document.getElementById("closeViewModal");
-
-const form = document.getElementById("ncForm");
-
-const tableBody = document.getElementById("tableBody");
-const emptyState = document.getElementById("emptyState");
-
-const searchInput = document.getElementById("searchInput");
-const statusFilter = document.getElementById("statusFilter");
-const severityFilter = document.getElementById("severityFilter");
-
-const clearFilters = document.getElementById("clearFilters");
-
-
-/* =========================================
-   BANCO LOCAL
-========================================= */
-
-const STORAGE_KEY = "atlas_nao_conformidades";
-
-
-function getRecords() {
-
-    try {
-
-        const data =
-            localStorage.getItem(STORAGE_KEY);
-
-        if (!data) {
-            return [];
         }
 
-        const records = JSON.parse(data);
+        function closeSidebar() {
 
-        return Array.isArray(records)
-            ? records
-            : [];
+            sidebar.classList.remove("open");
+            overlay.classList.remove("open");
 
-    } catch (error) {
+        }
 
-        console.error(
-            "Erro ao carregar registros:",
-            error
+        menuButton.addEventListener("click", openSidebar);
+
+        closeMenu.addEventListener("click", closeSidebar);
+
+        overlay.addEventListener("click", closeSidebar);
+
+
+        /* ======================================
+           ELEMENTOS
+        ====================================== */
+
+        const modal = document.getElementById("modal");
+
+        const openModalButton =
+            document.getElementById("openModal");
+
+        const emptyButton =
+            document.getElementById("emptyButton");
+
+        const closeModalButton =
+            document.getElementById("closeModal");
+
+        const cancelModalButton =
+            document.getElementById("cancelModal");
+
+        const form =
+            document.getElementById("ncForm");
+
+        const tableBody =
+            document.getElementById("tableBody");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const recordCount =
+            document.getElementById("recordCount");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+        const severityFilter =
+            document.getElementById("severityFilter");
+
+        const clearFilters =
+            document.getElementById("clearFilters");
+
+
+        /* ======================================
+           LOCAL STORAGE
+        ====================================== */
+
+        const STORAGE_KEY =
+            "atlas_nao_conformidades";
+
+
+        let registros =
+            JSON.parse(
+                localStorage.getItem(STORAGE_KEY)
+            ) || [];
+
+
+        /* ======================================
+           MODAL
+        ====================================== */
+
+        function openModal() {
+
+            modal.classList.add("show");
+
+            document.body.classList.add("modal-open");
+
+            document
+                .getElementById("description")
+                .focus();
+
+        }
+
+
+        function closeModal() {
+
+            modal.classList.remove("show");
+
+            document.body.classList.remove("modal-open");
+
+        }
+
+
+        openModalButton.addEventListener(
+            "click",
+            openModal
         );
 
-        return [];
+        emptyButton.addEventListener(
+            "click",
+            openModal
+        );
 
-    }
+        closeModalButton.addEventListener(
+            "click",
+            closeModal
+        );
 
-}
-
-
-function saveRecords(records) {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(records)
-    );
-
-}
-
-
-/* =========================================
-   RENDERIZAR TABELA
-========================================= */
-
-function renderTable() {
-
-    const records = getRecords();
-
-    const search =
-        searchInput.value
-            .toLowerCase()
-            .trim();
-
-    const status =
-        statusFilter.value;
-
-    const severity =
-        severityFilter.value;
+        cancelModalButton.addEventListener(
+            "click",
+            closeModal
+        );
 
 
-    const filtered =
-        records.filter(function(record) {
+        modal.addEventListener(
+            "click",
+            function(event) {
 
-            const texto = [
+                if (event.target === modal) {
+                    closeModal();
+                }
 
-                record.codigo,
-                record.descricao,
-                record.area,
-                record.responsavel
-
-            ]
-                .join(" ")
-                .toLowerCase();
+            }
+        );
 
 
-            const matchesSearch =
-                !search ||
-                texto.includes(search);
+        /* ======================================
+           DATA ATUAL
+        ====================================== */
+
+        function getToday() {
+
+            const date = new Date();
+
+            const year =
+                date.getFullYear();
+
+            const month =
+                String(
+                    date.getMonth() + 1
+                ).padStart(2, "0");
+
+            const day =
+                String(
+                    date.getDate()
+                ).padStart(2, "0");
+
+            return `${year}-${month}-${day}`;
+
+        }
 
 
-            const matchesStatus =
-                !status ||
-                record.status === status;
+        document.getElementById("date").value =
+            getToday();
 
 
-            const matchesSeverity =
-                !severity ||
-                record.classificacao === severity;
+        /* ======================================
+           GERAR CÓDIGO
+        ====================================== */
 
+        function generateCode() {
+
+            const number =
+                registros.length + 1;
+
+            let code =
+                "NC" +
+                String(number).padStart(4, "0");
+
+
+            while (
+                registros.some(
+                    item => item.code === code
+                )
+            ) {
+
+                code =
+                    "NC" +
+                    String(
+                        Number(
+                            code.replace("NC", "")
+                        ) + 1
+                    ).padStart(4, "0");
+
+            }
+
+            return code;
+
+        }
+
+
+        /* ======================================
+           ESCAPAR HTML
+        ====================================== */
+
+        function escapeHtml(value) {
+
+            return String(value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* ======================================
+           FORMATAR DATA
+        ====================================== */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "-";
+            }
+
+            const parts =
+                dateString.split("-");
+
+            if (parts.length !== 3) {
+                return dateString;
+            }
 
             return (
-                matchesSearch &&
-                matchesStatus &&
-                matchesSeverity
+                parts[2] +
+                "/" +
+                parts[1] +
+                "/" +
+                parts[0]
             );
 
-        });
+        }
 
 
-    tableBody.innerHTML = "";
+        /* ======================================
+           CLASSES
+        ====================================== */
+
+        function statusClass(status) {
+
+            if (status === "Concluída") {
+                return "status-concluida";
+            }
+
+            if (status === "Em tratamento") {
+                return "status-tratamento";
+            }
+
+            if (status === "Em análise") {
+                return "status-analise";
+            }
+
+            return "status-aberta";
+
+        }
 
 
-    if (filtered.length === 0) {
+        function severityClass(severity) {
 
-        emptyState.style.display = "block";
+            if (severity === "Crítica") {
+                return "severity-critica";
+            }
 
-        return;
+            if (severity === "Alta") {
+                return "severity-alta";
+            }
 
-    }
+            if (severity === "Média") {
+                return "severity-media";
+            }
 
+            return "severity-baixa";
 
-    emptyState.style.display = "none";
-
-
-    filtered.forEach(function(record) {
-
-        const tr =
-            document.createElement("tr");
-
-
-        tr.innerHTML = `
-
-            <td>
-                <strong>${escapeHTML(record.codigo)}</strong>
-            </td>
-
-            <td>
-                ${escapeHTML(record.descricao)}
-            </td>
-
-            <td>
-                ${escapeHTML(record.area)}
-            </td>
-
-            <td>
-                ${escapeHTML(record.responsavel)}
-            </td>
-
-            <td>
-                ${formatDate(record.data)}
-            </td>
-
-            <td>
-                <span class="badge severity-${slug(record.classificacao)}">
-                    ${escapeHTML(record.classificacao)}
-                </span>
-            </td>
-
-            <td>
-                <span class="badge status-${slug(record.status)}">
-                    ${escapeHTML(record.status)}
-                </span>
-            </td>
-
-            <td>
-
-                <div class="actions">
-
-                    <button
-                        class="btn-view"
-                        onclick="viewRecord('${record.id}')">
-                        Ver
-                    </button>
-
-                    <button
-                        class="btn-delete"
-                        onclick="deleteRecord('${record.id}')">
-                        Excluir
-                    </button>
-
-                </div>
-
-            </td>
-
-        `;
+        }
 
 
-        tableBody.appendChild(tr);
+        /* ======================================
+           FILTRAR
+        ====================================== */
 
-    });
+        function getFilteredRecords() {
 
-}
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
 
+            const status =
+                statusFilter.value;
 
-/* =========================================
-   SALVAR
-========================================= */
-
-form.addEventListener(
-    "submit",
-    function(event) {
-
-        event.preventDefault();
-
-
-        const record = {
-
-            id:
-                Date.now().toString(),
-
-            codigo:
-                document
-                    .getElementById("codigo")
-                    .value
-                    .trim(),
-
-            descricao:
-                document
-                    .getElementById("descricao")
-                    .value
-                    .trim(),
-
-            area:
-                document
-                    .getElementById("area")
-                    .value
-                    .trim(),
-
-            responsavel:
-                document
-                    .getElementById("responsavel")
-                    .value
-                    .trim(),
-
-            data:
-                document
-                    .getElementById("data")
-                    .value,
-
-            classificacao:
-                document
-                    .getElementById("classificacao")
-                    .value,
-
-            status:
-                document
-                    .getElementById("status")
-                    .value
-
-        };
+            const severity =
+                severityFilter.value;
 
 
-        const records =
-            getRecords();
+            return registros.filter(
+                function(item) {
+
+                    const text =
+                        (
+                            item.code +
+                            " " +
+                            item.description +
+                            " " +
+                            item.process +
+                            " " +
+                            item.responsible
+                        ).toLowerCase();
 
 
-        /* IMPEDIR CÓDIGO DUPLICADO */
+                    const matchesSearch =
+                        !search ||
+                        text.includes(search);
 
-        const duplicate =
-            records.some(function(item) {
 
-                return (
-                    item.codigo.toLowerCase() ===
-                    record.codigo.toLowerCase()
+                    const matchesStatus =
+                        !status ||
+                        item.status === status;
+
+
+                    const matchesSeverity =
+                        !severity ||
+                        item.severity === severity;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus &&
+                        matchesSeverity
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ======================================
+           RENDERIZAR TABELA
+        ====================================== */
+
+        function renderTable() {
+
+            const filtered =
+                getFilteredRecords();
+
+
+            tableBody.innerHTML = "";
+
+
+            recordCount.textContent =
+                filtered.length +
+                (
+                    filtered.length === 1
+                        ? " registro"
+                        : " registros"
                 );
 
-            });
+
+            if (filtered.length === 0) {
+
+                emptyState.style.display = "flex";
+
+                return;
+
+            }
 
 
-        if (duplicate) {
+            emptyState.style.display = "none";
 
-            alert(
-                "Já existe uma não conformidade com este código."
+
+            filtered.forEach(
+                function(item) {
+
+                    const row =
+                        document.createElement("tr");
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            <strong class="code">
+                                ${escapeHtml(item.code)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            <div class="description-cell">
+                                ${escapeHtml(item.description)}
+                            </div>
+                        </td>
+
+                        <td>
+                            ${escapeHtml(item.process)}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(item.responsible)}
+                        </td>
+
+                        <td>
+                            <span class="badge ${severityClass(item.severity)}">
+                                ${escapeHtml(item.severity)}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${formatDate(item.date)}
+                        </td>
+
+                        <td>
+                            <span class="badge ${statusClass(item.status)}">
+                                ${escapeHtml(item.status)}
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <div class="actions">
+
+                                <button
+                                    type="button"
+                                    class="action-view"
+                                    onclick="viewRecord('${item.id}')">
+
+                                    Ver
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="action-delete"
+                                    onclick="deleteRecord('${item.id}')">
+
+                                    Excluir
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    tableBody.appendChild(row);
+
+                }
             );
 
-            return;
-
         }
 
 
-        records.push(record);
+        /* ======================================
+           SALVAR
+        ====================================== */
 
-        saveRecords(records);
+        form.addEventListener(
+            "submit",
+            function(event) {
 
-
-        /* LIMPAR FORMULÁRIO */
-
-        form.reset();
-
-
-        /* FECHAR */
-
-        modal.classList.remove("open");
+                event.preventDefault();
 
 
-        /* ATUALIZAR TABELA */
+                const record = {
+
+                    id:
+                        Date.now().toString(),
+
+                    code:
+                        generateCode(),
+
+                    description:
+                        document
+                            .getElementById("description")
+                            .value
+                            .trim(),
+
+                    process:
+                        document
+                            .getElementById("process")
+                            .value
+                            .trim(),
+
+                    responsible:
+                        document
+                            .getElementById("responsible")
+                            .value
+                            .trim(),
+
+                    severity:
+                        document
+                            .getElementById("severity")
+                            .value,
+
+                    date:
+                        document
+                            .getElementById("date")
+                            .value,
+
+                    status:
+                        document
+                            .getElementById("status")
+                            .value,
+
+                    details:
+                        document
+                            .getElementById("details")
+                            .value
+                            .trim()
+
+                };
+
+
+                registros.push(record);
+
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(registros)
+                );
+
+
+                form.reset();
+
+
+                document.getElementById("date").value =
+                    getToday();
+
+
+                document.getElementById("status").value =
+                    "Aberta";
+
+
+                closeModal();
+
+
+                renderTable();
+
+            }
+        );
+
+
+        /* ======================================
+           VISUALIZAR
+        ====================================== */
+
+        window.viewRecord =
+            function(id) {
+
+                const record =
+                    registros.find(
+                        item => item.id === id
+                    );
+
+
+                if (!record) {
+                    return;
+                }
+
+
+                alert(
+
+                    "Código: " +
+                    record.code +
+
+                    "\n\nDescrição: " +
+                    record.description +
+
+                    "\n\nProcesso / Área: " +
+                    record.process +
+
+                    "\n\nResponsável: " +
+                    record.responsible +
+
+                    "\n\nClassificação: " +
+                    record.severity +
+
+                    "\n\nData: " +
+                    formatDate(record.date) +
+
+                    "\n\nStatus: " +
+                    record.status +
+
+                    "\n\nObservações: " +
+                    (
+                        record.details || "Nenhuma"
+                    )
+
+                );
+
+            };
+
+
+        /* ======================================
+           EXCLUIR
+        ====================================== */
+
+        window.deleteRecord =
+            function(id) {
+
+                const record =
+                    registros.find(
+                        item => item.id === id
+                    );
+
+
+                if (!record) {
+                    return;
+                }
+
+
+                const confirmed =
+                    confirm(
+                        "Deseja realmente excluir a não conformidade " +
+                        record.code +
+                        "?"
+                    );
+
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                registros =
+                    registros.filter(
+                        item => item.id !== id
+                    );
+
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(registros)
+                );
+
+
+                renderTable();
+
+            };
+
+
+        /* ======================================
+           FILTROS
+        ====================================== */
+
+        searchInput.addEventListener(
+            "input",
+            renderTable
+        );
+
+
+        statusFilter.addEventListener(
+            "change",
+            renderTable
+        );
+
+
+        severityFilter.addEventListener(
+            "change",
+            renderTable
+        );
+
+
+        clearFilters.addEventListener(
+            "click",
+            function() {
+
+                searchInput.value = "";
+
+                statusFilter.value = "";
+
+                severityFilter.value = "";
+
+                renderTable();
+
+            }
+        );
+
+
+        /* ======================================
+           ESC FECHA MODAL / MENU
+        ====================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeModal();
+
+                    closeSidebar();
+
+                }
+
+            }
+        );
+
+
+        /* ======================================
+           INICIALIZAÇÃO
+        ====================================== */
 
         renderTable();
 
-
-        alert(
-            "Não conformidade cadastrada com sucesso!"
-        );
-
-    }
-);
-
-
-/* =========================================
-   EXCLUIR
-========================================= */
-
-function deleteRecord(id) {
-
-    const confirmDelete =
-        confirm(
-            "Deseja realmente excluir esta não conformidade?"
-        );
-
-
-    if (!confirmDelete) {
-        return;
-    }
-
-
-    const records =
-        getRecords();
-
-
-    const updated =
-        records.filter(function(record) {
-
-            return record.id !== id;
-
-        });
-
-
-    saveRecords(updated);
-
-    renderTable();
-
-}
-
-
-/* =========================================
-   VISUALIZAR
-========================================= */
-
-function viewRecord(id) {
-
-    const records =
-        getRecords();
-
-
-    const record =
-        records.find(function(item) {
-
-            return item.id === id;
-
-        });
-
-
-    if (!record) {
-
-        alert(
-            "Registro não encontrado."
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById("details").innerHTML = `
-
-        <div class="details">
-
-            <div>
-                <span>Código</span>
-                <strong>${escapeHTML(record.codigo)}</strong>
-            </div>
-
-            <div>
-                <span>Data</span>
-                <strong>${formatDate(record.data)}</strong>
-            </div>
-
-            <div>
-                <span>Processo / Área</span>
-                <strong>${escapeHTML(record.area)}</strong>
-            </div>
-
-            <div>
-                <span>Responsável</span>
-                <strong>${escapeHTML(record.responsavel)}</strong>
-            </div>
-
-            <div>
-                <span>Classificação</span>
-                <strong>${escapeHTML(record.classificacao)}</strong>
-            </div>
-
-            <div>
-                <span>Status</span>
-                <strong>${escapeHTML(record.status)}</strong>
-            </div>
-
-            <div class="detail-description">
-
-                <span>Descrição</span>
-
-                <p>
-                    ${escapeHTML(record.descricao)}
-                </p>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    viewModal.classList.add("open");
-
-}
-
-
-/* =========================================
-   MODAIS
-========================================= */
-
-openModal.addEventListener(
-    "click",
-    function() {
-
-        modal.classList.add("open");
-
-        document
-            .getElementById("codigo")
-            .focus();
-
-    }
-);
-
-
-closeModal.addEventListener(
-    "click",
-    function() {
-
-        modal.classList.remove("open");
-
-    }
-);
-
-
-cancelModal.addEventListener(
-    "click",
-    function() {
-
-        modal.classList.remove("open");
-
-        form.reset();
-
-    }
-);
-
-
-closeViewModal.addEventListener(
-    "click",
-    function() {
-
-        viewModal.classList.remove("open");
-
-    }
-);
-
-
-/* FECHAR CLICANDO FORA */
-
-modal.addEventListener(
-    "click",
-    function(event) {
-
-        if (event.target === modal) {
-
-            modal.classList.remove("open");
-
-        }
-
-    }
-);
-
-
-viewModal.addEventListener(
-    "click",
-    function(event) {
-
-        if (event.target === viewModal) {
-
-            viewModal.classList.remove("open");
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   FILTROS
-========================================= */
-
-searchInput.addEventListener(
-    "input",
-    renderTable
-);
-
-
-statusFilter.addEventListener(
-    "change",
-    renderTable
-);
-
-
-severityFilter.addEventListener(
-    "change",
-    renderTable
-);
-
-
-clearFilters.addEventListener(
-    "click",
-    function() {
-
-        searchInput.value = "";
-
-        statusFilter.value = "";
-
-        severityFilter.value = "";
-
-        renderTable();
-
-    }
-);
-
-
-/* =========================================
-   MENU MOBILE
-========================================= */
-
-const sidebar =
-    document.getElementById("sidebar");
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const closeMenu =
-    document.getElementById("closeMenu");
-
-const overlay =
-    document.getElementById("overlay");
-
-
-function closeSidebar() {
-
-    sidebar.classList.remove("open");
-
-    overlay.classList.remove("open");
-
-}
-
-
-menuButton.addEventListener(
-    "click",
-    function() {
-
-        sidebar.classList.add("open");
-
-        overlay.classList.add("open");
-
-    }
-);
-
-
-closeMenu.addEventListener(
-    "click",
-    closeSidebar
-);
-
-
-overlay.addEventListener(
-    "click",
-    closeSidebar
-);
-
-
-/* =========================================
-   FUNÇÕES AUXILIARES
-========================================= */
-
-function formatDate(date) {
-
-    if (!date) {
-        return "-";
-    }
-
-
-    const parts =
-        date.split("-");
-
-
-    if (parts.length !== 3) {
-        return date;
-    }
-
-
-    return (
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        parts[0]
-    );
-
-}
-
-
-function slug(text) {
-
-    return String(text)
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/\s+/g, "-");
-
-}
-
-
-function escapeHTML(text) {
-
-    return String(text || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* =========================================
-   INICIALIZAÇÃO
-========================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        renderTable();
-
-    }
-);
-
-</script>
+    </script>
 
 </body>
+
 </html>
