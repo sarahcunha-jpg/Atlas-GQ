@@ -1,8 +1,7 @@
-/* =========================================================
-   ATLAS GESTÃO - NÃO CONFORMIDADES
-   Layout exclusivo da página
-   Não altera login nem Dashboard
-========================================================= */
+/* =========================================
+   NÃO CONFORMIDADES
+   Atlas Gestão
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -15,447 +14,96 @@ body {
     color: #263238;
 }
 
-/* =========================================================
-   ESTRUTURA PRINCIPAL
-========================================================= */
-
-.page {
-    min-height: 100vh;
-}
-
-.main {
-    margin-left: 260px;
-    min-height: 100vh;
-}
-
-.content {
+.page-container {
     padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* =========================================================
-   CABEÇALHO
-========================================================= */
-
-.header {
-    height: 76px;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 30px;
+.page-header {
+    margin-bottom: 22px;
 }
 
-.header-left h1 {
-    margin: 0 0 4px;
-    font-size: 27px;
+.page-header h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
     color: #263238;
 }
 
-.header-left p {
+.page-header p {
     margin: 0;
-    color: #7c8792;
+    color: #7b8794;
     font-size: 14px;
 }
 
-.user {
-    text-align: right;
-}
+/* =========================================
+   FILTROS
+========================================= */
 
-.user strong {
-    display: block;
-    font-size: 14px;
-}
+.filters {
+    background: #fff;
+    border: 1px solid #e1e6ec;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
 
-.user span {
-    color: #7c8792;
-    font-size: 13px;
-}
-
-/* =========================================================
-   MENU LATERAL
-========================================================= */
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 260px;
-    height: 100vh;
-
-    background: #ffffff;
-    border-right: 1px solid #e5e7eb;
-
-    z-index: 1000;
-
-    overflow-y: auto;
-
-    transition: transform 0.3s ease;
-}
-
-.logo {
-    height: 76px;
-
-    display: flex;
-    align-items: center;
-
+    display: grid;
+    grid-template-columns: 1fr 220px 220px auto;
     gap: 12px;
-    padding: 0 20px;
-
-    border-bottom: 1px solid #eef0f3;
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
     align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: #2864d7;
-    color: white;
-
-    font-size: 19px;
-    font-weight: bold;
 }
 
-.logo-text {
-    color: #2864d7;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.menu-title {
-    padding: 28px 20px 12px;
-
-    color: #7b8794;
-
-    font-size: 11px;
-    font-weight: bold;
-
-    letter-spacing: 1px;
-}
-
-.menu a {
-    display: block;
-
-    margin: 3px 12px;
-    padding: 13px 14px;
-
-    border-radius: 9px;
-
-    color: #59636e;
-
-    text-decoration: none;
-
-    font-size: 15px;
-}
-
-.menu a:hover {
-    background: #eef4ff;
-    color: #2864d7;
-}
-
-.menu a.active {
-    background: #2864d7;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.menu-separator {
-    height: 1px;
-    background: #e5e7eb;
-    margin: 20px;
-}
-
-.menu a.logout {
-    color: #dc3545;
-    font-weight: bold;
-}
-
-.menu a.logout:hover {
-    background: #fff1f1;
-    color: #c82333;
-}
-
-/* =========================================================
-   BOTÕES DO MENU MOBILE
-========================================================= */
-
-.close-button {
-    display: none;
-
-    position: absolute;
-
-    top: 18px;
-    right: 12px;
-
-    width: 35px;
-    height: 35px;
-
-    border: none;
-    background: transparent;
-
-    font-size: 25px;
-
-    color: #59636e;
-
-    cursor: pointer;
-}
-
-.menu-button {
-    display: none;
-
-    position: fixed;
-
-    top: 12px;
-    left: 12px;
-
-    width: 42px;
-    height: 42px;
-
-    border: 1px solid #dfe3e8;
-
-    background: #ffffff;
-
-    border-radius: 9px;
-
-    font-size: 22px;
-
-    cursor: pointer;
-
-    z-index: 1100;
-}
-
-.overlay {
-    display: none;
-
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.35);
-
-    z-index: 900;
-}
-
-.overlay.open {
-    display: block;
-}
-
-/* =========================================================
-   TÍTULO DA PÁGINA
-========================================================= */
-
-.page-title {
-    margin-bottom: 22px;
-}
-
-.page-title h2 {
-    margin: 0 0 6px;
-
-    font-size: 25px;
-    color: #263238;
-}
-
-.page-title p {
-    margin: 0;
-
-    color: #7b8794;
-    font-size: 14px;
-}
-
-/* =========================================================
-   CARDS / RESUMO
-========================================================= */
-
-.summary-grid {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 22px;
-}
-
-.summary-card {
-    background: #ffffff;
-
-    border: 1px solid #e5e9ee;
-
-    border-radius: 14px;
-
-    padding: 20px;
-
-    box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
-}
-
-.summary-card-title {
-    color: #7b8794;
-    font-size: 13px;
-    margin-bottom: 7px;
-}
-
-.summary-card-value {
-    font-size: 27px;
-    font-weight: bold;
-    color: #263238;
-}
-
-/* =========================================================
-   ÁREA DE CADASTRO
-========================================================= */
-
-.form-card {
-    background: #ffffff;
-
-    border: 1px solid #e5e9ee;
-
-    border-radius: 14px;
-
-    padding: 24px;
-
-    margin-bottom: 22px;
-
-    box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
-}
-
-.form-card h2 {
-    margin: 0 0 6px;
-
-    font-size: 20px;
-}
-
-.form-card > p {
-    margin: 0 0 20px;
-
-    color: #7b8794;
-    font-size: 14px;
-}
-
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
-
-.form-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 16px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    margin-bottom: 7px;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    color: #4b5563;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
+.filters input,
+.filters select {
     width: 100%;
+    height: 44px;
 
-    padding: 12px 13px;
+    padding: 0 13px;
 
-    border: 1px solid #d8dee6;
-
+    border: 1px solid #d9e0e7;
     border-radius: 8px;
 
-    background: #ffffff;
-
+    background: #fff;
     color: #263238;
 
-    font-family: Arial, Helvetica, sans-serif;
-
     font-size: 14px;
-
     outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.filters input:focus,
+.filters select:focus {
     border-color: #2864d7;
-
-    box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.10);
 }
 
-.form-group textarea {
-    min-height: 110px;
-
-    resize: vertical;
-}
-
-/* =========================================================
+/* =========================================
    BOTÕES
-========================================================= */
-
-.form-actions {
-    display: flex;
-
-    justify-content: flex-end;
-
-    gap: 10px;
-
-    margin-top: 20px;
-}
+========================================= */
 
 .btn {
+    height: 44px;
     border: none;
-
     border-radius: 8px;
 
-    padding: 12px 18px;
+    padding: 0 18px;
 
     font-size: 14px;
-
     font-weight: bold;
 
     cursor: pointer;
-
-    transition: 0.2s ease;
 }
 
 .btn-primary {
     background: #2864d7;
-    color: #ffffff;
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: #1f53b8;
+    background: #1f54bb;
 }
 
 .btn-secondary {
-    background: #eef1f5;
-    color: #394552;
-}
-
-.btn-secondary:hover {
-    background: #e2e6eb;
+    background: #edf1f5;
+    color: #344054;
 }
 
 .btn-danger {
@@ -464,318 +112,184 @@ body {
 }
 
 .btn-danger:hover {
-    background: #ffe1e1;
+    background: #ffe0e0;
 }
 
-/* =========================================================
-   LISTAGEM
-========================================================= */
-
-.list-card {
-    background: #ffffff;
-
-    border: 1px solid #e5e9ee;
-
-    border-radius: 14px;
-
-    padding: 24px;
-
-    box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
-}
-
-.list-header {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 18px;
-}
-
-.list-header h2 {
-    margin: 0;
-
-    font-size: 20px;
-}
-
-.list-header p {
-    margin: 5px 0 0;
-
-    color: #7b8794;
-
-    font-size: 14px;
-}
-
-/* =========================================================
-   FILTROS
-========================================================= */
-
-.filters {
-    display: grid;
-
-    grid-template-columns: 2fr 1fr 1fr auto;
-
-    gap: 10px;
-
-    margin-bottom: 18px;
-}
-
-.filters input,
-.filters select {
-    width: 100%;
-
-    height: 44px;
-
-    padding: 0 13px;
-
-    border: 1px solid #d8dee6;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #263238;
-
-    font-size: 14px;
-
-    outline: none;
-}
-
-.filters input:focus,
-.filters select:focus {
-    border-color: #2864d7;
-
-    box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.10);
-}
-
-.clear-button {
-    height: 44px;
-
-    padding: 0 17px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #eef1f5;
-
-    color: #394552;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.clear-button:hover {
-    background: #e2e6eb;
-}
-
-/* =========================================================
+/* =========================================
    TABELA
-========================================================= */
+========================================= */
 
-.table-wrapper {
-    width: 100%;
+.table-container {
+    background: #fff;
+    border: 1px solid #e1e6ec;
+    border-radius: 12px;
 
     overflow-x: auto;
-
-    border: 1px solid #e3e8ee;
-
-    border-radius: 10px;
 }
 
 .data-table {
     width: 100%;
-
-    min-width: 900px;
-
     border-collapse: collapse;
+    min-width: 900px;
+}
 
-    background: #ffffff;
+.data-table thead {
+    background: #f4f7fb;
 }
 
 .data-table th {
-    padding: 13px 14px;
+    padding: 14px 13px;
 
     text-align: left;
 
-    background: #f4f7fb;
-
-    color: #46515d;
-
     font-size: 12px;
-
     font-weight: bold;
 
-    border-bottom: 1px solid #dfe5eb;
+    color: #536170;
 
-    white-space: nowrap;
+    border-bottom: 1px solid #dfe5eb;
 }
 
 .data-table td {
-    padding: 14px;
+    padding: 14px 13px;
 
+    font-size: 14px;
     color: #263238;
 
-    font-size: 13px;
-
     border-bottom: 1px solid #edf0f3;
-
-    vertical-align: middle;
-}
-
-.data-table tbody tr:last-child td {
-    border-bottom: none;
 }
 
 .data-table tbody tr:hover {
     background: #fafcff;
 }
 
-/* =========================================================
-   BADGES
-========================================================= */
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
 
-.badge {
+/* =========================================
+   STATUS
+========================================= */
+
+.status {
     display: inline-flex;
-
     align-items: center;
 
-    justify-content: center;
-
-    padding: 6px 10px;
+    padding: 6px 11px;
 
     border-radius: 20px;
 
-    font-size: 11px;
-
+    font-size: 12px;
     font-weight: bold;
-
-    white-space: nowrap;
 }
 
-.badge-aberta {
-    background: #fff0f0;
+.status-aberta {
+    background: #fff1f1;
     color: #dc3545;
 }
 
-.badge-andamento {
-    background: #eaf1ff;
+.status-andamento {
+    background: #eaf2ff;
     color: #2864d7;
 }
 
-.badge-concluida {
-    background: #e8f8ee;
+.status-concluida {
+    background: #e7f7ed;
     color: #198754;
 }
 
-.badge-baixa {
-    background: #edf7ff;
-    color: #2878b5;
-}
-
-.badge-media {
+.status-pendente {
     background: #fff7df;
-    color: #a56b00;
+    color: #a66a00;
 }
 
-.badge-alta {
+/* =========================================
+   PRIORIDADE
+========================================= */
+
+.priority {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.priority-alta {
     background: #fff0f0;
     color: #dc3545;
 }
 
-/* =========================================================
+.priority-media {
+    background: #fff7df;
+    color: #a66a00;
+}
+
+.priority-baixa {
+    background: #e9f7ef;
+    color: #198754;
+}
+
+/* =========================================
    AÇÕES DA TABELA
-========================================================= */
+========================================= */
 
 .table-actions {
     display: flex;
-
     gap: 8px;
 }
 
-.table-action {
+.table-actions button {
+    height: 36px;
+
+    padding: 0 12px;
+
     border: none;
+    border-radius: 7px;
 
-    border-radius: 8px;
-
-    padding: 9px 12px;
-
-    font-size: 12px;
-
+    font-size: 13px;
     font-weight: bold;
 
     cursor: pointer;
 }
 
-.table-action.view {
-    background: #eef1f5;
-    color: #394552;
+.btn-view {
+    background: #edf1f5;
+    color: #344054;
 }
 
-.table-action.edit {
-    background: #eaf1ff;
+.btn-edit {
+    background: #eef4ff;
     color: #2864d7;
 }
 
-.table-action.delete {
+.btn-delete {
     background: #fff0f0;
     color: #dc3545;
 }
 
-.table-action:hover {
-    opacity: 0.85;
-}
-
-/* =========================================================
-   ESTADO VAZIO
-========================================================= */
-
-.empty-state {
-    padding: 45px 20px;
-
-    text-align: center;
-
-    color: #8b96a3;
-}
-
-.empty-state strong {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #59636e;
-
-    font-size: 16px;
-}
-
-.empty-state span {
-    font-size: 13px;
-}
-
-/* =========================================================
+/* =========================================
    MODAL
-========================================================= */
+========================================= */
 
 .modal {
     display: none;
 
     position: fixed;
-
     inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
 
     z-index: 2000;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
-
-    background: rgba(15, 23, 42, 0.45);
 }
 
 .modal.open {
@@ -784,140 +298,171 @@ body {
 
 .modal-content {
     width: 100%;
-
     max-width: 650px;
 
     max-height: 90vh;
-
     overflow-y: auto;
 
-    background: #ffffff;
+    background: #fff;
 
     border-radius: 14px;
 
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
-
-    padding: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    gap: 15px;
+    padding: 20px;
 
-    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .modal-header h2 {
     margin: 0;
-
-    font-size: 21px;
+    font-size: 20px;
 }
 
 .modal-close {
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
 
     border: none;
+    background: transparent;
 
-    border-radius: 8px;
-
-    background: #f1f3f5;
-
-    color: #59636e;
-
-    font-size: 22px;
+    font-size: 24px;
+    color: #68737f;
 
     cursor: pointer;
 }
 
-.modal-close:hover {
-    background: #e6e9ed;
+.modal-body {
+    padding: 20px;
 }
 
-/* =========================================================
-   RESPONSIVIDADE - TABLET
-========================================================= */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 
-@media (max-width: 1100px) {
+    padding: 18px 20px;
 
-    .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    border-top: 1px solid #e5e7eb;
+}
+
+/* =========================================
+   FORMULÁRIO
+========================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #344054;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 1px solid #d9e0e7;
+    border-radius: 8px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2864d7;
+}
+
+/* =========================================
+   ESTADO VAZIO
+========================================= */
+
+.empty-state {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: #8a96a3;
+}
+
+.empty-state strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #536170;
+
+    font-size: 16px;
+}
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 900px) {
 
     .filters {
         grid-template-columns: 1fr 1fr;
     }
 
-    .clear-button {
-        width: 100%;
+    .filters input {
+        grid-column: 1 / -1;
     }
-}
 
-/* =========================================================
-   RESPONSIVIDADE - CELULAR
-========================================================= */
+}
 
 @media (max-width: 700px) {
 
-    .sidebar {
-        transform: translateX(-100%);
-
-        width: 270px;
-
-        box-shadow: 5px 0 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .close-button {
-        display: block;
-    }
-
-    .menu-button {
-        display: block;
-    }
-
-    .main {
-        margin-left: 0;
-    }
-
-    .header {
-        height: 76px;
-
-        padding: 12px 18px 12px 68px;
-    }
-
-    .header-left h1 {
-        font-size: 23px;
-    }
-
-    .header-left p {
-        font-size: 12px;
-    }
-
-    .user {
-        display: none;
-    }
-
-    .content {
+    .page-container {
         padding: 16px;
     }
 
-    .page-title h2 {
+    .page-header h1 {
         font-size: 22px;
     }
 
-    .summary-grid {
+    .filters {
         grid-template-columns: 1fr;
+    }
 
-        gap: 12px;
+    .filters input {
+        grid-column: auto;
+    }
+
+    .filters .btn {
+        width: 100%;
     }
 
     .form-grid {
@@ -928,37 +473,16 @@ body {
         grid-column: auto;
     }
 
-    .form-card,
-    .list-card {
-        padding: 18px;
+    .modal {
+        padding: 10px;
     }
 
-    .list-header {
-        align-items: flex-start;
+    .modal-content {
+        max-height: 95vh;
+    }
 
+    .table-actions {
         flex-direction: column;
     }
 
-    .filters {
-        grid-template-columns: 1fr;
-    }
-
-    .filters input,
-    .filters select,
-    .clear-button {
-        width: 100%;
-    }
-
-    .form-actions {
-        flex-direction: column;
-    }
-
-    .form-actions .btn {
-        width: 100%;
-    }
-
-    .table-wrapper {
-        margin-left: -2px;
-        width: calc(100% + 4px);
-    }
 }
