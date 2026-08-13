@@ -1,1055 +1,558 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Atlas Gestão - Ações Corretivas</title>
-
-    <!-- CSS DA PÁGINA -->
-    <link rel="stylesheet" href="./acoes-corretivas.css">
-</head>
-
-<body>
-
-    <!-- MENU LATERAL -->
-    <aside class="sidebar" id="sidebar">
-
-        <button
-            class="close-menu"
-            id="closeMenu"
-            type="button"
-            aria-label="Fechar menu">
-            ×
-        </button>
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                ▲
-            </div>
-
-            <span>
-                Atlas Gestão
-            </span>
-
-        </div>
-
-        <div class="menu-title">
-            GESTÃO DA QUALIDADE
-        </div>
-
-        <nav class="menu">
-
-            <a href="./dashboard.html">
-                Dashboard
-            </a>
-
-            <a href="./inspecoes.html">
-                Inspeções
-            </a>
-
-            <a href="./nao.conformidades.html">
-                Não Conformidades
-            </a>
-
-            <a
-                href="./acoes-corretivas.html"
-                class="active">
-                Ações Corretivas
-            </a>
-
-            <a href="./auditorias.html">
-                Auditorias
-            </a>
-
-            <a href="./documentos.html">
-                Documentos
-            </a>
-
-            <a href="./indicadores.html">
-                Indicadores
-            </a>
-
-            <div class="menu-separator"></div>
-
-            <a
-                href="./index.html"
-                class="logout">
-                ↪&nbsp;&nbsp; Sair
-            </a>
-
-        </nav>
-
-    </aside>
-
-
-    <!-- FUNDO MOBILE -->
-    <div
-        class="overlay"
-        id="overlay">
-    </div>
-
-
-    <!-- BOTÃO MENU MOBILE -->
-    <button
-        class="menu-button"
-        id="menuButton"
-        type="button"
-        aria-label="Abrir menu">
-        ☰
-    </button>
-
-
-    <!-- CONTEÚDO -->
-    <main class="main">
-
-        <!-- CABEÇALHO -->
-        <header class="header">
-
-            <div class="header-left">
-
-                <h1>
-                    Ações Corretivas
-                </h1>
-
-                <p>
-                    Planejamento e acompanhamento das ações de melhoria
-                </p>
-
-            </div>
-
-            <div class="user">
-
-                <strong id="usuarioNome">
-                    Administrador
-                </strong>
-
-                <span>
-                    Administrador
-                </span>
-
-            </div>
-
-        </header>
-
-
-        <div class="content">
-
-            <!-- CARDS -->
-            <section class="cards">
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        A
-                    </div>
-
-                    <div class="card-title">
-                        Total de ações
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="totalAcoes">
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        !
-                    </div>
-
-                    <div class="card-title">
-                        Ações abertas
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="acoesAbertas">
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        ↻
-                    </div>
-
-                    <div class="card-title">
-                        Em andamento
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="acoesAndamento">
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        ✓
-                    </div>
-
-                    <div class="card-title">
-                        Concluídas
-                    </div>
-
-                    <div
-                        class="card-value"
-                        id="acoesConcluidas">
-                        0
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- NOVA AÇÃO -->
-            <section class="section">
-
-                <div class="section-header">
-
-                    <div>
-
-                        <h2>
-                            Nova ação corretiva
-                        </h2>
-
-                        <p>
-                            Cadastre uma ação para tratar uma causa ou ocorrência identificada.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <form id="acaoForm">
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label for="codigo">
-                                Código *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="codigo"
-                                placeholder="Ex.: AC-001"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="nc">
-                                Não conformidade relacionada
-                            </label>
-
-                            <select id="nc">
-
-                                <option value="">
-                                    Selecione
-                                </option>
-
-                                <option value="NC-001">
-                                    NC-001
-                                </option>
-
-                                <option value="NC-002">
-                                    NC-002
-                                </option>
-
-                                <option value="NC-003">
-                                    NC-003
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="responsavel">
-                                Responsável *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="responsavel"
-                                placeholder="Nome do responsável"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="prazo">
-                                Prazo *
-                            </label>
-
-                            <input
-                                type="date"
-                                id="prazo"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="prioridade">
-                                Prioridade *
-                            </label>
-
-                            <select
-                                id="prioridade"
-                                required>
-
-                                <option value="">
-                                    Selecione
-                                </option>
-
-                                <option value="Baixa">
-                                    Baixa
-                                </option>
-
-                                <option value="Média">
-                                    Média
-                                </option>
-
-                                <option value="Alta">
-                                    Alta
-                                </option>
-
-                                <option value="Crítica">
-                                    Crítica
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="status">
-                                Status *
-                            </label>
-
-                            <select
-                                id="status"
-                                required>
-
-                                <option value="Aberta">
-                                    Aberta
-                                </option>
-
-                                <option value="Em andamento">
-                                    Em andamento
-                                </option>
-
-                                <option value="Concluída">
-                                    Concluída
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label for="descricao">
-                                Ação a ser realizada *
-                            </label>
-
-                            <textarea
-                                id="descricao"
-                                placeholder="Descreva detalhadamente a ação corretiva..."
-                                required></textarea>
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label for="causa">
-                                Causa identificada
-                            </label>
-
-                            <textarea
-                                id="causa"
-                                placeholder="Descreva a causa identificada..."></textarea>
-
-                        </div>
-
-
-                        <div class="form-group full">
-
-                            <label for="observacoes">
-                                Observações
-                            </label>
-
-                            <textarea
-                                id="observacoes"
-                                placeholder="Informações adicionais..."></textarea>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <button
-                            type="submit"
-                            class="btn-primary">
-                            Cadastrar ação
-                        </button>
-
-                        <button
-                            type="reset"
-                            class="btn-secondary">
-                            Limpar
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </section>
-
-
-            <!-- LISTAGEM -->
-            <section class="section">
-
-                <div class="section-header">
-
-                    <div>
-
-                        <h2>
-                            Ações cadastradas
-                        </h2>
-
-                        <p>
-                            Consulte e acompanhe todas as ações corretivas.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="filters">
-
-                    <input
-                        type="search"
-                        id="pesquisa"
-                        placeholder="Pesquisar ação...">
-
-                    <select id="filtroStatus">
-
-                        <option value="">
-                            Todos os status
-                        </option>
-
-                        <option value="Aberta">
-                            Abertas
-                        </option>
-
-                        <option value="Em andamento">
-                            Em andamento
-                        </option>
-
-                        <option value="Concluída">
-                            Concluídas
-                        </option>
-
-                    </select>
-
-                    <button
-                        type="button"
-                        class="btn-secondary"
-                        id="limparFiltros">
-                        Limpar filtros
-                    </button>
-
-                </div>
-
-
-                <div class="table-container">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Código
-                                </th>
-
-                                <th>
-                                    NC
-                                </th>
-
-                                <th>
-                                    Ação
-                                </th>
-
-                                <th>
-                                    Responsável
-                                </th>
-
-                                <th>
-                                    Prazo
-                                </th>
-
-                                <th>
-                                    Prioridade
-                                </th>
-
-                                <th>
-                                    Status
-                                </th>
-
-                                <th>
-                                    Ação
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="listaAcoes">
-                        </tbody>
-
-                    </table>
-
-                    <div
-                        class="empty-state"
-                        id="emptyState">
-
-                        Nenhuma ação corretiva cadastrada.
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-
-    <!-- JAVASCRIPT -->
-    <script>
-
-        const sidebar =
-            document.getElementById("sidebar");
-
-        const menuButton =
-            document.getElementById("menuButton");
-
-        const closeMenu =
-            document.getElementById("closeMenu");
-
-        const overlay =
-            document.getElementById("overlay");
-
-
-        function abrirMenu() {
-
-            sidebar.classList.add("open");
-
-            overlay.classList.add("open");
-
-        }
-
-
-        function fecharMenu() {
-
-            sidebar.classList.remove("open");
-
-            overlay.classList.remove("open");
-
-        }
-
-
-        menuButton.addEventListener(
-            "click",
-            abrirMenu
-        );
-
-
-        closeMenu.addEventListener(
-            "click",
-            fecharMenu
-        );
-
-
-        overlay.addEventListener(
-            "click",
-            fecharMenu
-        );
-
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    fecharMenu();
-
-                }
-
-            }
-        );
-
-
-        document
-            .querySelectorAll(".menu a")
-            .forEach(function(link) {
-
-                link.addEventListener(
-                    "click",
-                    function() {
-
-                        if (window.innerWidth <= 700) {
-
-                            fecharMenu();
-
-                        }
-
-                    }
-                );
-
-            });
-
-
-        /* =========================
-           AÇÕES
-        ========================== */
-
-        let acoes = JSON.parse(
-            localStorage.getItem(
-                "atlas_acoes_corretivas"
-            ) || "[]"
-        );
-
-
-        const form =
-            document.getElementById("acaoForm");
-
-        const lista =
-            document.getElementById("listaAcoes");
-
-        const emptyState =
-            document.getElementById("emptyState");
-
-        const pesquisa =
-            document.getElementById("pesquisa");
-
-        const filtroStatus =
-            document.getElementById("filtroStatus");
-
-
-        function salvar() {
-
-            localStorage.setItem(
-                "atlas_acoes_corretivas",
-                JSON.stringify(acoes)
-            );
-
-        }
-
-
-        function atualizarCards() {
-
-            document.getElementById(
-                "totalAcoes"
-            ).textContent =
-                acoes.length;
-
-
-            document.getElementById(
-                "acoesAbertas"
-            ).textContent =
-                acoes.filter(
-                    item =>
-                        item.status === "Aberta"
-                ).length;
-
-
-            document.getElementById(
-                "acoesAndamento"
-            ).textContent =
-                acoes.filter(
-                    item =>
-                        item.status === "Em andamento"
-                ).length;
-
-
-            document.getElementById(
-                "acoesConcluidas"
-            ).textContent =
-                acoes.filter(
-                    item =>
-                        item.status === "Concluída"
-                ).length;
-
-        }
-
-
-        function classeStatus(status) {
-
-            if (status === "Aberta") {
-
-                return "status aberta";
-
-            }
-
-            if (status === "Em andamento") {
-
-                return "status andamento";
-
-            }
-
-            if (status === "Concluída") {
-
-                return "status concluida";
-
-            }
-
-            return "status";
-
-        }
-
-
-        function renderizar() {
-
-            lista.innerHTML = "";
-
-            const termo =
-                pesquisa.value
-                    .toLowerCase()
-                    .trim();
-
-
-            const statusFiltro =
-                filtroStatus.value;
-
-
-            const filtradas =
-                acoes.filter(function(item) {
-
-                    const texto = (
-                        item.codigo +
-                        " " +
-                        item.nc +
-                        " " +
-                        item.descricao +
-                        " " +
-                        item.responsavel
-                    ).toLowerCase();
-
-
-                    return (
-                        texto.includes(termo) &&
-                        (
-                            !statusFiltro ||
-                            item.status === statusFiltro
-                        )
-                    );
-
-                });
-
-
-            emptyState.style.display =
-                filtradas.length === 0
-                    ? "block"
-                    : "none";
-
-
-            filtradas.forEach(function(item) {
-
-                const indice =
-                    acoes.indexOf(item);
-
-
-                const tr =
-                    document.createElement("tr");
-
-
-                tr.innerHTML = `
-
-                    <td>
-                        <strong>
-                            ${item.codigo}
-                        </strong>
-                    </td>
-
-                    <td>
-                        ${item.nc || "-"}
-                    </td>
-
-                    <td>
-                        ${item.descricao}
-                    </td>
-
-                    <td>
-                        ${item.responsavel}
-                    </td>
-
-                    <td>
-                        ${item.prazo
-                            ? new Date(
-                                item.prazo + "T00:00:00"
-                              ).toLocaleDateString("pt-BR")
-                            : "-"
-                        }
-                    </td>
-
-                    <td>
-                        ${item.prioridade}
-                    </td>
-
-                    <td>
-                        <span class="${classeStatus(item.status)}">
-                            ${item.status}
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <button
-                            type="button"
-                            class="btn-delete"
-                            data-index="${indice}">
-                            Excluir
-                        </button>
-
-                    </td>
-
-                `;
-
-
-                lista.appendChild(tr);
-
-            });
-
-
-            atualizarCards();
-
-        }
-
-
-        form.addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-
-                const novaAcao = {
-
-                    codigo:
-                        document
-                            .getElementById("codigo")
-                            .value
-                            .trim(),
-
-                    nc:
-                        document
-                            .getElementById("nc")
-                            .value,
-
-                    responsavel:
-                        document
-                            .getElementById("responsavel")
-                            .value
-                            .trim(),
-
-                    prazo:
-                        document
-                            .getElementById("prazo")
-                            .value,
-
-                    prioridade:
-                        document
-                            .getElementById("prioridade")
-                            .value,
-
-                    status:
-                        document
-                            .getElementById("status")
-                            .value,
-
-                    descricao:
-                        document
-                            .getElementById("descricao")
-                            .value
-                            .trim(),
-
-                    causa:
-                        document
-                            .getElementById("causa")
-                            .value
-                            .trim(),
-
-                    observacoes:
-                        document
-                            .getElementById("observacoes")
-                            .value
-                            .trim()
-
-                };
-
-
-                acoes.push(novaAcao);
-
-                salvar();
-
-                form.reset();
-
-                renderizar();
-
-
-                alert(
-                    "Ação corretiva cadastrada com sucesso!"
-                );
-
-            }
-        );
-
-
-        lista.addEventListener(
-            "click",
-            function(event) {
-
-                if (
-                    !event.target.classList.contains(
-                        "btn-delete"
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                const index =
-                    Number(
-                        event.target.dataset.index
-                    );
-
-
-                if (
-                    !confirm(
-                        "Deseja realmente excluir esta ação?"
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                acoes.splice(index, 1);
-
-                salvar();
-
-                renderizar();
-
-            }
-        );
-
-
-        pesquisa.addEventListener(
-            "input",
-            renderizar
-        );
-
-
-        filtroStatus.addEventListener(
-            "change",
-            renderizar
-        );
-
-
-        document
-            .getElementById("limparFiltros")
-            .addEventListener(
-                "click",
-                function() {
-
-                    pesquisa.value = "";
-
-                    filtroStatus.value = "";
-
-                    renderizar();
-
-                }
-            );
-
-
-        try {
-
-            const usuario =
-                JSON.parse(
-                    localStorage.getItem(
-                        "atlas_usuario"
-                    ) || "null"
-                );
-
-
-            if (
-                usuario &&
-                usuario.nome
-            ) {
-
-                document
-                    .getElementById("usuarioNome")
-                    .textContent =
-                    usuario.nome;
-
-            }
-
-        } catch (erro) {
-
-            console.log(
-                "Usuário não encontrado."
-            );
-
-        }
-
-
-        renderizar();
-
-    </script>
-
-</body>
-
-</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #263238;
+    min-height: 100vh;
+}
+
+
+/* MENU */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #2864d7;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #2864d7;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu-title {
+    padding: 28px 20px 12px;
+    color: #7b8794;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.menu a {
+    display: block;
+    margin: 3px 12px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    color: #59636e;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.menu a:hover {
+    background: #eef4ff;
+    color: #2864d7;
+}
+
+.menu a.active {
+    background: #2864d7;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-separator {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 20px;
+}
+
+.menu a.logout {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.menu a.logout:hover {
+    background: #fff1f1;
+}
+
+
+/* MOBILE */
+
+.close-menu {
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    color: #59636e;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.menu-button {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #dfe3e8;
+    background: white;
+    border-radius: 9px;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.38);
+    z-index: 900;
+}
+
+.overlay.open {
+    display: block;
+}
+
+
+/* PRINCIPAL */
+
+.main {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+
+/* HEADER */
+
+.header {
+    min-height: 76px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 30px;
+}
+
+.header-left h1 {
+    font-size: 27px;
+    margin-bottom: 4px;
+}
+
+.header-left p {
+    color: #7c8792;
+    font-size: 14px;
+}
+
+.user {
+    text-align: right;
+}
+
+.user strong {
+    display: block;
+    font-size: 14px;
+}
+
+.user span {
+    color: #7c8792;
+    font-size: 13px;
+}
+
+
+/* CONTEÚDO */
+
+.content {
+    padding: 28px;
+}
+
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e5e9ee;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 125px;
+    box-shadow: 0 4px 14px rgba(30,50,70,.05);
+}
+
+.card-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background: #eef4ff;
+    color: #2864d7;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-title {
+    color: #7b8794;
+    font-size: 13px;
+}
+
+.card-value {
+    margin-top: 4px;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+
+/* SEÇÕES */
+
+.section {
+    background: white;
+    border: 1px solid #e5e9ee;
+    border-radius: 14px;
+    margin-top: 22px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(30,50,70,.05);
+}
+
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.section-header p {
+    color: #7b8794;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+
+/* FORM */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    color: #46515c;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    padding: 12px;
+    background: white;
+    color: #263238;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input,
+.form-group select {
+    height: 44px;
+}
+
+.form-group textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2864d7;
+    box-shadow: 0 0 0 3px rgba(40,100,215,.10);
+}
+
+
+/* BOTÕES */
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+    min-height: 42px;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #2864d7;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1f52b5;
+}
+
+.btn-secondary {
+    background: #eef1f5;
+    color: #46515c;
+}
+
+
+/* FILTROS */
+
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 220px auto;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.filters input,
+.filters select {
+    width: 100%;
+    height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+}
+
+
+/* TABELA */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 950px;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: #f5f7fa;
+    color: #687582;
+    font-size: 12px;
+    text-align: left;
+    padding: 13px;
+    border-bottom: 1px solid #e5e9ee;
+}
+
+tbody td {
+    padding: 14px 13px;
+    border-bottom: 1px solid #edf0f3;
+    font-size: 13px;
+}
+
+tbody tr:hover td {
+    background: #fafbfd;
+}
+
+
+/* STATUS */
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.status.aberta {
+    background: #fff4e5;
+    color: #b86b00;
+}
+
+.status.andamento {
+    background: #eef4ff;
+    color: #2864d7;
+}
+
+.status.concluida {
+    background: #eaf8ef;
+    color: #218838;
+}
+
+
+/* EXCLUIR */
+
+.btn-delete {
+    border: none;
+    border-radius: 6px;
+    padding: 7px 10px;
+    background: #fff0f0;
+    color: #dc3545;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #ffe0e0;
+}
+
+
+/* VAZIO */
+
+.empty-state {
+    padding: 35px 20px;
+    text-align: center;
+    color: #9aa5b1;
+    font-size: 14px;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 270px;
+        box-shadow: 5px 0 20px rgba(0,0,0,.12);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .close-menu {
+        display: block;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .header {
+        padding: 12px 18px 12px 68px;
+    }
+
+    .header-left h1 {
+        font-size: 22px;
+    }
+
+    .header-left p {
+        font-size: 12px;
+    }
+
+    .user {
+        display: none;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .section {
+        padding: 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: span 1;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        min-width: 900px;
+    }
+
+}
