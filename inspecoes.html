@@ -12,14 +12,29 @@
 
 <body>
 
-    <!-- MENU LATERAL -->
+    <!-- =====================================================
+         MENU LATERAL
+    ====================================================== -->
+
     <aside class="sidebar" id="sidebar">
 
-        <button class="close-button" id="closeMenu">×</button>
+        <button
+            class="close-button"
+            id="closeMenu"
+            aria-label="Fechar menu">
+            ×
+        </button>
 
         <div class="logo">
-            <div class="logo-icon">▲</div>
-            <div class="logo-text">Atlas Gestão</div>
+
+            <div class="logo-icon">
+                ▲
+            </div>
+
+            <div class="logo-text">
+                Atlas Gestão
+            </div>
+
         </div>
 
         <div class="menu-title">
@@ -56,10 +71,10 @@
                 Indicadores
             </a>
 
-            <div class="separator"></div>
+            <div class="menu-separator"></div>
 
             <a href="index.html" class="logout">
-                ↪ &nbsp; Sair
+                ↪&nbsp;&nbsp; Sair
             </a>
 
         </nav>
@@ -67,274 +82,154 @@
     </aside>
 
 
-    <!-- FUNDO MOBILE -->
-    <div class="overlay" id="overlay"></div>
+    <!-- OVERLAY -->
+
+    <div
+        class="overlay"
+        id="overlay">
+    </div>
 
 
-    <!-- BOTÃO MENU -->
-    <button class="menu-button" id="menuButton">
+    <!-- MENU MOBILE -->
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Abrir menu">
+
         ☰
+
     </button>
 
 
-    <!-- ÁREA PRINCIPAL -->
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
     <main class="main">
 
-        <!-- CABEÇALHO -->
         <header class="header">
 
-            <div>
-                <h1>Inspeções</h1>
-                <p>Controle de inspeções da qualidade</p>
+            <div class="header-left">
+
+                <h1>
+                    Inspeções
+                </h1>
+
+                <p>
+                    Registre e acompanhe as inspeções de qualidade.
+                </p>
+
             </div>
 
             <div class="user">
-                <strong>sarahhellen2216</strong>
-                <span>Administrador</span>
+
+                <strong>
+                    sarahhellen2216
+                </strong>
+
+                <span>
+                    Administrador
+                </span>
+
             </div>
 
         </header>
 
 
-        <!-- CONTEÚDO -->
         <div class="content">
 
-            <!-- INFORMAÇÕES -->
-            <div class="info-row">
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <section class="page-intro">
 
                 <div>
-                    <span>Usuário</span>
-                    <strong>sarahhellen2216</strong>
+
+                    <h2>
+                        Inspeções cadastradas
+                    </h2>
+
+                    <p>
+                        Consulte e gerencie as inspeções realizadas.
+                    </p>
+
                 </div>
 
-                <div>
-                    <span>Perfil</span>
-                    <strong>Administrador</strong>
-                </div>
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="btnNovaInspecao">
 
-            </div>
+                    + Nova inspeção
 
-
-            <!-- NOVA INSPEÇÃO -->
-            <section class="section">
-
-                <div class="section-header">
-                    <div>
-                        <h2>Nova inspeção</h2>
-                        <p>Registre uma nova inspeção de qualidade.</p>
-                    </div>
-                </div>
-
-
-                <form id="inspectionForm">
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-                            <label for="codigo">
-                                Código *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="codigo"
-                                value="INS-001"
-                                required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="produto">
-                                Produto *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="produto"
-                                required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="lote">
-                                Lote
-                            </label>
-
-                            <input
-                                type="text"
-                                id="lote">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="responsavel">
-                                Responsável *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="responsavel"
-                                required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="data">
-                                Data *
-                            </label>
-
-                            <input
-                                type="date"
-                                id="data"
-                                required>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="local">
-                                Local
-                            </label>
-
-                            <input
-                                type="text"
-                                id="local">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="tipo">
-                                Tipo de inspeção
-                            </label>
-
-                            <select id="tipo">
-
-                                <option value="Recebimento">
-                                    Recebimento
-                                </option>
-
-                                <option value="Processo">
-                                    Processo
-                                </option>
-
-                                <option value="Final">
-                                    Final
-                                </option>
-
-                                <option value="Produto">
-                                    Produto
-                                </option>
-
-                            </select>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="resultado">
-                                Resultado *
-                            </label>
-
-                            <select id="resultado">
-
-                                <option value="Conforme">
-                                    Conforme
-                                </option>
-
-                                <option value="Não conforme">
-                                    Não conforme
-                                </option>
-
-                                <option value="Parcialmente conforme">
-                                    Parcialmente conforme
-                                </option>
-
-                            </select>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="descricao">
-                            Descrição
-                        </label>
-
-                        <textarea
-                            id="descricao"
-                            rows="4"
-                            placeholder="Descreva a inspeção..."></textarea>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="observacoes">
-                            Observações
-                        </label>
-
-                        <textarea
-                            id="observacoes"
-                            rows="4"
-                            placeholder="Informe observações adicionais..."></textarea>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <button
-                            type="submit"
-                            class="btn-primary">
-
-                            Cadastrar inspeção
-
-                        </button>
-
-                        <button
-                            type="reset"
-                            class="btn-secondary">
-
-                            Limpar
-
-                        </button>
-
-                    </div>
-
-                </form>
+                </button>
 
             </section>
 
 
-            <!-- INSPEÇÕES CADASTRADAS -->
-            <section class="section">
+            <!-- =================================================
+                 FILTROS
+            ================================================== -->
 
-                <div class="section-header">
+            <section class="filters">
 
-                    <div>
+                <div class="filter-group">
 
-                        <h2>
-                            Inspeções cadastradas
-                        </h2>
+                    <label for="busca">
+                        Pesquisar
+                    </label>
 
-                        <p>
-                            Pesquise e acompanhe as inspeções realizadas.
-                        </p>
-
-                    </div>
+                    <input
+                        type="text"
+                        id="busca"
+                        placeholder="Código, produto, lote ou responsável...">
 
                 </div>
 
 
-                <!-- FILTROS -->
-                <div class="filters">
+                <div class="filter-group">
 
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Pesquisar por código, produto ou responsável">
+                    <label for="filtroStatus">
+                        Status
+                    </label>
 
-                    <select id="resultFilter">
+                    <select id="filtroStatus">
+
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="Agendada">
+                            Agendada
+                        </option>
+
+                        <option value="Em andamento">
+                            Em andamento
+                        </option>
+
+                        <option value="Concluída">
+                            Concluída
+                        </option>
+
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="filtroResultado">
+                        Resultado
+                    </label>
+
+                    <select id="filtroResultado">
 
                         <option value="">
                             Todos os resultados
@@ -348,61 +243,132 @@
                             Não conforme
                         </option>
 
-                        <option value="Parcialmente conforme">
-                            Parcialmente conforme
+                        <option value="Em análise">
+                            Em análise
                         </option>
 
                     </select>
 
-                    <button
-                        type="button"
-                        class="btn-secondary"
-                        id="refreshButton">
+                </div>
 
-                        Atualizar
 
-                    </button>
+                <button
+                    type="button"
+                    class="clear-button"
+                    id="btnLimparFiltros">
+
+                    Limpar
+
+                </button>
+
+            </section>
+
+
+            <!-- =================================================
+                 TABELA
+            ================================================== -->
+
+            <section class="table-card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Registros
+                        </h2>
+
+                        <span id="contadorRegistros">
+                            0 registros
+                        </span>
+
+                    </div>
 
                 </div>
 
 
-                <!-- TABELA -->
                 <div class="table-container">
 
-                    <table>
+                    <table id="tabela">
 
                         <thead>
 
                             <tr>
 
-                                <th>Código</th>
-                                <th>Produto</th>
-                                <th>Lote</th>
-                                <th>Responsável</th>
-                                <th>Data</th>
-                                <th>Tipo</th>
-                                <th>Resultado</th>
-                                <th>Ações</th>
+                                <th>
+                                    Código
+                                </th>
+
+                                <th>
+                                    Produto
+                                </th>
+
+                                <th>
+                                    Lote
+                                </th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Área
+                                </th>
+
+                                <th>
+                                    Responsável
+                                </th>
+
+                                <th>
+                                    Resultado
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
 
                             </tr>
 
                         </thead>
 
-                        <tbody id="inspectionTable">
-
-                            <tr class="empty-row">
-
-                                <td colspan="8">
-
-                                    Nenhuma inspeção cadastrada.
-
-                                </td>
-
-                            </tr>
-
+                        <tbody id="tabelaInspecoes">
                         </tbody>
 
                     </table>
+
+                </div>
+
+
+                <!-- ESTADO VAZIO -->
+
+                <div
+                    class="empty-state"
+                    id="estadoVazio">
+
+                    <div class="empty-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        Nenhuma inspeção cadastrada
+                    </h3>
+
+                    <p>
+                        Clique em "Nova inspeção" para cadastrar o primeiro registro.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="btnNovaVazia">
+
+                        + Nova inspeção
+
+                    </button>
 
                 </div>
 
@@ -413,7 +379,331 @@
     </main>
 
 
+    <!-- =====================================================
+         MODAL
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="modalInspecao"
+        aria-hidden="true">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="tituloModal">
+                        Nova inspeção
+                    </h2>
+
+                    <p>
+                        Preencha os dados da inspeção.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="fecharModal">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <!-- FORMULÁRIO -->
+
+            <form id="formInspecao">
+
+                <input
+                    type="hidden"
+                    id="idEdicao">
+
+
+                <div class="form-grid">
+
+
+                    <!-- CÓDIGO -->
+
+                    <div class="form-group">
+
+                        <label for="codigo">
+                            Código *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="codigo"
+                            required
+                            maxlength="30"
+                            placeholder="Ex.: INS-001">
+
+                    </div>
+
+
+                    <!-- DATA -->
+
+                    <div class="form-group">
+
+                        <label for="data">
+                            Data *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="data"
+                            required>
+
+                    </div>
+
+
+                    <!-- PRODUTO -->
+
+                    <div class="form-group">
+
+                        <label for="produto">
+                            Produto *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="produto"
+                            required
+                            placeholder="Nome do produto">
+
+                    </div>
+
+
+                    <!-- LOTE -->
+
+                    <div class="form-group">
+
+                        <label for="lote">
+                            Lote *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lote"
+                            required
+                            placeholder="Ex.: LT-2026-0801">
+
+                    </div>
+
+
+                    <!-- ÁREA -->
+
+                    <div class="form-group">
+
+                        <label for="area">
+                            Área *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="area"
+                            required
+                            placeholder="Ex.: Produção">
+
+                    </div>
+
+
+                    <!-- RESPONSÁVEL -->
+
+                    <div class="form-group">
+
+                        <label for="responsavel">
+                            Responsável *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="responsavel"
+                            required
+                            placeholder="Nome do responsável">
+
+                    </div>
+
+
+                    <!-- TIPO -->
+
+                    <div class="form-group">
+
+                        <label for="tipo">
+                            Tipo de inspeção *
+                        </label>
+
+                        <select id="tipo" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Inspeção de produto">
+                                Inspeção de produto
+                            </option>
+
+                            <option value="Inspeção de processo">
+                                Inspeção de processo
+                            </option>
+
+                            <option value="Inspeção de recebimento">
+                                Inspeção de recebimento
+                            </option>
+
+                            <option value="Inspeção de expedição">
+                                Inspeção de expedição
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status *
+                        </label>
+
+                        <select id="status" required>
+
+                            <option value="Agendada">
+                                Agendada
+                            </option>
+
+                            <option value="Em andamento">
+                                Em andamento
+                            </option>
+
+                            <option value="Concluída">
+                                Concluída
+                            </option>
+
+                            <option value="Cancelada">
+                                Cancelada
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- RESULTADO -->
+
+                    <div class="form-group">
+
+                        <label for="resultado">
+                            Resultado *
+                        </label>
+
+                        <select id="resultado" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Conforme">
+                                Conforme
+                            </option>
+
+                            <option value="Não conforme">
+                                Não conforme
+                            </option>
+
+                            <option value="Em análise">
+                                Em análise
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DESCRIÇÃO -->
+
+                    <div class="form-group full">
+
+                        <label for="descricao">
+                            Descrição / Observações
+                        </label>
+
+                        <textarea
+                            id="descricao"
+                            rows="4"
+                            placeholder="Descreva o resultado da inspeção..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RODAPÉ -->
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelarModal">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        Salvar inspeção
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
     <script>
+
+        /*
+         * =====================================================
+         * BANCO LOCAL
+         * =====================================================
+         *
+         * Os registros ficam salvos no navegador através
+         * do localStorage.
+         *
+         * Fechar ou atualizar a página NÃO apaga os dados.
+         */
+
+        const STORAGE_KEY = "atlas_inspecoes";
+
+
+        let inspecoes = carregarInspecoes();
+
+
+        /* =====================================================
+           ELEMENTOS
+        ===================================================== */
+
+        const sidebar =
+            document.getElementById("sidebar");
 
         const menuButton =
             document.getElementById("menuButton");
@@ -421,14 +711,110 @@
         const closeMenu =
             document.getElementById("closeMenu");
 
-        const sidebar =
-            document.getElementById("sidebar");
-
         const overlay =
             document.getElementById("overlay");
 
+        const modal =
+            document.getElementById("modalInspecao");
 
-        function openMenu() {
+        const form =
+            document.getElementById("formInspecao");
+
+        const tabela =
+            document.getElementById("tabelaInspecoes");
+
+        const estadoVazio =
+            document.getElementById("estadoVazio");
+
+        const contador =
+            document.getElementById("contadorRegistros");
+
+        const busca =
+            document.getElementById("busca");
+
+        const filtroStatus =
+            document.getElementById("filtroStatus");
+
+        const filtroResultado =
+            document.getElementById("filtroResultado");
+
+
+        /* =====================================================
+           CARREGAR
+        ===================================================== */
+
+        function carregarInspecoes() {
+
+            try {
+
+                const dados =
+                    localStorage.getItem(STORAGE_KEY);
+
+                if (!dados) {
+                    return [];
+                }
+
+                const registros =
+                    JSON.parse(dados);
+
+                if (!Array.isArray(registros)) {
+                    return [];
+                }
+
+                return registros;
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao carregar inspeções:",
+                    erro
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SALVAR
+        ===================================================== */
+
+        function salvarInspecoes() {
+
+            try {
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(inspecoes)
+                );
+
+                return true;
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao salvar inspeções:",
+                    erro
+                );
+
+                alert(
+                    "Não foi possível salvar os dados no navegador."
+                );
+
+                return false;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MENU MOBILE
+        ===================================================== */
+
+        function abrirMenu() {
 
             sidebar.classList.add("open");
 
@@ -437,7 +823,7 @@
         }
 
 
-        function closeSidebar() {
+        function fecharMenu() {
 
             sidebar.classList.remove("open");
 
@@ -448,29 +834,277 @@
 
         menuButton.addEventListener(
             "click",
-            openMenu
+            abrirMenu
         );
 
 
         closeMenu.addEventListener(
             "click",
-            closeSidebar
+            fecharMenu
         );
 
 
         overlay.addEventListener(
             "click",
-            closeSidebar
+            fecharMenu
         );
 
 
-        document.addEventListener(
-            "keydown",
+        /* =====================================================
+           DATA ATUAL
+        ===================================================== */
+
+        function dataAtual() {
+
+            const hoje =
+                new Date();
+
+            const ano =
+                hoje.getFullYear();
+
+            const mes =
+                String(
+                    hoje.getMonth() + 1
+                ).padStart(2, "0");
+
+            const dia =
+                String(
+                    hoje.getDate()
+                ).padStart(2, "0");
+
+            return `${ano}-${mes}-${dia}`;
+
+        }
+
+
+        /* =====================================================
+           ID
+        ===================================================== */
+
+        function gerarId() {
+
+            return (
+                Date.now() +
+                "-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 10)
+            );
+
+        }
+
+
+        /* =====================================================
+           ABRIR MODAL
+        ===================================================== */
+
+        function abrirModal(registro = null) {
+
+            modal.classList.add("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+
+            if (registro) {
+
+                document.getElementById(
+                    "tituloModal"
+                ).textContent =
+                    "Editar inspeção";
+
+
+                document.getElementById(
+                    "idEdicao"
+                ).value =
+                    registro.id;
+
+
+                document.getElementById(
+                    "codigo"
+                ).value =
+                    registro.codigo;
+
+
+                document.getElementById(
+                    "data"
+                ).value =
+                    registro.data;
+
+
+                document.getElementById(
+                    "produto"
+                ).value =
+                    registro.produto;
+
+
+                document.getElementById(
+                    "lote"
+                ).value =
+                    registro.lote;
+
+
+                document.getElementById(
+                    "area"
+                ).value =
+                    registro.area;
+
+
+                document.getElementById(
+                    "responsavel"
+                ).value =
+                    registro.responsavel;
+
+
+                document.getElementById(
+                    "tipo"
+                ).value =
+                    registro.tipo;
+
+
+                document.getElementById(
+                    "status"
+                ).value =
+                    registro.status;
+
+
+                document.getElementById(
+                    "resultado"
+                ).value =
+                    registro.resultado;
+
+
+                document.getElementById(
+                    "descricao"
+                ).value =
+                    registro.descricao || "";
+
+            }
+
+            else {
+
+                form.reset();
+
+                document.getElementById(
+                    "idEdicao"
+                ).value = "";
+
+
+                document.getElementById(
+                    "data"
+                ).value =
+                    dataAtual();
+
+
+                document.getElementById(
+                    "status"
+                ).value =
+                    "Agendada";
+
+
+                document.getElementById(
+                    "tituloModal"
+                ).textContent =
+                    "Nova inspeção";
+
+            }
+
+
+            setTimeout(
+                function() {
+
+                    document
+                        .getElementById("codigo")
+                        .focus();
+
+                },
+                100
+            );
+
+        }
+
+
+        /* =====================================================
+           FECHAR MODAL
+        ===================================================== */
+
+        function fecharModal() {
+
+            modal.classList.remove("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+            form.reset();
+
+            document.getElementById(
+                "idEdicao"
+            ).value = "";
+
+        }
+
+
+        document
+            .getElementById("btnNovaInspecao")
+            .addEventListener(
+                "click",
+                function() {
+
+                    abrirModal();
+
+                }
+            );
+
+
+        document
+            .getElementById("btnNovaVazia")
+            .addEventListener(
+                "click",
+                function() {
+
+                    abrirModal();
+
+                }
+            );
+
+
+        document
+            .getElementById("fecharModal")
+            .addEventListener(
+                "click",
+                fecharModal
+            );
+
+
+        document
+            .getElementById("cancelarModal")
+            .addEventListener(
+                "click",
+                fecharModal
+            );
+
+
+        modal.addEventListener(
+            "click",
             function(event) {
 
-                if (event.key === "Escape") {
+                if (
+                    event.target === modal
+                ) {
 
-                    closeSidebar();
+                    fecharModal();
 
                 }
 
@@ -478,11 +1112,9 @@
         );
 
 
-        /* FORMULÁRIO */
-
-        const form =
-            document.getElementById("inspectionForm");
-
+        /* =====================================================
+           SALVAR FORMULÁRIO
+        ===================================================== */
 
         form.addEventListener(
             "submit",
@@ -490,80 +1122,772 @@
 
                 event.preventDefault();
 
-                alert(
-                    "Inspeção cadastrada com sucesso!"
-                );
 
-                form.reset();
+                const idEdicao =
+                    document
+                        .getElementById("idEdicao")
+                        .value;
+
+
+                const registro = {
+
+                    id:
+                        idEdicao ||
+                        gerarId(),
+
+                    codigo:
+                        document
+                            .getElementById("codigo")
+                            .value
+                            .trim(),
+
+                    data:
+                        document
+                            .getElementById("data")
+                            .value,
+
+                    produto:
+                        document
+                            .getElementById("produto")
+                            .value
+                            .trim(),
+
+                    lote:
+                        document
+                            .getElementById("lote")
+                            .value
+                            .trim(),
+
+                    area:
+                        document
+                            .getElementById("area")
+                            .value
+                            .trim(),
+
+                    responsavel:
+                        document
+                            .getElementById("responsavel")
+                            .value
+                            .trim(),
+
+                    tipo:
+                        document
+                            .getElementById("tipo")
+                            .value,
+
+                    status:
+                        document
+                            .getElementById("status")
+                            .value,
+
+                    resultado:
+                        document
+                            .getElementById("resultado")
+                            .value,
+
+                    descricao:
+                        document
+                            .getElementById("descricao")
+                            .value
+                            .trim(),
+
+                    atualizadoEm:
+                        new Date().toISOString()
+
+                };
+
+
+                /* VALIDAÇÃO */
+
+                if (!registro.codigo) {
+
+                    alert(
+                        "Informe o código da inspeção."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.produto) {
+
+                    alert(
+                        "Informe o produto."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.lote) {
+
+                    alert(
+                        "Informe o lote."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.area) {
+
+                    alert(
+                        "Informe a área."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.responsavel) {
+
+                    alert(
+                        "Informe o responsável."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.tipo) {
+
+                    alert(
+                        "Selecione o tipo de inspeção."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!registro.resultado) {
+
+                    alert(
+                        "Selecione o resultado da inspeção."
+                    );
+
+                    return;
+
+                }
+
+
+                /* =================================================
+                   EDIÇÃO
+                ================================================== */
+
+                if (idEdicao) {
+
+                    const indice =
+                        inspecoes.findIndex(
+                            function(item) {
+
+                                return (
+                                    item.id ===
+                                    idEdicao
+                                );
+
+                            }
+                        );
+
+
+                    if (indice !== -1) {
+
+                        inspecoes[indice] =
+                            registro;
+
+                    }
+
+                }
+
+
+                /* =================================================
+                   NOVO REGISTRO
+                ================================================== */
+
+                else {
+
+                    inspecoes.unshift(
+                        registro
+                    );
+
+                }
+
+
+                /* =================================================
+                   SALVAR
+                ================================================== */
+
+                const salvou =
+                    salvarInspecoes();
+
+
+                if (!salvou) {
+                    return;
+                }
+
+
+                fecharModal();
+
+                renderizarTabela();
+
+
+                alert(
+                    idEdicao
+                        ? "Inspeção atualizada com sucesso!"
+                        : "Inspeção cadastrada com sucesso!"
+                );
 
             }
         );
 
 
-        /* FILTRO */
+        /* =====================================================
+           ESCAPAR HTML
+        ===================================================== */
 
-        const searchInput =
-            document.getElementById("searchInput");
+        function escaparHTML(valor) {
 
-        const resultFilter =
-            document.getElementById("resultFilter");
+            if (
+                valor === null ||
+                valor === undefined
+            ) {
 
+                return "";
 
-        function filterTable() {
+            }
 
-            const search =
-                searchInput.value.toLowerCase();
-
-            const result =
-                resultFilter.value;
-
-            const rows =
-                document.querySelectorAll(
-                    "#inspectionTable tr:not(.empty-row)"
-                );
-
-
-            rows.forEach(function(row) {
-
-                const text =
-                    row.innerText.toLowerCase();
-
-                const matchesSearch =
-                    text.includes(search);
-
-                const matchesResult =
-                    !result ||
-                    text.includes(result.toLowerCase());
-
-
-                row.style.display =
-                    matchesSearch && matchesResult
-                        ? ""
-                        : "none";
-
-            });
+            return String(valor)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
 
         }
 
 
-        searchInput.addEventListener(
+        /* =====================================================
+           DATA
+        ===================================================== */
+
+        function formatarData(data) {
+
+            if (!data) {
+                return "-";
+            }
+
+            const partes =
+                data.split("-");
+
+
+            if (
+                partes.length !== 3
+            ) {
+
+                return data;
+
+            }
+
+
+            return (
+                partes[2] +
+                "/" +
+                partes[1] +
+                "/" +
+                partes[0]
+            );
+
+        }
+
+
+        /* =====================================================
+           CLASSE RESULTADO
+        ===================================================== */
+
+        function classeResultado(resultado) {
+
+            const mapa = {
+
+                "Conforme":
+                    "resultado-conforme",
+
+                "Não conforme":
+                    "resultado-nao-conforme",
+
+                "Em análise":
+                    "resultado-analise"
+
+            };
+
+
+            return (
+                mapa[resultado] ||
+                "resultado-default"
+            );
+
+        }
+
+
+        /* =====================================================
+           CLASSE STATUS
+        ===================================================== */
+
+        function classeStatus(status) {
+
+            const mapa = {
+
+                "Agendada":
+                    "status-agendada",
+
+                "Em andamento":
+                    "status-andamento",
+
+                "Concluída":
+                    "status-concluida",
+
+                "Cancelada":
+                    "status-cancelada"
+
+            };
+
+
+            return (
+                mapa[status] ||
+                "status-default"
+            );
+
+        }
+
+
+        /* =====================================================
+           FILTRAR
+        ===================================================== */
+
+        function registrosFiltrados() {
+
+            const texto =
+                busca.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const status =
+                filtroStatus.value;
+
+
+            const resultado =
+                filtroResultado.value;
+
+
+            return inspecoes.filter(
+                function(item) {
+
+                    const textoCompleto = (
+
+                        item.codigo +
+                        " " +
+                        item.produto +
+                        " " +
+                        item.lote +
+                        " " +
+                        item.area +
+                        " " +
+                        item.responsavel
+
+                    ).toLowerCase();
+
+
+                    const correspondeTexto =
+                        !texto ||
+                        textoCompleto.includes(
+                            texto
+                        );
+
+
+                    const correspondeStatus =
+                        !status ||
+                        item.status === status;
+
+
+                    const correspondeResultado =
+                        !resultado ||
+                        item.resultado === resultado;
+
+
+                    return (
+                        correspondeTexto &&
+                        correspondeStatus &&
+                        correspondeResultado
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           RENDERIZAR
+        ===================================================== */
+
+        function renderizarTabela() {
+
+            const registros =
+                registrosFiltrados();
+
+
+            contador.textContent =
+                registros.length === 1
+                    ? "1 registro"
+                    : `${registros.length} registros`;
+
+
+            tabela.innerHTML = "";
+
+
+            if (
+                registros.length === 0
+            ) {
+
+                tabela.style.display =
+                    "none";
+
+                estadoVazio.style.display =
+                    "flex";
+
+                return;
+
+            }
+
+
+            tabela.style.display =
+                "table";
+
+
+            estadoVazio.style.display =
+                "none";
+
+
+            registros.forEach(
+                function(registro) {
+
+                    const tr =
+                        document.createElement("tr");
+
+
+                    tr.innerHTML = `
+
+                        <td>
+                            <strong>
+                                ${escaparHTML(registro.codigo)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escaparHTML(registro.produto)}
+                        </td>
+
+                        <td>
+                            ${escaparHTML(registro.lote)}
+                        </td>
+
+                        <td>
+                            ${formatarData(registro.data)}
+                        </td>
+
+                        <td>
+                            ${escaparHTML(registro.area)}
+                        </td>
+
+                        <td>
+                            ${escaparHTML(registro.responsavel)}
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${classeResultado(registro.resultado)}">
+
+                                ${escaparHTML(registro.resultado)}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${classeStatus(registro.status)}">
+
+                                ${escaparHTML(registro.status)}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button
+                                    type="button"
+                                    class="action-button view-button"
+                                    onclick="visualizarInspecao('${registro.id}')">
+
+                                    Ver
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="action-button edit-button"
+                                    onclick="editarInspecao('${registro.id}')">
+
+                                    Editar
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="action-button delete-button"
+                                    onclick="excluirInspecao('${registro.id}')">
+
+                                    Excluir
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    tabela.appendChild(tr);
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           EDITAR
+        ===================================================== */
+
+        function editarInspecao(id) {
+
+            const registro =
+                inspecoes.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (!registro) {
+                return;
+            }
+
+
+            abrirModal(registro);
+
+        }
+
+
+        /* =====================================================
+           EXCLUIR
+        ===================================================== */
+
+        function excluirInspecao(id) {
+
+            const registro =
+                inspecoes.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (!registro) {
+                return;
+            }
+
+
+            const confirmar =
+                confirm(
+                    `Deseja excluir a inspeção "${registro.codigo}"?`
+                );
+
+
+            if (!confirmar) {
+                return;
+            }
+
+
+            inspecoes =
+                inspecoes.filter(
+                    function(item) {
+
+                        return item.id !== id;
+
+                    }
+                );
+
+
+            salvarInspecoes();
+
+            renderizarTabela();
+
+        }
+
+
+        /* =====================================================
+           VISUALIZAR
+        ===================================================== */
+
+        function visualizarInspecao(id) {
+
+            const registro =
+                inspecoes.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (!registro) {
+                return;
+            }
+
+
+            alert(
+
+                "INSPEÇÃO\n\n" +
+
+                "Código: " +
+                registro.codigo +
+
+                "\nProduto: " +
+                registro.produto +
+
+                "\nLote: " +
+                registro.lote +
+
+                "\nData: " +
+                formatarData(registro.data) +
+
+                "\nÁrea: " +
+                registro.area +
+
+                "\nResponsável: " +
+                registro.responsavel +
+
+                "\nTipo: " +
+                registro.tipo +
+
+                "\nResultado: " +
+                registro.resultado +
+
+                "\nStatus: " +
+                registro.status +
+
+                (
+                    registro.descricao
+                        ? "\n\nObservações:\n" +
+                          registro.descricao
+                        : ""
+                )
+
+            );
+
+        }
+
+
+        /* =====================================================
+           FILTROS
+        ===================================================== */
+
+        busca.addEventListener(
             "input",
-            filterTable
+            renderizarTabela
         );
 
 
-        resultFilter.addEventListener(
+        filtroStatus.addEventListener(
             "change",
-            filterTable
+            renderizarTabela
+        );
+
+
+        filtroResultado.addEventListener(
+            "change",
+            renderizarTabela
         );
 
 
         document
-            .getElementById("refreshButton")
+            .getElementById("btnLimparFiltros")
             .addEventListener(
                 "click",
-                filterTable
+                function() {
+
+                    busca.value = "";
+
+                    filtroStatus.value = "";
+
+                    filtroResultado.value = "";
+
+                    renderizarTabela();
+
+                }
             );
+
+
+        /* =====================================================
+           ESC
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    fecharMenu();
+
+                    if (
+                        modal.classList.contains("open")
+                    ) {
+
+                        fecharModal();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           INICIALIZAÇÃO
+        ===================================================== */
+
+        renderizarTabela();
 
     </script>
 
