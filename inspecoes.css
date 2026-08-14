@@ -1,11 +1,12 @@
 /* =========================================================
-   ATLAS GESTÃO
-   INSPEÇÕES - CSS COMPLETO
-   ========================================================= */
+   ATLAS GESTÃO - INSPEÇÕES
+   Layout exclusivo da página de Inspeções
+========================================================= */
+
 
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 * {
     margin: 0;
@@ -24,10 +25,17 @@ body {
     color: #263238;
 }
 
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
 
 /* =========================================================
    MENU LATERAL
-   ========================================================= */
+========================================================= */
 
 .sidebar {
     position: fixed;
@@ -38,6 +46,7 @@ body {
     height: 100vh;
 
     background: #ffffff;
+
     border-right: 1px solid #e5e7eb;
 
     z-index: 1000;
@@ -108,6 +117,7 @@ body {
     display: block;
 
     margin: 3px 12px;
+
     padding: 13px 14px;
 
     border-radius: 9px;
@@ -131,6 +141,7 @@ body {
 .menu a.active {
     background: #2864d7;
     color: #ffffff;
+
     font-weight: bold;
 }
 
@@ -150,18 +161,20 @@ body {
 
 .menu a.logout {
     color: #dc3545;
+
     font-weight: bold;
 }
 
 .menu a.logout:hover {
     background: #fff1f1;
+
     color: #c82333;
 }
 
 
 /* =========================================================
-   BOTÃO FECHAR MENU
-   ========================================================= */
+   BOTÃO FECHAR MENU MOBILE
+========================================================= */
 
 .close-button {
     display: none;
@@ -183,14 +196,12 @@ body {
     font-size: 25px;
 
     cursor: pointer;
-
-    z-index: 10;
 }
 
 
 /* =========================================================
    BOTÃO MENU MOBILE
-   ========================================================= */
+========================================================= */
 
 .menu-button {
     display: none;
@@ -209,19 +220,21 @@ body {
 
     border-radius: 9px;
 
+    color: #263238;
+
     font-size: 22px;
 
     cursor: pointer;
 
     z-index: 1100;
 
-    color: #263238;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 
 /* =========================================================
-   OVERLAY
-   ========================================================= */
+   OVERLAY MOBILE
+========================================================= */
 
 .overlay {
     display: none;
@@ -242,45 +255,38 @@ body {
 
 /* =========================================================
    ÁREA PRINCIPAL
-   ========================================================= */
+========================================================= */
 
 .main {
-    margin-left: 260px;
-
     min-height: 100vh;
 
-    width: auto;
+    margin-left: 260px;
 }
 
 
 /* =========================================================
    CABEÇALHO
-   ========================================================= */
+========================================================= */
 
 .header {
     height: 76px;
 
-    background: #ffffff;
-
-    border-bottom: 1px solid #e5e7eb;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     padding: 0 30px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .header-left h1 {
-    font-size: 27px;
-
-    line-height: 1.2;
-
     margin-bottom: 4px;
 
-    color: #263238;
+    font-size: 27px;
+    line-height: 1.2;
 }
 
 .header-left p {
@@ -296,9 +302,9 @@ body {
 .user strong {
     display: block;
 
-    font-size: 14px;
-
     color: #263238;
+
+    font-size: 14px;
 }
 
 .user span {
@@ -310,24 +316,21 @@ body {
 
 /* =========================================================
    CONTEÚDO
-   ========================================================= */
+========================================================= */
 
 .content {
     padding: 28px;
-    max-width: 1600px;
-    margin: 0 auto;
 }
 
 
 /* =========================================================
-   INTRODUÇÃO DA PÁGINA
-   ========================================================= */
+   INTRO DA PÁGINA
+========================================================= */
 
 .page-intro {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     gap: 20px;
@@ -336,11 +339,10 @@ body {
 }
 
 .page-intro h2 {
+    margin-bottom: 7px;
+
     font-size: 21px;
-
-    color: #263238;
-
-    margin-bottom: 6px;
+    line-height: 1.3;
 }
 
 .page-intro p {
@@ -352,35 +354,33 @@ body {
 
 /* =========================================================
    BOTÃO PRINCIPAL
-   ========================================================= */
+========================================================= */
 
 .primary-button {
+    min-height: 44px;
+
+    padding: 0 18px;
+
     border: none;
 
-    background: #2864d7;
-    color: #ffffff;
-
-    padding: 12px 18px;
-
     border-radius: 9px;
+
+    background: #2864d7;
+
+    color: #ffffff;
 
     font-size: 14px;
     font-weight: bold;
 
     cursor: pointer;
 
-    white-space: nowrap;
-
     transition:
         background 0.2s ease,
-        transform 0.1s ease,
-        box-shadow 0.2s ease;
+        transform 0.1s ease;
 }
 
 .primary-button:hover {
-    background: #1f54bd;
-
-    box-shadow: 0 4px 12px rgba(40, 100, 215, 0.18);
+    background: #1f55bd;
 }
 
 .primary-button:active {
@@ -389,88 +389,55 @@ body {
 
 
 /* =========================================================
-   BOTÃO SECUNDÁRIO
-   ========================================================= */
-
-.secondary-button {
-    border: 1px solid #d9dee5;
-
-    background: #ffffff;
-    color: #59636e;
-
-    padding: 11px 18px;
-
-    border-radius: 9px;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.secondary-button:hover {
-    background: #f6f8fa;
-
-    border-color: #cbd2da;
-}
-
-
-/* =========================================================
    FILTROS
-   ========================================================= */
+========================================================= */
 
 .filters {
+    display: grid;
+
+    grid-template-columns:
+        minmax(260px, 1fr)
+        190px
+        190px
+        auto;
+
+    align-items: end;
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+
+    padding: 20px;
+
     background: #ffffff;
 
     border: 1px solid #e5e9ee;
 
     border-radius: 14px;
 
-    padding: 20px;
-
-    margin-bottom: 22px;
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(250px, 2fr)
-        minmax(170px, 1fr)
-        minmax(170px, 1fr)
-        auto;
-
-    align-items: end;
-
-    gap: 15px;
-
-    box-shadow:
-        0 4px 14px rgba(30, 50, 70, 0.05);
+    box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
 }
 
 .filter-group {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
+    min-width: 0;
 }
 
 .filter-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #4f5b66;
+
     font-size: 13px;
-
     font-weight: bold;
-
-    color: #59636e;
 }
 
 .filter-group input,
 .filter-group select {
     width: 100%;
 
-    height: 43px;
+    height: 42px;
 
     padding: 0 12px;
 
@@ -478,40 +445,35 @@ body {
 
     border-radius: 8px;
 
+    outline: none;
+
     background: #ffffff;
 
     color: #263238;
 
-    font-family: inherit;
-
     font-size: 14px;
-
-    outline: none;
 
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease;
 }
 
+.filter-group input::placeholder {
+    color: #a1aab3;
+}
+
 .filter-group input:focus,
 .filter-group select:focus {
     border-color: #2864d7;
 
-    box-shadow:
-        0 0 0 3px rgba(40, 100, 215, 0.10);
-}
-
-.filter-group input::placeholder {
-    color: #a0a8b1;
+    box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.10);
 }
 
 
-/* =========================================================
-   BOTÃO LIMPAR
-   ========================================================= */
+/* LIMPAR */
 
 .clear-button {
-    height: 43px;
+    height: 42px;
 
     padding: 0 17px;
 
@@ -535,19 +497,21 @@ body {
 }
 
 .clear-button:hover {
-    background: #f5f7fa;
+    background: #f7f9fb;
 
-    border-color: #cbd2da;
+    border-color: #2864d7;
 
-    color: #263238;
+    color: #2864d7;
 }
 
 
 /* =========================================================
    CARD DA TABELA
-   ========================================================= */
+========================================================= */
 
 .table-card {
+    width: 100%;
+
     background: #ffffff;
 
     border: 1px solid #e5e9ee;
@@ -556,37 +520,33 @@ body {
 
     overflow: hidden;
 
-    box-shadow:
-        0 4px 14px rgba(30, 50, 70, 0.05);
+    box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
 }
 
 
-/* =========================================================
-   CABEÇALHO DA TABELA
-   ========================================================= */
+/* CABEÇALHO DA TABELA */
 
 .table-header {
-    padding: 20px 22px;
-
-    border-bottom: 1px solid #edf0f3;
-
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
+
+    min-height: 76px;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid #edf0f3;
 }
 
 .table-header h2 {
-    font-size: 19px;
-
-    color: #263238;
-
     margin-bottom: 5px;
+
+    font-size: 18px;
 }
 
 .table-header span {
-    color: #8a95a1;
+    color: #7b8794;
 
     font-size: 13px;
 }
@@ -594,7 +554,7 @@ body {
 
 /* =========================================================
    CONTAINER DA TABELA
-   ========================================================= */
+========================================================= */
 
 .table-container {
     width: 100%;
@@ -602,29 +562,27 @@ body {
     overflow-x: auto;
 }
 
-
-/* =========================================================
-   TABELA
-   ========================================================= */
-
-table {
+.table-container table {
     width: 100%;
+
+    min-width: 1050px;
 
     border-collapse: collapse;
 
-    min-width: 1000px;
+    background: #ffffff;
 }
 
-thead {
-    background: #f8fafc;
-}
 
-thead th {
-    padding: 14px 16px;
+/* CABEÇALHO */
+
+.table-container th {
+    padding: 14px 15px;
 
     border-bottom: 1px solid #e5e9ee;
 
-    color: #66727e;
+    background: #f8fafc;
+
+    color: #59636e;
 
     font-size: 12px;
 
@@ -635,66 +593,49 @@ thead th {
     white-space: nowrap;
 }
 
-tbody td {
-    padding: 15px 16px;
+
+/* CÉLULAS */
+
+.table-container td {
+    padding: 15px;
 
     border-bottom: 1px solid #edf0f3;
 
-    color: #46515c;
+    color: #4d5965;
 
     font-size: 13px;
 
     vertical-align: middle;
 }
 
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-tbody tr:hover {
+.table-container tbody tr:hover {
     background: #fafcff;
 }
 
-tbody td strong {
+.table-container tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-container td strong {
     color: #263238;
 }
 
 
 /* =========================================================
-   DESCRIÇÃO
-   ========================================================= */
-
-.descricao-tabela {
-    display: block;
-
-    max-width: 260px;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
-    color: #46515c;
-}
-
-
-/* =========================================================
    BADGES
-   ========================================================= */
+========================================================= */
 
 .badge {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     min-height: 27px;
 
     padding: 4px 9px;
 
-    border-radius: 20px;
+    border-radius: 999px;
 
     font-size: 11px;
 
@@ -704,74 +645,77 @@ tbody td strong {
 }
 
 
+/* RESULTADO - CONFORME */
+
+.resultado-conforme {
+    background: #eaf8ef;
+
+    color: #21864a;
+}
+
+
+/* RESULTADO - NÃO CONFORME */
+
+.resultado-nao-conforme {
+    background: #fff0f0;
+
+    color: #c62828;
+}
+
+
+/* RESULTADO - EM ANÁLISE */
+
+.resultado-analise {
+    background: #fff7df;
+
+    color: #a66b00;
+}
+
+.resultado-default {
+    background: #eef1f4;
+
+    color: #59636e;
+}
+
+
 /* =========================================================
    STATUS
-   ========================================================= */
+========================================================= */
 
-.status-aberta {
-    background: #fff1f1;
-    color: #d63343;
-}
-
-.status-analise {
-    background: #fff7df;
-    color: #9b7200;
-}
-
-.status-tratamento {
+.status-agendada {
     background: #eef4ff;
+
     color: #2864d7;
+}
+
+.status-andamento {
+    background: #fff7df;
+
+    color: #a66b00;
 }
 
 .status-concluida {
     background: #eaf8ef;
-    color: #21864b;
+
+    color: #21864a;
 }
 
 .status-cancelada {
-    background: #f0f1f3;
-    color: #69737d;
+    background: #f1f2f4;
+
+    color: #6c757d;
 }
 
 .status-default {
-    background: #f0f1f3;
-    color: #69737d;
-}
+    background: #eef1f4;
 
-
-/* =========================================================
-   PRIORIDADES
-   ========================================================= */
-
-.prioridade-baixa {
-    background: #eaf8ef;
-    color: #21864b;
-}
-
-.prioridade-media {
-    background: #fff7df;
-    color: #9b7200;
-}
-
-.prioridade-alta {
-    background: #fff0e6;
-    color: #c65b16;
-}
-
-.prioridade-critica {
-    background: #fff1f1;
-    color: #d63343;
-}
-
-.prioridade-default {
-    background: #f0f1f3;
-    color: #69737d;
+    color: #59636e;
 }
 
 
 /* =========================================================
    BOTÕES DE AÇÃO
-   ========================================================= */
+========================================================= */
 
 .action-buttons {
     display: flex;
@@ -784,16 +728,17 @@ tbody td strong {
 }
 
 .action-button {
-    border: 1px solid #dfe4ea;
+    min-height: 31px;
 
-    background: #ffffff;
+    padding: 0 9px;
+
+    border: 1px solid transparent;
 
     border-radius: 7px;
 
-    padding: 7px 10px;
+    background: #ffffff;
 
-    font-size: 12px;
-
+    font-size: 11px;
     font-weight: bold;
 
     cursor: pointer;
@@ -804,104 +749,115 @@ tbody td strong {
         color 0.2s ease;
 }
 
+
+/* VER */
+
 .view-button {
+    border-color: #dce5f7;
+
     color: #2864d7;
 }
 
 .view-button:hover {
     background: #eef4ff;
 
-    border-color: #bfd2f7;
+    border-color: #2864d7;
 }
 
+
+/* EDITAR */
+
 .edit-button {
-    color: #59636e;
+    border-color: #e8dfc7;
+
+    color: #8b6800;
 }
 
 .edit-button:hover {
-    background: #f3f5f7;
+    background: #fff8e5;
 
-    border-color: #cbd2da;
+    border-color: #d9b84d;
 }
 
+
+/* EXCLUIR */
+
 .delete-button {
-    color: #dc3545;
+    border-color: #f0d5d5;
+
+    color: #c62828;
 }
 
 .delete-button:hover {
     background: #fff1f1;
 
-    border-color: #f0b9bf;
+    border-color: #dc3545;
 }
 
 
 /* =========================================================
    ESTADO VAZIO
-   ========================================================= */
+========================================================= */
 
 .empty-state {
     min-height: 300px;
-
-    padding: 40px 20px;
 
     display: none;
 
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
+
+    padding: 40px 20px;
 
     text-align: center;
 }
 
 .empty-icon {
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    border-radius: 14px;
+    margin-bottom: 14px;
 
-    margin-bottom: 15px;
+    border-radius: 14px;
 
     background: #eef4ff;
 
     color: #2864d7;
 
-    font-size: 25px;
-
+    font-size: 22px;
     font-weight: bold;
 }
 
 .empty-state h3 {
+    margin-bottom: 8px;
+
+    color: #374151;
+
     font-size: 18px;
-
-    color: #263238;
-
-    margin-bottom: 7px;
 }
 
 .empty-state p {
-    max-width: 460px;
+    max-width: 430px;
 
-    color: #8a95a1;
+    margin-bottom: 18px;
+
+    color: #8a95a0;
 
     font-size: 14px;
 
     line-height: 1.5;
-
-    margin-bottom: 18px;
 }
 
 
 /* =========================================================
    MODAL
-   ========================================================= */
+========================================================= */
 
 .modal {
     position: fixed;
@@ -910,27 +866,36 @@ tbody td strong {
 
     z-index: 2000;
 
-    display: none;
+    display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    padding: 25px;
+    padding: 20px;
 
-    background: rgba(20, 28, 38, 0.50);
+    background: rgba(15, 23, 42, 0.50);
 
-    overflow-y: auto;
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
 }
 
 .modal.open {
-    display: flex;
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
 }
 
 
-/* =========================================================
-   BLOQUEAR SCROLL
-   ========================================================= */
+/* BLOQUEIA SCROLL */
 
 body.modal-open {
     overflow: hidden;
@@ -939,14 +904,12 @@ body.modal-open {
 
 /* =========================================================
    CONTEÚDO DO MODAL
-   ========================================================= */
+========================================================= */
 
 .modal-content {
-    width: 100%;
+    width: min(850px, 100%);
 
-    max-width: 850px;
-
-    max-height: calc(100vh - 50px);
+    max-height: calc(100vh - 40px);
 
     overflow-y: auto;
 
@@ -954,38 +917,26 @@ body.modal-open {
 
     border-radius: 16px;
 
-    border: 1px solid #e5e9ee;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
 
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.18);
+    transform: translateY(15px) scale(0.98);
 
-    animation: modalEntrada 0.18s ease-out;
+    transition: transform 0.2s ease;
 }
 
-@keyframes modalEntrada {
-
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+.modal.open .modal-content {
+    transform: translateY(0) scale(1);
 }
 
 
 /* =========================================================
    CABEÇALHO DO MODAL
-   ========================================================= */
+========================================================= */
 
 .modal-header {
     display: flex;
 
     align-items: flex-start;
-
     justify-content: space-between;
 
     gap: 20px;
@@ -996,11 +947,11 @@ body.modal-open {
 }
 
 .modal-header h2 {
-    font-size: 20px;
+    margin-bottom: 6px;
 
     color: #263238;
 
-    margin-bottom: 5px;
+    font-size: 20px;
 }
 
 .modal-header p {
@@ -1012,31 +963,29 @@ body.modal-open {
 }
 
 
-/* =========================================================
-   FECHAR MODAL
-   ========================================================= */
+/* FECHAR */
 
 .modal-close {
+    flex: 0 0 auto;
+
     width: 36px;
     height: 36px;
 
-    flex-shrink: 0;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border: none;
 
     border-radius: 8px;
 
-    background: #f5f7f9;
+    background: #f4f6f8;
 
     color: #59636e;
 
-    font-size: 23px;
+    font-size: 24px;
+
+    line-height: 1;
 
     cursor: pointer;
 
@@ -1046,15 +995,15 @@ body.modal-open {
 }
 
 .modal-close:hover {
-    background: #fff1f1;
+    background: #fff0f0;
 
-    color: #dc3545;
+    color: #c62828;
 }
 
 
 /* =========================================================
    FORMULÁRIO
-   ========================================================= */
+========================================================= */
 
 #formInspecao {
     padding: 24px;
@@ -1063,30 +1012,35 @@ body.modal-open {
 .form-grid {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 18px;
 }
 
 .form-group {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
+    min-width: 0;
 }
 
 .form-group.full {
     grid-column: 1 / -1;
 }
 
+
+/* LABEL */
+
 .form-group label {
-    color: #4d5965;
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #4b5563;
 
     font-size: 13px;
-
     font-weight: bold;
 }
+
+
+/* INPUTS */
 
 .form-group input,
 .form-group select,
@@ -1097,15 +1051,13 @@ body.modal-open {
 
     border-radius: 8px;
 
+    outline: none;
+
     background: #ffffff;
 
     color: #263238;
 
-    font-family: inherit;
-
     font-size: 14px;
-
-    outline: none;
 
     transition:
         border-color 0.2s ease,
@@ -1120,7 +1072,7 @@ body.modal-open {
 }
 
 .form-group textarea {
-    min-height: 95px;
+    min-height: 100px;
 
     padding: 11px 12px;
 
@@ -1129,90 +1081,158 @@ body.modal-open {
     line-height: 1.5;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #a1aab3;
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: #2864d7;
 
-    box-shadow:
-        0 0 0 3px rgba(40, 100, 215, 0.10);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #a0a8b1;
+    box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.10);
 }
 
 
 /* =========================================================
    RODAPÉ DO MODAL
-   ========================================================= */
+========================================================= */
 
 .modal-footer {
     display: flex;
 
     align-items: center;
-
     justify-content: flex-end;
 
     gap: 10px;
 
-    padding: 18px 24px;
+    margin-top: 24px;
+
+    padding-top: 20px;
 
     border-top: 1px solid #edf0f3;
-
-    background: #fafbfc;
 }
 
 
-/* =========================================================
-   CAMPOS DE PRODUTO E LOTE
-   ========================================================= */
+/* BOTÃO SECUNDÁRIO */
 
-#produto,
-#lote {
+.secondary-button {
+    min-height: 43px;
+
+    padding: 0 17px;
+
+    border: 1px solid #dfe4ea;
+
+    border-radius: 8px;
+
     background: #ffffff;
+
+    color: #59636e;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.secondary-button:hover {
+    background: #f7f9fb;
+
+    border-color: #cbd2d9;
 }
 
 
 /* =========================================================
-   RESPONSIVIDADE - TABLET
-   ========================================================= */
+   BARRA DE ROLAGEM
+========================================================= */
+
+.sidebar::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar,
+.table-container::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track,
+.table-container::-webkit-scrollbar-track {
+    background: #f5f6f8;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb,
+.table-container::-webkit-scrollbar-thumb {
+    background: #cfd5dc;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 1100px) {
 
-    .content {
-        padding: 22px;
+    .filters {
+        grid-template-columns:
+            minmax(220px, 1fr)
+            170px
+            170px
+            auto;
     }
+
+    .content {
+        padding: 24px;
+    }
+
+    .header {
+        padding: 0 24px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET MENOR
+========================================================= */
+
+@media (max-width: 900px) {
 
     .filters {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .filters .filter-group:first-child {
+        grid-column: 1 / -1;
     }
 
     .clear-button {
         width: 100%;
     }
 
-    .page-intro {
-        align-items: flex-start;
-    }
-
 }
 
 
 /* =========================================================
-   RESPONSIVIDADE - TABLET MENOR
-   ========================================================= */
+   CELULAR
+========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 700px) {
+
+    /* MENU */
 
     .sidebar {
-        transform: translateX(-100%);
-
         width: 270px;
 
-        box-shadow:
-            5px 0 20px rgba(0, 0, 0, 0.12);
+        transform: translateX(-100%);
+
+        box-shadow: 5px 0 20px rgba(0, 0, 0, 0.12);
     }
 
     .sidebar.open {
@@ -1224,110 +1244,125 @@ body.modal-open {
     }
 
     .menu-button {
-        display: block;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
     }
+
+
+    /* PRINCIPAL */
 
     .main {
         margin-left: 0;
     }
 
+
+    /* CABEÇALHO */
+
     .header {
-        padding-left: 68px;
+        height: 76px;
+
+        padding:
+            12px
+            18px
+            12px
+            68px;
+    }
+
+    .header-left h1 {
+        font-size: 23px;
+    }
+
+    .header-left p {
+        font-size: 12px;
     }
 
     .user {
         display: none;
     }
 
+
+    /* CONTEÚDO */
+
+    .content {
+        padding: 16px;
+    }
+
+
+    /* INTRO */
+
     .page-intro {
         flex-direction: column;
 
         align-items: stretch;
-    }
 
-    .primary-button {
-        align-self: flex-start;
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE - CELULAR
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-    .header {
-        min-height: 76px;
-
-        height: auto;
-
-        padding:
-            14px
-            18px
-            14px
-            68px;
-    }
-
-    .header-left h1 {
-        font-size: 22px;
-    }
-
-    .header-left p {
-        font-size: 12px;
-
-        line-height: 1.4;
-    }
-
-    .content {
-        padding: 16px;
+        gap: 15px;
     }
 
     .page-intro h2 {
         font-size: 19px;
     }
 
+    .primary-button {
+        width: 100%;
+    }
+
+
+    /* FILTROS */
+
     .filters {
         grid-template-columns: 1fr;
 
         padding: 16px;
+    }
 
-        gap: 13px;
+    .filters .filter-group:first-child {
+        grid-column: auto;
+    }
+
+    .clear-button {
+        width: 100%;
+    }
+
+
+    /* TABELA */
+
+    .table-card {
+        border-radius: 12px;
     }
 
     .table-header {
-        padding: 17px;
+        padding: 16px;
     }
 
-    .table-header h2 {
-        font-size: 17px;
+    .table-container table {
+        min-width: 1050px;
     }
 
-    .empty-state {
-        padding:
-            35px
-            16px;
-    }
+
+    /* MODAL */
 
     .modal {
-        padding: 10px;
+        align-items: flex-end;
+
+        padding: 0;
     }
 
     .modal-content {
-        max-height: calc(100vh - 20px);
+        width: 100%;
 
-        border-radius: 13px;
+        max-height: 94vh;
+
+        border-radius:
+            18px
+            18px
+            0
+            0;
     }
 
     .modal-header {
         padding: 18px;
-
-        gap: 10px;
-    }
-
-    .modal-header h2 {
-        font-size: 18px;
     }
 
     #formInspecao {
@@ -1345,8 +1380,6 @@ body.modal-open {
     }
 
     .modal-footer {
-        padding: 15px 18px;
-
         flex-direction: column-reverse;
 
         align-items: stretch;
@@ -1361,7 +1394,7 @@ body.modal-open {
 
 /* =========================================================
    CELULAR PEQUENO
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 420px) {
 
@@ -1370,106 +1403,23 @@ body.modal-open {
     }
 
     .header {
-        padding-left: 62px;
+        padding-left: 64px;
     }
 
     .header-left h1 {
-        font-size: 20px;
+        font-size: 21px;
     }
 
-    .menu-button {
-        left: 10px;
-        top: 10px;
+    .page-intro h2 {
+        font-size: 18px;
     }
 
-    .primary-button {
-        width: 100%;
+    .table-header h2 {
+        font-size: 16px;
     }
 
-    .page-intro .primary-button {
-        align-self: stretch;
-    }
-
-}
-
-
-/* =========================================================
-   BARRA DE ROLAGEM
-   ========================================================= */
-
-.sidebar::-webkit-scrollbar,
-.modal-content::-webkit-scrollbar,
-.table-container::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
-}
-
-.sidebar::-webkit-scrollbar-thumb,
-.modal-content::-webkit-scrollbar-thumb,
-.table-container::-webkit-scrollbar-thumb {
-    background: #cbd2da;
-
-    border-radius: 10px;
-}
-
-.sidebar::-webkit-scrollbar-track,
-.modal-content::-webkit-scrollbar-track,
-.table-container::-webkit-scrollbar-track {
-    background: #f5f7f9;
-}
-
-
-/* =========================================================
-   ACESSIBILIDADE
-   ========================================================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 3px solid rgba(40, 100, 215, 0.22);
-
-    outline-offset: 2px;
-}
-
-
-/* =========================================================
-   IMPRESSÃO
-   ========================================================= */
-
-@media print {
-
-    .sidebar,
-    .menu-button,
-    .overlay,
-    .filters,
-    .page-intro .primary-button,
-    .action-buttons,
-    .modal {
-        display: none !important;
-    }
-
-    .main {
-        margin-left: 0;
-    }
-
-    .header {
-        border-bottom: 1px solid #ccc;
-    }
-
-    .content {
-        padding: 0;
-    }
-
-    .table-card {
-        border: none;
-
-        box-shadow: none;
-    }
-
-    table {
-        min-width: 0;
+    .empty-state {
+        padding: 30px 15px;
     }
 
 }
