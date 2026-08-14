@@ -1,11 +1,6 @@
 /* =========================================================
    ATLAS GESTÃO - INSPEÇÕES
-   Layout exclusivo da página de Inspeções
-========================================================= */
-
-
-/* =========================================================
-   RESET
+   Layout independente da página de Inspeções
 ========================================================= */
 
 * {
@@ -25,16 +20,8 @@ body {
     color: #263238;
 }
 
-button,
-input,
-select,
-textarea {
-    font-family: inherit;
-}
-
-
 /* =========================================================
-   MENU LATERAL
+   SIDEBAR
 ========================================================= */
 
 .sidebar {
@@ -46,7 +33,6 @@ textarea {
     height: 100vh;
 
     background: #ffffff;
-
     border-right: 1px solid #e5e7eb;
 
     z-index: 1000;
@@ -55,9 +41,6 @@ textarea {
 
     transition: transform 0.3s ease;
 }
-
-
-/* LOGO */
 
 .logo {
     height: 76px;
@@ -96,9 +79,6 @@ textarea {
     font-weight: bold;
 }
 
-
-/* TÍTULO DO MENU */
-
 .menu-title {
     padding: 28px 20px 12px;
 
@@ -110,14 +90,10 @@ textarea {
     letter-spacing: 1px;
 }
 
-
-/* LINKS */
-
 .menu a {
     display: block;
 
     margin: 3px 12px;
-
     padding: 13px 14px;
 
     border-radius: 9px;
@@ -127,10 +103,6 @@ textarea {
     text-decoration: none;
 
     font-size: 15px;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
 .menu a:hover {
@@ -141,12 +113,8 @@ textarea {
 .menu a.active {
     background: #2864d7;
     color: #ffffff;
-
     font-weight: bold;
 }
-
-
-/* SEPARADOR */
 
 .menu-separator {
     height: 1px;
@@ -156,24 +124,18 @@ textarea {
     margin: 20px;
 }
 
-
-/* SAIR */
-
 .menu a.logout {
     color: #dc3545;
-
     font-weight: bold;
 }
 
 .menu a.logout:hover {
     background: #fff1f1;
-
     color: #c82333;
 }
 
-
 /* =========================================================
-   BOTÃO FECHAR MENU MOBILE
+   MENU MOBILE
 ========================================================= */
 
 .close-button {
@@ -198,11 +160,6 @@ textarea {
     cursor: pointer;
 }
 
-
-/* =========================================================
-   BOTÃO MENU MOBILE
-========================================================= */
-
 .menu-button {
     display: none;
 
@@ -220,21 +177,12 @@ textarea {
 
     border-radius: 9px;
 
-    color: #263238;
-
     font-size: 22px;
 
     cursor: pointer;
 
     z-index: 1100;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-
-
-/* =========================================================
-   OVERLAY MOBILE
-========================================================= */
 
 .overlay {
     display: none;
@@ -252,46 +200,43 @@ textarea {
     display: block;
 }
 
-
 /* =========================================================
    ÁREA PRINCIPAL
 ========================================================= */
 
 .main {
-    min-height: 100vh;
-
     margin-left: 260px;
+
+    min-height: 100vh;
 }
 
-
 /* =========================================================
-   CABEÇALHO
+   HEADER
 ========================================================= */
 
 .header {
     height: 76px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 30px;
-
     background: #ffffff;
 
     border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
 }
 
 .header-left h1 {
-    margin-bottom: 4px;
-
     font-size: 27px;
-    line-height: 1.2;
+    margin-bottom: 4px;
 }
 
 .header-left p {
     color: #7c8792;
-
     font-size: 14px;
 }
 
@@ -301,18 +246,13 @@ textarea {
 
 .user strong {
     display: block;
-
-    color: #263238;
-
     font-size: 14px;
 }
 
 .user span {
     color: #7c8792;
-
     font-size: 13px;
 }
-
 
 /* =========================================================
    CONTEÚDO
@@ -320,29 +260,30 @@ textarea {
 
 .content {
     padding: 28px;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
-
 /* =========================================================
-   INTRO DA PÁGINA
+   INTRODUÇÃO DA PÁGINA
 ========================================================= */
 
 .page-intro {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .page-intro h2 {
-    margin-bottom: 7px;
+    font-size: 22px;
 
-    font-size: 21px;
-    line-height: 1.3;
+    margin-bottom: 6px;
 }
 
 .page-intro p {
@@ -351,42 +292,81 @@ textarea {
     font-size: 14px;
 }
 
-
 /* =========================================================
-   BOTÃO PRINCIPAL
+   BOTÕES
 ========================================================= */
 
 .primary-button {
-    min-height: 44px;
-
-    padding: 0 18px;
-
     border: none;
-
-    border-radius: 9px;
 
     background: #2864d7;
 
     color: #ffffff;
 
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
     font-size: 14px;
+
     font-weight: bold;
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease,
-        transform 0.1s ease;
+    white-space: nowrap;
+
+    transition: 0.2s;
 }
 
 .primary-button:hover {
-    background: #1f55bd;
+    background: #1f54b9;
 }
 
-.primary-button:active {
-    transform: translateY(1px);
+.secondary-button {
+    border: 1px solid #d9dfe6;
+
+    background: #ffffff;
+
+    color: #59636e;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
 }
 
+.secondary-button:hover {
+    background: #f5f7fa;
+}
+
+.clear-button {
+    align-self: end;
+
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid #d9dfe6;
+
+    background: #ffffff;
+
+    color: #59636e;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.clear-button:hover {
+    background: #f5f7fa;
+}
 
 /* =========================================================
    FILTROS
@@ -395,19 +375,9 @@ textarea {
 .filters {
     display: grid;
 
-    grid-template-columns:
-        minmax(260px, 1fr)
-        190px
-        190px
-        auto;
-
-    align-items: end;
+    grid-template-columns: minmax(250px, 2fr) minmax(180px, 1fr) minmax(180px, 1fr) auto;
 
     gap: 14px;
-
-    margin-bottom: 22px;
-
-    padding: 20px;
 
     background: #ffffff;
 
@@ -415,21 +385,26 @@ textarea {
 
     border-radius: 14px;
 
+    padding: 18px;
+
+    margin-bottom: 20px;
+
     box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
 }
 
 .filter-group {
-    min-width: 0;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
 }
 
 .filter-group label {
-    display: block;
+    color: #59636e;
 
-    margin-bottom: 7px;
+    font-size: 12px;
 
-    color: #4f5b66;
-
-    font-size: 13px;
     font-weight: bold;
 }
 
@@ -445,21 +420,13 @@ textarea {
 
     border-radius: 8px;
 
-    outline: none;
-
     background: #ffffff;
 
     color: #263238;
 
     font-size: 14px;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.filter-group input::placeholder {
-    color: #a1aab3;
+    outline: none;
 }
 
 .filter-group input:focus,
@@ -469,80 +436,32 @@ textarea {
     box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.10);
 }
 
-
-/* LIMPAR */
-
-.clear-button {
-    height: 42px;
-
-    padding: 0 17px;
-
-    border: 1px solid #dfe4ea;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #59636e;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.clear-button:hover {
-    background: #f7f9fb;
-
-    border-color: #2864d7;
-
-    color: #2864d7;
-}
-
-
 /* =========================================================
    CARD DA TABELA
 ========================================================= */
 
 .table-card {
-    width: 100%;
-
     background: #ffffff;
 
     border: 1px solid #e5e9ee;
 
     border-radius: 14px;
 
-    overflow: hidden;
-
     box-shadow: 0 4px 14px rgba(30, 50, 70, 0.05);
+
+    overflow: hidden;
 }
 
-
-/* CABEÇALHO DA TABELA */
-
 .table-header {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    min-height: 76px;
-
-    padding: 18px 22px;
+    padding: 20px 22px;
 
     border-bottom: 1px solid #edf0f3;
 }
 
 .table-header h2 {
-    margin-bottom: 5px;
-
     font-size: 18px;
+
+    margin-bottom: 5px;
 }
 
 .table-header span {
@@ -551,9 +470,8 @@ textarea {
     font-size: 13px;
 }
 
-
 /* =========================================================
-   CONTAINER DA TABELA
+   TABELA
 ========================================================= */
 
 .table-container {
@@ -562,64 +480,63 @@ textarea {
     overflow-x: auto;
 }
 
-.table-container table {
+table {
     width: 100%;
 
-    min-width: 1050px;
+    min-width: 1000px;
 
     border-collapse: collapse;
-
-    background: #ffffff;
 }
 
-
-/* CABEÇALHO */
-
-.table-container th {
-    padding: 14px 15px;
-
-    border-bottom: 1px solid #e5e9ee;
-
+thead {
     background: #f8fafc;
+}
 
-    color: #59636e;
+th {
+    padding: 14px 16px;
+
+    text-align: left;
+
+    color: #65717e;
 
     font-size: 12px;
 
     font-weight: bold;
 
-    text-align: left;
+    border-bottom: 1px solid #e9edf1;
 
     white-space: nowrap;
 }
 
-
-/* CÉLULAS */
-
-.table-container td {
-    padding: 15px;
+td {
+    padding: 15px 16px;
 
     border-bottom: 1px solid #edf0f3;
-
-    color: #4d5965;
 
     font-size: 13px;
 
     vertical-align: middle;
 }
 
-.table-container tbody tr:hover {
+tbody tr:hover {
     background: #fafcff;
 }
 
-.table-container tbody tr:last-child td {
+tbody tr:last-child td {
     border-bottom: none;
 }
 
-.table-container td strong {
-    color: #263238;
-}
+.descricao-tabela {
+    display: block;
 
+    max-width: 260px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
 
 /* =========================================================
    BADGES
@@ -629,13 +546,14 @@ textarea {
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
     min-height: 27px;
 
-    padding: 4px 9px;
+    padding: 5px 10px;
 
-    border-radius: 999px;
+    border-radius: 20px;
 
     font-size: 11px;
 
@@ -644,77 +562,52 @@ textarea {
     white-space: nowrap;
 }
 
-
-/* RESULTADO - CONFORME */
+/* RESULTADO */
 
 .resultado-conforme {
-    background: #eaf8ef;
-
-    color: #21864a;
+    background: #e9f8ef;
+    color: #198754;
 }
-
-
-/* RESULTADO - NÃO CONFORME */
 
 .resultado-nao-conforme {
     background: #fff0f0;
-
-    color: #c62828;
+    color: #dc3545;
 }
-
-
-/* RESULTADO - EM ANÁLISE */
 
 .resultado-analise {
     background: #fff7df;
-
-    color: #a66b00;
+    color: #a97800;
 }
 
-.resultado-default {
-    background: #eef1f4;
-
-    color: #59636e;
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
+/* STATUS */
 
 .status-agendada {
     background: #eef4ff;
-
     color: #2864d7;
 }
 
 .status-andamento {
     background: #fff7df;
-
-    color: #a66b00;
+    color: #a97800;
 }
 
 .status-concluida {
-    background: #eaf8ef;
-
-    color: #21864a;
+    background: #e9f8ef;
+    color: #198754;
 }
 
 .status-cancelada {
-    background: #f1f2f4;
-
+    background: #f1f3f5;
     color: #6c757d;
 }
 
 .status-default {
-    background: #eef1f4;
-
+    background: #f1f3f5;
     color: #59636e;
 }
 
-
 /* =========================================================
-   BOTÕES DE AÇÃO
+   AÇÕES DA TABELA
 ========================================================= */
 
 .action-buttons {
@@ -728,72 +621,41 @@ textarea {
 }
 
 .action-button {
-    min-height: 31px;
-
-    padding: 0 9px;
-
-    border: 1px solid transparent;
-
-    border-radius: 7px;
+    border: 1px solid #dfe4ea;
 
     background: #ffffff;
 
+    padding: 7px 9px;
+
+    border-radius: 7px;
+
     font-size: 11px;
+
     font-weight: bold;
 
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
 }
 
-
-/* VER */
+.action-button:hover {
+    background: #f5f8ff;
+}
 
 .view-button {
-    border-color: #dce5f7;
-
     color: #2864d7;
 }
 
-.view-button:hover {
-    background: #eef4ff;
-
-    border-color: #2864d7;
-}
-
-
-/* EDITAR */
-
 .edit-button {
-    border-color: #e8dfc7;
-
-    color: #8b6800;
+    color: #59636e;
 }
-
-.edit-button:hover {
-    background: #fff8e5;
-
-    border-color: #d9b84d;
-}
-
-
-/* EXCLUIR */
 
 .delete-button {
-    border-color: #f0d5d5;
-
-    color: #c62828;
+    color: #dc3545;
 }
 
 .delete-button:hover {
     background: #fff1f1;
-
-    border-color: #dc3545;
+    border-color: #f0caca;
 }
-
 
 /* =========================================================
    ESTADO VAZIO
@@ -802,16 +664,19 @@ textarea {
 .empty-state {
     min-height: 300px;
 
-    display: none;
+    display: flex;
 
     flex-direction: column;
 
     align-items: center;
+
     justify-content: center;
+
+    text-align: center;
 
     padding: 40px 20px;
 
-    text-align: center;
+    color: #7b8794;
 }
 
 .empty-icon {
@@ -819,27 +684,29 @@ textarea {
     height: 52px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 
-    border-radius: 14px;
+    border-radius: 50%;
 
     background: #eef4ff;
 
     color: #2864d7;
 
-    font-size: 22px;
+    font-size: 23px;
+
     font-weight: bold;
 }
 
 .empty-state h3 {
-    margin-bottom: 8px;
-
     color: #374151;
 
-    font-size: 18px;
+    font-size: 17px;
+
+    margin-bottom: 7px;
 }
 
 .empty-state p {
@@ -847,13 +714,10 @@ textarea {
 
     margin-bottom: 18px;
 
-    color: #8a95a0;
-
-    font-size: 14px;
+    font-size: 13px;
 
     line-height: 1.5;
 }
-
 
 /* =========================================================
    MODAL
@@ -864,47 +728,28 @@ textarea {
 
     inset: 0;
 
-    z-index: 2000;
-
-    display: flex;
+    display: none;
 
     align-items: center;
+
     justify-content: center;
 
     padding: 20px;
 
-    background: rgba(15, 23, 42, 0.50);
+    background: rgba(15, 23, 42, 0.52);
 
-    opacity: 0;
+    z-index: 2000;
 
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
+    overflow-y: auto;
 }
 
 .modal.open {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
+    display: flex;
 }
-
-
-/* BLOQUEIA SCROLL */
 
 body.modal-open {
     overflow: hidden;
 }
-
-
-/* =========================================================
-   CONTEÚDO DO MODAL
-========================================================= */
 
 .modal-content {
     width: min(850px, 100%);
@@ -915,28 +760,36 @@ body.modal-open {
 
     background: #ffffff;
 
-    border-radius: 16px;
+    border-radius: 15px;
 
-    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.20);
 
-    transform: translateY(15px) scale(0.98);
-
-    transition: transform 0.2s ease;
+    animation: aparecerModal 0.18s ease;
 }
 
-.modal.open .modal-content {
-    transform: translateY(0) scale(1);
-}
+@keyframes aparecerModal {
 
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
 
 /* =========================================================
-   CABEÇALHO DO MODAL
+   CABEÇALHO MODAL
 ========================================================= */
 
 .modal-header {
     display: flex;
 
     align-items: flex-start;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -947,100 +800,75 @@ body.modal-open {
 }
 
 .modal-header h2 {
-    margin-bottom: 6px;
-
-    color: #263238;
-
     font-size: 20px;
+
+    margin-bottom: 5px;
 }
 
 .modal-header p {
     color: #7b8794;
 
     font-size: 13px;
-
-    line-height: 1.4;
 }
 
-
-/* FECHAR */
-
 .modal-close {
-    flex: 0 0 auto;
-
     width: 36px;
     height: 36px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
 
     border: none;
 
     border-radius: 8px;
 
-    background: #f4f6f8;
+    background: #f5f7fa;
 
     color: #59636e;
 
-    font-size: 24px;
-
-    line-height: 1;
+    font-size: 23px;
 
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
 .modal-close:hover {
-    background: #fff0f0;
-
-    color: #c62828;
+    background: #edf0f3;
 }
-
 
 /* =========================================================
    FORMULÁRIO
 ========================================================= */
 
 #formInspecao {
-    padding: 24px;
+    padding: 22px 24px 24px;
 }
 
 .form-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr 1fr;
 
-    gap: 18px;
+    gap: 17px;
 }
 
 .form-group {
-    min-width: 0;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
 }
 
 .form-group.full {
     grid-column: 1 / -1;
 }
 
-
-/* LABEL */
-
 .form-group label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #4b5563;
+    color: #46515c;
 
     font-size: 13px;
+
     font-weight: bold;
 }
-
-
-/* INPUTS */
 
 .form-group input,
 .form-group select,
@@ -1051,17 +879,17 @@ body.modal-open {
 
     border-radius: 8px;
 
-    outline: none;
-
     background: #ffffff;
 
     color: #263238;
 
+    font-family: inherit;
+
     font-size: 14px;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    outline: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group input,
@@ -1072,18 +900,11 @@ body.modal-open {
 }
 
 .form-group textarea {
-    min-height: 100px;
-
     padding: 11px 12px;
 
     resize: vertical;
 
-    line-height: 1.5;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #a1aab3;
+    min-height: 90px;
 }
 
 .form-group input:focus,
@@ -1094,15 +915,15 @@ body.modal-open {
     box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.10);
 }
 
-
 /* =========================================================
-   RODAPÉ DO MODAL
+   RODAPÉ MODAL
 ========================================================= */
 
 .modal-footer {
     display: flex;
 
     align-items: center;
+
     justify-content: flex-end;
 
     gap: 10px;
@@ -1114,123 +935,28 @@ body.modal-open {
     border-top: 1px solid #edf0f3;
 }
 
-
-/* BOTÃO SECUNDÁRIO */
-
-.secondary-button {
-    min-height: 43px;
-
-    padding: 0 17px;
-
-    border: 1px solid #dfe4ea;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #59636e;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.secondary-button:hover {
-    background: #f7f9fb;
-
-    border-color: #cbd2d9;
-}
-
-
 /* =========================================================
-   BARRA DE ROLAGEM
-========================================================= */
-
-.sidebar::-webkit-scrollbar,
-.modal-content::-webkit-scrollbar,
-.table-container::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
-}
-
-.sidebar::-webkit-scrollbar-track,
-.modal-content::-webkit-scrollbar-track,
-.table-container::-webkit-scrollbar-track {
-    background: #f5f6f8;
-}
-
-.sidebar::-webkit-scrollbar-thumb,
-.modal-content::-webkit-scrollbar-thumb,
-.table-container::-webkit-scrollbar-thumb {
-    background: #cfd5dc;
-
-    border-radius: 10px;
-}
-
-
-/* =========================================================
-   TABLET
+   RESPONSIVIDADE
 ========================================================= */
 
 @media (max-width: 1100px) {
 
     .filters {
-        grid-template-columns:
-            minmax(220px, 1fr)
-            170px
-            170px
-            auto;
-    }
-
-    .content {
-        padding: 24px;
-    }
-
-    .header {
-        padding: 0 24px;
-    }
-
-}
-
-
-/* =========================================================
-   TABLET MENOR
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .filters {
         grid-template-columns: 1fr 1fr;
     }
 
-    .filters .filter-group:first-child {
-        grid-column: 1 / -1;
-    }
-
     .clear-button {
-        width: 100%;
+        align-self: auto;
     }
 
 }
 
-
-/* =========================================================
-   CELULAR
-========================================================= */
-
-@media (max-width: 700px) {
-
-    /* MENU */
+@media (max-width: 800px) {
 
     .sidebar {
-        width: 270px;
-
         transform: translateX(-100%);
+
+        width: 270px;
 
         box-shadow: 5px 0 20px rgba(0, 0, 0, 0.12);
     }
@@ -1244,30 +970,17 @@ body.modal-open {
     }
 
     .menu-button {
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
+        display: block;
     }
-
-
-    /* PRINCIPAL */
 
     .main {
         margin-left: 0;
     }
 
-
-    /* CABEÇALHO */
-
     .header {
         height: 76px;
 
-        padding:
-            12px
-            18px
-            12px
-            68px;
+        padding: 12px 18px 12px 68px;
     }
 
     .header-left h1 {
@@ -1282,83 +995,64 @@ body.modal-open {
         display: none;
     }
 
-
-    /* CONTEÚDO */
-
     .content {
-        padding: 16px;
+        padding: 18px;
     }
-
-
-    /* INTRO */
 
     .page-intro {
+        align-items: flex-start;
+
         flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 15px;
-    }
-
-    .page-intro h2 {
-        font-size: 19px;
     }
 
     .primary-button {
         width: 100%;
     }
 
-
-    /* FILTROS */
-
     .filters {
         grid-template-columns: 1fr;
-
-        padding: 16px;
     }
 
-    .filters .filter-group:first-child {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
         grid-column: auto;
     }
 
-    .clear-button {
-        width: 100%;
+}
+
+@media (max-width: 500px) {
+
+    .content {
+        padding: 14px;
     }
 
+    .header {
+        padding-left: 62px;
+    }
 
-    /* TABELA */
+    .header-left h1 {
+        font-size: 20px;
+    }
 
-    .table-card {
-        border-radius: 12px;
+    .header-left p {
+        display: none;
     }
 
     .table-header {
         padding: 16px;
     }
 
-    .table-container table {
-        min-width: 1050px;
-    }
-
-
-    /* MODAL */
-
     .modal {
-        align-items: flex-end;
-
-        padding: 0;
+        padding: 10px;
     }
 
     .modal-content {
-        width: 100%;
+        max-height: calc(100vh - 20px);
 
-        max-height: 94vh;
-
-        border-radius:
-            18px
-            18px
-            0
-            0;
+        border-radius: 12px;
     }
 
     .modal-header {
@@ -1369,57 +1063,12 @@ body.modal-open {
         padding: 18px;
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
-
-        gap: 15px;
-    }
-
-    .form-group.full {
-        grid-column: auto;
-    }
-
     .modal-footer {
         flex-direction: column-reverse;
-
-        align-items: stretch;
     }
 
     .modal-footer button {
         width: 100%;
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR PEQUENO
-========================================================= */
-
-@media (max-width: 420px) {
-
-    .content {
-        padding: 12px;
-    }
-
-    .header {
-        padding-left: 64px;
-    }
-
-    .header-left h1 {
-        font-size: 21px;
-    }
-
-    .page-intro h2 {
-        font-size: 18px;
-    }
-
-    .table-header h2 {
-        font-size: 16px;
-    }
-
-    .empty-state {
-        padding: 30px 15px;
     }
 
 }
